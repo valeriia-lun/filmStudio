@@ -68,23 +68,23 @@
   <option value="most_expensive_actor" >Найдорожчі актори</option>
 </select>
 
-<input>Ім'я</input>
-<input>Прізвище</input>
-<input>По-батькові</input>
-<input>Рейтинг</input>
-<input>Кількість фільмів</input>
-<input>Вік</input>
+<input value="Ім'я"></input>
+<input value="Прізвище"></input>
+<input value="По-батькові"></input>
+<input value="Рейтинг"></input>
+<input value="Кількість фільмів"></input>
+<input value="Вік"></input>
 <select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
   <option value="max_experience">Чоловік</option>
   <option value="female">Жінка</option>
 </select>
-<input>Ріст</input>
+<input value="Ріст"></input>
 Колір волосся:
 <select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
   <option value="max_experience">рудий</option>
   <option value="female">Жінка</option>
 </select>
-<input>Довжина волосся</input>
+<input value="Довжина волосся"></input>
 Колір очей:
 <select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
   <option value="max_experience">блакитний</option>
@@ -95,8 +95,8 @@
   <option value="max_experience">спортивний</option>
   <option value="female">Жінка</option>
 </select>
-<input>Розмір взуття</input>
-<input>Розмір одягу</input>
+<input value="Розмір взуття"></input>
+<input value="Розмір одягу"></input>
 Національність:
 <select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
   <option value="max_experience">українець</option>
