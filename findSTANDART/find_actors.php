@@ -64,7 +64,7 @@ function yesnoCheck(that) {
 <div class="noprint">
 <form action="find_actors_zapyty.php" method="post">
 <div class="container col-md-3">
-<select  onchange="yesnoCheck(this); class="select selectpicker  form-control" name="selecting">
+<select  onchange="yesnoCheck(this);" class="select selectpicker  form-control" name="selecting">
   <option value="max_experience">Актори з найбільшим стажем</option>
   <option value="female">Актори жіночого роду</option>
   <option value="salary_20000_more">Актори із зарплатнею < 20 000 грн</option>
@@ -85,8 +85,9 @@ function yesnoCheck(that) {
 </form>
 
 </div>
-<div>
-<table border="1" width = "2000">
+<div  style="margin:10px;">
+<table border="1" class=" table table-dark table-hover" >
+<thead class="thead-dark " style="background-color: #252527;">
 <tr>
 <td>Id</td>
 <td>Ім'я</td>
@@ -120,7 +121,7 @@ function yesnoCheck(that) {
 <td>Телефон</td>
 <td>Контакти близьких</td>
 <td>Рейтинги фільмів, в яких брали участь </td>
-</tr>
+</tr></thead>
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
@@ -190,8 +191,8 @@ while ($stroka = mysqli_fetch_array($result_actors)){
 ?>
 
 </div>
-<div class="noprint">
-<button onclick="window.print()">Друкувати</button>
+<div class="btn noprint">
+<button class ="button btn btn-danger" onclick="window.print()">Друкувати</button></br></br></br>
 </div>
 </body>
 </html>

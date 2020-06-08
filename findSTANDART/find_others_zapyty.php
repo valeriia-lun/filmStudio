@@ -46,18 +46,22 @@
 <h1 align="center" class="colorForAllText">Інші співробітники</h1></br>
 </div>
 <div class="noprint">
-<select>
+<div class="container col-md-3">
+<select  class="select selectpicker  form-control">
   <option>Найдешевший інший співробітник</option>
   <option>Найдорожчий інший співробітник</option>
   <option>Інший співробітник з найбльшим стажем</option>
 </select>
-
+</div>
 <form>
-  <button>Знайти</button>
+<div class="btn">
+  <button class ="button btn btn-danger" name="done">Знайти</button>
+</div>
 </form>
 </div>
-<div>
-<table border="1" style="width: 100%; height: 100px">
+<div  style="margin:10px;">
+<table border="1" class=" table table-dark table-hover" >
+<thead class="thead-dark " style="background-color: #252527;">
 <tr>
 <td>Id</td>
 <td>Ім'я</td>
@@ -79,7 +83,7 @@
 <td>Телефон</td>
 <td>Контакти близьких</td>
 <td>Рейтинги фільмів, в яких брали участь </td>
-</tr>
+</tr></thead>
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
@@ -215,8 +219,8 @@ while ($stroka = mysqli_fetch_array($result_others)){
 
 </table>
 </div>
-<div class="noprint">
-<button onclick="window.print()">Друкувати</button>
+<div class="btn noprint">
+<button class ="button btn btn-danger" onclick="window.print()">Друкувати</button></br></br></br>
 </div>
 </body>
 </html>

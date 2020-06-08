@@ -57,13 +57,14 @@
 </form>
 </div>
 
-<div>
-<table border="1" style="width: 100%; height: 500px">
+<div  style="margin:10px;">
+<table border="1" class=" table table-dark table-hover" >
+<thead class="thead-dark " style="background-color: #252527;">
 <tr>
 <td>Номер знімальної групи</td>
 <td>Дата початку роботи знімальної групи</td>
 <td>Дата закінчення роботи знімальної групи</td>
-</tr>
+</tr></thead>
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
@@ -84,8 +85,8 @@ while ($stroka = mysqli_fetch_array($result_film_crews)){
 
 </table>
 </div>
-<div class="noprint">
-<button onclick="window.print()">Друкувати</button>
+<div class="btn noprint">
+<button class ="button btn btn-danger" onclick="window.print()">Друкувати</button></br></br></br>
 </div>
 </body>
 </html>

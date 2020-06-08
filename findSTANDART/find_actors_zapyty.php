@@ -47,8 +47,9 @@
 <div class="noprint">
 
 </div>
-<div>
-<table border="1" width = "2000">
+<div  style="margin:10px;">
+<table border="1" class=" table table-dark table-hover" >
+<thead class="thead-dark " style="background-color: #252527;">
 <tr>
 <td>Id</td>
 <td>Ім'я</td>
@@ -82,7 +83,7 @@
 <td>Телефон</td>
 <td>Контакти близьких</td>
 <td>Рейтинги фільмів, в яких брали участь </td>
-</tr>
+</tr></thead>
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
@@ -546,8 +547,8 @@ case  'expensive':
 
 </table>
 </div>
-<div class="noprint">
-<button onclick="window.print()">Друкувати</button>
+<div class="btn noprint">
+<button class ="button btn btn-danger" onclick="window.print()">Друкувати</button></br></br></br>
 </div>
 </body>
 </html>

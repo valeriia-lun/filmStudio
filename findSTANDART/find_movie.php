@@ -66,8 +66,9 @@
 </form>
 </div>
 
-<div>
-<table border="1" >
+<div  style="margin:10px;">
+<table border="1" class=" table table-dark table-hover" >
+<thead class="thead-dark " style="background-color: #252527;">
 <tr>
 <td>Назва фільму</td>
 <td>Дата виходу фільму в прокат</td>
@@ -78,7 +79,7 @@
 <td>Жанр</td>
 <td>Тривалість</td>
 
-</tr>
+</tr></thead>
 
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
@@ -123,8 +124,8 @@ while ($stroka = mysqli_fetch_array($result_movies)){
 
 </table>
 </div>
-<div class="noprint">
-<button onclick="window.print()">Друкувати</button>
+<div class="btn noprint">
+<button class ="button btn btn-danger" onclick="window.print()">Друкувати</button></br></br></br>
 </div>
 </body>
 </html>

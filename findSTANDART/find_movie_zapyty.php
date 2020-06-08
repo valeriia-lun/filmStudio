@@ -48,8 +48,9 @@
 <div class="noprint">
 
 </div>
-<div>
-<table border="1" style="width: 100%; height: 100px">
+<div  style="margin:10px;">
+<table border="1" class=" table table-dark table-hover" >
+<thead class="thead-dark " style="background-color: #252527;">
 <tr>
 <td>Назва фільму</td>
 <td>Дата виходу фільму в прокат</td>
@@ -59,7 +60,7 @@
 <td>Номер групи монтажерів</td>
 <td>Жанр</td>
 <td>Тривалість</td>
-</tr>
+</tr></thead>
 
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
@@ -256,8 +257,8 @@ FROM Help))");
 ?>
 </table>
 </div>
-<div class="noprint">
-<button onclick="window.print()">Друкувати</button>
+<div class="btn noprint">
+<button class ="button btn btn-danger" onclick="window.print()">Друкувати</button></br></br></br>
 </div>
 </body>
 </html>
