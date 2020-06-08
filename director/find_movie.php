@@ -3,6 +3,11 @@
 <head>
 <meta  charset=utf-8>
 <title>Фільми</title>
+<script>
+$(function() {
+$().datepicker();
+});
+</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
  <!-- Latest compiled and minified JavaScript -->
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -34,9 +39,9 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only">(current)</span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Режисер</label>
     </form>
@@ -57,6 +62,27 @@
   <option value="all_understudies">Фільми, в яких брали участь всі дублери кіностудії</option>
   <option value="rating_4">Фільми з рейтингом 4</option>
 </select>
+
+
+<input value="Назва"></input></br>
+Дата виходу:
+<input value="" type="date"></input>
+
+
+<input value="Бюджет"></input>
+<input value="Рейтинг"></input></br>
+
+Номер знімальної групи:
+<select  onchange="yesnoCheck(this);" class="select selectpicker  form-control" name="selecting">
+  <option value="max_rating">501</option>
+  <option value="max_gonorars">Фільми, які витратили найбільше грошей на гонорари акторам</option>
+</select>
+Номер групи монтажерів:
+<select  onchange="yesnoCheck(this);" class="select selectpicker  form-control" name="selecting">
+  <option value="max_rating">301</option>
+  <option value="max_gonorars">Фільми, які витратили найбільше грошей на гонорари акторам</option>
+</select>
+
 </div>
 
 <div class="btn">
@@ -104,7 +130,7 @@ function res($result){
   }
 
 
-  
+
 while ($stroka = mysqli_fetch_array($result_movies)){
   $temp = $stroka['name_of_movie'];
 
@@ -128,7 +154,7 @@ while ($stroka = mysqli_fetch_array($result_movies)){
     echo "<input type=\"hidden\" value = \"" .$stroka['name_of_movie'] . "\" name=\"name_of_moviee\" >";
 
     echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\" >Змінити інформацію</button>"."</div></td></form>";
-     
+
     echo"</tr>";
    }
 
