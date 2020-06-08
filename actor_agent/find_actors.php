@@ -38,9 +38,9 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only">(current)</span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Агент по акторах</label>
     </form>
@@ -54,8 +54,8 @@
 </div>
 <div class="noprint">
 
-            
-       
+
+
 <form action="find_actors_zapyty.php" method="post">
 <div class=" container col-md-3">
 <select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
@@ -67,6 +67,50 @@
   <option value="entered_shoe_size">Актори із введеним розміром взуття</option>
   <option value="most_expensive_actor" >Найдорожчі актори</option>
 </select>
+
+<input value="Ім'я"></input>
+<input value="Прізвище"></input>
+<input value="По-батькові"></input>
+<input value="Рейтинг"></input>
+<input value="Кількість фільмів"></input>
+<input value="Вік"></input>
+<select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
+  <option value="max_experience">Чоловік</option>
+  <option value="female">Жінка</option>
+</select>
+<input value="Ріст"></input>
+Колір волосся:
+<select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
+  <option value="max_experience">рудий</option>
+  <option value="female">Жінка</option>
+</select>
+<input value="Довжина волосся"></input>
+Колір очей:
+<select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
+  <option value="max_experience">блакитний</option>
+  <option value="female">Жінка</option>
+</select>
+Статура:
+<select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
+  <option value="max_experience">спортивний</option>
+  <option value="female">Жінка</option>
+</select>
+<input value="Розмір взуття"></input>
+<input value="Розмір одягу"></input>
+Національність:
+<select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
+  <option value="max_experience">українець</option>
+  <option value="female">Жінка</option>
+</select>
+Особливі навички:
+<select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
+  <option value="max_experience">знає іспанську</option>
+  <option value="female">Жінка</option>
+</select>
+
+
+
+
 </div>
 <script>
 function lal(el) {
