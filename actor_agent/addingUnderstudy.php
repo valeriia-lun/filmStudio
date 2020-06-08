@@ -8,7 +8,7 @@
         var maxFieldPhones = 10; //Input fields increment limitation
         var addButtonPhones = $('.add_button_Phones'); //Add button selector
         var wrapperPhones = $('.field_wrapper_Phones'); //Input field wrapper
-        var fieldHTMLPhones = '<div><input type="text" name="field_name_Phones[]" value=""/><a href="javascript:void(0);" class="remove_button_Phones"><img src="../img/delete-icon.png" /></a></div>'; //New input field html
+        var fieldHTMLPhones = '<div><input type="text" class="form-control" name="field_name_Phones[]" value=""/><a href="javascript:void(0);" class="remove_button_Phones"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
         var xPhones = 1; //Initial field counter is 1
 
         //Once add button is clicked
@@ -30,7 +30,7 @@
         var maxFieldContacts = 10; //Input fields increment limitation
         var addButtonContacts = $('.add_button_Contacts'); //Add button selector
         var wrapperContacts = $('.field_wrapper_Contacts'); //Input field wrapper
-        var fieldHTMLContacts = '<div><input type="text" name="field_name_Contacts[]" value=""/><a href="javascript:void(0);" class="remove_button_Contacts"><img src="../img/delete-icon.png" /></a></div>'; //New input field html
+        var fieldHTMLContacts = '<div><input type="text" class="form-control" name="field_name_Contacts[]" value=""/><a href="javascript:void(0);" class="remove_button_Contacts"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
         var xContacts = 1; //Initial field counter is 1
 
         //Once add button is clicked
@@ -54,7 +54,7 @@
         var maxFieldRatings = 10; //Input fields increment limitation
         var addButtonRatings = $('.add_button_Ratings'); //Add button selector
         var wrapperRatings = $('.field_wrapper_Ratings'); //Input field wrapper
-        var fieldHTMLRatings = '<div><input type="text" name="field_name_Ratings[]" value=""/><a href="javascript:void(0);" class="remove_button_Ratings"><img src="../img/delete-icon.png" /></a></div>'; //New input field html
+        var fieldHTMLRatings = '<div><input type="text" class="form-control" name="field_name_Ratings[]" value=""/><a href="javascript:void(0);" class="remove_button_Ratings"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
         var xRatings = 1; //Initial field counter is 1
 
         //Once add button is clicked
@@ -77,7 +77,7 @@
         var maxFieldSkills = 10; //Input fields increment limitation
         var addButtonSkills = $('.add_button_Skills'); //Add button selector
         var wrapperSkills = $('.field_wrapper_Skills'); //Input field wrapper
-        var fieldHTMLSkills = '<div><select name="field_name_Skills[]"><option value="1" selected>швидко бігає</option><option value="2">стрибає</option><option value="3">акробат</option><option value="4">плаває</option><option value="5">катається на ковзанах</option><option value="6">професійний плавець</option><option value="7">каскадер</option><option value="8">пригає на скакалці</option><option value="9">жонглює</option><option value="10">знає іспанську</option></select><a href="javascript:void(0);" class="remove_button_Skills"><img src="../img/delete-icon.png" /></a></div>'; //New input field html
+        var fieldHTMLSkills = '<div><select class="form-control" name="field_name_Skills[]"><option value="1" selected>швидко бігає</option><option value="2">стрибає</option><option value="3">акробат</option><option value="4">плаває</option><option value="5">катається на ковзанах</option><option value="6">професійний плавець</option><option value="7">каскадер</option><option value="8">пригає на скакалці</option><option value="9">жонглює</option><option value="10">знає іспанську</option></select><a href="javascript:void(0);" class="remove_button_Skills"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
         var xSkills = 1; //Initial field counter is 1
 
         //Once add button is clicked
@@ -104,101 +104,182 @@
 
 
   </script>
+  <!-- Latest compiled and minified JavaScript -->
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous"></script>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+</script>
+<link rel="stylesheet" href="..\style.css">
 </head>
-<body>
-<h1>Додати дублера</h1>
+<body class="text-center body3">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="..\index.php">Вибір посади</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="main.php">Головна<span class="sr-only"></span></a>
+      </li>     
+    </ul>
+   
+    <form class=" my-2 my-lg-0">
+      <label class=" mr-sm-2" >Агент по акторах</label>
+    </form>
+  </div>
+</nav>
+<br><br><h1 class="colorForAllText">Додати дублера</h1><br>
 
 <form action="" method="post">
 
-  <div style="float: left;">
-    Ім'я: <input type="text" name="first_name" maxlength="50" tabindex="2" required><br>
-    Прізвище: <input type="text" name="last_name" maxlength="50" tabindex="2" required><br>
-    По-батькові: <input type="text" name="middle_name" maxlength="50" tabindex="2" required><br>
-
-    Телефон:
-    <div class="field_wrapper_Phones">
-           <div>
-               <input type="text" name="field_name_Phones[]" value=""/>
-               <a href="javascript:void(0);" class="add_button_Phones" title="Add field"><img src="../img/add-icon.png" width='10'/></a>
-           </div>
-       </div>
-
-    Домашня адреса: <input type="text" name="address" maxlength="50" tabindex="2" required><br>
-
-    Контакти близьких:
-    <div class="field_wrapper_Contacts">
-           <div>
-               <input type="text" name="field_name_Contacts[]" value=""/>
-               <a href="javascript:void(0);" class="add_button_Contacts" title="Add field"><img src="../img/add-icon.png" width='10'/></a>
-           </div>
-       </div>
-    </div>
-
-    <div style="float: left;">
-    Стаж: <input type="text" name="years" maxlength="50" tabindex="2" required><br>
-    Працюе з: <input type="date" name="work_since" maxlength="50" tabindex="2" required><br>
-
-    Рейтинги фільмів, у яких брал(а) участь:
-    <div class="field_wrapper_Ratings">
-        <div>
-            <input type="text" name="field_name_Ratings[]" value=""/>
-            <a href="javascript:void(0);" class="add_button_Ratings" title="Add field"><img src="../img/add-icon.png" width='10'/></a>
-        </div>
-    </div>
-
-    Дата народження: <input type="date" name="date_of_birth" maxlength="50" tabindex="2" required><br>
-    Заробітня плата:<input type="text" name="salary" maxlength="50" tabindex="2" required><br>
-    Місце народження: <input type="text" name="place_of_birth" maxlength="50" tabindex="2" required><br>
-    E-mail: <input type="text" maxlength="50" name="email" tabindex="2" required><br>
-    </div>
-
-  <h1>Зовнішність</h1>
-  <div style="float: left;">
-     Стать: <select name="sex">
-     <option selected>Жіноча</option>
-     <option>Чоловіча</option>
-     </select><br>
-
-     Зріст: <input type="text" name="height" maxlength="50" tabindex="2" required><br>
-     Колір волосся:
-     <select name="hair_color">
-     <option selected>Чорний</option>
-     <option>Блонд</option>
-     <option>Рудий</option>
-     <option>Коричневий</option>
-     <option>Білий</option>
-     </select><br>
-
-     Довжина волосся:<input type="text" name="hair_len" maxlength="50" tabindex="2" required><br>
-
-     Колір очей:
-     <select name="eyes">
-     <option selected>Блакитний</option>
-     <option>Сірий</option>
-     <option>Зелений</option>
-     <option>Карі</option>
-     </select><br>
-
-     Статура:
-     <select name="stature">
-     <option selected>Худий</option>
-     <option>Спортивний</option>
-     <option>Товстий</option>
-     </select><br>
+<div class="row text-center" style="margin:10px;">
+    <div class=" container col-3" >
+    <label class="colorText">Ім'я: </label><input type="text" class="form-control" name="first_name" maxlength="50" tabindex="2" required><br>
   </div>
-  <div>
-     Розмір взуття: <input type="text" name="shoe_size" maxlength="50" tabindex="2" required><br>
-     Розмір одягу: <input type="text" name="size" maxlength="50" tabindex="2" required><br>
-     Національність: <input type="text" name="nationality" maxlength="50" tabindex="2" required><br>
-     Інше: <input type="text" name="other" maxlength="50" tabindex="2" required><br>
+  <div class="container col-3">
+  <label class="colorText">Прізвище:</label> <input type="text" class="form-control" name="last_name" maxlength="50" tabindex="2" required><br>
   </div>
+  <div class="container col-3">
+  <label class="colorText">По-батькові: </label><input type="text" class="form-control" name="middle_name" maxlength="50" tabindex="2" required><br>
+  </div>  </div></br>
 
-<div style="clear: left;">
-  Особливі навички:
+  <div class="row">
+  <div class=" container col-3">
+  <label class="colorText">Телефон:</label>
+  <div class="field_wrapper_Phones">
+         <div>
+             <input type="text" class="form-control" name="field_name_Phones[]" value=""/>
+             <a href="javascript:void(0);" class="add_button_Phones" title="Add field"><img src="../img/add_icon.png"  height='35' width='35'/></a>
+         </div>
+     </div>
+     </div>
+     <div class=" container col-3">
+     <label class="colorText">Контакти близьких:</label>
+  <div class="field_wrapper_Contacts">
+         <div>
+             <input type="text" class="form-control" name="field_name_Contacts[]" value=""/>
+             <a href="javascript:void(0);" class="add_button_Contacts" title="Add field"><img src="../img/add_icon.png" height='35' width='35'/></a>
+         </div>
+     </div>
+  </div>
+  <div class=" container col-3">
+  <label class="colorText">Рейтинги фільмів, у яких брал(а) участь:</label>
+  <div class="field_wrapper_Ratings">
+      <div>
+          <input type="text" class="form-control" name="field_name_Ratings[]" value=""/>
+          <a href="javascript:void(0);" class="add_button_Ratings" title="Add field"><img src="../img/add_icon.png" height='35' width='35'/></a>
+      </div>     </div>
+  </div>
+    </div> </br> 
 
+    <div class="row">
+  <div class=" container col-3">
+    <label class="colorText">Домашня адреса: </label><input type="text" class="form-control" name="address" maxlength="50" tabindex="2" required><br>
+    </div>
+
+
+    <div class=" container col-3">
+  <label class="colorText">Стаж: </label><input type="text" class="form-control" name="years" maxlength="50" tabindex="2" required><br>
+  </div>
+  <div class=" container col-3">
+  <label class="colorText"> Працюе з: </label><input type="date" class="form-control" name="work_since" maxlength="50" tabindex="2" required><br>
+  </div>
+  </div></br> 
+
+  
+  <div class="row">
+  <div class=" container col-3">
+  <label class="colorText">Дата народження: </label><input type="date" class="form-control" name="date_of_birth" maxlength="50" tabindex="2" required><br>
+  </div>
+  <div class=" container col-3">
+  <label class="colorText">Заробітня плата:</label><input type="text" class="form-control"  name="salary" maxlength="50" tabindex="2" required><br>
+  </div>
+  <div class=" container col-3">
+  <label class="colorText">Місце народження: </label><input type="text" class="form-control" name="place_of_birth" maxlength="50" tabindex="2" required><br>
+  </div> </div></br>
+
+  <div class="row">
+  <div class=" container col-4">
+  <label class="colorText">E-mail: </label><input type="text" maxlength="50" class="form-control" name="email" tabindex="2" required><br>
+  </div> </div>
+
+  </br></br> 
+
+  <hr  size="50"  color="black;" />
+<h1 class="colorForAllText text-center">Зовнішність</h1>
+
+
+<div class="row">
+  <div class=" container col-3">
+<label class="colorText">Стать: </label><select class="form-control" name="sex">
+   <option selected>Жіноча</option>
+   <option>Чоловіча</option>
+   </select><br>
+   </div>
+   <div class=" container col-3">
+   <label class="colorText">Зріст: </label><input type="text" class="form-control" name="height" maxlength="50" tabindex="2" required><br>
+   </div>
+   <div class=" container col-3">
+   <label class="colorText">Колір волосся:</label>
+   <select class="form-control" name="hair_color">
+   <option selected>Чорний</option>
+   <option>Блонд</option>
+   <option>Рудий</option>
+   <option>Коричневий</option>
+   <option>Білий</option>
+   </select>
+   </div></div><br>
+   
+   <div class="row">
+  <div class=" container col-3">
+   <label class="colorText">Довжина волосся:</label><input type="text" class="form-control" name="hair_len" maxlength="50" tabindex="2" required><br>
+   </div>
+   <div class=" container col-3">
+   <label class="colorText"> Колір очей:</label>
+   <select class="form-control" name="eyes">
+   <option selected>Блакитний</option>
+   <option>Сірий</option>
+   <option>Зелений</option>
+   <option>Карі</option>
+   </select><br>
+   </div>
+   <div class=" container col-3">
+   <label class="colorText"> Статура:</label>
+   <select class="form-control" name="stature">
+   <option selected>Худий</option>
+   <option>Спортивний</option>
+   <option>Товстий</option>
+   </select>
+   </div>
+</div><br>
+
+<div class="row">
+  <div class=" container col-3">
+<label class="colorText">Розмір взуття: </label><input type="text" class="form-control" name="shoe_size" maxlength="50" tabindex="2" required><br>
+</div>
+<div class=" container col-3">
+<label class="colorText"> Розмір одягу: </label><input type="text" class="form-control" name="size" maxlength="50" tabindex="2" required><br>
+</div>
+<div class=" container col-3">
+<label class="colorText"> Національність: </label><input type="text" class="form-control" name="nationality" maxlength="50" tabindex="2" required><br>
+</div> </div>
+
+<div class="row">
+  <div class=" container col-3">
+  <label class="colorText"> Інше: </label><input type="text" name="other" class="form-control" maxlength="50" tabindex="2" required><br>
+</div>
+<div class=" container col-3">
+
+<label class="colorText">Особливі навички:</label>
   <div class="field_wrapper_Skills">
          <div>
-             <select name="field_name_Skills[]">
+             <select class="form-control" name="field_name_Skills[]">
                 <option value="1" selected>швидко бігає</option>
                 <option value="2">стрибає</option>
                 <option value="3">акробат</option>
@@ -210,13 +291,17 @@
                 <option value="9">жонглює</option>
                 <option value="10">знає іспанську</option>
               </select>
-             <a href="javascript:void(0);" class="add_button_Skills" title="Add field"><img src="../img/add-icon.png" width='10'/></a>
+             <a href="javascript:void(0);" class="add_button_Skills" title="Add field"><img src="../img/add_icon.png" height='35' width='35'/></a>
          </div>
      </div>
 </div>
 
+</div><br>
 
-<input type="submit" value="Додати" name="add"><br>
+<div class="btn">
+<input type="submit" class ="button btn btn-primary" value="Додати" name="add">
+</div><br><br><br>
+
 
 </form>
 
@@ -335,8 +420,7 @@ if (isset($_POST['add'])){
 
 
 $mysql->close();
-
-header('Location: /filmStudio/actor_agent/main.php');
+header('Location: successfullyAdded.php');
 
 }
 

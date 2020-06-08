@@ -22,8 +22,8 @@
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
 $number = $_POST['numb'];
-echo "hello";
-echo $number;
+//echo "hello";
+//echo $number;
 
 //$count = 0;
 //$id;
@@ -68,8 +68,8 @@ $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
 
 $number = $_POST['numb'];
-echo "hello";
-echo $number;
+//echo "hello";
+//echo $number;
 
 $result = $mysqli->query("SELECT *
  FROM `understudies` WHERE `understudy_id` IN (SELECT `understudy_id` FROM `understudies_filmcrew` WHERE `number_of_film_crew`  = $number)");
@@ -115,8 +115,8 @@ $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
 
 $number = $_POST['numb'];
-echo "hello";
-echo $number;
+//echo "hello";
+//echo $number;
 $result = $mysqli->query("SELECT *
  FROM `others` WHERE `others_id` IN (SELECT `others_id` FROM `others_filmcrew` WHERE `number_of_film_crew`  = $number)");
 while ($stroka = mysqli_fetch_array($result)){

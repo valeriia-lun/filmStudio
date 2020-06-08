@@ -8,7 +8,7 @@
         var maxFieldPhones = 10; //Input fields increment limitation
         var addButtonPhones = $('.add_button_Phones'); //Add button selector
         var wrapperPhones = $('.field_wrapper_Phones'); //Input field wrapper
-        var fieldHTMLPhones = '<div><input type="text" name="field_name_Phones[]" value=""/><a href="javascript:void(0);" class="remove_button_Phones"><img src="../img/delete-icon.png" /></a></div>'; //New input field html
+        var fieldHTMLPhones = '<div><input type="text" class="form-control" name="field_name_Phones[]" value=""/><a href="javascript:void(0);" class="remove_button_Phones"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
         var xPhones = 1; //Initial field counter is 1
 
         //Once add button is clicked
@@ -30,7 +30,7 @@
         var maxFieldContacts = 10; //Input fields increment limitation
         var addButtonContacts = $('.add_button_Contacts'); //Add button selector
         var wrapperContacts = $('.field_wrapper_Contacts'); //Input field wrapper
-        var fieldHTMLContacts = '<div><input type="text" name="field_name_Contacts[]" value=""/><a href="javascript:void(0);" class="remove_button_Contacts"><img src="../img/delete-icon.png" /></a></div>'; //New input field html
+        var fieldHTMLContacts = '<div><input type="text" class="form-control" name="field_name_Contacts[]" value=""/><a href="javascript:void(0);" class="remove_button_Contacts"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
         var xContacts = 1; //Initial field counter is 1
 
         //Once add button is clicked
@@ -54,7 +54,7 @@
         var maxFieldRatings = 10; //Input fields increment limitation
         var addButtonRatings = $('.add_button_Ratings'); //Add button selector
         var wrapperRatings = $('.field_wrapper_Ratings'); //Input field wrapper
-        var fieldHTMLRatings = '<div><input type="text" name="field_name_Ratings[]" value=""/><a href="javascript:void(0);" class="remove_button_Ratings"><img src="../img/delete-icon.png" /></a></div>'; //New input field html
+        var fieldHTMLRatings = '<div><input type="text" class="form-control" name="field_name_Ratings[]" value=""/><a href="javascript:void(0);" class="remove_button_Ratings"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
         var xRatings = 1; //Initial field counter is 1
 
         //Once add button is clicked
@@ -81,15 +81,44 @@
 
 
     </script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous"></script>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+</script>
+<link rel="stylesheet" href="..\style.css">
 </head>
-<body>
-<h1>Додати співробітника знімальної групи</h1>
+<body class="text-center body3">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="..\index.php">Вибір посади</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="main.php">Головна<span class="sr-only"></span></a>
+      </li>     
+    </ul>
+   
+    <form class=" my-2 my-lg-0">
+      <label class=" mr-sm-2" >Лінійний продюсер</label>
+    </form>
+  </div>
+</nav>
+<br><br><h1 class="colorForAllText">Додати співробітника знімальної групи</h1><br>
+
 
 <form action="" method="post">
+<div class="row text-center" style="margin:10px;">
+    <div class=" container col-3" >
 
-<div style="float: left;">
-   Назва посади:
-   <select name="position">
+    <label class="colorText"> Назва посади:</label>
+   <select  class="form-control" name="position">
      <option>Реквізитор</option>
      <option>Гример</option>
      <option>Оператор</option>
@@ -107,64 +136,81 @@
      <option>Помічник художника-постановщика</option>
      <option>Адміністратор майданчика</option>
    </select><br>
-   Ім'я: <input type="text" name="first_name" maxlength="50" tabindex="2" required><br>
-   Прізвище: <input type="text" name="last_name" maxlength="50" tabindex="2" required><br>
-   По-батькові: <input type="text" name="middle_name" maxlength="50" tabindex="2" required><br>
+   </div>  </div>
 
-   Телефон:
-   <div class="field_wrapper_Phones">
-          <div>
-              <input type="text" name="field_name_Phones[]" value=""/>
-              <a href="javascript:void(0);" class="add_button_Phones" title="Add field"><img src="../img/add-icon.png" width='10'/></a>
-          </div>
-      </div>
-
-   Домашня адреса: <input type="text" name="address" maxlength="50" tabindex="2" required><br>
-
-   Контакти близьких:
-   <div class="field_wrapper_Contacts">
-          <div>
-
-              <input type="text" name="field_name_Contacts[]" value=""/>
-              <a href="javascript:void(0);" class="add_button_Contacts" title="Add field"><img src="../img/add-icon.png" width='10'/></a>
-          </div>
-      </div>
+   <div class="row text-center" style="margin:10px;">
+    <div class=" container col-3" >
+    <label class="colorText">Ім'я: </label><input type="text" class="form-control" name="first_name" maxlength="50" tabindex="2" required><br>
   </div>
-
-  <div style="float: left;">
-   Стаж: <input type="text" name="years" maxlength="50" tabindex="2" required><br>
-   Працюе з: <input type="date" name="work_since" maxlength="50" tabindex="2" required><br>
-
-   Рейтинги фільмів, у яких брал(а) участь:
-   <div class="field_wrapper_Ratings">
-       <div>
-    <!--     <select  name="field_name_Ratings[]" value="">
-           <div>
-           <//?php
-    /*       $mysqli = new mysqli("localhost","root","root","filmStudio");
-           $mysqli->query("SET NAMES 'utf8'");
-
-           $result = $mysqli->query("SELECT rating FROM `Previous_movies_rating`");
-
-           while ($stroka = mysqli_fetch_array($result)){
-               echo"<option>" . $stroka['rating'] . "</option>";*/
-             }
-            ?>
-            <a href="javascript:void(0);" class="add_button_Ratings" title="Add field"><img src="../img/add-icon.png" width='10'/></a>
-          </div>
-        </select> -->
-           <input type="text" name="field_name_Ratings[]" value=""/>
-           <a href="javascript:void(0);" class="add_button_Ratings" title="Add field"><img src="../img/add-icon.png" width='10'/></a>
-       </div>
-   </div>
-
-   Дата народження: <input type="date" name="date_of_birth" maxlength="50" tabindex="2" required><br>
-   Заробітня плата:<input type="text" name="salary" maxlength="50" tabindex="2" required><br>
-   Місце народження: <input type="text" name="place_of_birth" maxlength="50" tabindex="2" required><br>
-   E-mail: <input type="text" maxlength="50" name="email" tabindex="2" required><br>
+  <div class="container col-3">
+  <label class="colorText">Прізвище:</label> <input type="text" class="form-control" name="last_name" maxlength="50" tabindex="2" required><br>
   </div>
+  <div class="container col-3">
+  <label class="colorText">По-батькові: </label><input type="text" class="form-control" name="middle_name" maxlength="50" tabindex="2" required><br>
+  </div>  </div></br>
 
-<input type="submit" value="Додати" name="add"><br>
+  <div class="row">
+  <div class=" container col-3">
+  <label class="colorText">Телефон:</label>
+  <div class="field_wrapper_Phones">
+         <div>
+             <input type="text" class="form-control" name="field_name_Phones[]" value=""/>
+             <a href="javascript:void(0);" class="add_button_Phones" title="Add field"><img src="../img/add_icon.png"  height='35' width='35'/></a>
+         </div>
+     </div>
+     </div>
+     <div class=" container col-3">
+     <label class="colorText">Контакти близьких:</label>
+  <div class="field_wrapper_Contacts">
+         <div>
+             <input type="text" class="form-control" name="field_name_Contacts[]" value=""/>
+             <a href="javascript:void(0);" class="add_button_Contacts" title="Add field"><img src="../img/add_icon.png" height='35' width='35'/></a>
+         </div>
+     </div>
+  </div>
+  <div class=" container col-3">
+  <label class="colorText">Рейтинги фільмів, у яких брал(а) участь:</label>
+  <div class="field_wrapper_Ratings">
+      <div>
+          <input type="text" class="form-control" name="field_name_Ratings[]" value=""/>
+          <a href="javascript:void(0);" class="add_button_Ratings" title="Add field"><img src="../img/add_icon.png" height='35' width='35'/></a>
+      </div>     </div>
+  </div>
+    </div> </br> 
+
+    <div class="row">
+  <div class=" container col-3">
+    <label class="colorText">Домашня адреса: </label><input type="text" class="form-control" name="address" maxlength="50" tabindex="2" required><br>
+    </div>
+
+
+    <div class=" container col-3">
+  <label class="colorText">Стаж: </label><input type="text" class="form-control" name="years" maxlength="50" tabindex="2" required><br>
+  </div>
+  <div class=" container col-3">
+  <label class="colorText"> Працюе з: </label><input type="date" class="form-control" name="work_since" maxlength="50" tabindex="2" required><br>
+  </div>
+  </div></br> 
+
+  
+  <div class="row">
+  <div class=" container col-3">
+  <label class="colorText">Дата народження: </label><input type="date" class="form-control" name="date_of_birth" maxlength="50" tabindex="2" required><br>
+  </div>
+  <div class=" container col-3">
+  <label class="colorText">Заробітня плата:</label><input type="text" class="form-control"  name="salary" maxlength="50" tabindex="2" required><br>
+  </div>
+  <div class=" container col-3">
+  <label class="colorText">Місце народження: </label><input type="text" class="form-control" name="place_of_birth" maxlength="50" tabindex="2" required><br>
+  </div> </div></br>
+
+  <div class="row">
+  <div class=" container col-4">
+  <label class="colorText">E-mail: </label><input type="text" maxlength="50" class="form-control" name="email" tabindex="2" required><br>
+  </div> </div>
+  <div class="btn">
+<input type="submit" class ="button btn btn-primary" value="Додати" name="add">
+</div><br><br><br>
 
 </form>
 
@@ -266,7 +312,7 @@ $value *= 10;
 
 $mysql->close();
 
-header('Location: /filmStudio/line_producer/main.php');
+header('Location: successfullyAdded.php');
 
 }
 

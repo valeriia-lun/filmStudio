@@ -37,7 +37,7 @@
 </tr>
 <script>
   function onlyOne(checkbox) {
-    var checkboxes = document.getElementsByName('editor_id')
+    var checkboxes = document.getElementsByName('editor_id[]')
     checkboxes.forEach((item) => {
         if (item !== checkbox) item.checked = false
     })

@@ -69,8 +69,9 @@ $used_start = $date_start_this_film_crew[0];
 $used_finish = $date_finish_this_film_crew[0];
 
 
-$result_actors=$mysqli->query("SELECT * FROM actors WHERE actor_id NOT IN (SELECT DISTINCT actor_id FROM actor_filmcrew WHERE number_of_film_crew
- IN(SELECT number_of_film_crew FROM film_crew WHERE ((date_finish_film_crew BETWEEN '$used_start' AND '$used_finish') OR
+
+$result_actors=$mysqli->query("SELECT * FROM actors WHERE actor_id NOT IN (SELECT DISTINCT actor_id FROM actor_filmcrew WHERE number_of_film_crew 
+ IN(SELECT number_of_film_crew FROM film_crew WHERE ((date_finish_film_crew BETWEEN '$used_start' AND '$used_finish') OR 
 (date_start_crew BETWEEN  '$used_start' AND  '$used_finish'))))");
 
 function res($result){
@@ -86,8 +87,8 @@ function res($result){
     }
     return $print;
   }
+  
 
-  error_reporting(E_ERROR | E_PARSE);
 
  while ($stroka = mysqli_fetch_array($result_actors)){
   $current_actor_id = $stroka['actor_id'];
@@ -133,9 +134,9 @@ function res($result){
     echo"<td>" .  res($result_ratings) . "</td>";
     echo"<td>" ."<input type=\"checkbox\" value = \"" . $stroka['actor_id'] . "\" name=\"actor_id[]\" >";
     echo"</tr>";
-
+ 
    }
-
+  
 ?>
 </table>
 
@@ -182,7 +183,7 @@ function res($result){
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
-
+ 
 //$mysqli->close();
 $number_of_filmCrew = $_POST['number_of_film_crew'];
 echo "<input type=\"hidden\" value = \"" .$number_of_filmCrew . "\" name=\"number_of_filmCrewww\" >";
@@ -195,8 +196,8 @@ $used_start = $date_start_this_film_crew[0];
 $used_finish = $date_finish_this_film_crew[0];
 
 
-$result_understudies=$mysqli->query("SELECT * FROM understudies WHERE understudy_id NOT IN (SELECT DISTINCT understudy_id FROM understudies_filmcrew WHERE number_of_film_crew
- IN(SELECT number_of_film_crew FROM film_crew WHERE ((date_finish_film_crew BETWEEN '$used_start' AND '$used_finish') OR
+$result_understudies=$mysqli->query("SELECT * FROM understudies WHERE understudy_id NOT IN (SELECT DISTINCT understudy_id FROM understudies_filmcrew WHERE number_of_film_crew 
+ IN(SELECT number_of_film_crew FROM film_crew WHERE ((date_finish_film_crew BETWEEN '$used_start' AND '$used_finish') OR 
 (date_start_crew BETWEEN  '$used_start' AND  '$used_finish'))))");
 
 while ($stroka = mysqli_fetch_array($result_understudies)){
@@ -206,7 +207,7 @@ while ($stroka = mysqli_fetch_array($result_understudies)){
   $result_phones = $mysqli->query("SELECT `understudy_phone_number` FROM `understudy_phones` WHERE `understudy_id` IN (SELECT `understudy_id` FROM  `understudies` WHERE `understudy_id` = $temp)");
   $result_contacts_rel = $mysqli->query("SELECT `understudy_relatives_phone_numbers` FROM `understudies_contacts_of_relatives` WHERE `understudy_id` IN (SELECT `understudy_id` FROM  `understudies` WHERE `understudy_id` = $temp)");
   $result_ratings = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `understudy_previous_movies_ratings` WHERE `understudy_id` = $temp)");
-
+  
     echo"<tr>";
     echo"<td>" . $stroka['understudy_id'] . "</td>";
     echo"<td>" . $stroka['understudy_name'] . "</td>";
@@ -239,12 +240,12 @@ while ($stroka = mysqli_fetch_array($result_understudies)){
     echo"<td>" .  res($result_photos) . "</td>";
     echo"<td>" .  res($result_phones) . "</td>";
     echo"<td>" .  res($result_contacts_rel) . "</td>";
-    echo"<td>" .  res($result_ratings) . "</td>";
+    echo"<td>" .  res($result_ratings) . "</td>"; 
     echo"<td>" ."<input type=\"checkbox\" value = \"" . $stroka['understudy_id'] . "\" name=\"understudy_id[]\" >";
     echo"</tr>";
    }
-
-
+  
+  
 ?>
 
 </table>

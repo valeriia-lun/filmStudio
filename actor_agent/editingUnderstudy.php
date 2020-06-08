@@ -8,7 +8,7 @@
         var maxFieldPhones = 10; //Input fields increment limitation
         var addButtonPhones = $('.add_button_Phones'); //Add button selector
         var wrapperPhones = $('.field_wrapper_Phones'); //Input field wrapper
-        var fieldHTMLPhones = '<div><input type="text" name="field_name_Phones[]" value=""/><a href="javascript:void(0);" class="remove_button_Phones"><img src="../img/delete-icon.png" /></a></div>'; //New input field html
+        var fieldHTMLPhones = '<div><input type="text" class="form-control" name="field_name_Phones[]" value=""/><a href="javascript:void(0);" class="remove_button_Phones"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
         var xPhones = 1; //Initial field counter is 1
 
         //Once add button is clicked
@@ -30,7 +30,7 @@
         var maxFieldContacts = 10; //Input fields increment limitation
         var addButtonContacts = $('.add_button_Contacts'); //Add button selector
         var wrapperContacts = $('.field_wrapper_Contacts'); //Input field wrapper
-        var fieldHTMLContacts = '<div><input type="text" name="field_name_Contacts[]" value=""/><a href="javascript:void(0);" class="remove_button_Contacts"><img src="../img/delete-icon.png" /></a></div>'; //New input field html
+        var fieldHTMLContacts = '<div><input type="text" class="form-control" name="field_name_Contacts[]" value=""/><a href="javascript:void(0);" class="remove_button_Contacts"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
         var xContacts = 1; //Initial field counter is 1
 
         //Once add button is clicked
@@ -54,7 +54,7 @@
         var maxFieldRatings = 10; //Input fields increment limitation
         var addButtonRatings = $('.add_button_Ratings'); //Add button selector
         var wrapperRatings = $('.field_wrapper_Ratings'); //Input field wrapper
-        var fieldHTMLRatings = '<div><input type="text" name="field_name_Ratings[]" value=""/><a href="javascript:void(0);" class="remove_button_Ratings"><img src="../img/delete-icon.png" /></a></div>'; //New input field html
+        var fieldHTMLRatings = '<div><input type="text" class="form-control" name="field_name_Ratings[]" value=""/><a href="javascript:void(0);" class="remove_button_Ratings"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
         var xRatings = 1; //Initial field counter is 1
 
         //Once add button is clicked
@@ -77,7 +77,7 @@
         var maxFieldSkills = 10; //Input fields increment limitation
         var addButtonSkills = $('.add_button_Skills'); //Add button selector
         var wrapperSkills = $('.field_wrapper_Skills'); //Input field wrapper
-        var fieldHTMLSkills = '<div><select name="field_name_Skills[]"><option value="1" selected>швидко бігає</option><option value="2">стрибає</option><option value="3">акробат</option><option value="4">плаває</option><option value="5">катається на ковзанах</option><option value="6">професійний плавець</option><option value="7">каскадер</option><option value="8">пригає на скакалці</option><option value="9">жонглює</option><option value="10">знає іспанську</option></select><a href="javascript:void(0);" class="remove_button_Skills"><img src="../img/delete-icon.png" /></a></div>'; //New input field html
+        var fieldHTMLSkills = '<div><select class="form-control" name="field_name_Skills[]"><option value="1" selected>швидко бігає</option><option value="2">стрибає</option><option value="3">акробат</option><option value="4">плаває</option><option value="5">катається на ковзанах</option><option value="6">професійний плавець</option><option value="7">каскадер</option><option value="8">пригає на скакалці</option><option value="9">жонглює</option><option value="10">знає іспанську</option></select><a href="javascript:void(0);" class="remove_button_Skills"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
         var xSkills = 1; //Initial field counter is 1
 
         //Once add button is clicked
@@ -104,13 +104,44 @@
 
 
     </script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js" integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous"></script>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+</script>
+<link rel="stylesheet" href="..\style.css">
 </head>
-<body>
-<h1>Змінити Дублера</h1>
+<body class="text-center body3">
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="..\index.php">Вибір посади</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="main.php">Головна<span class="sr-only"></span></a>
+      </li>     
+    </ul>
+   
+    <form class=" my-2 my-lg-0">
+      <label class=" mr-sm-2" >Агент по акторах</label>
+    </form>
+  </div>
+</nav>
+
+<br><br><h1 class="colorForAllText">Змінити інформацію про дублера</h1><br>
+
 
 <form action="" method="post">
-  <div style="float: left;">
-    Ім'я:
+<div class="row text-center" style="margin:10px;">
+    <div class=" container col-3" >
+    <label class="colorText">Ім'я: </label>
     <?php
     if (isset($_POST['editBtn'])){
       $id = filter_var(trim($_POST['understudy_id']),FILTER_SANITIZE_STRING);
@@ -123,9 +154,11 @@
 
   $res = mysqli_fetch_array($result);
 
-  echo "<input type= \"text\" maxlength=\"50\" tabindex=\"2\" name=\"first_name\" value=\"$res[0]\" required>";
+  echo "<input type= \"text\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"first_name\" value=\"$res[0]\" required>";
      ?><br>
-    Прізвище:
+   </div>
+  <div class="container col-3">
+  <label class="colorText">Прізвище:</label> 
     <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
@@ -133,18 +166,27 @@
 
   $res = mysqli_fetch_array($result);
 
-  echo "<input type= \"text\" maxlength=\"50\" tabindex=\"2\" name=\"last_name\" value=\"$res[0]\" required>";
+  echo "<input type= \"text\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"last_name\" value=\"$res[0]\" required>";
      ?><br>
-    По-батькові: <?php
+     </div>
+  <div class="container col-3">
+  <label class="colorText">По-батькові: </label> <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
   $result = $mysql->query("SELECT `understudy_middle_name` FROM `Understudies` WHERE `understudy_id` = $id");
 
   $res = mysqli_fetch_array($result);
 
-  echo "<input type= \"text\" maxlength=\"50\" tabindex=\"2\" name=\"middle_name\" value=\"$res[0]\" required>";
+  echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"middle_name\" value=\"$res[0]\" required>";
      ?><br>
-    Телефон: <div class="field_wrapper_Phones">
+    </div>
+</div></br>
+
+
+
+<div class="row text-center" style="margin:10px;">
+  <div class=" container col-3">
+  <label class="colorText">Телефон:</label> <div class="field_wrapper_Phones">
   <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
@@ -155,29 +197,17 @@
   {
   $row = mysqli_fetch_row($result);
       for ($j = 0 ; $j < 1 ; ++$j){
-        echo "<div><input type= \"text\" maxlength=\"50\" name=\"field_name_Phones[]\" tabindex=\"2\" value=\"$row[$j]\" required>";
+        echo "<div><input type= \"text\" maxlength=\"50\" class=\"form-control\" name=\"field_name_Phones[]\" tabindex=\"2\" value=\"$row[$j]\" required>";
         if($i == 0){
-            echo "<a href=\"javascript:void(0);\" class=\"add_button_Phones\" title=\"Add field\"><img src=\"../img/add-icon.png\" width='10'/></a></div>";
+            echo "<a href=\"javascript:void(0);\" class=\" add_button_Phones\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a></div>";
         } else{
-              echo "<a href=\"javascript:void(0);\" class=\"remove_button_Phones\"><img src=\"../img/delete-icon.png\" /></a></div>";
+              echo "<a href=\"javascript:void(0);\" class=\" remove_button_Phones\"><img src=\"../img/delete_icon.png\" height='20' width='20'/></a></div>";
         }
       }
   }
-  ?></div><br>
-
-    Домашня адреса:
-     <?php
-  $mysql = new mysqli("localhost","root","root","filmstudio");
-  $mysql->query("SET NAMES 'utf8'");
-  $result = $mysql->query("SELECT `understudy_home_address` FROM `Understudies` WHERE `understudy_id` = $id");
-
-  $res = mysqli_fetch_array($result);
-
-  echo "<input type= \"text\" maxlength=\"50\" tabindex=\"2\" name=\"address\" value=\"$res[0]\" required>";
-     ?><br>
-
-
-        Контакти близьких: <div class="field_wrapper_Contacts">
+  ?></div><br></div>
+<div class=" container col-3">
+<label class="colorText">Контакти близьких:</label> <div class="field_wrapper_Contacts">
          <?php
        $mysql = new mysqli("localhost","root","root","filmstudio");
        $mysql->query("SET NAMES 'utf8'");
@@ -189,57 +219,24 @@
       {
           $row = mysqli_fetch_row($resultt);
               for ($j = 0 ; $j < 1 ; ++$j){
-                echo "<div><input type= \"text\" maxlength=\"50\" name=\"field_name_Contacts[]\" tabindex=\"2\" value=\"$row[$j]\" required>";
+                echo "<div><input type= \"text\" maxlength=\"50\" class=\"form-control\" name=\"field_name_Contacts[]\" tabindex=\"2\" value=\"$row[$j]\" required>";
                 if($i == 0){
-                    echo "<a href=\"javascript:void(0);\" class=\"add_button_Contacts\" title=\"Add field\"><img src=\"../img/add-icon.png\" width='10'/></a></div>";
+                    echo "<a href=\"javascript:void(0);\" class=\" add_button_Contacts\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a></div>";
                 } else{
-                      echo "<a href=\"javascript:void(0);\" class=\"remove_button_Contacts\"><img src=\"../img/delete-icon.png\" /></a></div>";
+                      echo "<a href=\"javascript:void(0);\" class=\"remove_button_Contacts\"><img src=\"../img/delete_icon.png\" height='20' width='20'/></a></div>";
                 }
               }
       }
        ?></div><br>
      </div>
 
-  </div>
-
-
-  Стаж:
-  <?php
-  $mysql = new mysqli("localhost","root","root","filmstudio");
-  $mysql->query("SET NAMES 'utf8'");
-  $result = $mysql->query("SELECT `understudy_experience` FROM `Understudies` WHERE `understudy_id` = $id");
-
-  $res = mysqli_fetch_array($result);
-
-  echo "<input type= \"text\" maxlength=\"50\" tabindex=\"2\" name=\"years\" value=\"$res[0]\" required>";
-   ?><br>
-  Працюе з: <?php
-  $mysql = new mysqli("localhost","root","root","filmstudio");
-  $mysql->query("SET NAMES 'utf8'");
-  $result = $mysql->query("SELECT `understudy_works_since` FROM `Understudies` WHERE `understudy_id` = $id");
-
-  $res = mysqli_fetch_array($result);
-
-  echo "<input type= \"date\" maxlength=\"50\" tabindex=\"2\" name=\"work_since\" value=\"$res[0]\" required>";
-    ?><br>
-  Працюе до:
-  <?php
-  $mysql = new mysqli("localhost","root","root","filmstudio");
-  $mysql->query("SET NAMES 'utf8'");
-  $result = $mysql->query("SELECT `understudy_works_until` FROM `Understudies` WHERE `understudy_id` = $id");
-
-  $res = mysqli_fetch_array($result);
-
-  echo "<input type= \"date\" maxlength=\"50\" tabindex=\"2\" name=\"work_until\" value=\"$res[0]\">";
-    ?><br>
-
-  Рейтинги фільмів, у яких брал(а) участь: <div class="field_wrapper_Ratings">
+<div class=" container col-3">
+<label class="colorText">Рейтинги фільмів, у яких брал(а) участь: </label><div class="field_wrapper_Ratings">
    <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
   $resultt = $mysql->query("SELECT `rating` FROM `Previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating`  FROM `Understudy_previous_movies_ratings` WHERE `understudy_id` = $id)");
   if ($resultt) {
-    echo "Success!";
   }
   else {
      echo "Error! $mysql->error <br>";
@@ -250,57 +247,144 @@
   {
     $row = mysqli_fetch_row($resultt);
         for ($j = 0 ; $j < 1 ; ++$j){
-          echo "<div><input type= \"text\" maxlength=\"50\" name=\"field_name_Ratings[]\" tabindex=\"2\" value=\"$row[$j]\" required>";
+          echo "<div><input type= \"text\" maxlength=\"50\" class=\"form-control\" name=\"field_name_Ratings[]\" tabindex=\"2\" value=\"$row[$j]\" required>";
           if($i == 0){
-              echo "<a href=\"javascript:void(0);\" class=\"add_button_Ratings\" title=\"Add field\"><img src=\"../img/add-icon.png\" width='10'/></a></div>";
+              echo "<a href=\"javascript:void(0);\" class=\"add_button_Ratings\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a></div>";
           } else{
-                echo "<a href=\"javascript:void(0);\" class=\"remove_button_Ratings\"><img src=\"../img/delete-icon.png\" /></a></div>";
+                echo "<a href=\"javascript:void(0);\" class=\" remove_button_Ratings\"><img src=\"../img/delete_icon.png\" height='20' width='20'/></a></div>";
           }
         }
   }
-  ?></div><br>
-  Дата народження:  <?php
+  ?></div>
+  </div></div></br>
+
+
+
+
+
+
+<div class="row text-center" style="margin:10px;">
+  <div class=" container col-3">
+  <label class="colorText"> Домашня адреса:</label> 
+     <?php
+  $mysql = new mysqli("localhost","root","root","filmstudio");
+  $mysql->query("SET NAMES 'utf8'");
+  $result = $mysql->query("SELECT `understudy_home_address` FROM `Understudies` WHERE `understudy_id` = $id");
+
+  $res = mysqli_fetch_array($result);
+
+  echo "<input type= \"text\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"address\" value=\"$res[0]\" required>";
+     ?><br>
+
+</div>
+
+ <div class=" container col-3">
+<label class="colorText">Стаж: </label>
+  <?php
+  $mysql = new mysqli("localhost","root","root","filmstudio");
+  $mysql->query("SET NAMES 'utf8'");
+  $result = $mysql->query("SELECT `understudy_experience` FROM `Understudies` WHERE `understudy_id` = $id");
+
+  $res = mysqli_fetch_array($result);
+
+  echo "<input type= \"text\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"years\" value=\"$res[0]\" required>";
+   ?><br>
+  </div>
+<div class=" container col-3">
+<label class="colorText">Працює з: </label><?php
+  $mysql = new mysqli("localhost","root","root","filmstudio");
+  $mysql->query("SET NAMES 'utf8'");
+  $result = $mysql->query("SELECT `understudy_works_since` FROM `Understudies` WHERE `understudy_id` = $id");
+
+  $res = mysqli_fetch_array($result);
+
+  echo "<input type= \"date\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"work_since\" value=\"$res[0]\" required>";
+    ?></div>
+    </div></br>
+
+
+
+
+
+ <div class="row text-center" style="margin:10px;">
+  <div class=" container col-3">
+  <label class="colorText"> Працює до:</label> 
+  <?php
+  $mysql = new mysqli("localhost","root","root","filmstudio");
+  $mysql->query("SET NAMES 'utf8'");
+  $result = $mysql->query("SELECT `understudy_works_until` FROM `Understudies` WHERE `understudy_id` = $id");
+
+  $res = mysqli_fetch_array($result);
+
+  echo "<input type= \"date\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"work_until\" value=\"$res[0]\">";
+    ?><br>
+    </div>
+    
+    <div class=" container col-3">
+    <label class="colorText">Дата народження: </label> <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
   $result = $mysql->query("SELECT `understudy_date_of_birth` FROM `Understudies` WHERE `understudy_id` = $id");
 
   $res = mysqli_fetch_array($result);
 
-  echo "<input type= \"date\" maxlength=\"50\" tabindex=\"2\" name=\"date_of_birth\" value=\"$res[0]\" required>";
+  echo "<input type= \"date\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"date_of_birth\" value=\"$res[0]\" required>";
     ?><br>
-
-  Заробітня плата:<?php
+    </div>
+    
+    <div class=" container col-3">
+    <label class="colorText">Заробітня плата:</label><?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
   $result = $mysql->query("SELECT `understudy_salary` FROM `Understudies` WHERE `understudy_id` = $id");
 
   $res = mysqli_fetch_array($result);
 
-  echo "<input type= \"text\" maxlength=\"50\" tabindex=\"2\" name=\"salary\" value=\"$res[0]\" required>";
-   ?><br>
-  Місце народження: <?php
+  echo "<input type= \"text\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"salary\" value=\"$res[0]\" required>";
+   ?></div></div></br>
+
+
+
+
+
+<div class="row " style="margin:10px;">
+  <div class=" container col-4">
+  <label class="colorText">Місце народження:</label>  <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
   $result = $mysql->query("SELECT `understudy_place_of_birth` FROM `Understudies` WHERE `understudy_id` = $id");
 
   $res = mysqli_fetch_array($result);
 
-  echo "<input type= \"text\" maxlength=\"50\" tabindex=\"2\" name=\"place_of_birth\" value=\"$res[0]\" required>";
-   ?><br>
-  E-mail: <?php
+  echo "<input type= \"text\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"place_of_birth\" value=\"$res[0]\" required>";
+   ?><br></div>
+
+   <div class=" container col-4">
+   <label class="colorText">E-mail: </label> <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
   $result = $mysql->query("SELECT `understudy_e-mail` FROM `Understudies` WHERE `understudy_id` = $id");
 
   $res = mysqli_fetch_array($result);
 
-  echo "<input type= \"text\" maxlength=\"50\" tabindex=\"2\" name=\"email\" value=\"$res[0]\" required>";
+  echo "<input type= \"text\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"email\" value=\"$res[0]\" required>";
    ?><br>
-  </div>
-  <h1>Зовнішність</h1>
-  <div style="float: left;">
-     Стать:
-     <select name="sex">
+   </div></div></br>
+
+
+
+
+
+
+
+
+   </br>  </br> 
+<hr  size="50"  color="black;" /></br></br>
+<h1 class="colorForAllText text-center" >Зовнішність</h1>
+<div class="row">
+  <div class=" container col-3">
+<label class="colorText">Стать: </label>
+     <select class="form-control" name="sex">
      <?php
      $mysql = new mysqli("localhost","root","root","filmstudio");
      $mysql->query("SET NAMES 'utf8'");
@@ -322,17 +406,21 @@
 
      </select><br>
 
-     Зріст: <?php
+      </div>
+   <div class=" container col-3">
+   <label class="colorText">Зріст: </label>  <?php
      $mysql = new mysqli("localhost","root","root","filmstudio");
      $mysql->query("SET NAMES 'utf8'");
      $result = $mysql->query("SELECT `understudy_height` FROM `Understudies` WHERE `understudy_id` = $id");
 
      $res = mysqli_fetch_array($result);
 
-     echo "<input type= \"text\" maxlength=\"50\" tabindex=\"2\" name=\"height\" value=\"$res[0]\" required>";
+     echo "<input type= \"text\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"height\" value=\"$res[0]\" required>";
       ?><br>
-     Колір волосся:
-     <select name="hairColor">
+  </div>
+    <div class=" container col-3">
+    <label class="colorText">  Колір волосся: </label>
+     <select class="form-control" name="hairColor">
        <?php
         $mysql = new mysqli("localhost","root","root","filmstudio");
         $mysql->query("SET NAMES 'utf8'");
@@ -378,18 +466,24 @@
      </select><br>
 
 
-     Довжина волосся:<?php
+     </div></div>
+
+
+<div class="row">
+<div class=" container col-3">
+<label class="colorText">   Довжина волосся: </label><?php
      $mysql = new mysqli("localhost","root","root","filmstudio");
      $mysql->query("SET NAMES 'utf8'");
      $result = $mysql->query("SELECT `understudy_length_of_hair` FROM `Understudies` WHERE `understudy_id` = $id");
 
      $res = mysqli_fetch_array($result);
 
-     echo "<input type= \"text\" maxlength=\"50\" tabindex=\"2\" name=\"hairLen\" value=\"$res[0]\" required>";
+     echo "<input type= \"text\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"hairLen\" value=\"$res[0]\" required>";
       ?><br>
-
-     Колір очей:
-     <select name="eyes">
+</div>
+   <div class=" container col-3">
+   <label class="colorText">Колір очей: </label>
+     <select class="form-control" name="eyes">
        <?php
         $mysql = new mysqli("localhost","root","root","filmstudio");
         $mysql->query("SET NAMES 'utf8'");
@@ -423,8 +517,10 @@
 
      </select><br>
 
-     Статура:
-     <select name="stature">
+     </div>
+   <div class=" container col-3">
+   <label class="colorText">  Статура: </label>
+     <select class="form-control" name="stature">
      <?php
      $mysql = new mysqli("localhost","root","root","filmstudio");
      $mysql->query("SET NAMES 'utf8'");
@@ -451,47 +547,63 @@
 
      </select><br>
   </div>
-  <div>
-     Розмір взуття: <?php
+
+  </div>
+
+
+
+
+
+<div class="row">
+  <div class=" container col-3">
+<label class="colorText">  Розмір взуття: </label><?php
      $mysql = new mysqli("localhost","root","root","filmstudio");
      $mysql->query("SET NAMES 'utf8'");
      $result = $mysql->query("SELECT `understudy_shoe_size` FROM `Understudies` WHERE `understudy_id` = $id");
 
      $res = mysqli_fetch_array($result);
 
-     echo "<input type= \"text\" maxlength=\"50\" tabindex=\"2\" name=\"shoe\" value=\"$res[0]\" required>";
+     echo "<input type= \"text\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"shoe\" value=\"$res[0]\" required>";
       ?><br>
-     Розмір одягу: <?php
+</div>
+   <div class=" container col-3">
+   <label class="colorText">   Розмір одягу:</label> <?php
      $mysql = new mysqli("localhost","root","root","filmstudio");
      $mysql->query("SET NAMES 'utf8'");
      $result = $mysql->query("SELECT `understudy_clothing_size` FROM `Understudies` WHERE `understudy_id` = $id");
 
      $res = mysqli_fetch_array($result);
 
-     echo "<input type= \"text\" maxlength=\"50\" tabindex=\"2\" name=\"size\" value=\"$res[0]\" required>";
+     echo "<input type= \"text\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"size\" value=\"$res[0]\" required>";
       ?><br>
-     Національність: <?php
+ </div>
+   <div class=" container col-3">
+   <label class="colorText">   Національність: </label> <?php
      $mysql = new mysqli("localhost","root","root","filmstudio");
      $mysql->query("SET NAMES 'utf8'");
      $result = $mysql->query("SELECT `understudy_nationality` FROM `Understudies` WHERE `understudy_id` = $id");
 
      $res = mysqli_fetch_array($result);
 
-     echo "<input type= \"text\" maxlength=\"50\" tabindex=\"2\" name=\"nationality\" value=\"$res[0]\" required>";
+     echo "<input type= \"text\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"nationality\" value=\"$res[0]\" required>";
       ?><br>
-     Інше: <?php
+    </div>    </div>
+
+<div class="row">
+<div class=" container col-4">
+<label class="colorText">     Інше:</label> <?php
      $mysql = new mysqli("localhost","root","root","filmstudio");
      $mysql->query("SET NAMES 'utf8'");
      $result = $mysql->query("SELECT `understudy_other_appearance` FROM `Understudies` WHERE `understudy_id` = $id");
 
      $res = mysqli_fetch_array($result);
 
-     echo "<input type= \"text\" maxlength=\"50\" tabindex=\"2\" name=\"otherApp\" value=\"$res[0]\">";
+     echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"otherApp\" value=\"$res[0]\">";
       ?><br>
   </div>
-<div style="clear: left;">
-  Особливі навички:   <div class="field_wrapper_Skills">
-    <select>
+  <div class=" container col-4">
+  <label class="colorText">  Особливі навички:   </label><div class="field_wrapper_Skills">
+    <select class="form-control">
     <?php
     $mysql = new mysqli("localhost","root","root","filmstudio");
     $mysql->query("SET NAMES 'utf8'");
@@ -616,24 +728,22 @@
           echo "<option value=\"10\">знає іспанську</option>";
         }
         if($i == 0){
-            echo "<a href=\"javascript:void(0);\" class=\"add_button_Skills\" title=\"Add field\"><img src=\"../img/add-icon.png\" width='10'/></a></div>";
+            echo "<a href=\"javascript:void(0);\"  class=\"add_button_Skills\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a></div>";
         } else{
-              echo "<a href=\"javascript:void(0);\" class=\"remove_button_Skills\"><img src=\"../img/delete-icon.png\" /></a></div>";
+              echo "<a href=\"javascript:void(0);\" class=\"remove_button_Skills\"><img src=\"../img/delete_icon.png\" height='20' width='20'/></a></div>";
         }
       }
     }
     ?>
   </select>
-
-       </div>
-
-
-
-
+  </div>
+  </div>
 </div>
 
 
-<input type="submit" value="Змінити" name="edit"><br>
+<div class="btn">
+<input type="submit" class ="button btn btn-primary" value="Змінити" name="edit">
+</div><br><br><br>
 
 </form>
 
@@ -758,7 +868,7 @@ $result = $mysql->query("INSERT INTO `Understudies_contacts_of_relatives`(`under
 
 
 foreach ($ratings as $value) {
-  echo "PEZDA";
+
 //   $id_r = $mysql->query("SELECT id_previous_movie_rating FROM `Previous_movies_rating` WHERE rating = $value");
 $value *= 10;
     $result = $mysql->query("INSERT INTO `Understudy_previous_movies_ratings`(`id_previous_movie_rating`, `understudy_id`)
@@ -769,7 +879,7 @@ if($skills != NULL){
   $mysql->query("DELETE FROM `Understudies_skills` WHERE `understudy_id` = '$id'");
 
   foreach ($skills as $value) {
-    echo "PEZDA";
+
   //   $id_r = $mysql->query("SELECT id_previous_movie_rating FROM `Previous_movies_rating` WHERE rating = $value");
       $result = $mysql->query("INSERT INTO `Understudies_skills`(`skills_id`, `understudy_id`)
     VALUES ('$value','$id')");
@@ -786,7 +896,7 @@ if($skills != NULL){
 
 $mysql->close();
 
-header('Location: /filmStudio/actor_agent/main.php');
+header('Location: successfullyEdited.php');
 
 }
 

@@ -28,8 +28,8 @@ $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
 
 $number = $_POST['num'];
-echo "hello";
-echo $number;
+//echo "hello";
+//echo $number;
 
 $result = $mysqli->query("SELECT *
  FROM `editor` WHERE `editor_id` IN (SELECT `editor_id` FROM `editor_crewedit` WHERE `number_of_edit_crew`  = $number)");

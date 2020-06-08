@@ -1,0 +1,47 @@
+.colorForAllText{
+ color: #ed0b0e;
+ font-family: "Courier New", Courier, monospace;
+ font-style: oblique 40deg bold;
+ font-weight: 580;
+ background-color: #bbb8b5;
+}
+.colorText{
+    color: #410a14;
+    font-family: "Courier New", Courier, monospace;
+    font-style: oblique 40deg bold;
+    font-weight: 580;
+    background-color: #bbb8b5;
+}
+.col-centered{
+    margin: 0 auto;
+    float: none;
+}
+.body1{
+    background-color: #bbb8b5;
+}
+.body2{
+    margin-right: 8px;
+
+}
+.body3{
+    background-color: #bbb8b5; 
+}
+  .button {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    color: #ed0b0e;
+    background-color:#ed0b0e;
+    border-radius: 8px;
+    font-size: 20px;
+    font-family: "Courier New", Courier, monospace;
+    font-style: oblique 40deg bold;
+
+    color: white;
+    width: 250px;
+}
+
+.button:hover {
+    background-color:#410a14;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
