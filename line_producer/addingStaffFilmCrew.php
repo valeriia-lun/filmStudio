@@ -300,7 +300,7 @@ $result = $mysql->query("INSERT INTO `Others_contacts_of_relatives`(`others_rela
 
 
 foreach ($ratings as $value) {
-  echo "PEZDA";
+
 //   $id_r = $mysql->query("SELECT id_previous_movie_rating FROM `Previous_movies_rating` WHERE rating = $value");
 $value *= 10;
     $result = $mysql->query("INSERT INTO `Others_previous_movies_ratings`(`id_previous_movie_rating`, `others_id`)

@@ -41,7 +41,7 @@
 <div class="row body2">
 <div class=" container col-md-4">
 
-<h3 class="colorText">Додавання інформації</h3></br>
+<h3 class="colorText">Додавання до бази</h3></br>
   <form action="" method="post">
   <select name="choice" class="select selectpicker  form-control">
     <option value="movie">Фільм</option>

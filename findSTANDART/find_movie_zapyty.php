@@ -82,7 +82,8 @@ function res($result){
   $selecting =  $_POST['selecting'];
 
 if (isset($_POST['done'])){
-  $mysqli = new mysqli("localhost","root","root","filmstudio");
+
+$mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
 
 
@@ -185,9 +186,7 @@ FROM Help))");
           $temp = $stroka['name_of_movie'];
         
           $result_movies_genres = $mysqli->query("SELECT `genre` FROM `genres` WHERE `id_movie_genre` IN (SELECT `id_movie_genre` FROM  `movie_genres` WHERE `name_of_movie` = \"$temp\")");
-        
           $result_movies_duration = $mysqli->query("SELECT `duration_of_movie` FROM `movie_duration` WHERE `name_of_movie` IN (SELECT `name_of_movie` FROM  `movie` WHERE `name_of_movie` = \"$temp\")");
-        
             echo"<tr>";
             echo"<td>" . $stroka['name_of_movie'] . "</td>";
             echo"<td>" . $stroka['date_of_release'] . "</td>";
@@ -235,7 +234,6 @@ FROM Help))");
               WHERE number_of_film_crew = M1.number_of_film_crew))");
                while ($stroka = mysqli_fetch_array($result_movies)){
                 $temp = $stroka['name_of_movie'];
-              
                 $result_movies_genres = $mysqli->query("SELECT `genre` FROM `genres` WHERE `id_movie_genre` IN (SELECT `id_movie_genre` FROM  `movie_genres` WHERE `name_of_movie` = \"$temp\")");
               
                 $result_movies_duration = $mysqli->query("SELECT `duration_of_movie` FROM `movie_duration` WHERE `name_of_movie` IN (SELECT `name_of_movie` FROM  `movie` WHERE `name_of_movie` = \"$temp\")");
