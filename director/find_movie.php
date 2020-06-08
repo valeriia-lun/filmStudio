@@ -72,6 +72,12 @@ $().datepicker();
 <input value="Бюджет"></input>
 <input value="Рейтинг"></input></br>
 
+Жанр:
+<select  onchange="yesnoCheck(this);" class="select selectpicker  form-control" name="selecting">
+  <option value="max_rating">драма</option>
+  <option value="max_gonorars">Фільми, які витратили найбільше грошей на гонорари акторам</option>
+</select>
+
 Номер знімальної групи:
 <select  onchange="yesnoCheck(this);" class="select selectpicker  form-control" name="selecting">
   <option value="max_rating">501</option>

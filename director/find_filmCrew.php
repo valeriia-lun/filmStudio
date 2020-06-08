@@ -33,9 +33,9 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only">(current)</span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Режисер</label>
     </form>
@@ -50,6 +50,17 @@
 <select  class="select selectpicker  form-control" name="selecting">
   <option value="finish_film_crew">Знімальні групи, які закінчили свою роботу 15.12.2019</option>
 </select>
+
+Номер знімальної групи:
+<select  class="select selectpicker  form-control" name="selecting">
+  <option value="finish_film_crew">501</option>
+</select></br>
+
+Дата початку роботи:
+<input value="" type="date"></input></br>
+
+Дата закінчення роботи:
+<input value="" type="date"></input></br>
 </div>
 <div class="btn">
   <button class ="button btn btn-primary" name="done">Знайти</button>
