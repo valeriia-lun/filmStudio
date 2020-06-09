@@ -46,23 +46,28 @@
 </div>
 <div class="noprint">
 <form action="find_film_crew_zapyty.php" method="post">
-<div class="container col-md-3">
+<div class="row">
+<div class="col-md-4 container">
 <select  class="select selectpicker  form-control" name="selecting">
   <option value="finish_film_crew">Знімальні групи, які закінчили свою роботу 15.12.2019</option>
 </select>
-
+</div></div></br>
+<div class="row">
+<div class="col-md-3 container">
 Номер знімальної групи:
 <select  class="select selectpicker  form-control" name="selecting">
   <option value="finish_film_crew">501</option>
 </select></br>
-
-Дата початку роботи:
-<input value="" type="date"></input></br>
-
-Дата закінчення роботи:
-<input value="" type="date"></input></br>
 </div>
-<div class="btn">
+<div class="col-md-3 container">
+Дата початку роботи:
+<input class="form-control" value="" type="date"></input></br>
+</div>
+<div class="col-md-3 container">
+Дата закінчення роботи:
+<input class="form-control" value="" type="date"></input></br>
+</div></div></div>
+<div class="btn noprint">
   <button class ="button btn btn-primary" name="done">Знайти</button>
 </div>
 </form>

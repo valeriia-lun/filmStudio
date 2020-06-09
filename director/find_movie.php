@@ -53,8 +53,11 @@ $().datepicker();
 
 </div>
 <div class="noprint">
+<div class="row">
+<div class="col-md-4 container">
+
 <form action="find_movie_zapyty.php" method="post">
-<div class="container col-md-3">
+
 <select  onchange="yesnoCheck(this);" class="select selectpicker  form-control" name="selecting">
   <option value="max_rating">Фільми з найбільшим рейтингом</option>
   <option value="max_gonorars">Фільми, які витратили найбільше грошей на гонорари акторам</option>
@@ -62,32 +65,42 @@ $().datepicker();
   <option value="all_understudies">Фільми, в яких брали участь всі дублери кіностудії</option>
   <option value="rating_4">Фільми з рейтингом 4</option>
 </select>
-
-
-<input value="Назва"></input></br>
+</div></div>
+<div class="row">
+<div class="col-md-3 container">
+<input class="form-control" value="Назва"></input></br>
+</div>
+<div class="col-md-3 container">
 Дата виходу:
-<input value="" type="date"></input>
+<input class="form-control" value="" type="date"></input>
+</div>
+<div class="col-md-3 container">
+<input class="form-control" value="Бюджет"></input>
+</div></div>
 
 
-<input value="Бюджет"></input>
-<input value="Рейтинг"></input></br>
-
+<div class="row">
+<div class="col-md-3 container">
+<input class="form-control" value="Рейтинг"></input></br>
+</div>
+<div class="col-md-3 container">
 Жанр:
 <select  onchange="yesnoCheck(this);" class="select selectpicker  form-control" name="selecting">
   <option value="max_rating">драма</option>
   <option value="max_gonorars">Фільми, які витратили найбільше грошей на гонорари акторам</option>
-</select>
-
+</select></div>
+<div class="col-md-3 container">
 Номер знімальної групи:
 <select  onchange="yesnoCheck(this);" class="select selectpicker  form-control" name="selecting">
   <option value="max_rating">501</option>
   <option value="max_gonorars">Фільми, які витратили найбільше грошей на гонорари акторам</option>
-</select>
+</select></div>
+<div class="col-md-3 container">
 Номер групи монтажерів:
 <select  onchange="yesnoCheck(this);" class="select selectpicker  form-control" name="selecting">
   <option value="max_rating">301</option>
   <option value="max_gonorars">Фільми, які витратили найбільше грошей на гонорари акторам</option>
-</select>
+</select></div>
 
 </div>
 

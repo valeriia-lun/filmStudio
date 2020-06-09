@@ -55,9 +55,9 @@
 <div class="noprint">
 
 
-
+<div class="row">
+  <div class="col-md-4 container">
 <form action="find_actors_zapyty.php" method="post">
-<div class=" container col-md-3">
 <select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
   <option value="max_experience">Актори з найбільшим стажем</option>
   <option value="female">Актори жіночого роду</option>
@@ -67,48 +67,85 @@
   <option value="entered_shoe_size">Актори із введеним розміром взуття</option>
   <option value="most_expensive_actor" >Найдорожчі актори</option>
 </select>
+</div></div></br>
 
-<input value="Ім'я"></input>
-<input value="Прізвище"></input>
-<input value="По-батькові"></input>
-<input value="Рейтинг"></input>
-<input value="Кількість фільмів"></input>
-<input value="Вік"></input>
+
+<div class="row">
+<div class="col-md-3 container">
+<input class="form-control" value="Ім'я"></input>
+</div>
+<div class="col-md-3 container">
+<input class="form-control" value="Прізвище"></input>
+</div>
+<div class="col-md-3 container">
+<input class="form-control" value="По-батькові"></input>
+</div>
+<div class="col-md-3 container">
+<input class="form-control" value="Рейтинг"></input>
+</div></div></br>
+
+<div class="row">
+<div class="col-md-3 container">
+<input class="form-control" value="Кількість фільмів"></input>
+</div>
+<div class="col-md-3 container">
+<input class="form-control" value="Вік"></input>
+</div>
+<div class="col-md-3 container">
 <select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
   <option value="max_experience">Чоловік</option>
   <option value="female">Жінка</option>
 </select>
-<input value="Ріст"></input>
+</div>
+<div class="col-md-3 container">
+<input class="form-control" value="Ріст"></input></div></div></br>
+
+<div class="row">
+<div class="col-md-3 container">
 Колір волосся:
 <select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
   <option value="max_experience">рудий</option>
   <option value="female">Жінка</option>
 </select>
-<input value="Довжина волосся"></input>
+</div>
+
+</br>
+<div class="col-md-3 ">
+<input class="form-control" value="Довжина волосся"></input>
+</div>
+<div class="col-md-3 ">
 Колір очей:
 <select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
   <option value="max_experience">блакитний</option>
   <option value="female">Жінка</option>
-</select>
+</select></div><div class="col-md-3 ">
 Статура:
 <select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
   <option value="max_experience">спортивний</option>
   <option value="female">Жінка</option>
-</select>
-<input value="Розмір взуття"></input>
-<input value="Розмір одягу"></input>
+</select></div>
+</div>
+</br>
+<div class="row">
+<div class="col-md-3 ">
+<input class="form-control" value="Розмір взуття"></input>
+</div>
+<div class="col-md-3 container">
+<input class="form-control" value="Розмір одягу"></input></div>
+<div class="col-md-3 container">
 Національність:
 <select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
   <option value="max_experience">українець</option>
   <option value="female">Жінка</option>
-</select>
+</select></div>
+<div class="col-md-3 container">
 Особливі навички:
 <select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
   <option value="max_experience">знає іспанську</option>
   <option value="female">Жінка</option>
 </select>
-
-
+</div></div>
+</div>
 
 
 </div>
@@ -131,7 +168,7 @@ function yesnoCheck(that) {
 <div id="ifYes" style="display: none;">
     <input type="text" id="entering_values" onkeyup="lal(this)" name="entering_values" />
 </div>
-<div class="btn">
+<div class="btn noprint">
   <button class ="button btn btn-primary" name="done">Знайти</button>
 </div>
 </form>
