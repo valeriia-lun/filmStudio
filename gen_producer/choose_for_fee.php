@@ -45,7 +45,7 @@
   </div>
 </nav>
 
-</br></br></br></br></br></br>
+</br></br></br></br>
 <div class="row">
 
 <div class="  container col-md-4">
@@ -63,13 +63,15 @@ while ($stroka = mysqli_fetch_array($result)){
     $movie =  $stroka['name_of_movie'];
    }
 ?>
-</select>
-</br> </br>
-<div style="float: left;">
+</select></div></div></br></br></br></br>
+
+
+<div class="row">
+<div class="btn container col-md-5">
+
   <button class="button btn btn-danger " name="filmCrew">Призначити гонорари знімальній групі</button>
 </div>
-</br> </br>
-<div >
+<div class=" btn container col-md-5">
   <button class="button btn btn-danger " name="editCrew">Призначити гонорари групі монтажерів</button>
 </div>
   </div>
