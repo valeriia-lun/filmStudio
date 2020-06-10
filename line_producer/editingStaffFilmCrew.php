@@ -100,9 +100,9 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only"></span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Лінійний продюсер</label>
     </form>
@@ -120,6 +120,9 @@
      $id = filter_var(trim($_POST['others_id']),FILTER_SANITIZE_STRING);
 
    }
+
+   echo "<input type=\"hidden\" value = \"" .$id . "\" name=\"others_id_\" >";
+
 
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
@@ -340,7 +343,7 @@ $result = $mysql->query("SELECT `others_place_of_birth` FROM `Others` WHERE `oth
 $res = mysqli_fetch_array($result);
 
 echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"placeBirth\" value=\"$res[0]\" required>";
-    ?><br></div> 
+    ?><br></div>
     <div class="container col-4">
     <label class="colorText">E-mail: </label>  <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
@@ -354,7 +357,7 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
 
 </div></div>
 
-</br></br> 
+</br></br>
 <div class="btn">
 <input type="submit" class ="button btn btn-primary" value="Змінити" name="edit">
 </div><br><br><br>
@@ -381,6 +384,7 @@ $contacts = $_POST['field_name_Contacts'];
 $ratings = $_POST['field_name_Ratings'];
 
 
+$id = filter_var(trim($_POST['others_id_']),FILTER_SANITIZE_STRING);
 
 $name = filter_var(trim($_POST['first_name']),FILTER_SANITIZE_STRING);
 $last_name = filter_var(trim($_POST['last_name']),FILTER_SANITIZE_STRING);

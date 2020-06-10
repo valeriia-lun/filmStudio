@@ -105,9 +105,9 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only"></span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Агент по акторах</label>
     </form>
@@ -135,13 +135,15 @@ $result = $mysql->query("SELECT `actor_name` FROM `actors` WHERE `actor_id` = $i
 
 $res = mysqli_fetch_array($result);
 
+echo "<input type=\"hidden\" value = \"" .$id . "\" name=\"actor_id_\" >";
+
 echo "<input type= \"text\"  class=\"form-control\" maxlength=\"50\" tabindex=\"2\" name=\"first_name\" value=\"$res[0]\" required>";
    ?>
 
 
   </div>
   <div class="container col-3">
-  <label class="colorText">Прізвище:</label> 
+  <label class="colorText">Прізвище:</label>
   <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
@@ -189,7 +191,7 @@ $row = mysqli_fetch_row($result);
       }
     }
 }
-?></div>  </div> 
+?></div>  </div>
 
 <div class=" container col-3">
 <label class="colorText">Контакти близьких:</label> <div class="field_wrapper_Contacts">
@@ -213,7 +215,7 @@ for ($i = 0 ; $i < $rows ; ++$i)
        }
 }
 ?></div>
-</div> 
+</div>
 
 <div class=" container col-3">
 <label class="colorText">Рейтинги фільмів, у яких брал(а) участь: </label><div class="field_wrapper_Ratings">
@@ -222,7 +224,7 @@ $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
 $resultt = $mysql->query("SELECT `rating` FROM `Previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating`  FROM `actors_previous_movies_rating` WHERE `actor_id` = $id)");
 if ($resultt) {
-  
+
 }
 else {
    echo "Error! $mysql->error <br>";
@@ -250,8 +252,8 @@ for ($i = 0 ; $i < $rows ; ++$i)
 
 <div class="row text-center" style="margin:10px;">
   <div class=" container col-3">
-  <label class="colorText"> Домашня адреса:</label> 
- 
+  <label class="colorText"> Домашня адреса:</label>
+
    <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
@@ -293,10 +295,10 @@ echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
 
 
 
- 
+
  <div class="row text-center" style="margin:10px;">
   <div class=" container col-3">
-  <label class="colorText"> Працює до:</label> 
+  <label class="colorText"> Працює до:</label>
 <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
@@ -339,7 +341,7 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
 
 <div class="row " style="margin:10px;">
   <div class=" container col-4">
-  <label class="colorText">Місце народження:</label> 
+  <label class="colorText">Місце народження:</label>
  <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
@@ -376,7 +378,7 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
 
 
 
-</br>  </br> 
+</br>  </br>
 <hr  size="50"  color="black;" /></br></br>
 <h1 class="colorForAllText text-center" >Зовнішність</h1>
 <div class="row">
@@ -414,7 +416,7 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
     ?><br>   </div>
     <div class=" container col-3">
     <label class="colorText">  Колір волосся: </label>
- 
+
    <select  class="form-control" name="hairColor">
      <?php
       $mysql = new mysqli("localhost","root","root","filmstudio");
@@ -481,7 +483,7 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
 </div>
    <div class=" container col-3">
    <label class="colorText">Колір очей: </label>
-   
+
    <select class="form-control" name="eyes">
      <?php
       $mysql = new mysqli("localhost","root","root","filmstudio");
@@ -518,7 +520,7 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
    </div>
    <div class=" container col-3">
    <label class="colorText">  Статура: </label>
- 
+
    <select class="form-control" name="stature">
    <?php
    $mysql = new mysqli("localhost","root","root","filmstudio");
@@ -633,6 +635,7 @@ $contacts = $_POST['field_name_Contacts'];
 $ratings = $_POST['field_name_Ratings'];
 
 
+$id = filter_var(trim($_POST['actor_id_']),FILTER_SANITIZE_STRING);
 
 $name = filter_var(trim($_POST['first_name']),FILTER_SANITIZE_STRING);
 $last_name = filter_var(trim($_POST['last_name']),FILTER_SANITIZE_STRING);
@@ -732,7 +735,7 @@ $result = $mysql->query("INSERT INTO `actors_contacts_of_relatives`(`actor_relat
 
 
 foreach ($ratings as $value) {
- 
+
 //   $id_r = $mysql->query("SELECT id_previous_movie_rating FROM `Previous_movies_rating` WHERE rating = $value");
 $value *= 10;
     $result = $mysql->query("INSERT INTO `actors_previous_movies_ratings`(`id_previous_movie_rating`, `actor_id`)

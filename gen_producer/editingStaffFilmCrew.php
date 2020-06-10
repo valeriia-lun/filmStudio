@@ -100,9 +100,9 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only"></span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Генеральний продюсер</label>
     </form>
@@ -138,6 +138,7 @@ $mysql->query("SET NAMES 'utf8'");
 $result = $mysql->query("SELECT `others_name` FROM `Others` WHERE `others_id` = $id");
 
 $res = mysqli_fetch_array($result);
+echo "<input type=\"hidden\" value = \"" .$id . "\" name=\"others_id_\" >";
 
 echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"first_name\" value=\"$res[0]\" required>";
     ?><br>
@@ -217,7 +218,7 @@ $row = mysqli_fetch_row($resultt);
   $mysql->query("SET NAMES 'utf8'");
   $resultt = $mysql->query("SELECT `rating` FROM `Previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating`  FROM `Others_previous_movies_ratings` WHERE `others_id` = $id)");
   if ($resultt) {
-  
+
    }
   else {
       echo "Error! $mysql->error <br>";
@@ -238,7 +239,7 @@ $row = mysqli_fetch_row($resultt);
  }
   ?>     </div>     </div>
   </div>
-    </div> </br> 
+    </div> </br>
 
     <div class="row">
   <div class=" container col-3">
@@ -290,7 +291,7 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
 <div class="row">
   <div class=" container col-3">
     <label class="colorText"> Працює до:</label>
-  
+
    <?php
  $mysql = new mysqli("localhost","root","root","filmstudio");
  $mysql->query("SET NAMES 'utf8'");
@@ -335,7 +336,7 @@ $result = $mysql->query("SELECT `others_place_of_birth` FROM `Others` WHERE `oth
 $res = mysqli_fetch_array($result);
 
 echo "<input type= \"text\" maxlength=\"50\" tabindex=\"2\" class=\"form-control\" name=\"placeBirth\" value=\"$res[0]\" required>";
-    ?><br></div> 
+    ?><br></div>
   <div class="container col-4">
   <label class="colorText">E-mail: </label> <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
@@ -348,7 +349,7 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
     ?><br>
 </div></div>
 
-</br></br> 
+</br></br>
 <div class="btn">
 <input type="submit" class ="button btn btn-primary" value="Змінити" name="edit">
 </div><br><br><br>
@@ -376,6 +377,7 @@ $contacts = $_POST['field_name_Contacts'];
 
 $ratings = $_POST['field_name_Ratings'];
 
+$id = filter_var(trim($_POST['others_id_']),FILTER_SANITIZE_STRING);
 
 
 $name = filter_var(trim($_POST['first_name']),FILTER_SANITIZE_STRING);
