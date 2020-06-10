@@ -78,9 +78,9 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only"></span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Режисер</label>
     </form>
@@ -96,11 +96,16 @@
   <div class="row text-center" style="margin:10px;">
     <div class=" container col-3" >  <label class="colorText">Назва:  </label>
   <?php
-  if (isset($_POST['editBtn'])){
-    $name = filter_var(trim($_POST['editBtn']),FILTER_SANITIZE_STRING);
-  }
+  //if (isset($_POST['editBtn'])){
+    $name = filter_var(trim($_POST['name_of_movie']),FILTER_SANITIZE_STRING);
+    echo $name;
+    echo "string";
+  //  $name = "anuka";
+  //}
   print_r( $name);
-echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" name=\"name_of_movie\" tabindex=\"2\" value=\"$name\" required>";
+  echo "<input type=\"hidden\" value = \"" .$name . "\" name=\"name_of_movie\" >";
+
+echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" name=\"name_of_movie_new\" tabindex=\"2\" value=\"$name\" required>";
 
 ?><br>
   </div>
@@ -108,11 +113,11 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" name=\"name_
     <label class="colorText">Жанр:</label><div class="field_wrapper_Genre">
     <select class="form-control">
     <?php
- 
+
     $mysql = new mysqli("localhost","root","root","filmstudio");
     $mysql->query("SET NAMES 'utf8'");
-    $result = $mysql->query("SELECT `genre` FROM `genres` WHERE `id_movie_genre` IN (SELECT `id_movie_genre` FROM `Movie_genres` WHERE `name_of_movie` = $name)");
-    $resulttt = $mysql->query("SELECT `id_movie_genre` FROM `Movie_genres` WHERE `name_of_movie` = $name");
+    $result = $mysql->query("SELECT `genre` FROM `genres` WHERE `id_movie_genre` IN (SELECT `id_movie_genre` FROM `Movie_genres` WHERE `name_of_movie` = \"$name\")");
+    $resulttt = $mysql->query("SELECT `id_movie_genre` FROM `Movie_genres` WHERE `name_of_movie` = \"$name\"");
 
     $rows = mysqli_num_rows($result); // количество полученных строк
     for ($i = 0 ; $i < $rows ; ++$i)
@@ -243,12 +248,12 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" name=\"name_
 
   </div>
   </div>
-           
+
            <div class=" container col-3" >
            <label class="colorText"> Бюджет:</label> <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
-$result = $mysql->query("SELECT `budget_of_movie` FROM `movie` WHERE `name_of_movie` = $name");
+$result = $mysql->query("SELECT `budget_of_movie` FROM `movie` WHERE `name_of_movie` = \"$name\"");
 
 $res = mysqli_fetch_array($result);
 
@@ -263,7 +268,7 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
 <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
-$result = $mysql->query("SELECT `date_of_release` FROM `movie` WHERE `name_of_movie` = $name");
+$result = $mysql->query("SELECT `date_of_release` FROM `movie` WHERE `name_of_movie` = \"$name\"");
 
 $res = mysqli_fetch_array($result);
 
@@ -276,7 +281,7 @@ echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
 <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
-$result = $mysql->query("SELECT `duration_of_movie` FROM `Movie_duration` WHERE `name_of_movie` = $name");
+$result = $mysql->query("SELECT `duration_of_movie` FROM `Movie_duration` WHERE `name_of_movie` = \"$name\"");
 
 $rows = mysqli_num_rows($result); // количество полученных строк
 for ($i = 0 ; $i < $rows ; ++$i)
@@ -298,7 +303,7 @@ $row = mysqli_fetch_row($result);
     <label class="colorText">Рейтинг:</label><?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
-$result = $mysql->query("SELECT `rating_of_movie` FROM `movie` WHERE `name_of_movie` = $name");
+$result = $mysql->query("SELECT `rating_of_movie` FROM `movie` WHERE `name_of_movie` = \"$name\"");
 
 $res = mysqli_fetch_array($result);
 
@@ -325,12 +330,14 @@ $mysql = new mysqli('localhost','root','root','filmStudio');
 $durations = $_POST['field_name_Dur'];
 $genres = $_POST['field_name_Genre'];
 
-$movieName = filter_var(trim($_POST['name_of_moviee']),FILTER_SANITIZE_STRING);
+$movieName = filter_var(trim($_POST['name_of_movie']),FILTER_SANITIZE_STRING);
+$newName = filter_var(trim($_POST['name_of_movie_new']),FILTER_SANITIZE_STRING);
+
 $dateRelease = filter_var(trim($_POST['date_of_release']),FILTER_SANITIZE_STRING);
 $rating = filter_var(trim($_POST['rating']),FILTER_SANITIZE_STRING);
 $budget = filter_var(trim($_POST['budget']),FILTER_SANITIZE_STRING);
 
-$ans = $mysql->query("UPDATE `movie` SET `name_of_movie` = '$movieName', `budget_of_movie` = '$budget' WHERE `name_of_movie` = '$name' ");
+$ans = $mysql->query("UPDATE `movie` SET `name_of_movie` = '$newName', `budget_of_movie` = '$budget' WHERE `name_of_movie` = '$movieName' ");
 if ($ans) {
    echo "Success!";
  }
@@ -339,7 +346,7 @@ else {
   }
 
   if($dateRelease != NULL){
-    $anss = $mysql->query("UPDATE `movie` SET `date_of_release` = '$dateRelease' WHERE `name_of_movie` = '$name'");
+    $anss = $mysql->query("UPDATE `movie` SET `date_of_release` = '$dateRelease' WHERE `name_of_movie` = '$newName'");
       if ($anss) {
          echo "Success!";
        }
@@ -349,7 +356,7 @@ else {
   }
 
   if($rating != NULL){
-    $anss = $mysql->query("UPDATE `movie` SET `rating_of_movie` = '$rating' WHERE `name_of_movie` = '$name'");
+    $anss = $mysql->query("UPDATE `movie` SET `rating_of_movie` = '$rating' WHERE `name_of_movie` = '$newName'");
       if ($anss) {
          echo "Success!";
        }
@@ -360,13 +367,13 @@ else {
 
 
 
-  $mysql->query("DELETE FROM `Movie_genres` WHERE `name_of_movie` = '$name'");
-  $mysql->query("DELETE FROM `Movie_duration` WHERE `name_of_movie` = '$name'");
+  $mysql->query("DELETE FROM `Movie_genres` WHERE `name_of_movie` = '$movieName'");
+  $mysql->query("DELETE FROM `Movie_duration` WHERE `name_of_movie` = '$movieName'");
 
 
   foreach ($genres as $value) {
   $result = $mysql->query("INSERT INTO `Movie_genres`(`id_movie_genre`, `name_of_movie`)
-    VALUES ('$value','$movieName')");
+    VALUES ('$value','$newName')");
     if ($result) {
        echo "Success!";
      }
@@ -378,7 +385,7 @@ else {
 
   foreach ($durations as $value) {
   $result = $mysql->query("INSERT INTO `Movie_duration`(`duration_of_movie`, `name_of_movie`)
-    VALUES ('$value','$movieName')");
+    VALUES ('$value','$newName')");
     if ($result) {
        echo "Success!";
      }

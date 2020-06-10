@@ -169,8 +169,8 @@ while ($stroka = mysqli_fetch_array($result_movies)){
      echo "<td>"."<div class = \"btn noprint\">"."<form  action = \"choose_editCrew_to_film.php\" method=\"get\"><button class =\" btn btn-danger\" >Обрати</button></form>"."</div></td>";
 
 
-    echo"<form action=\"editingMovie.php\" method=\"post\>";
-    echo "<input type=\"hidden\" value = \"" .$stroka['name_of_movie'] . "\" name=\"name_of_moviee\" >";
+    echo"<form action=\"editingMovie.php\" method=\"post\">";
+    echo "<input type=\"hidden\" value = \"" .$stroka['name_of_movie'] . "\" name=\"name_of_movie\" >";
 
     echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\" >Змінити інформацію</button>"."</div></td></form>";
 
