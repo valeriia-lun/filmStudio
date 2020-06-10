@@ -553,7 +553,7 @@ case  'most_expensive_actor':
     break;
 
 
-    case 'variable':
+    case 'makeByHand':
         $name =  $_POST['selecting'];
         $surname =  $_POST['selecting'];
         $middleName =  $_POST['selecting'];
