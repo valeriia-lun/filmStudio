@@ -170,11 +170,13 @@
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
 $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie`");
-while ($stroka = mysqli_fetch_array($result_films)){
-echo "<select name=\"selectingFilms\"  class=\"select selectpicker  form-control\" onchange=\"yesnoCheck(this);\">
-  <option value=\" $stroka\"></option>
-</select>"; 
-}
+echo "<select name=\"selectingFilms\"  class=\"select selectpicker  form-control\" onchange=\"yesnoCheck(this);\">";
+while($stroka = mysqli_fetch_array($result_films)){
+
+for ($i=0; $i<count($stroka); $i++){
+  echo "<option value = \"" .$stroka['name_of_movie'] . "\">$stroka[$i]</option>"; 
+}}
+echo "</select>";
 ?>
 </div></div>
 </div>
