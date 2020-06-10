@@ -310,7 +310,7 @@ while ($stroka = mysqli_fetch_array($result_actors)){
   case  'salary_20000_more':
     $result_actors3 = $mysqli->query("SELECT * FROM `actors` WHERE `actor_salary` < 20000");//3
     while ($stroka3 = mysqli_fetch_array($result_actors3)){
-      $temp3 = $stroka['actor_id'];
+      $temp3 = $stroka3['actor_id'];
       $result_photos3 = $mysqli->query("SELECT `actor_photo` FROM `actors_photo` WHERE `actor_id`  = $temp3");
       $result_phones3 = $mysqli->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id`  = $temp3");
       $result_contacts_rel3 = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp3");
@@ -359,7 +359,7 @@ while ($stroka = mysqli_fetch_array($result_actors)){
       case  'blond':
         $result_actors3 = $mysqli->query("SELECT * FROM `actors` WHERE `actor_color_of_hair` = 'Блонд'");//4
         while ($stroka3 = mysqli_fetch_array($result_actors3)){
-          $temp3 = $stroka['actor_id'];
+          $temp3 = $stroka3['actor_id'];
           $result_photos3 = $mysqli->query("SELECT `actor_photo` FROM `actors_photo` WHERE `actor_id`  = $temp3");
           $result_phones3 = $mysqli->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id`  = $temp3");
           $result_contacts_rel3 = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp3");
@@ -407,7 +407,7 @@ while ($stroka = mysqli_fetch_array($result_actors)){
           case  'movie_zoloto':
             $result_actors3 = $mysqli->query("SELECT * FROM `actors` WHERE actor_id IN (SELECT actor_id FROM `actor_filmcrew` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = 'Золото'))");
             while ($stroka3 = mysqli_fetch_array($result_actors3)){
-              $temp3 = $stroka['actor_id'];
+              $temp3 = $stroka3['actor_id'];
               $result_photos3 = $mysqli->query("SELECT `actor_photo` FROM `actors_photo` WHERE `actor_id`  = $temp3");
               $result_phones3 = $mysqli->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id`  = $temp3");
               $result_contacts_rel3 = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp3");
@@ -457,7 +457,7 @@ while ($stroka = mysqli_fetch_array($result_actors)){
                 $entering_values = $_POST['entering_values'];
                 $result_actors3 =   $mysqli->query("SELECT * FROM `actors` WHERE `actor_shoe_size` = $entering_values");
                 while ($stroka3 = mysqli_fetch_array($result_actors3)){
-                  $temp3 = $stroka['actor_id'];
+                  $temp3 = $stroka3['actor_id'];
                   $result_photos3 = $mysqli->query("SELECT `actor_photo` FROM `actors_photo` WHERE `actor_id`  = $temp3");
                   $result_phones3 = $mysqli->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id`  = $temp3");
                   $result_contacts_rel3 = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp3");
