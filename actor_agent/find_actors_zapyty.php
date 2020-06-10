@@ -572,7 +572,7 @@ case  'most_expensive_actor':
   //  $skills =  $_POST['selectingFilms'];
 
         $quer = "SELECT * FROM `actors` WHERE ";
-
+echo $quer;
         $isFirst = true;
 
         if($name != NULL){
