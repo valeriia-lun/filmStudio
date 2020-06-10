@@ -551,29 +551,27 @@ case  'most_expensive_actor':
       echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";    echo"</tr>";
      }
     break;
-
+//?????????????????????????????
 
     case 'makeByHand':
-        $name =  $_POST['selecting'];
-        $surname =  $_POST['selecting'];
-        $middleName =  $_POST['selecting'];
-        $rating =  $_POST['selecting'];
-        $amountOfMovies =  $_POST['selecting'];
-        $age =  $_POST['selecting'];
-        $sex =  $_POST['selecting'];
-        $height =  $_POST['selecting'];
-        $hairColor =  $_POST['selecting'];
-        $hairLen=  $_POST['selecting'];
-        $eyes =  $_POST['selecting'];
-        $stature =  $_POST['selecting'];
-        $shoeSize =  $_POST['selecting'];
-        $size =  $_POST['selecting'];
-        $nationality =  $_POST['selecting'];
-        $skills =  $_POST['selecting'];
-
-
+        $name =  $_POST['name'];
+        $surname =  $_POST['surname'];
+        $middleName =  $_POST['middleName'];
+        $rating =  $_POST['rating'];
+        $amountOfMovies =  $_POST['amountOfFilms'];
+        $age =  $_POST['age'];
+        $sex =  $_POST['selectingSex'];
+        $height =  $_POST['height'];
+        $hairColor =  $_POST['selectingColorOfHair'];
+        $hairLen=  $_POST['hairLength'];
+        $eyes =  $_POST['selectingColorOfEyes'];
+        $stature =  $_POST['selectingStature'];
+        $shoeSize =  $_POST['shoeSize'];
+        $size =  $_POST['clothingSize'];
+        $nationality =  $_POST['selectingNationality'];
+        $skills =  $_POST['selectingFilms'];
       break;
-//?????????????????????????????
+
 }
 }
 

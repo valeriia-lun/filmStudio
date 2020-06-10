@@ -74,16 +74,16 @@
 <div id = "appearFilters" style="display: none;">
 <div class="row">
 <div class="col-md-3 container">
-<input class="form-control" value="Ім'я"></input>
+<label class="colorText" >Ім'я<input class="form-control" name ="name"></input></label>
 </div>
 <div class="col-md-3 container">
-<input class="form-control" value="Прізвище"></input>
+<label class="colorText" >Прізвище<input class="form-control" name="surname"></input></label>
 </div>
 <div class="col-md-3 container">
-<input class="form-control" value="По-батькові"></input>
+<label class="colorText" >По-батькові<input class="form-control" name="middleName" ></input></label>
 </div>
 <div class="col-md-3 container">
-<input class="form-control" value="Рейтинг"></input>
+<label class="colorText" >Рейтинг<input class="form-control" name="rating" ></input></label>
 </div></div></br>
 
 
@@ -91,64 +91,91 @@
 
 <div class="row">
 <div class="col-md-3 container">
-<input class="form-control" value="Кількість фільмів"></input>
+<label class="colorText" >Кількість фільмів у яких брали участь<input class="form-control" name="amountOfFilms" ></input></label>
 </div>
 <div class="col-md-3 container">
-<input class="form-control" value="Вік"></input>
+<label class="colorText" >Вік<input class="form-control" name="age" ></input></label>
 </div>
 <div class="col-md-3 container">
-<select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
-  <option value="max_experience">Чоловік</option>
-  <option value="female">Жінка</option>
+<label class="colorText" >Стать</label><select name="selectingSex"   class="select selectpicker  form-control" onchange="yesnoCheck(this);">
+  <option >Чоловік</option>
+  <option >Жінка</option>
 </select>
 </div>
 <div class="col-md-3 container">
-<input class="form-control" value="Ріст"></input></div></div></br>
+<label class="colorText" >Ріст<input class="form-control" name="height" ></input></label></div></div></br>
 
 <div class="row">
 <div class="col-md-3 container">
-Колір волосся:
-<select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
-  <option value="max_experience">рудий</option>
-  <option value="female">Жінка</option>
+<label class="colorText" >Колір волосся:</label>
+<select name="selectingColorOfHair"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
+  <option>Рудий</option>
+  <option>Блонд</option>
+  <option>Брюнет</option>
+  <option>Шатен</option>
+  <option>Рожевий</option>
+  <option>Блакитний</option>
+  <option>Русий</option>
+  <option>Зелений</option>
+  <option>Червоний</option>
+  <option>Жовтий</option>
+  <option>Інше</option>
 </select>
 </div>
 
 </br>
-<div class="col-md-3 ">
-<input class="form-control" value="Довжина волосся"></input>
+<div class="col-md-3 container">
+<label class="colorText" >Довжина волосся</label><input class="form-control" name="hairLength"></input>
 </div>
-<div class="col-md-3 ">
-Колір очей:
-<select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
-  <option value="max_experience">блакитний</option>
-  <option value="female">Жінка</option>
-</select></div><div class="col-md-3 ">
-Статура:
-<select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
-  <option value="max_experience">спортивний</option>
-  <option value="female">Жінка</option>
+<div class="col-md-3 container">
+<label class="colorText" >Колір очей:</label>
+<select name="selectingColorOfEyes"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
+  <option>Блакитний</option>
+  <option >Зелений</option>
+  <option >Карий</option>
+  <option >Сірий</option>
+  <option >Інше</option>
+</select></div><div class="col-md-3 container">
+<label class="colorText" >Статура:</label>
+<select name="selectingStature"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
+  <option >Спортивний</option>
+  <option >Худий</option>
+  <option >Повний</option>
+  <option >Стрункий</option>
 </select></div>
 </div>
 </br>
 <div class="row">
-<div class="col-md-3 ">
-<input class="form-control" value="Розмір взуття"></input>
+<div class="col-md-3 container">
+<label class="colorText" >Розмір взуття</label><input class="form-control" name="shoeSize" ></input>
 </div>
 <div class="col-md-3 container">
-<input class="form-control" value="Розмір одягу"></input></div>
+<label class="colorText" >Розмір одягу</label><input class="form-control" name="clothingSize" ></input></div>
 <div class="col-md-3 container">
-Національність:
-<select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
-  <option value="max_experience">українець</option>
-  <option value="female">Жінка</option>
+<label class="colorText" >Національність:</label>
+<select name="selectingNationality"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
+  <option>Українська</option>
+  <option>Армянська</option>
+  <option>Російська</option>
+  <option>Грузинська</option>
+  <option>Італійська</option>
+  <option>Китайська</option>
+  <option>Арабська</option>
+  <option>Скандинавська</option>
+  <option>Інше</option>
 </select></div>
 <div class="col-md-3 container">
-Особливі навички:
-<select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
-  <option value="max_experience">знає іспанську</option>
-  <option value="female">Жінка</option>
-</select>
+<label class="colorText" >Фільми, в яких брали участь:</label>
+<?php 
+$mysqli = new mysqli("localhost","root","root","filmstudio");
+$mysqli->query("SET NAMES 'utf8'");
+$result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie`");
+while ($stroka = mysqli_fetch_array($result_films)){
+echo "<select name=\"selectingFilms\"  class=\"select selectpicker  form-control\" onchange=\"yesnoCheck(this);\">
+  <option value=\" $stroka\"></option>
+</select>"; 
+}
+?>
 </div></div>
 </div>
 
