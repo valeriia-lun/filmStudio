@@ -59,17 +59,19 @@
   <div class="col-md-4 container">
 <form action="find_actors_zapyty.php" method="post">
 <select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
-  <option value="max_experience">Актори з найбільшим стажем</option>
+
+  <option value="max_experience" >Актори з найбільшим стажем</option>
   <option value="female">Актори жіночого роду</option>
   <option value="salary_20000_more">Актори із зарплатнею < 20 000 грн</option>
   <option value="blond">Актори блондини</option>
   <option value="movie_zoloto">Актори, що знялися в фільмі 'Золото'</option>
   <option value="entered_shoe_size">Актори із введеним розміром взуття</option>
   <option value="most_expensive_actor" >Найдорожчі актори</option>
+  <option value="makeByHand">Фільтрувати самостійно</option>
 </select>
 </div></div></br>
 
-
+<div id = "appearFilters" style="display: none;">
 <div class="row">
 <div class="col-md-3 container">
 <input class="form-control" value="Ім'я"></input>
@@ -165,6 +167,12 @@ function yesnoCheck(that) {
         document.getElementById("ifYes").style.display = "block";
     } else {
         document.getElementById("ifYes").style.display = "none";
+    }
+
+    if(that.value == "makeByHand"){
+      document.getElementById("appearFilters").style.display = "block";
+    }else{
+      document.getElementById("appearFilters").style.display = "none";
     }
 }
 </script>
