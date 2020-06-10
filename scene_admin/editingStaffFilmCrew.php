@@ -100,9 +100,9 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only"></span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Адміністратор майданчика</label>
     </form>
@@ -218,18 +218,18 @@ $row = mysqli_fetch_row($resultt);
     <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
-  $resultt = $mysql->query("SELECT `rating` FROM `Previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating`  FROM `Others_previous_movies_ratings` WHERE `others_id` = $id)");
-  if ($resultt) {
-  
+  $resulttt = $mysql->query("SELECT `rating` FROM `Previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating`  FROM `Others_previous_movies_ratings` WHERE `others_id` = $id)");
+  if ($resulttt) {
+
    }
   else {
       echo "Error! $mysql->error <br>";
     }
 
- $rows = mysqli_num_rows($resultt); // количество полученных строк
+ $rows = mysqli_num_rows($resulttt); // количество полученных строк
  for ($i = 0 ; $i < $rows ; ++$i)
  {
-     $row = mysqli_fetch_row($resultt);
+     $row = mysqli_fetch_row($resulttt);
          for ($j = 0 ; $j < 1 ; ++$j){
            echo "<div><input type= \"text\" maxlength=\"50\"  class=\"form-control\" name=\"field_name_Ratings[]\" tabindex=\"2\" value=\"$row[$j]\" required>";
            if($i == 0){
@@ -241,7 +241,7 @@ $row = mysqli_fetch_row($resultt);
  }
   ?></div>     </div>
   </div>
-    </br> 
+    </br>
 
     <div class="row">
   <div class=" container col-3">
@@ -282,9 +282,9 @@ echo "<input type= \"text\" maxlength=\"50\" tabindex=\"2\"  class=\"form-contro
  echo "<input type= \"date\" maxlength=\"50\" tabindex=\"2\"  class=\"form-control\" name=\"work_since\" value=\"$res[0]\" required>";
      ?><br>
   </div>
-  </div></br> 
+  </div></br>
 
-  
+
   <div class="row">
   <div class=" container col-3">
   <label class="colorText">Працює до: </label>
@@ -335,7 +335,7 @@ echo "<input type= \"text\" maxlength=\"50\" tabindex=\"2\"  class=\"form-contro
     ?><br>
   </div> </br>
 
-<
+
 <div class=" container col-4">
 <label class="colorText">E-mail: </label> <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
@@ -425,15 +425,15 @@ $mysql->query("DELETE FROM `Others_contacts_of_relatives` WHERE `others_id` = '$
 $mysql->query("DELETE FROM `Others_previous_movies_ratings` WHERE `others_id` = '$id'");
 
 
-foreach ($phones as $value) {
-  $anss = $mysql->query("UPDATE `others_phones` SET `others_phone_number` = $value WHERE `others_id` = '$id'");
-  if ($anss) {
-     echo "Success!";
-   }
-  else {
-      echo "Error! $mysql->error <br>";
-    }
-}
+// foreach ($phones as $value) {
+//   $anss = $mysql->query("UPDATE `others_phones` SET `others_phone_number` = $value WHERE `others_id` = '$id'");
+//   if ($anss) {
+//      echo "Success!";
+//    }
+//   else {
+//       echo "Error! $mysql->error <br>";
+//     }
+// }
 
 
 foreach ($phones as $value) {

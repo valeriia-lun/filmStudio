@@ -33,9 +33,9 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only">(current)</span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Агент по акторах</label>
     </form>
@@ -551,6 +551,28 @@ case  'most_expensive_actor':
       echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";    echo"</tr>";
      }
     break;
+
+
+    case 'variable':
+        $name =  $_POST['selecting'];
+        $surname =  $_POST['selecting'];
+        $middleName =  $_POST['selecting'];
+        $rating =  $_POST['selecting'];
+        $amountOfMovies =  $_POST['selecting'];
+        $age =  $_POST['selecting'];
+        $sex =  $_POST['selecting'];
+        $height =  $_POST['selecting'];
+        $hairColor =  $_POST['selecting'];
+        $hairLen=  $_POST['selecting'];
+        $eyes =  $_POST['selecting'];
+        $stature =  $_POST['selecting'];
+        $shoeSize =  $_POST['selecting'];
+        $size =  $_POST['selecting'];
+        $nationality =  $_POST['selecting'];
+        $skills =  $_POST['selecting'];
+
+
+      break;
 //?????????????????????????????
 }
 }

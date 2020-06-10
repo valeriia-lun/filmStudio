@@ -84,6 +84,9 @@
 <input class="form-control" value="Рейтинг"></input>
 </div></div></br>
 
+
+
+
 <div class="row">
 <div class="col-md-3 container">
 <input class="form-control" value="Кількість фільмів"></input>
