@@ -237,11 +237,11 @@
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
   $resultt = $mysql->query("SELECT `rating` FROM `Previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating`  FROM `Understudy_previous_movies_ratings` WHERE `understudy_id` = $id)");
-  if ($resultt) {
-  }
-  else {
-     echo "Error! $mysql->error <br>";
-   }
+  // if ($resultt) {
+  // }
+  // else {
+  //    echo "Error! $mysql->error <br>";
+  //  }
 
   $rows = mysqli_num_rows($resultt); // количество полученных строк
   for ($i = 0 ; $i < $rows ; ++$i)
