@@ -529,114 +529,121 @@ case  'most_expensive_actor':
 
         if($name != NULL){
           if(!$isFirst){
-            $quer = $quer . ", ";
+            $quer = $quer . " AND ";
           }
-          $quer = $quer . "`actor_name` = $name";
+          $quer = $quer . "`actor_name` = \"$name\"";
           $isFirst = false;
         }
         if($surname != NULL){
-          $isLast = false;
+        //  $isLast = false;
           if(!$isFirst){
-            $quer = $quer . ", ";
+            $quer = $quer . " AND ";
           }
-          $quer = $quer . "`actor_surname` = $surname";
+          $quer = $quer . "`actor_surname` = \"$surname\"";
           $isFirst = false;
         }
         if($middleName != NULL){
           if(!$isFirst){
-            $quer = $quer . ", ";
+            $quer = $quer . " AND ";
           }
-          $quer = $quer . "`actor_middle_name` = $middleName";
+          $quer = $quer . "`actor_middle_name` = \"$middleName\"";
           $isFirst = false;
         }
         if($rating != NULL){
           if(!$isFirst){
-            $quer = $quer . ", ";
+            $quer = $quer . " AND ";
           }
           $quer = $quer . "`rating_of_employee` = $rating";
           $isFirst = false;
         }
         if($amountOfMovies != NULL){
           if(!$isFirst){
-            $quer = $quer . ", ";
+            $quer = $quer . " AND ";
           }
           $quer = $quer . "`amount_of_films_actor_took_part_in` = $amountOfMovies";
           $isFirst = false;
         }
         if($age != NULL){
           if(!$isFirst){
-            $quer = $quer . ", ";
+            $quer = $quer . " AND ";
           }
           $quer = $quer . "`actor_age` = $age";
           $isFirst = false;
         }
         if($sex != NULL){
           if(!$isFirst){
-            $quer = $quer . ", ";
+            $quer = $quer . " AND ";
           }
-          $quer = $quer . "`actor_sex` = $sex";
+          $quer = $quer . "`actor_sex` = \"$sex\"";
           $isFirst = false;
         }
         if($height != NULL){
           if(!$isFirst){
-            $quer = $quer . ", ";
+            $quer = $quer . " AND ";
           }
           $quer = $quer . "`actor_height` = $height";
           $isFirst = false;
         }
         if($hairColor != NULL){
           if(!$isFirst){
-            $quer = $quer . ", ";
+            $quer = $quer . " AND ";
           }
-          $quer = $quer . "`actor_color_of_hair` = $hairColor";
+          $quer = $quer . "`actor_color_of_hair` = \"$hairColor\"";
           $isFirst = false;
         }
         if($hairLen != NULL){
           if(!$isFirst){
-            $quer = $quer . ", ";
+            $quer = $quer . " AND ";
           }
           $quer = $quer . "`actor_length_of_hair` = $hairLen";
           $isFirst = false;
         }
         if($eyes != NULL){
           if(!$isFirst){
-            $quer = $quer . ", ";
+            $quer = $quer . " AND ";
           }
-          $quer = $quer . "`actor_color_of_eyes` = $eyes";
+          $quer = $quer . "`actor_color_of_eyes` = \"$eyes\"";
           $isFirst = false;
         }
         if($stature != NULL){
           if(!$isFirst){
-            $quer = $quer . ", ";
+            $quer = $quer . " AND ";
           }
-          $quer = $quer . "`actor_stature` = $stature";
+          $quer = $quer . "`actor_stature` = \"$stature\"";
           $isFirst = false;
         }
         if($shoeSize != NULL){
           if(!$isFirst){
-            $quer = $quer . ", ";
+            $quer = $quer . " AND ";
           }
           $quer = $quer . "`actor_shoe_size` = $shoeSize";
           $isFirst = false;
         }
         if($size != NULL) {
-            if (!$isFirst) {
-                $quer = $quer . ", ";
-            }
+          if(!$isFirst){
+            $quer = $quer . " AND ";
+          }
             $quer = $quer . "`actor_clothing_size` = $size";
             $isFirst = false;
         }
         if($nationality != NULL){
           if(!$isFirst){
-            $quer = $quer . ", ";
+            $quer = $quer . " AND ";
           }
-          $quer = $quer . "`actor_nationality` = $nationality";
+          $quer = $quer . "`actor_nationality` = \"$nationality\"";
           $isFirst = false;
         }
 
         echo $quer;
 
         $result_filter = $mysqli->query($quer);
+        if ($result_filter) {
+           echo "Success!";
+         }
+        else {
+            echo "Error! $mysqli->error <br>";
+          }
+
 
         while ($stroka4 = mysqli_fetch_array($result_filter)){
           $temp4 = $stroka4['actor_id'];
