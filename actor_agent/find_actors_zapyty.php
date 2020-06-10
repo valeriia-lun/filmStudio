@@ -452,57 +452,6 @@ while ($stroka = mysqli_fetch_array($result_actors)){
                }
               break;
 
-
-              case  'entered_shoe_size':
-                $entering_values = $_POST['entering_values'];
-                $result_actors3 =   $mysqli->query("SELECT * FROM `actors` WHERE `actor_shoe_size` = $entering_values");
-                while ($stroka3 = mysqli_fetch_array($result_actors3)){
-                  $temp3 = $stroka3['actor_id'];
-                  $result_photos3 = $mysqli->query("SELECT `actor_photo` FROM `actors_photo` WHERE `actor_id`  = $temp3");
-                  $result_phones3 = $mysqli->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id`  = $temp3");
-                  $result_contacts_rel3 = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp3");
-                  $result_ratings3 = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `actors_previous_movies_rating` WHERE `actor_id` = $temp3)");
-
-                    echo"<tr>";
-                    echo"<td>" . $stroka3['actor_id'] . "</td>";
-                    echo"<td>" . $stroka3['actor_name'] . "</td>";
-                    echo"<td>" . $stroka3['actor_surname'] . "</td>";
-                    echo"<td>" . $stroka3['actor_middle_name'] . "</td>";
-                    echo"<td>" . $stroka3['actor_experience'] . "</td>";
-                    echo"<td>" . $stroka3['rating_of_employee'] . "</td>";
-                    echo"<td>" . $stroka3['actor_salary'] . "</td>";
-                    echo"<td>" . $stroka3['actor_works_since'] . "</td>";
-                    echo"<td>" . $stroka3['actor_works_until'] . "</td>";
-                    echo"<td>" . $stroka3['amount_of_films_actor_took_part_in'] . "</td>";
-                    echo"<td>" . $stroka3['actor_date_of_birth'] . "</td>";
-                    echo"<td>" . $stroka3['actor_place_of_birth'] . "</td>";
-                    echo"<td>" . $stroka3['actor_home_address'] . "</td>";
-                    echo"<td>" . $stroka3['name_of_position'] . "</td>";
-                    echo"<td>" . $stroka3['actor_age'] . "</td>";
-                    echo"<td>" . $stroka3['actor_sex'] . "</td>";
-                    echo"<td>" . $stroka3['actor_height'] . "</td>";
-                    echo"<td>" . $stroka3['actor_color_of_hair'] . "</td>";
-                    echo"<td>" . $stroka3['actor_length_of_hair'] . "</td>";
-                    echo"<td>" . $stroka3['actor_color_of_eyes'] . "</td>";
-                    echo"<td>" . $stroka3['actor_stature'] . "</td>";
-                    echo"<td>" . $stroka3['actor_shoe_size'] . "</td>";
-                    echo"<td>" . $stroka3['actor_clothing_size'] . "</td>";
-                    echo"<td>" . $stroka3['actor_nationality'] . "</td>";
-                    echo"<td>" . $stroka3['actor_other_appearance'] . "</td>";
-                    echo"<td>" . $stroka3['actor_e-mail'] . "</td>";
-                    echo"<td>" . $stroka3['actors_head_id'] . "</td>";
-                    echo"<td>" .  res($result_photos3) . "</td>";
-                    echo"<td>" .  res($result_phones3) . "</td>";
-                    echo"<td>" .  res($result_contacts_rel3) . "</td>";
-                    echo"<td>" .  res($result_ratings3) . "</td>";
-                    echo"<form action=\"editingActor.php\" method=\"post\">";
-
-                echo "<input type=\"hidden\" value = \"" .$stroka['actor_id'] . "\" name=\"actor_id\" >";
-                    echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";    echo"</tr>";
-                   }
-                  break;
-
-
 //?????????????????????????????
 case  'most_expensive_actor':
   $result_actors3 =   $mysqli->query("SELECT * FROM `actors` WHERE `actor_shoe_size` = $entering_values");

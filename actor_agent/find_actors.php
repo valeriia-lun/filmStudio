@@ -58,14 +58,13 @@
 <div class="row">
   <div class="col-md-4 container">
 <form action="find_actors_zapyty.php" method="post">
-<select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
 
+<select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
   <option value="max_experience" >Актори з найбільшим стажем</option>
   <option value="female">Актори жіночого роду</option>
   <option value="salary_20000_more">Актори із зарплатнею < 20 000 грн</option>
   <option value="blond">Актори блондини</option>
   <option value="movie_zoloto">Актори, що знялися в фільмі 'Золото'</option>
-  <option value="entered_shoe_size">Актори із введеним розміром взуття</option>
   <option value="most_expensive_actor" >Найдорожчі актори</option>
   <option value="makeByHand">Фільтрувати самостійно</option>
 </select>
@@ -176,15 +175,14 @@ $mysqli->query("SET NAMES 'utf8'");
 $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie`");
 echo "<select name=\"selectingFilms\"  class=\"select selectpicker  form-control\"><option></option>";
 while($stroka = mysqli_fetch_array($result_films)){
-for ($i=0; $i<count($stroka); $i++){
-  echo "<option>$stroka[$i]</option>";
-}}
+for ($i=0; $i<count($stroka); $i+=2){
+  echo "<option>$stroka[$i]</option>"; 
+}
+}
 echo "</select>";
 ?>
 </div></div>
 </div>
-
-
 </div>
 <script>
 function lal(el) {
@@ -195,12 +193,6 @@ function lal(el) {
 }
 
 function yesnoCheck(that) {
-    if (that.value == "entered_shoe_size") {
-        document.getElementById("ifYes").style.display = "block";
-    } else {
-        document.getElementById("ifYes").style.display = "none";
-    }
-
     if(that.value == "makeByHand"){
       document.getElementById("appearFilters").style.display = "block";
     }else{
@@ -208,10 +200,9 @@ function yesnoCheck(that) {
     }
 }
 </script>
-<div id="ifYes" style="display: none;">
-    <input type="text" id="entering_values" onkeyup="lal(this)" name="entering_values" />
-</div>
+
 <div class="btn noprint">
+  
   <button class ="button btn btn-primary" name="done">Знайти</button>
 </div>
 </form>
