@@ -136,83 +136,83 @@ if (isset($_POST['find'])){
 
   switch ($choice) {
     case 'actor':
-      header("location: /filmStudio/findSTANDART/find_actors.php");
+      header("location: /filmStudio/scene_admin/find_actors.php");
       break;
 
     case 'understudy':
-      header("location: /filmStudio/findSTANDART/find_understudies.php");
+      header("location: /filmStudio/scene_admin/find_understudies.php");
       break;
 
     case 'screenwriter':
-      header("location: /filmStudio/findSTANDART/find_others.php");
+      header("location: /filmStudio/scene_admin/find_others.php");
       break;
 
       case 'director':
-      header("location: /filmStudio/findSTANDART/find_others.php");
+      header("location: /filmStudio/scene_admin/find_others.php");
         break;
 
         case 'line_producer':
-        header("location: /filmStudio/findSTANDART/find_others.php");
+        header("location: /filmStudio/scene_admin/find_others.php");
           break;
 
           case 'requisite':
-          header("location: /filmStudio/findSTANDART/find_others.php");
+          header("location: /filmStudio/scene_admin/find_others.php");
             break;
 
             case 'make-up_artist':
-            header("location: /filmStudio/findSTANDART/find_others.php");
+            header("location: /filmStudio/scene_admin/find_others.php");
               break;
 
               case 'operator':
-              header("location: /filmStudio/findSTANDART/find_others.php");
+              header("location: /filmStudio/scene_admin/find_others.php");
                 break;
 
                 case 'light_director':
-                header("location: /filmStudio/findSTANDART/find_others.php");
+                header("location: /filmStudio/scene_admin/find_others.php");
                   break;
 
                   case 'sound_director':
-                  header("location: /filmStudio/findSTANDART/find_others.php");
+                  header("location: /filmStudio/scene_admin/find_others.php");
                     break;
 
                     case 'costume_designer':
-                    header("location: /filmStudio/findSTANDART/find_others.php");
+                    header("location: /filmStudio/scene_admin/find_others.php");
                       break;
 
                       case 'production_designer':
-                      header("location: /filmStudio/findSTANDART/find_others.php");
+                      header("location: /filmStudio/scene_admin/find_others.php");
                         break;
 
                         case 'actor_agent':
-                        header("location: /filmStudio/findSTANDART/find_others.php");
+                        header("location: /filmStudio/scene_admin/find_others.php");
                           break;
 
                           case 'helper_operator':
-                          header("location: /filmStudio/findSTANDART/find_others.php");
+                          header("location: /filmStudio/scene_admin/find_others.php");
                             break;
 
                             case 'helper_sound_director':
-                            header("location: /filmStudio/findSTANDART/find_others.php");
+                            header("location: /filmStudio/scene_admin/find_others.php");
                               break;
 
                               case 'helper_light_director':
-                              header("location: /filmStudio/findSTANDART/find_others.php");
+                              header("location: /filmStudio/scene_admin/find_others.php");
                                 break;
 
                                 case 'dresser':
-                                header("location: /filmStudio/findSTANDART/find_others.php");
+                                header("location: /filmStudio/scene_admin/find_others.php");
                                   break;
 
                                   case 'helper_custume_designer':
-                                  header("location: /filmStudio/findSTANDART/find_others.php");
+                                  header("location: /filmStudio/scene_admin/find_others.php");
                                     break;
 
                                     case 'helper_production_designer':
-                                    header("location: /filmStudio/findSTANDART/find_others.php");
+                                    header("location: /filmStudio/scene_admin/find_others.php");
                                       break;
 
                                       case 'scene_admin':
-                                      header("location: /filmStudio/findSTANDART/find_others.php");
+                                      header("location: /filmStudio/scene_admin/find_others.php");
                                         break;
 
                                         case 'cook':
@@ -236,11 +236,11 @@ if (isset($_POST['find'])){
                                                   break;
 
                                                   case 'editor':
-                                                  header("location: /filmStudio/findSTANDART/find_editor.php");
+                                                  header("location: /filmStudio/scene_admin/find_editor.php");
                                                     break;
 
                                                     case 'movie':
-                                                    header("location: /filmStudio/findSTANDART/find_movie.php");
+                                                    header("location: /filmStudio/scene_admin/find_movie.php");
                                                       break;
 
                                                       case 'filmCrew':
@@ -248,7 +248,7 @@ if (isset($_POST['find'])){
                                                         break;
 
                                                         case 'editCrew':
-                                                        header("location: /filmStudio/findSTANDART/find_editCrew.php");
+                                                        header("location: /filmStudio/scene_admin/find_editCrew.php");
                                                           break;
   }
 }

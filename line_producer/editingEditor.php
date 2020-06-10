@@ -241,7 +241,7 @@ echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
 
 <div class="row">
 <div class=" container col-3">
-<label class="colorText">   Працюе до:</label>
+<label class="colorText">   Працює до:</label>
    <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");

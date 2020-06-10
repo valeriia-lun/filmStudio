@@ -91,115 +91,115 @@ if (isset($_POST['find'])){
 
   switch ($choice) {
     case 'actor':
-      header("location: /filmStudio/findSTANDART/find_actors.php");
+      header("location: /filmStudio/chief_editor/find_actors.php");
       break;
 
     case 'understudy':
-      header("location: /filmStudio/findSTANDART/find_understudies.php");
+      header("location: /filmStudio/chief_editor/find_understudies.php");
       break;
 
     case 'screenwriter':
-      header("location: /filmStudio/findSTANDART/find_others.php");
+      header("location: /filmStudio/chief_editor/find_others.php");
       break;
 
       case 'director':
-      header("location: /filmStudio/findSTANDART/find_others.php");
+      header("location: /filmStudio/chief_editor/find_others.php");
         break;
 
         case 'line_producer':
-        header("location: /filmStudio/findSTANDART/find_others.php");
+        header("location: /filmStudio/chief_editor/find_others.php");
           break;
 
           case 'requisite':
-          header("location: /filmStudio/findSTANDART/find_others.php");
+          header("location: /filmStudio/chief_editor/find_others.php");
             break;
 
             case 'make-up_artist':
-            header("location: /filmStudio/findSTANDART/find_others.php");
+            header("location: /filmStudio/chief_editor/find_others.php");
               break;
 
               case 'operator':
-              header("location: /filmStudio/findSTANDART/find_others.php");
+              header("location: /filmStudio/chief_editor/find_others.php");
                 break;
 
                 case 'light_director':
-                header("location: /filmStudio/findSTANDART/find_others.php");
+                header("location: /filmStudio/chief_editor/find_others.php");
                   break;
 
                   case 'sound_director':
-                  header("location: /filmStudio/findSTANDART/find_others.php");
+                  header("location: /filmStudio/chief_editor/find_others.php");
                     break;
 
                     case 'costume_designer':
-                    header("location: /filmStudio/findSTANDART/find_others.php");
+                    header("location: /filmStudio/chief_editor/find_others.php");
                       break;
 
                       case 'production_designer':
-                      header("location: /filmStudio/findSTANDART/find_others.php");
+                      header("location: /filmStudio/chief_editor/find_others.php");
                         break;
 
                         case 'actor_agent':
-                        header("location: /filmStudio/findSTANDART/find_others.php");
+                        header("location: /filmStudio/chief_editor/find_others.php");
                           break;
 
                           case 'helper_operator':
-                          header("location: /filmStudio/findSTANDART/find_others.php");
+                          header("location: /filmStudio/chief_editor/find_others.php");
                             break;
 
                             case 'helper_sound_director':
-                            header("location: /filmStudio/findSTANDART/find_others.php");
+                            header("location: /filmStudio/chief_editor/find_others.php");
                               break;
 
                               case 'helper_light_director':
-                              header("location: /filmStudio/findSTANDART/find_others.php");
+                              header("location: /filmStudio/chief_editor/find_others.php");
                                 break;
 
                                 case 'dresser':
-                                header("location: /filmStudio/findSTANDART/find_others.php");
+                                header("location: /filmStudio/chief_editor/find_others.php");
                                   break;
 
                                   case 'helper_custume_designer':
-                                  header("location: /filmStudio/findSTANDART/find_others.php");
+                                  header("location: /filmStudio/chief_editor/find_others.php");
                                     break;
 
                                     case 'helper_production_designer':
-                                    header("location: /filmStudio/findSTANDART/find_others.php");
+                                    header("location: /filmStudio/chief_editor/find_others.php");
                                       break;
 
                                       case 'scene_admin':
-                                      header("location: /filmStudio/findSTANDART/find_others.php");
+                                      header("location: /filmStudio/chief_editor/find_others.php");
                                         break;
 
                                         case 'cook':
-                                        header("location: /filmStudio/findSTANDART/find_others.php");
+                                        header("location: /filmStudio/chief_editor/find_others.php");
                                           break;
 
                                           case 'driver':
-                                          header("location: /filmStudio/findSTANDART/find_others.php");
+                                          header("location: /filmStudio/chief_editor/find_others.php");
                                             break;
 
                                             case 'loader':
-                                            header("location: /filmStudio/findSTANDART/find_others.php");
+                                            header("location: /filmStudio/chief_editor/find_others.php");
                                               break;
 
                                               case 'cleaner':
-                                              header("location: /filmStudio/findSTANDART/find_others.php");
+                                              header("location: /filmStudio/chief_editor/find_others.php");
                                                 break;
 
                                                 case 'security':
-                                                header("location: /filmStudio/findSTANDART/find_others.php");
+                                                header("location: /filmStudio/chief_editor/find_others.php");
                                                   break;
 
                                                   case 'editor':
-                                                  header("location: /filmStudio/findSTANDART/find_editor.php");
+                                                  header("location: /filmStudio/chief_editor/find_editor.php");
                                                     break;
 
                                                     case 'movie':
-                                                    header("location: /filmStudio/findSTANDART/find_movie.php");
+                                                    header("location: /filmStudio/chief_editor/find_movie.php");
                                                       break;
 
                                                       case 'filmCrew':
-                                                      header("location: /filmStudio/findSTANDART/find_filmCrew.php");
+                                                      header("location: /filmStudio/chief_editor/find_filmCrew.php");
                                                         break;
 
                                                         case 'editCrew':
