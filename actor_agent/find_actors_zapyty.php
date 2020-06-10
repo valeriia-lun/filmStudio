@@ -686,7 +686,7 @@ echo $quer;
 
 
 
->>>>>>> 89b41c3753ac99443b748b3f085fb1b5a15c1d15
+
       break;
 
 }
