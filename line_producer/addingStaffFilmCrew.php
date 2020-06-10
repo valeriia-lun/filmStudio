@@ -102,9 +102,9 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only"></span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Лінійний продюсер</label>
     </form>
@@ -131,7 +131,6 @@
      <option>Помічник звукорежисера</option>
      <option>Помічник гафера</option>
      <option>Костюмер</option>
-     <option>Гример</option>
      <option>Помічник художника по костюмах</option>
      <option>Помічник художника-постановщика</option>
      <option>Адміністратор майданчика</option>
@@ -176,7 +175,7 @@
           <a href="javascript:void(0);" class="add_button_Ratings" title="Add field"><img src="../img/add_icon.png" height='35' width='35'/></a>
       </div>     </div>
   </div>
-    </div> </br> 
+    </div> </br>
 
     <div class="row">
   <div class=" container col-3">
@@ -190,9 +189,9 @@
   <div class=" container col-3">
   <label class="colorText"> Працюе з: </label><input type="date" class="form-control" name="work_since" maxlength="50" tabindex="2" required><br>
   </div>
-  </div></br> 
+  </div></br>
 
-  
+
   <div class="row">
   <div class=" container col-3">
   <label class="colorText">Дата народження: </label><input type="date" class="form-control" name="date_of_birth" maxlength="50" tabindex="2" required><br>
