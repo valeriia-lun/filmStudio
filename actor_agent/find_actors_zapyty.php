@@ -554,7 +554,6 @@ case  'most_expensive_actor':
 //?????????????????????????????
 
     case 'makeByHand':
-<<<<<<< HEAD
     $name =  $_POST['name'];
     $surname =  $_POST['surname'];
     $middleName =  $_POST['middleName'];
@@ -571,29 +570,11 @@ case  'most_expensive_actor':
     $size =  $_POST['clothingSize'];
     $nationality =  $_POST['selectingNationality'];
   //$films =  $_POST['selectingFilms'];
-=======
-        $name =  $_POST['name'];
-        $surname =  $_POST['surname'];
-        $middleName =  $_POST['middleName'];
-        $rating =  $_POST['rating'];
-        $amountOfMovies =  $_POST['amountOfFilms'];
-        $age =  $_POST['age'];
-        $sex =  $_POST['selectingSex'];
-        $height =  $_POST['height'];
-        $hairColor =  $_POST['selectingColorOfHair'];
-        $hairLen=  $_POST['hairLength'];
-        $eyes =  $_POST['selectingColorOfEyes'];
-        $stature =  $_POST['selectingStature'];
-        $shoeSize =  $_POST['shoeSize'];
-        $size =  $_POST['clothingSize'];
-        $nationality =  $_POST['selectingNationality'];
-  //  $skills =  $_POST['selectingFilms'];
->>>>>>> 2d6c947ee24bbebaecc5230833c9f2202421f7cd
 
         $quer = "SELECT * FROM `actors` WHERE ";
         echo $quer;
         $quer += "fff";
-        echo $quer
+        echo $quer;
 
         $isFirst = true;
 
@@ -689,12 +670,12 @@ case  'most_expensive_actor':
           $quer = $quer + "`actor_shoe_size` = $shoeSize";
           $isFirst = false;
         }
-        if($size != NULL){
-          if(!$isFirst){
-            $quer = $quer + ", ";
-          }
-          $quer = $quer + "`actor_clothing_size` = $size";
-          $isFirst = false;
+        if($size != NULL) {
+            if (!$isFirst) {
+                $quer = $quer + ", ";
+            }
+            $quer = $quer + "`actor_clothing_size` = $size";
+            $isFirst = false;
         }
         if($nationality != NULL){
           if(!$isFirst){
