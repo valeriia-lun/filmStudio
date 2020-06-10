@@ -101,7 +101,7 @@
 <label class="colorText" >Вік<input class="form-control" name="age" ></input></label>
 </div>
 <div class="col-md-3 container">
-<label class="colorText" >Стать</label><select name="selectingSex"   class="select selectpicker  form-control" onchange="yesnoCheck(this);">
+<label class="colorText" >Стать</label><select name="selectingSex"   class="select selectpicker  form-control">
 <option ></option>
   <option >Чоловік</option>
   <option >Жінка</option>
@@ -113,7 +113,7 @@
 <div class="row">
 <div class="col-md-3 container">
 <label class="colorText" >Колір волосся:</label>
-<select name="selectingColorOfHair"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
+<select name="selectingColorOfHair"  class="select selectpicker  form-control">
 <option ></option>
   <option>Рудий</option>
   <option>Блонд</option>
@@ -134,7 +134,7 @@
 </div>
 <div class="col-md-3 container">
 <label class="colorText" >Колір очей:</label>
-<select name="selectingColorOfEyes"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
+<select name="selectingColorOfEyes"  class="select selectpicker  form-control">
 <option ></option>
   <option>Блакитний</option>
   <option >Зелений</option>
@@ -143,7 +143,7 @@
 
 </select></div><div class="col-md-3 container">
 <label class="colorText" >Статура:</label>
-<select name="selectingStature"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
+<select name="selectingStature"  class="select selectpicker  form-control">
 <option ></option>
   <option >Спортивний</option>
   <option >Худий</option>
@@ -160,7 +160,7 @@
 <label class="colorText" >Розмір одягу</label><input class="form-control" name="clothingSize" ></input></div>
 <div class="col-md-3 container">
 <label class="colorText" >Національність:</label>
-<select name="selectingNationality"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
+<select name="selectingNationality"  class="select selectpicker  form-control">
 <option></option>
   <option>Українська</option>
   <option>Армянська</option>
@@ -170,15 +170,15 @@
   <option>Китайська</option>
   <option>Арабська</option>
   <option>Скандинавська</option>
-  
+
 </select></div>
 <div class="col-md-3 container">
 <label class="colorText" >Фільми, в яких брали участь:</label>
-<?php 
+<?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
 $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie`");
-echo "<select name=\"selectingFilms\"  class=\"select selectpicker  form-control\" onchange=\"yesnoCheck(this);\"><option></option>";
+echo "<select name=\"selectingFilms\"  class=\"select selectpicker  form-control\"><option></option>";
 while($stroka = mysqli_fetch_array($result_films)){
 for ($i=0; $i<count($stroka); $i+=2){
   echo "<option>$stroka[$i]</option>"; 

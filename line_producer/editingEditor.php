@@ -78,9 +78,9 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only"></span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Лінійний продюсер</label>
     </form>
@@ -105,6 +105,8 @@ $mysql->query("SET NAMES 'utf8'");
 $result = $mysql->query("SELECT `editor_name` FROM `editor` WHERE `editor_id` = $id");
 
 $res = mysqli_fetch_array($result);
+
+echo "<input type=\"hidden\" value = \"" .$id . "\" name=\"editor_id_\" >";
 
 echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"first_name\" value=\"$res[0]\" required>";
     ?><br>
@@ -195,7 +197,7 @@ for ($i = 0 ; $i < $rows ; ++$i)
        ?><br>
 </div>
 
-</div> </br> 
+</div> </br>
 
 <div class="row">
 <div class=" container col-3">
@@ -209,7 +211,7 @@ $res = mysqli_fetch_array($result);
 
 echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"address\" value=\"$res[0]\" required>";
     ?><br>
- 
+
  </div>
 
 
@@ -277,9 +279,9 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
    </div>
  </div></br>
 
- 
- 
-  </br>  </br> 
+
+
+  </br>  </br>
 
   <div class="btn">
 <input type="submit" class ="button btn btn-primary" value="Змінити" name="edit">
@@ -298,6 +300,12 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
 if (isset($_POST['edit'])){
 
 $mysql = new mysqli('localhost','root','root','filmStudio');
+
+
+// echo "iddd";
+// echo $id;
+
+$id = filter_var(trim($_POST['editor_id_']),FILTER_SANITIZE_STRING);
 
 $name = filter_var(trim($_POST['first_name']),FILTER_SANITIZE_STRING);
 $years = filter_var(trim($_POST['years']),FILTER_SANITIZE_STRING);
