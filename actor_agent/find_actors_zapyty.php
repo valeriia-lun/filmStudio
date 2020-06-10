@@ -554,6 +554,7 @@ case  'most_expensive_actor':
 //?????????????????????????????
 
     case 'makeByHand':
+<<<<<<< HEAD
         $name =  $_POST['name'];
         $surname =  $_POST['surname'];
         $middleName =  $_POST['middleName'];
@@ -570,6 +571,140 @@ case  'most_expensive_actor':
         $size =  $_POST['clothingSize'];
         $nationality =  $_POST['selectingNationality'];
         $skills =  $_POST['selectingFilms'];
+=======
+        $name =  $_POST['selecting'];
+        $surname =  $_POST['selecting'];
+        $middleName =  $_POST['selecting'];
+        $rating =  $_POST['selecting'];
+        $amountOfMovies =  $_POST['selecting'];
+        $age =  $_POST['selecting'];
+        $sex =  $_POST['selecting'];
+        $height =  $_POST['selecting'];
+        $hairColor =  $_POST['selecting'];
+        $hairLen=  $_POST['selecting'];
+        $eyes =  $_POST['selecting'];
+        $stature =  $_POST['selecting'];
+        $shoeSize =  $_POST['selecting'];
+        $size =  $_POST['selecting'];
+        $nationality =  $_POST['selecting'];
+    //  $skills =  $_POST['selecting'];
+
+        $quer = "SELECT * FROM `actors` WHERE ";
+
+        $isFirst = true;
+
+        if($name != NULL){
+          if(!$isFirst){
+            $quer += ", ";
+          }
+          $quer += "`actor_name` = $name";
+          $isFirst = false;
+        }
+        if($surname != NULL){
+          $isLast = false;
+          if(!$isFirst){
+            $quer += ", ";
+          }
+          $quer += "`actor_surname` = $surname";
+          $isFirst = false;
+        }
+        if($middleName != NULL){
+          if(!$isFirst){
+            $quer += ", ";
+          }
+          $quer += "`actor_middle_name` = $middleName";
+          $isFirst = false;
+        }
+        if($rating != NULL){
+          if(!$isFirst){
+            $quer += ", ";
+          }
+          $quer += "`rating_of_employee` = $rating";
+          $isFirst = false;
+        }
+        if($amountOfMovies != NULL){
+          if(!$isFirst){
+            $quer += ", ";
+          }
+          $quer += "`amount_of_films_actor_took_part_in` = $amountOfMovies";
+          $isFirst = false;
+        }
+        if($age != NULL){
+          if(!$isFirst){
+            $quer += ", ";
+          }
+          $quer += "`actor_age` = $age";
+          $isFirst = false;
+        }
+        if($sex != NULL){
+          if(!$isFirst){
+            $quer += ", ";
+          }
+          $quer += "`actor_sex` = $sex";
+          $isFirst = false;
+        }
+        if($height != NULL){
+          if(!$isFirst){
+            $quer += ", ";
+          }
+          $quer += "`actor_height` = $height";
+          $isFirst = false;
+        }
+        if($hairColor != NULL){
+          if(!$isFirst){
+            $quer += ", ";
+          }
+          $quer += "`actor_color_of_hair` = $hairColor";
+          $isFirst = false;
+        }
+        if($hairLen != NULL){
+          if(!$isFirst){
+            $quer += ", ";
+          }
+          $quer += "`actor_length_of_hair` = $hairLen";
+          $isFirst = false;
+        }
+        if($eyes != NULL){
+          if(!$isFirst){
+            $quer += ", ";
+          }
+          $quer += "`actor_color_of_eyes` = $eyes";
+          $isFirst = false;
+        }
+        if($stature != NULL){
+          if(!$isFirst){
+            $quer += ", ";
+          }
+          $quer += "`actor_stature` = $stature";
+          $isFirst = false;
+        }
+        if($shoeSize != NULL){
+          if(!$isFirst){
+            $quer += ", ";
+          }
+          $quer += "`actor_shoe_size` = $shoeSize";
+          $isFirst = false;
+        }
+        if($size != NULL){
+          if(!$isFirst){
+            $quer += ", ";
+          }
+          $quer += "`actor_clothing_size` = $size";
+          $isFirst = false;
+        }
+        if($nationality != NULL){
+          if(!$isFirst){
+            $quer += ", ";
+          }
+          $quer += "`actor_nationality` = $nationality";
+          $isFirst = false;
+        }
+
+        echo $quer;
+
+
+
+>>>>>>> 89b41c3753ac99443b748b3f085fb1b5a15c1d15
       break;
 
 }
