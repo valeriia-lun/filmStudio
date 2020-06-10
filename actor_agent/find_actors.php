@@ -57,9 +57,9 @@
 
 <div class="row">
   <div class="col-md-4 container">
-<form action="find_actors_zapyty.php" method="post">
-
+<form action="find_actors_zapyty.php" >
 <select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
+
   <option value="max_experience" >Актори з найбільшим стажем</option>
   <option value="female">Актори жіночого роду</option>
   <option value="salary_20000_more">Актори із зарплатнею < 20 000 грн</option>
@@ -69,7 +69,12 @@
   <option value="makeByHand">Фільтрувати самостійно</option>
 </select>
 </div></div></br>
+<div class="btn noprint">
+  <button class ="button btn btn-primary" name="done">Знайти</button>
+</div>
+</form>
 
+<form action="find_actors_zapyty.php" method="post">
 <div id = "appearFilters" style="display: none;">
 <div class="row">
 <div class="col-md-3 container">
@@ -202,8 +207,7 @@ function yesnoCheck(that) {
 </script>
 
 <div class="btn noprint">
-  
-  <button class ="button btn btn-primary" name="done">Знайти</button>
+  <button class ="button btn btn-primary" name="done2">Знайти</button>
 </div>
 </form>
 </div>
