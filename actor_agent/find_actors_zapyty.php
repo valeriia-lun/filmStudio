@@ -554,134 +554,134 @@ case  'most_expensive_actor':
 //?????????????????????????????
 
     case 'makeByHand':
-    $name =  $_POST['name'];
-    $surname =  $_POST['surname'];
-    $middleName =  $_POST['middleName'];
-    $rating =  $_POST['rating'];
-    $amountOfMovies =  $_POST['amountOfFilms'];
-    $age =  $_POST['age'];
-    $sex =  $_POST['selectingSex'];
-    $height =  $_POST['height'];
-    $hairColor =  $_POST['selectingColorOfHair'];
-    $hairLen=  $_POST['hairLength'];
-    $eyes =  $_POST['selectingColorOfEyes'];
-    $stature =  $_POST['selectingStature'];
-    $shoeSize =  $_POST['shoeSize'];
-    $size =  $_POST['clothingSize'];
-    $nationality =  $_POST['selectingNationality'];
-  //$films =  $_POST['selectingFilms'];
+        $name =  $_POST['name'];
+        $surname =  $_POST['surname'];
+        $middleName =  $_POST['middleName'];
+        $rating =  $_POST['rating'];
+        $amountOfMovies =  $_POST['amountOfFilms'];
+        $age =  $_POST['age'];
+        $sex =  $_POST['selectingSex'];
+        $height =  $_POST['height'];
+        $hairColor =  $_POST['selectingColorOfHair'];
+        $hairLen=  $_POST['hairLength'];
+        $eyes =  $_POST['selectingColorOfEyes'];
+        $stature =  $_POST['selectingStature'];
+        $shoeSize =  $_POST['shoeSize'];
+        $size =  $_POST['clothingSize'];
+        $nationality =  $_POST['selectingNationality'];
+  //  $skills =  $_POST['selectingFilms'];
 
         $quer = "SELECT * FROM `actors` WHERE ";
-        echo $quer;
-        $quer += "fff";
-        echo $quer;
+//        echo $quer;
+//        $quer .= "fff";
+//        echo $quer;
 
         $isFirst = true;
 
         if($name != NULL){
           if(!$isFirst){
-            $quer = $quer + ", ";
+            $quer = $quer . ", ";
           }
-          $quer = $quer +  "`actor_name` = $name";
+          $quer = $quer . "`actor_name` = $name";
           $isFirst = false;
         }
         if($surname != NULL){
           $isLast = false;
           if(!$isFirst){
-            $quer = $quer + ", ";
+            $quer = $quer . ", ";
           }
-          $quer = $quer + "`actor_surname` = $surname";
+          $quer = $quer . "`actor_surname` = $surname";
           $isFirst = false;
         }
         if($middleName != NULL){
           if(!$isFirst){
-            $quer = $quer + ", ";
+            $quer = $quer . ", ";
           }
-          $quer = $quer + "`actor_middle_name` = $middleName";
+          $quer = $quer . "`actor_middle_name` = $middleName";
           $isFirst = false;
         }
         if($rating != NULL){
           if(!$isFirst){
-            $quer = $quer + ", ";
+            $quer = $quer . ", ";
           }
-          $quer = $quer + "`rating_of_employee` = $rating";
+          $quer = $quer . "`rating_of_employee` = $rating";
           $isFirst = false;
         }
         if($amountOfMovies != NULL){
           if(!$isFirst){
-            $quer = $quer + ", ";
+            $quer = $quer . ", ";
           }
-          $quer = $quer + "`amount_of_films_actor_took_part_in` = $amountOfMovies";
+          $quer = $quer . "`amount_of_films_actor_took_part_in` = $amountOfMovies";
           $isFirst = false;
         }
         if($age != NULL){
           if(!$isFirst){
-            $quer = $quer + ", ";
+            $quer = $quer . ", ";
           }
-          $quer = $quer + "`actor_age` = $age";
+          $quer = $quer . "`actor_age` = $age";
           $isFirst = false;
         }
         if($sex != NULL){
           if(!$isFirst){
-            $quer = $quer + ", ";
+            $quer = $quer . ", ";
           }
-          $quer = $quer + "`actor_sex` = $sex";
+          $quer = $quer . "`actor_sex` = $sex";
           $isFirst = false;
         }
         if($height != NULL){
           if(!$isFirst){
-            $quer = $quer + ", ";
+            $quer = $quer . ", ";
           }
-          $quer = $quer + "`actor_height` = $height";
+          $quer = $quer . "`actor_height` = $height";
           $isFirst = false;
         }
         if($hairColor != NULL){
           if(!$isFirst){
-            $quer = $quer + ", ";
+            $quer = $quer . ", ";
           }
-          $quer = $quer + "`actor_color_of_hair` = $hairColor";
+          $quer = $quer . "`actor_color_of_hair` = $hairColor";
           $isFirst = false;
         }
         if($hairLen != NULL){
           if(!$isFirst){
-            $quer = $quer + ", ";
+            $quer = $quer . ", ";
           }
-          $quer = $quer + "`actor_length_of_hair` = $hairLen";
+          $quer = $quer . "`actor_length_of_hair` = $hairLen";
           $isFirst = false;
         }
         if($eyes != NULL){
           if(!$isFirst){
-            $quer = $quer + ", ";
+            $quer = $quer . ", ";
           }
-          $quer = $quer + "`actor_color_of_eyes` = $eyes";
+          $quer = $quer . "`actor_color_of_eyes` = $eyes";
           $isFirst = false;
         }
         if($stature != NULL){
           if(!$isFirst){
-            $quer = $quer + ", ";
+            $quer = $quer . ", ";
           }
-          $quer = $quer + "`actor_stature` = $stature";
+          $quer = $quer . "`actor_stature` = $stature";
           $isFirst = false;
         }
         if($shoeSize != NULL){
           if(!$isFirst){
-            $quer = $quer + ", ";
+            $quer = $quer . ", ";
           }
-          $quer = $quer + "`actor_shoe_size` = $shoeSize";
+          $quer = $quer . "`actor_shoe_size` = $shoeSize";
           $isFirst = false;
         }
         if($size != NULL) {
             if (!$isFirst) {
-                $quer = $quer + ", ";
+                $quer = $quer . ", ";
             }
-            $quer = $quer + "`actor_clothing_size` = $size";
+            $quer = $quer . "`actor_clothing_size` = $size";
             $isFirst = false;
         }
         if($nationality != NULL){
           if(!$isFirst){
-            $quer = $quer + ", ";
+            $quer = $quer . ", ";
           }
-          $quer = $quer + "`actor_nationality` = $nationality";
+          $quer = $quer . "`actor_nationality` = $nationality";
           $isFirst = false;
         }
 

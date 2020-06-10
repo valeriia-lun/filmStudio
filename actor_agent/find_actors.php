@@ -98,6 +98,7 @@
 </div>
 <div class="col-md-3 container">
 <label class="colorText" >Стать</label><select name="selectingSex"   class="select selectpicker  form-control" onchange="yesnoCheck(this);">
+<option ></option>
   <option >Чоловік</option>
   <option >Жінка</option>
 </select>
@@ -109,6 +110,7 @@
 <div class="col-md-3 container">
 <label class="colorText" >Колір волосся:</label>
 <select name="selectingColorOfHair"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
+<option ></option>
   <option>Рудий</option>
   <option>Блонд</option>
   <option>Брюнет</option>
@@ -119,7 +121,6 @@
   <option>Зелений</option>
   <option>Червоний</option>
   <option>Жовтий</option>
-  <option>Інше</option>
 </select>
 </div>
 
@@ -130,14 +131,16 @@
 <div class="col-md-3 container">
 <label class="colorText" >Колір очей:</label>
 <select name="selectingColorOfEyes"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
+<option ></option>
   <option>Блакитний</option>
   <option >Зелений</option>
   <option >Карий</option>
   <option >Сірий</option>
-  <option >Інше</option>
+
 </select></div><div class="col-md-3 container">
 <label class="colorText" >Статура:</label>
 <select name="selectingStature"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
+<option ></option>
   <option >Спортивний</option>
   <option >Худий</option>
   <option >Повний</option>
@@ -154,6 +157,7 @@
 <div class="col-md-3 container">
 <label class="colorText" >Національність:</label>
 <select name="selectingNationality"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
+<option></option>
   <option>Українська</option>
   <option>Армянська</option>
   <option>Російська</option>
@@ -162,7 +166,7 @@
   <option>Китайська</option>
   <option>Арабська</option>
   <option>Скандинавська</option>
-  <option>Інше</option>
+  
 </select></div>
 <div class="col-md-3 container">
 <label class="colorText" >Фільми, в яких брали участь:</label>
@@ -170,11 +174,10 @@
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
 $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie`");
-echo "<select name=\"selectingFilms\"  class=\"select selectpicker  form-control\" onchange=\"yesnoCheck(this);\">";
+echo "<select name=\"selectingFilms\"  class=\"select selectpicker  form-control\" onchange=\"yesnoCheck(this);\"><option></option>";
 while($stroka = mysqli_fetch_array($result_films)){
-
 for ($i=0; $i<count($stroka); $i++){
-  echo "<option value = \"" .$stroka['name_of_movie'] . "\">$stroka[$i]</option>"; 
+  echo "<option>$stroka[$i]</option>"; 
 }}
 echo "</select>";
 ?>
