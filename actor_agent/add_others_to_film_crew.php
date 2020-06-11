@@ -30,24 +30,24 @@
 $mysqli->query("SET NAMES 'utf8'");
 
 
-$number_of_filmCrew = $_POST['number_of_film_crew'];
-
-$start = $mysqli->query("SELECT `date_start_crew` FROM `film_crew` WHERE `number_of_film_crew` = $number_of_filmCrew");
-$finish = $mysqli->query("SELECT `date_finish_film_crew` FROM `film_crew` WHERE `number_of_film_crew` = $number_of_filmCrew");
-$date_start_this_film_crew = mysqli_fetch_array($start); //arrays with 1 element
-$date_finish_this_film_crew = mysqli_fetch_array($finish);
-$used_start = $date_start_this_film_crew[0];
-$used_finish = $date_finish_this_film_crew[0];
-
-
-$resultAll=mysqli_fetch_array($mysqli->query("SELECT actor_id FROM actors WHERE actor_id NOT IN (SELECT DISTINCT actor_id FROM actor_filmcrew WHERE number_of_film_crew 
-IN(SELECT number_of_film_crew FROM film_crew WHERE ((date_finish_film_crew BETWEEN '$used_start' AND '$used_finish') OR 
-(date_start_crew BETWEEN  '$used_start' AND  '$used_finish'))))  OR  actor_id IN (SELECT actor_id FROM `actor_filmcrew` WHERE number_of_film_crew = $number_of_filmCrew) "));
-
-$resultPresent = mysqli_fetch_array($mysqli->query("SELECT actor_id FROM actors WHERE actor_id IN (SELECT actor_id FROM `actor_filmcrew` WHERE number_of_film_crew = $number_of_filmCrew)"));
-
-     json_encode($resultAll);
-     json_encode($resultPresent);
+// $number_of_filmCrew = $_POST['number_of_film_crew'];
+//
+// $start = $mysqli->query("SELECT `date_start_crew` FROM `film_crew` WHERE `number_of_film_crew` = $number_of_filmCrew");
+// $finish = $mysqli->query("SELECT `date_finish_film_crew` FROM `film_crew` WHERE `number_of_film_crew` = $number_of_filmCrew");
+// $date_start_this_film_crew = mysqli_fetch_array($start); //arrays with 1 element
+// $date_finish_this_film_crew = mysqli_fetch_array($finish);
+// $used_start = $date_start_this_film_crew[0];
+// $used_finish = $date_finish_this_film_crew[0];
+//
+//
+// $resultAll=mysqli_fetch_array($mysqli->query("SELECT actor_id FROM actors WHERE actor_id NOT IN (SELECT DISTINCT actor_id FROM actor_filmcrew WHERE number_of_film_crew
+// IN(SELECT number_of_film_crew FROM film_crew WHERE ((date_finish_film_crew BETWEEN '$used_start' AND '$used_finish') OR
+// (date_start_crew BETWEEN  '$used_start' AND  '$used_finish'))))  OR  actor_id IN (SELECT actor_id FROM `actor_filmcrew` WHERE number_of_film_crew = $number_of_filmCrew) "));
+//
+// $resultPresent = mysqli_fetch_array($mysqli->query("SELECT actor_id FROM actors WHERE actor_id IN (SELECT actor_id FROM `actor_filmcrew` WHERE number_of_film_crew = $number_of_filmCrew)"));
+//
+//      json_encode($resultAll);
+//      json_encode($resultPresent);
     ?>
 
 <script type="text/javascript">
@@ -55,17 +55,17 @@ $(document).ready(function(){
 
 });
 
-window.onload = function(){
-  var myArray1 = <?php print(json_encode($resultAll)); ?>;
-    var myArray2 = <?php print(json_encode($resultPresent)); ?>;
-   // console.log(myArray);
-
-   var arr1 =  Object.values(myArray1);
-   var arr2 =  Object.values(myArray2);
-   console.log(arr1);
-   console.log(arr2);
-
-}
+// window.onload = function(){
+//   var myArray1 = <?php print(json_encode($resultAll)); ?>;
+//     var myArray2 = <?php print(json_encode($resultPresent)); ?>;
+//    // console.log(myArray);
+//
+//    var arr1 =  Array.values(myArray1);
+//    var arr2 =  Object.values(myArray2);
+//    console.log(arr1);
+//    console.log(arr2);
+//
+// }
 </script>
 
 
@@ -83,9 +83,9 @@ window.onload = function(){
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only">(current)</span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Агент по акторах</label>
     </form>
@@ -150,13 +150,13 @@ $used_finish = $date_finish_this_film_crew[0];
 
 
 
-$result_actors=$mysqli->query("SELECT * FROM actors WHERE actor_id NOT IN (SELECT DISTINCT actor_id FROM actor_filmcrew WHERE number_of_film_crew 
- IN(SELECT number_of_film_crew FROM film_crew WHERE ((date_finish_film_crew BETWEEN '$used_start' AND '$used_finish') OR 
+$result_actors=$mysqli->query("SELECT * FROM actors WHERE actor_id NOT IN (SELECT DISTINCT actor_id FROM actor_filmcrew WHERE number_of_film_crew
+ IN(SELECT number_of_film_crew FROM film_crew WHERE ((date_finish_film_crew BETWEEN '$used_start' AND '$used_finish') OR
 (date_start_crew BETWEEN  '$used_start' AND  '$used_finish'))))  OR  actor_id IN (SELECT actor_id FROM `actor_filmcrew` WHERE number_of_film_crew = $number_of_filmCrew) ");
 
 
 
- 
+
 
 
 
@@ -184,7 +184,7 @@ function res($result){
     }
     return $print;
   }
-  
+
 
 
  while ($stroka = mysqli_fetch_array($result_actors)){
@@ -230,12 +230,31 @@ function res($result){
     echo"<td>" .  res($result_contacts_rel) . "</td>";
     echo"<td>" .  res($result_ratings) . "</td>";
 
+    //$res = $mysqli->query("SELECT `actor_id` FROM `actor_filmCrew` WHERE `number_of_filmCrew` = $number_of_filmCrew");
+
+
+    $res = $mysqli->query("SELECT * FROM `actor_filmCrew` WHERE `number_of_film_crew` = $number_of_filmCrew AND `actor_id` = $current_actor_id ");
+   //  echo "string";
+   //  if ($res) {
+   //     echo "Success!";
+   //   }
+   // else {
+   //      echo "Error! $mysqli->error <br>";
+   //    }
+    //echo $re;
+    $re = mysqli_fetch_array($res);
+    // print_r($re);
+    // echo $re[0];
+    if($re[0] != ""){
+      echo"<td>" ."<input type=\"checkbox\" checked id=\"checkBox\" class=\"form-control\" value = \"" . $stroka['actor_id'] . "\" name=\"actor_id[]\" >";
+    }else{
       echo"<td>" ."<input type=\"checkbox\" id=\"checkBox\" class=\"form-control\" value = \"" . $stroka['actor_id'] . "\" name=\"actor_id[]\" >";
+    }
 
     echo"</tr>";
- 
+
    }
-  
+
 ?>
 </table>
 </div>
@@ -284,7 +303,7 @@ function res($result){
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
- 
+
 //$mysqli->close();
 $number_of_filmCrew = $_POST['number_of_film_crew'];
 echo "<input type=\"hidden\" value = \"" .$number_of_filmCrew . "\" name=\"number_of_filmCrewww\" >";
@@ -297,8 +316,8 @@ $used_start = $date_start_this_film_crew[0];
 $used_finish = $date_finish_this_film_crew[0];
 
 
-$result_understudies=$mysqli->query("SELECT * FROM understudies WHERE understudy_id NOT IN (SELECT DISTINCT understudy_id FROM understudies_filmcrew WHERE number_of_film_crew 
- IN(SELECT number_of_film_crew FROM film_crew WHERE ((date_finish_film_crew BETWEEN '$used_start' AND '$used_finish') OR 
+$result_understudies=$mysqli->query("SELECT * FROM understudies WHERE understudy_id NOT IN (SELECT DISTINCT understudy_id FROM understudies_filmcrew WHERE number_of_film_crew
+ IN(SELECT number_of_film_crew FROM film_crew WHERE ((date_finish_film_crew BETWEEN '$used_start' AND '$used_finish') OR
 (date_start_crew BETWEEN  '$used_start' AND  '$used_finish'))))");
 
 while ($stroka = mysqli_fetch_array($result_understudies)){
@@ -308,7 +327,7 @@ while ($stroka = mysqli_fetch_array($result_understudies)){
   $result_phones = $mysqli->query("SELECT `understudy_phone_number` FROM `understudy_phones` WHERE `understudy_id` IN (SELECT `understudy_id` FROM  `understudies` WHERE `understudy_id` = $temp)");
   $result_contacts_rel = $mysqli->query("SELECT `understudy_relatives_phone_numbers` FROM `understudies_contacts_of_relatives` WHERE `understudy_id` IN (SELECT `understudy_id` FROM  `understudies` WHERE `understudy_id` = $temp)");
   $result_ratings = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `understudy_previous_movies_ratings` WHERE `understudy_id` = $temp)");
-  
+
     echo"<tr>";
     echo"<td>" . $stroka['understudy_id'] . "</td>";
     echo"<td>" . $stroka['understudy_name'] . "</td>";
@@ -341,12 +360,12 @@ while ($stroka = mysqli_fetch_array($result_understudies)){
     echo"<td>" .  res($result_photos) . "</td>";
     echo"<td>" .  res($result_phones) . "</td>";
     echo"<td>" .  res($result_contacts_rel) . "</td>";
-    echo"<td>" .  res($result_ratings) . "</td>"; 
+    echo"<td>" .  res($result_ratings) . "</td>";
     echo"<td>" ."<input type=\"checkbox\"  id=\"chk1\" class=\"form-control\" value = \"" . $stroka['understudy_id'] . "\" name=\"understudy_id[]\" >";
     echo"</tr>";
    }
-  
-  
+
+
 ?>
 
 </table>
