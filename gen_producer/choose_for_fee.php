@@ -110,9 +110,9 @@ if (isset($_POST['filmCrew'])){
    FROM `movie` WHERE `name_of_movie` = $movie");
 
    $number_filmCrew = mysqli_fetch_array($result);
-
+echo $number_filmCrew[0];
    echo"<form action=\"gen_producer_gonorars_film_crew.php\" method=\"post\">";
-   echo "<input type=\"hidden\" value = \"" .$number_filmCrew . "\" name=\"number\" ></form>";
+   echo "<input type=\"hidden\" value = \"" .$number_filmCrew[0] . "\" name=\"number\" ></form>";
 
   // header("location: /filmStudio/gen_producer/gen_producer_gonorars_film_crew.php");
 

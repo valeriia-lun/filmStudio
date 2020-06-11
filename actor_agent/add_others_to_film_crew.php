@@ -26,9 +26,6 @@
 
 
 
-
-
-
 <body class="text-center body3">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light style=width=100%;">
@@ -277,7 +274,7 @@ $used_finish = $date_finish_this_film_crew[0];
 
 $result_understudies=$mysqli->query("SELECT * FROM understudies WHERE understudy_id NOT IN (SELECT DISTINCT understudy_id FROM understudies_filmcrew WHERE number_of_film_crew
  IN(SELECT number_of_film_crew FROM film_crew WHERE ((date_finish_film_crew BETWEEN '$used_start' AND '$used_finish') OR
-(date_start_crew BETWEEN  '$used_start' AND  '$used_finish'))))");
+(date_start_crew BETWEEN  '$used_start' AND  '$used_finish')))) OR  understudy_id IN (SELECT understudy_id FROM `understudies_filmcrew` WHERE number_of_film_crew = $number_of_filmCrew) ");
 
 while ($stroka = mysqli_fetch_array($result_understudies)){
   $temp = $stroka['understudy_id'];
@@ -320,8 +317,28 @@ while ($stroka = mysqli_fetch_array($result_understudies)){
     echo"<td>" .  res($result_phones) . "</td>";
     echo"<td>" .  res($result_contacts_rel) . "</td>";
     echo"<td>" .  res($result_ratings) . "</td>";
-    echo"<td>" ."<input type=\"checkbox\"  id=\"chk1\" class=\"form-control\" value = \"" . $stroka['understudy_id'] . "\" name=\"understudy_id[]\" >";
+
+    $res = $mysqli->query("SELECT * FROM `understudies_filmCrew` WHERE `number_of_film_crew` = $number_of_filmCrew AND `understudy_id` = $temp");
+   //  echo "string";
+   //  if ($res) {
+   //     echo "Success!";
+   //   }
+   // else {
+   //      echo "Error! $mysqli->error <br>";
+   //    }
+    //echo $re;
+    $re = mysqli_fetch_array($res);
+    // print_r($re);
+    // echo $re[0];
+    if($re[0] != ""){
+      echo"<td>" ."<input type=\"checkbox\" checked id=\"checkBox\" class=\"form-control\" value = \"" . $stroka['understudy_id'] . "\" name=\"understudy_id[]\" >";
+
+    }else{
+      echo"<td>" ."<input type=\"checkbox\" id=\"checkBox\" class=\"form-control\" value = \"" . $stroka['understudy_id'] . "\" name=\"understudy_id[]\" >";
+    }
+
     echo"</tr>";
+
    }
 
 
