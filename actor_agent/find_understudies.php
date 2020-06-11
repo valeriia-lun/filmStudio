@@ -19,7 +19,9 @@
 <style type="text/css">
 @media print {
   .noprint { display: none; }
-  @page { margin: 0; }
+ table{zoom: 40%;}
+
+@page { margin: 0; size: landscape;}
 }
 </style>
 <script>
