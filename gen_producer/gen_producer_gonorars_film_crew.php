@@ -54,20 +54,23 @@
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
-$number = $_POST['number'];
+$name_movie = $_POST['moive_name_film_crew'];
+
+
+$number = mysqli_fetch_array($mysqli->query("SELECT number_of_film_crew FROM `movie` WHERE `name_of_movie` = $name_movie"));
 //echo "hello";
-//echo $number;
+print_r($number);
 
 //$count = 0;
 //$id;
-$result = $mysqli->query("SELECT * FROM `actors` WHERE `actor_id` IN (SELECT `actor_id` FROM `actor_filmcrew` WHERE `number_of_film_crew` = $number)");
+$result = $mysqli->query("SELECT * FROM `actors` WHERE `actor_id` IN (SELECT `actor_id` FROM `actor_filmcrew` WHERE `number_of_film_crew` IN(SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = $name_movie))");
 while ($stroka = mysqli_fetch_array($result)){
   $id_a = $stroka['actor_id'];
-  $gonorars_result = $mysqli->query("SELECT actor_fee FROM actor_filmcrew WHERE actor_id =  $id_a AND number_of_film_crew = $number");
+  $gonorars_result = $mysqli->query("SELECT actor_fee FROM actor_filmcrew WHERE actor_id =  $id_a AND number_of_film_crew IN(SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = $name_movie))");
   $gonorars_res = mysqli_fetch_array($gonorars_result);
   $gonorars_use = $gonorars_res[0];
     echo"<form action = \"gonorars_check.php\" method=\"post\"><tr>";
-    echo "<input type=\"hidden\" value = \"" .$number . "\" name=\"number_of_filmCrew\" >";
+    echo "<input type=\"hidden\" value = \"" .$number[0] . "\" name=\"number_of_filmCrew\" >";
     echo"<td>" . $stroka['actor_id'] . "</td>";
     echo"<td>" . $stroka['actor_name'] . "</td>";
     echo"<td>" . $stroka['actor_surname'] . "</td>";
@@ -102,21 +105,22 @@ while ($stroka = mysqli_fetch_array($result)){
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
 
-$number = $_POST['numb'];
+
+
 //echo "hello";
 //echo $number;
 
 $result = $mysqli->query("SELECT *
- FROM `understudies` WHERE `understudy_id` IN (SELECT `understudy_id` FROM `understudies_filmcrew` WHERE `number_of_film_crew`  = $number)");
+ FROM `understudies` WHERE `understudy_id` IN (SELECT `understudy_id` FROM `understudies_filmcrew` WHERE `number_of_film_crew`  IN(SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = $name_movie))");
 while ($stroka = mysqli_fetch_array($result)){
 
   $id_u = $stroka['understudy_id'];
-  $gonorars_result = $mysqli->query("SELECT understudy_fee FROM understudies_filmcrew WHERE understudy_id =  $id_u AND number_of_film_crew = $number");
+  $gonorars_result = $mysqli->query("SELECT understudy_fee FROM understudies_filmcrew WHERE understudy_id =  $id_u AND number_of_film_crew IN(SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = $name_movie))");
   $gonorars_res = mysqli_fetch_array($gonorars_result);
   $gonorars_use = $gonorars_res[0];
 
     echo"<form  action = \"gonorars_check.php\" method=\"post\"><tr>";
-    echo "<input type=\"hidden\" value = \"" .$number . "\" name=\"number_of_filmCreww\" >";
+    echo "<input type=\"hidden\" value = \"" .$number[0]  . "\" name=\"number_of_filmCreww\" >";
     echo"<td>" . $stroka['understudy_id'] . "</td>";
     echo"<td>" . $stroka['understudy_name'] . "</td>";
     echo"<td>" . $stroka['understudy_surname'] . "</td>";
@@ -152,18 +156,18 @@ while ($stroka = mysqli_fetch_array($result)){
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
 
-$number = $_POST['numb'];
+
 //echo "hello";
 //echo $number;
 $result = $mysqli->query("SELECT *
- FROM `others` WHERE `others_id` IN (SELECT `others_id` FROM `others_filmcrew` WHERE `number_of_film_crew`  = $number)");
+ FROM `others` WHERE `others_id` IN (SELECT `others_id` FROM `others_filmcrew` WHERE `number_of_film_crew`   IN(SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = $name_movie))");
 while ($stroka = mysqli_fetch_array($result)){
   $id_o = $stroka['others_id'];
-  $gonorars_result = $mysqli->query("SELECT others_fee FROM others_filmcrew WHERE others_id =  $id_o AND number_of_film_crew = $number");
+  $gonorars_result = $mysqli->query("SELECT others_fee FROM others_filmcrew WHERE others_id =  $id_o AND number_of_film_crew IN(SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = $name_movie))");
   $gonorars_res = mysqli_fetch_array($gonorars_result);
   $gonorars_use = $gonorars_res[0];
   echo"<form  action = \"gonorars_check.php\" method=\"post\"><tr>";
-  echo "<input type=\"hidden\" value = \"" .$number . "\" name=\"number_of_filmCrewww\" >";
+  echo "<input type=\"hidden\" value = \"" .$number[0]  . "\" name=\"number_of_filmCrewww\" >";
     echo"<td>" . $stroka['others_id'] . "</td>";
     echo"<td>" . $stroka['others_name'] . "</td>";
     echo"<td>" . $stroka['others_surname'] . "</td>";

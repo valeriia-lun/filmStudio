@@ -36,8 +36,9 @@
     font-style: oblique 40deg bold;
 
     color: white;
-    width: 250px;
+    width: 400px;
 }
+
 
 .button:hover {
     background-color:#410a14;

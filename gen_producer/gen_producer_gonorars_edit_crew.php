@@ -60,7 +60,7 @@ ob_end_clean();*/
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
 
-$number = $_POST['num'];
+$number = $_POST['moive_name_edit_crew'];
 //echo "hello";
 //echo $number;
 

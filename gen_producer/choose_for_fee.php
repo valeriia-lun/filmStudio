@@ -47,11 +47,34 @@
 
 </br></br></br></br>
 <div class="row">
+<div class="container col-md-4">
 
-<div class="  container col-md-4">
+<form action = "gen_producer_gonorars_film_crew.php" method="post">
 <h1 class="colorForAllText"> Обрати Фільм</h1>
-<form action = "" method="post">
-    <select  class=" form-control " name="moive_name">
+    <select  class=" form-control " name="moive_name_film_crew">
+<?php
+$mysqli = new mysqli("localhost","root","root","filmstudio");
+$mysqli->query("SET NAMES 'utf8'");
+$result = $mysqli->query("SELECT `name_of_movie` FROM `movie`");
+$movie;
+while ($stroka = mysqli_fetch_array($result)){
+    echo"<option>" . $stroka['name_of_movie'] . "</option>";
+    $movie =  $stroka['name_of_movie'];
+   }
+?>
+</select>
+
+</br>
+<div class="btn  col-md-4">
+  <button class="button btn btn-danger"  name="filmCrew">Призначити гонорари знімальній групі</button>
+</div></div>
+</br></br></br></br>
+</form>
+
+<div class="container col-4">
+<form action = "gen_producer_gonorars_edit_crew.php" method="post">
+<h1 class="colorForAllText"> Обрати Фільм</h1>
+    <select  class=" form-control " name="moive_name_edit_crew">
 <?php
 
 $mysqli = new mysqli("localhost","root","root","filmstudio");
@@ -63,19 +86,15 @@ while ($stroka = mysqli_fetch_array($result)){
     $movie =  $stroka['name_of_movie'];
    }
 ?>
-</select></div></div></br></br></br></br>
+</select>
 
-
-<div class="row">
-<div class="btn container col-md-5">
-
-  <button class="button btn btn-danger " formaction="gen_producer_gonorars_film_crew.php" name="filmCrew">Призначити гонорари знімальній групі</button>
-</div>
-<div class=" btn container col-md-5">
-  <button class="button btn btn-danger " formaction="gen_producer_gonorars_edit_crew.php" name="editCrew">Призначити гонорари групі монтажерів</button>
-</div>
-  </div>
+</br>
+<div class="btn  col-4">
+  <button class="button btn btn-danger"  name="filmCrew">Призначити гонорари групі монтажерів</button>
+</div></div></div>
+</br></br></br></br>
 </form>
+
 
 
 
