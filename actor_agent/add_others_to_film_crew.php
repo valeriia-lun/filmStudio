@@ -205,6 +205,7 @@ function res($result){
     // echo $re[0];
     if($re[0] != ""){
       echo"<td>" ."<input type=\"checkbox\" checked id=\"checkBox\" class=\"form-control\" value = \"" . $stroka['actor_id'] . "\" name=\"actor_id[]\" >";
+
     }else{
       echo"<td>" ."<input type=\"checkbox\" id=\"checkBox\" class=\"form-control\" value = \"" . $stroka['actor_id'] . "\" name=\"actor_id[]\" >";
     }

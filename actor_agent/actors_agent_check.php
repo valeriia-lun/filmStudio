@@ -27,9 +27,9 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only">(current)</span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Агент по акторах</label>
     </form>
@@ -43,11 +43,18 @@ $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
 
 
+
+
 $actor_id =  $_POST['actor_id'];
 $understudy_id  =  $_POST['understudy_id'];
 
 $number_of_filmCrew_actors = $_POST['number_of_filmCreww'];
 $number_of_filmCrew_understudies = $_POST['number_of_filmCrewww'];
+
+$mysqli->query("DELETE FROM `actor_filmCrew` WHERE `number_of_film_crew` = $number_of_filmCrew_actors");
+$mysqli->query("DELETE FROM `understudies_filmCrew` WHERE `number_of_film_crew` = $number_of_filmCrew_actors");
+
+
 //echo $number_of_filmCrew_actors;
 
 if ( $actor_id != '') {
