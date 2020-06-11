@@ -297,7 +297,6 @@ $name =  $_POST['name'];
                     $isFirst = false;
                     $notFirst = true;
                   }
-
                 }
 
               }
@@ -316,7 +315,6 @@ $name =  $_POST['name'];
                     $notFirst = false;
                     $isFirst = false;
                   }
-
                 }
                 echo $quer;
 

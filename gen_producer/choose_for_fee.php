@@ -69,10 +69,10 @@ while ($stroka = mysqli_fetch_array($result)){
 <div class="row">
 <div class="btn container col-md-5">
 
-  <button class="button btn btn-danger " name="filmCrew">Призначити гонорари знімальній групі</button>
+  <button class="button btn btn-danger " formaction="gen_producer_gonorars_film_crew.php" name="filmCrew">Призначити гонорари знімальній групі</button>
 </div>
 <div class=" btn container col-md-5">
-  <button class="button btn btn-danger " name="editCrew">Призначити гонорари групі монтажерів</button>
+  <button class="button btn btn-danger " formaction="gen_producer_gonorars_edit_crew.php" name="editCrew">Призначити гонорари групі монтажерів</button>
 </div>
   </div>
 </form>
