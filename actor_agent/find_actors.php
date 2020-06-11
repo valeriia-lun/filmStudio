@@ -206,7 +206,7 @@ echo "<div class=\"field_wrapper_Films\"><div>";
 echo "<select name=\"field_name_Films[]\"  class=\"select selectpicker  form-control\"><option></option>";
 while($stroka = mysqli_fetch_array($result_films)){
 for ($i=0; $i<count($stroka); $i+=2){
-  echo "<option value=\"$i\" >$stroka[$i]</option>";
+  echo "<option>$stroka[$i]</option>";
 }
 }
 echo "</select>";
