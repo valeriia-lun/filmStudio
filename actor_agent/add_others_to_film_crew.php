@@ -26,9 +26,6 @@
 
 
 
-
-
-
 <body class="text-center body3">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light style=width=100%;">
@@ -320,8 +317,28 @@ while ($stroka = mysqli_fetch_array($result_understudies)){
     echo"<td>" .  res($result_phones) . "</td>";
     echo"<td>" .  res($result_contacts_rel) . "</td>";
     echo"<td>" .  res($result_ratings) . "</td>";
-    echo"<td>" ."<input type=\"checkbox\"  id=\"chk1\" class=\"form-control\" value = \"" . $stroka['understudy_id'] . "\" name=\"understudy_id[]\" >";
+
+    $res = $mysqli->query("SELECT * FROM `understudies_filmCrew` WHERE `number_of_film_crew` = $number_of_editCrew AND `understudy_id` = $temp");
+   //  echo "string";
+   //  if ($res) {
+   //     echo "Success!";
+   //   }
+   // else {
+   //      echo "Error! $mysqli->error <br>";
+   //    }
+    //echo $re;
+    $re = mysqli_fetch_array($res);
+    // print_r($re);
+    // echo $re[0];
+    if($re[0] != ""){
+      echo"<td>" ."<input type=\"checkbox\" checked id=\"checkBox\" class=\"form-control\" value = \"" . $stroka['understudy_id'] . "\" name=\"understudy_id[]\" >";
+
+    }else{
+      echo"<td>" ."<input type=\"checkbox\" id=\"checkBox\" class=\"form-control\" value = \"" . $stroka['understudy_id'] . "\" name=\"understudy_id[]\" >";
+    }
+
     echo"</tr>";
+
    }
 
 
