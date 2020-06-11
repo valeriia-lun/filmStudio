@@ -14,6 +14,34 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    var maxFieldFilms = 10; //Input fields increment limitation
+    var addButtonFilms = $('.add_button_Films'); //Add button selector
+    var wrapperFilms = $('.field_wrapper_Films'); //Input field wrapper
+    var fieldHTMLFilms = '<div><input type="text"  class="form-control" name="field_name_Films[]" value=""/><a href="javascript:void(0);" class="remove_button_Films"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
+    var xFilms = 1; //Initial field counter is 1
+
+    //Once add button is clicked
+    $(addButtonFilms).click(function(){
+        //Check maximum number of input fields
+        if(xFilms < maxFieldFilms){
+            xFilms++; //Increment field counter
+            $(wrapperFIlms).append(fieldHTMLFilms); //Add field html
+        }
+    });
+
+    //Once remove button is clicked
+    $(wrapperFilms).on('click', '.remove_button_Films', function(e){
+        e.preventDefault();
+        $(this).parent('div').remove(); //Remove field html
+        xFilms--; //Decrement field counter
+    });
+});
+
+</script>
 <link rel="stylesheet" href="..\style.css">
 
 
@@ -173,14 +201,17 @@ table{zoom: 40%;}
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
+echo "<div class=\"field_wrapper_Films\"><div>";
 $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie`");
-echo "<select name=\"selectingFilms\"  class=\"select selectpicker  form-control\"><option></option>";
+echo "<select name=\"field_name_Films[]\"  class=\"select selectpicker  form-control\"><option></option>";
 while($stroka = mysqli_fetch_array($result_films)){
 for ($i=0; $i<count($stroka); $i+=2){
-  echo "<option>$stroka[$i]</option>"; 
+  echo "<option>$stroka[$i]</option>";
 }
 }
 echo "</select>";
+echo "<a href=\"javascript:void(0);\" class=\"add_button_Films\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a>";
+echo "</div></div>";
 ?>
 </div></div>
 </div>
