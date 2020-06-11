@@ -292,7 +292,7 @@ $name =  $_POST['name'];
                     $quer = $quer . " AND ";
                   }
                   echo $value;
-                  $quer = $quer . "`understudy_id` IN (SELECT `understudy_id` FROM `Understudies_filmCrew` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = \"$value\"))";
+                  $quer = $quer . "`understudy_id` IN (SELECT `understudy_id` FROM `understudies_filmCrew` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = \"$value\"))";
                   $isFirst = false;
                   $notFirst = true;
                 }
@@ -307,7 +307,7 @@ $name =  $_POST['name'];
                   if($i != 0 || $notFirst == true || !$isFirst){
                     $quer = $quer . " AND ";
                   }
-                  $quer = $quer . "`understudy_id` IN(SELECT `understudy_id` FROM `Understudies_skills` WHERE `skills_id` IN(SELECT `skills_id` FROM `Skills` WHERE `skill` = \"$value\"))";
+                  $quer = $quer . "`understudy_id` IN(SELECT `understudy_id` FROM `understudies_skills` WHERE `skills_id` IN(SELECT `skills_id` FROM `Skills` WHERE `skill` = \"$value\"))";
                   $i++;
                   $notFirst = false;
                   $isFirst = false;

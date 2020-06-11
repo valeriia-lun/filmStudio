@@ -57,7 +57,7 @@ $(document).ready(function(){
 
 window.onload = function(){
   var myArray1 = <?php print(json_encode($resultAll)); ?>;
-    var myArray2 = <?php print(json_encode($resultPresent)); ?>;
+  var myArray2 = <?php print(json_encode($resultPresent)); ?>;
    // console.log(myArray);
 
    var arr1 =  Object.values(myArray1);
