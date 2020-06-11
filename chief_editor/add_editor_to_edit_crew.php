@@ -128,8 +128,8 @@ while ($stroka = mysqli_fetch_array($result_editors)){
 
 
 
-    echo"<td>" ."<input type=\"checkbox\" class=\"form-control\" onclick=\"onlyOne(this)\" name=\"is_head\" value=\"Yes\">";
-    echo"<td>" ."<input type=\"checkbox\" class=\"form-control\" value = \"" . $stroka['editor_id'] . "\" name=\"editor_id[]\" >";
+    echo"<td>" ."<input type=\"checkbox\" onclick=\"document.getElementById('chk1').checked = this.checked;\"  class=\"form-control\" onclick=\"onlyOne(this)\" name=\"is_head\" value=\"Yes\">";
+    echo"<td>" ."<input type=\"checkbox\" id=\"chk1\" class=\"form-control\" value = \"" . $stroka['editor_id'] . "\" name=\"editor_id[]\" >";
     echo"</tr>";
    }
 ?>
@@ -138,7 +138,8 @@ while ($stroka = mysqli_fetch_array($result_editors)){
 </div>
 <div class="btn">
 <button  class ="button btn btn-danger" name="done">Додати обраних співробітників</button>
-  </div></form>
+  </div>
+</form>
 <script>
   function onlyOne(checkbox) {
     var checkboxes = document.getElementsByName('is_head')
