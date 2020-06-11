@@ -67,6 +67,15 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
 </script>
 <link rel="stylesheet" href="..\style.css">
+<script>
+function lal(el) {
+  if (el.value.match( /[^0-9]/ ) ) {
+        alert( "Неправильний формат числа! \nМожна використовувати тільки цифри" );
+        el.value = el.value.replace( /[^0-9]/ , "" )
+    }
+}
+
+</script>
 </head>
 <body class="text-center body3">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -107,7 +116,7 @@
   <label class="colorText">Телефон:</label>
   <div class="field_wrapper_Phones">
          <div>
-             <input type="text" class="form-control" name="field_name_Phones[]" value=""/>
+             <input type="text" onkeyup="lal(this)" class="form-control" name="field_name_Phones[]" value=""/>
              <a href="javascript:void(0);" class="add_button_Phones" title="Add field"><img src="../img/add_icon.png"  height='35' width='35'/></a>
          </div>
      </div>
@@ -116,7 +125,7 @@
      <label class="colorText">Контакти близьких:</label>
   <div class="field_wrapper_Contacts">
          <div>
-             <input type="text" class="form-control" name="field_name_Contacts[]" value=""/>
+             <input type="text" onkeyup="lal(this)" class="form-control" name="field_name_Contacts[]" value=""/>
              <a href="javascript:void(0);" class="add_button_Contacts" title="Add field"><img src="../img/add_icon.png" height='35' width='35'/></a>
          </div>
      </div>
@@ -133,7 +142,7 @@
 
 
     <div class=" container col-3">
-  <label class="colorText">Стаж: </label><input type="text" class="form-control" name="years" maxlength="50" tabindex="2" required><br>
+  <label class="colorText">Стаж: </label><input onkeyup="lal(this)" type="text" class="form-control" name="years" maxlength="50" tabindex="2" required><br>
   </div>
   <div class=" container col-3">
   <label class="colorText"> Працює з: </label><input type="date" class="form-control" name="work_since" maxlength="50" tabindex="2" required><br>
@@ -146,7 +155,7 @@
   <label class="colorText">Дата народження: </label><input type="date" class="form-control" name="date_of_birth" maxlength="50" tabindex="2" required><br>
   </div>
   <div class=" container col-3">
-  <label class="colorText">Заробітня плата:</label><input type="text" class="form-control"  name="salary" maxlength="50" tabindex="2" required><br>
+  <label class="colorText">Заробітня плата:</label><input onkeyup="lal(this)"type="text" class="form-control"  name="salary" maxlength="50" tabindex="2" required><br>
   </div>
  </div></br>
 

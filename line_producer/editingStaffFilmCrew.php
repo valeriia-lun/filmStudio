@@ -88,6 +88,15 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
 </script>
 <link rel="stylesheet" href="..\style.css">
+<script>
+function lal(el) {
+  if (el.value.match( /[^0-9]/ ) ) {
+        alert( "Неправильний формат числа! \nМожна використовувати тільки цифри" );
+        el.value = el.value.replace( /[^0-9]/ , "" )
+    }
+}
+
+</script>
 </head>
 <body class="text-center body3">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -184,7 +193,7 @@ for ($i = 0 ; $i < $rows ; ++$i)
 {
  $row = mysqli_fetch_row($result);
      for ($j = 0 ; $j < 1 ; ++$j){
-       echo "<div><input type= \"text\" maxlength=\"50\" class=\"form-control\" name=\"field_name_Phones[]\" tabindex=\"2\" value=\"$row[$j]\" required>";
+       echo "<div><input type= \"text\" onkeyup=\"lal(this)\" maxlength=\"50\" class=\"form-control\" name=\"field_name_Phones[]\" tabindex=\"2\" value=\"$row[$j]\" required>";
        if($i == 0){
            echo "<a href=\"javascript:void(0);\" class=\"add_button_Phones\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a></div>";
        } else{
@@ -206,7 +215,7 @@ for ($i = 0 ; $i < $rows ; ++$i)
  {
      $row = mysqli_fetch_row($resultt);
          for ($j = 0 ; $j < 1 ; ++$j){
-           echo "<div><input type= \"text\" maxlength=\"50\" class=\"form-control\" name=\"field_name_Contacts[]\" tabindex=\"2\" value=\"$row[$j]\" required>";
+           echo "<div><input type= \"text\" onkeyup=\"lal(this)\" maxlength=\"50\" class=\"form-control\" name=\"field_name_Contacts[]\" tabindex=\"2\" value=\"$row[$j]\" required>";
            if($i == 0){
                echo "<a href=\"javascript:void(0);\" class=\"add_button_Contacts\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a></div>";
            } else{
@@ -235,7 +244,7 @@ for ($i = 0 ; $i < $rows ; ++$i)
  {
      $row = mysqli_fetch_row($resultt);
          for ($j = 0 ; $j < 1 ; ++$j){
-           echo "<div><input type= \"text\" maxlength=\"50\" class=\"form-control\" name=\"field_name_Ratings[]\" tabindex=\"2\" value=\"$row[$j]\" required>";
+           echo "<div><input type= \"text\"  maxlength=\"50\" class=\"form-control\" name=\"field_name_Ratings[]\" tabindex=\"2\" value=\"$row[$j]\" required>";
            if($i == 0){
                echo "<a href=\"javascript:void(0);\" class=\"add_button_Ratings\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a></div>";
            } else{
@@ -276,7 +285,7 @@ $result = $mysql->query("SELECT `others_experience` FROM `Others` WHERE `others_
 
 $res = mysqli_fetch_array($result);
 
-echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"years\" value=\"$res[0]\" required>";
+echo "<input type= \"text\" maxlength=\"50\" onkeyup=\"lal(this)\" class=\"form-control\" tabindex=\"2\" name=\"years\" value=\"$res[0]\" required>";
     ?><br>
  </div>
   <div class=" container col-3">
@@ -329,7 +338,7 @@ $result = $mysql->query("SELECT `others_salary` FROM `Others` WHERE `others_id` 
 
 $res = mysqli_fetch_array($result);
 
-echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"salary\" value=\"$res[0]\" required>";
+echo "<input type= \"text\" maxlength=\"50\" onkeyup=\"lal(this)\" class=\"form-control\" tabindex=\"2\" name=\"salary\" value=\"$res[0]\" required>";
     ?><br>
   </div> </div></br>
 
