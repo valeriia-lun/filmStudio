@@ -46,6 +46,15 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
 </script>
 <link rel="stylesheet" href="..\style.css">
+<script>
+function lal(el) {
+  if (el.value.match( /[^0-9]/ ) ) {
+        alert( "Неправильний формат числа! \nМожна використовувати тільки цифри" );
+        el.value = el.value.replace( /[^0-9]/ , "" )
+    }
+}
+
+</script>
 </head>
 <body class="text-center body3">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -96,7 +105,7 @@
            </div>
            </div>
            <div class=" container col-3" >
-           <label class="colorText"> Бюджет:</label> <input type="text" class="form-control"  name="budget" maxlength="50" tabindex="2" required><br>
+           <label class="colorText"> Бюджет:</label> <input type="text" onkeyup="lal(this)" class="form-control"  name="budget" maxlength="50" tabindex="2" required><br>
            </div>  </div>
 </div><br><br>
 <div class="btn">
