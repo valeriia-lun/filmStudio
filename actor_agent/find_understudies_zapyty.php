@@ -35,9 +35,9 @@ table{zoom: 40%;}
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only">(current)</span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Агент по акторах</label>
     </form>
@@ -126,16 +126,16 @@ $name =  $_POST['name'];
         $shoeSize =  $_POST['shoeSize'];
         $size =  $_POST['clothingSize'];
         $nationality =  $_POST['selectingNationality'];
-        //$films =  $_POST['selectingFilms'];
-        //$skills =  $_POST['selectingSkills'];
-      
+        $films =  $_POST['field_name_Films'];
+        $skills =  $_POST['field_name_Skills'];
+
         $quer = "SELECT * FROM `understudies` WHERE ";
         //        echo $quer;
         //        $quer .= "fff";
         //        echo $quer;
-        
+
                 $isFirst = true;
-        
+
                 if($name != NULL){
                   if(!$isFirst){
                     $quer = $quer . " AND ";
@@ -242,9 +242,80 @@ $name =  $_POST['name'];
                   $quer = $quer . "understudy_nationality = \"$nationality\"";
                   $isFirst = false;
                 }
-        
+              //   $notFirst = false;
+              //
+              //   if($films != NULL){
+              //     if(!$isFirst){
+              //       $quer = $quer . " AND ";
+              //     }
+              //     $i = 0;
+              //
+              //     foreach ($films as $value) {
+              //       if($i != 0){
+              //         $quer = $quer . " AND ";
+              //       }
+              //       $quer = $quer . "`understudy_id` IN(SELECT `understudy_id` FROM `Understudies_filmCrew` WHERE `number_of_film_crew` IN(SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = \"$value\"))";
+              //       $i++;
+              //     }
+              //     $isFirst = false;
+              //     $notFirst = true;
+              //   }
+              //
+              //   if($skills != NULL){
+              //     if(!$isFirst){
+              //       $quer = $quer . " AND ";
+              //     }
+              //   $i = 0;
+              //   foreach ($skills as $value) {
+              //     if($i != 0 || $notFirst == true){
+              //       $quer = $quer . " AND ";
+              //     }
+              //     $quer = $quer . "`understudy_id` IN(SELECT `understudy_id` FROM `Understudies_skills` WHERE `skills_id` IN(SELECT `skills_id` FROM `Skills` WHERE `skill` = \"$value\"))";
+              //     $i++;
+              //   }
+              //   echo $quer;
+              //   $notFirst = false;
+              //   $isFirst = false;
+              // }
               //  echo $quer;
-        
+
+              $a = mysqli_fetch_array($films);
+
+              $notFirst = false;
+              if($films != NULL && $a[0] != ""){
+                // if(!$isFirst){
+                //   $quer = $quer . " AND ";
+                // }
+                $i = 0;
+                foreach ($films as $value) {
+                  if($i != 0 || !$isFirst){
+                    $quer = $quer . " AND ";
+                  }
+                  echo $value;
+                  $quer = $quer . "`understudy_id` IN (SELECT `understudy_id` FROM `Understudies_filmCrew` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = \"$value\"))";
+                  $isFirst = false;
+                  $notFirst = true;
+                }
+
+              }
+
+              $b = mysqli_fetch_array($skills);
+
+                if($skills != NULL && $b[0] != ""){
+                $i = 0;
+                foreach ($skills as $value) {
+                  if($i != 0 || $notFirst == true || !$isFirst){
+                    $quer = $quer . " AND ";
+                  }
+                  $quer = $quer . "`understudy_id` IN(SELECT `understudy_id` FROM `Understudies_skills` WHERE `skills_id` IN(SELECT `skills_id` FROM `Skills` WHERE `skill` = \"$value\"))";
+                  $i++;
+                  $notFirst = false;
+                  $isFirst = false;
+                }
+                echo $quer;
+
+              }
+
                 $result_filter = $mysqli->query($quer);
                 if ($result_filter) {
                 //   echo "Success!";
@@ -252,11 +323,12 @@ $name =  $_POST['name'];
                 else {
                     echo "Error! $mysqli->error <br>";
                   }
-        
-              //  echo $quer;
-        
-                $result_filter = $mysqli->query($quer);
-    
+
+
+                echo $quer;
+
+              //  $result_filter = $mysqli->query($quer);
+
 
 while ($stroka = mysqli_fetch_array($result_filter)){
     $temp = $stroka['understudy_id'];

@@ -28,7 +28,7 @@ $(document).ready(function(){
         //Check maximum number of input fields
         if(xFilms < maxFieldFilms){
             xFilms++; //Increment field counter
-            $(wrapperFIlms).append(fieldHTMLFilms); //Add field html
+            $(wrapperFilms).append(fieldHTMLFilms); //Add field html
         }
     });
 
