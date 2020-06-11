@@ -643,15 +643,15 @@ case  'most_expensive_actor':
           if(!$isFirst){
             $quer = $quer . " AND ";
           }
+          $i = 0;
           foreach ($films as $value) {
-          $quer = $quer . "`actor_id` IN(SELECT `actor_id` FROM `actor_filmCrew` WHERE `number_of_film_crew` IN(SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = \"$value\"))";
-        //  $help_query = $mysqli->query("SELECT `actor_id` FROM `actor_filmCrew` WHERE `number_of_film_crew` IN(SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = $films)");
+            if($i != 0){
+              $quer = $quer . " AND ";
+            }
+            $quer = $quer . "`actor_id` IN(SELECT `actor_id` FROM `actor_filmCrew` WHERE `number_of_film_crew` IN(SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = \"$value\"))";
           }
           $isFirst = false;
         }
-
-      //  echo $quer;
-
         $result_filter = $mysqli->query($quer);
         if ($result_filter) {
         //   echo "Success!";
