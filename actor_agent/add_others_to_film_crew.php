@@ -274,7 +274,7 @@ $used_finish = $date_finish_this_film_crew[0];
 
 $result_understudies=$mysqli->query("SELECT * FROM understudies WHERE understudy_id NOT IN (SELECT DISTINCT understudy_id FROM understudies_filmcrew WHERE number_of_film_crew
  IN(SELECT number_of_film_crew FROM film_crew WHERE ((date_finish_film_crew BETWEEN '$used_start' AND '$used_finish') OR
-(date_start_crew BETWEEN  '$used_start' AND  '$used_finish'))))");
+(date_start_crew BETWEEN  '$used_start' AND  '$used_finish')))) OR  understudy_id IN (SELECT understudy_id FROM `understudies_filmcrew` WHERE number_of_film_crew = $number_of_filmCrew) ");
 
 while ($stroka = mysqli_fetch_array($result_understudies)){
   $temp = $stroka['understudy_id'];
@@ -318,7 +318,7 @@ while ($stroka = mysqli_fetch_array($result_understudies)){
     echo"<td>" .  res($result_contacts_rel) . "</td>";
     echo"<td>" .  res($result_ratings) . "</td>";
 
-    $res = $mysqli->query("SELECT * FROM `understudies_filmCrew` WHERE `number_of_film_crew` = $number_of_editCrew AND `understudy_id` = $temp");
+    $res = $mysqli->query("SELECT * FROM `understudies_filmCrew` WHERE `number_of_film_crew` = $number_of_filmCrew AND `understudy_id` = $temp");
    //  echo "string";
    //  if ($res) {
    //     echo "Success!";

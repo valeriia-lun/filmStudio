@@ -35,9 +35,9 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only">(current)</span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Головний монтажер</label>
     </form>
@@ -102,7 +102,8 @@ $used_finish = $date_finish_this_edit_crew[0];
 
 $result_editors=$mysqli->query("SELECT * FROM editor WHERE editor_id NOT IN (SELECT DISTINCT editor_id FROM editor_crewedit WHERE number_of_edit_crew
  IN(SELECT number_of_edit_crew FROM edit_crew WHERE ((date_finish_edit_crew BETWEEN '$used_start' AND '$used_finish') OR
-(date_start_edit_crew BETWEEN  '$used_start' AND  '$used_finish'))))");
+(date_start_edit_crew BETWEEN  '$used_start' AND  '$used_finish')))) OR  editor_id IN (SELECT editor_id FROM `editor_crewedit` WHERE number_of_edit_crew = $number_of_editCrew)  ");
+
 
 while ($stroka = mysqli_fetch_array($result_editors)){
   $temp = $stroka['editor_id'];
@@ -129,7 +130,28 @@ while ($stroka = mysqli_fetch_array($result_editors)){
 
 
     echo"<td>" ."<input type=\"checkbox\" onclick=\"document.getElementById('chk1').checked = this.checked;\"  class=\"form-control\" onclick=\"onlyOne(this)\" name=\"is_head\" value=\"Yes\">";
-    echo"<td>" ."<input type=\"checkbox\" id=\"chk1\" class=\"form-control\" value = \"" . $stroka['editor_id'] . "\" name=\"editor_id[]\" >";
+
+    $res = $mysqli->query("SELECT * FROM `editor_crewedit` WHERE `number_of_edit_crew` = $number_of_editCrew AND `editor_id` = $temp");
+   //  echo "string";
+   //  if ($res) {
+   //     echo "Success!";
+   //   }
+   // else {
+   //      echo "Error! $mysqli->error <br>";
+   //    }
+    //echo $re;
+    $re = mysqli_fetch_array($res);
+    // print_r($re);
+    // echo $re[0];
+    if($re[0] != ""){
+      echo"<td>" ."<input type=\"checkbox\" checked id=\"chk1\" class=\"form-control\" value = \"" . $stroka['editor_id'] . "\" name=\"editor_id[]\" >";
+
+    }else{
+      echo"<td>" ."<input type=\"checkbox\" id=\"chk1\" class=\"form-control\" value = \"" . $stroka['editor_id'] . "\" name=\"editor_id[]\" >";
+    }
+
+
+
     echo"</tr>";
    }
 ?>
