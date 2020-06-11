@@ -519,6 +519,7 @@ case  'most_expensive_actor':
         $shoeSize =  $_POST['shoeSize'];
         $size =  $_POST['clothingSize'];
         $nationality =  $_POST['selectingNationality'];
+      //  $films = $_POST['selectingFilms'];
   //  $skills =  $_POST['selectingFilms'];
 
         $quer = "SELECT * FROM `actors` WHERE ";
