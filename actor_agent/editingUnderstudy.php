@@ -626,15 +626,15 @@ function lal(el) {
       for ($j = 0 ; $j < 1 ; ++$j){
         echo "<div><option value=\"$roww[$j]\" selected>$row[$j]</option>";
         if($row[$j] == 'швидко бігає'){
-          echo "<option value=\"2\">стрибає</option>";
-          echo "<option value=\"3\">акробат</option>";
-          echo "<option value=\"4\">плаває</option>";
-          echo "<option value=\"5\">катається на ковзанах</option>";
-          echo "<option value=\"6\">професійний плавець</option>";
-          echo "<option value=\"7\">каскадер</option>";
-          echo "<option value=\"8\">пригає на скакалці</option>";
-          echo "<option value=\"9\">жонглює</option>";
-          echo "<option value=\"10\">знає іспанську</option>";
+          echo "<option value=\"1\">стрибає</option>";
+          echo "<option value=\"2\">акробат</option>";
+          echo "<option value=\"3\">плаває</option>";
+          echo "<option value=\"4\">катається на ковзанах</option>";
+          echo "<option value=\"5\">професійний плавець</option>";
+          echo "<option value=\"6\">каскадер</option>";
+          echo "<option value=\"7\">пригає на скакалці</option>";
+          echo "<option value=\"8\">жонглює</option>";
+          echo "<option value=\"9\">знає іспанську</option>";
         }
         if($row[$j] == 'акробат'){
           echo "<option value=\"2\">стрибає</option>";
