@@ -139,6 +139,7 @@ $mysql->query("SET NAMES 'utf8'");
 $result = $mysql->query("SELECT `others_name` FROM `Others` WHERE `others_id` = $id");
 
 $res = mysqli_fetch_array($result);
+echo "<input type=\"hidden\" value = \"" .$id . "\" name=\"others_id_\" >";
 
 echo "<input type= \"text\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"first_name\" value=\"$res[0]\" required>";
     ?><br>
@@ -219,12 +220,12 @@ $row = mysqli_fetch_row($resultt);
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
   $resulttt = $mysql->query("SELECT `rating` FROM `Previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating`  FROM `Others_previous_movies_ratings` WHERE `others_id` = $id)");
-  if ($resulttt) {
-
-   }
-  else {
-      echo "Error! $mysql->error <br>";
-    }
+  // if ($resulttt) {
+  //
+  //  }
+  // else {
+  //     echo "Error! $mysql->error <br>";
+  //   }
 
  $rows = mysqli_num_rows($resulttt); // количество полученных строк
  for ($i = 0 ; $i < $rows ; ++$i)
@@ -374,6 +375,7 @@ $contacts = $_POST['field_name_Contacts'];
 $ratings = $_POST['field_name_Ratings'];
 
 
+$id = filter_var(trim($_POST['others_id_']),FILTER_SANITIZE_STRING);
 
 $name = filter_var(trim($_POST['first_name']),FILTER_SANITIZE_STRING);
 $last_name = filter_var(trim($_POST['last_name']),FILTER_SANITIZE_STRING);

@@ -126,9 +126,9 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only"></span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Агент по акторах</label>
     </form>
@@ -153,12 +153,13 @@
   $result = $mysql->query("SELECT `understudy_name` FROM `Understudies` WHERE `understudy_id` = $id");
 
   $res = mysqli_fetch_array($result);
+  echo "<input type=\"hidden\" value = \"" .$id . "\" name=\"understudy_id_\" >";
 
   echo "<input type= \"text\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"first_name\" value=\"$res[0]\" required>";
      ?><br>
    </div>
   <div class="container col-3">
-  <label class="colorText">Прізвище:</label> 
+  <label class="colorText">Прізвище:</label>
     <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
@@ -236,11 +237,11 @@
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
   $resultt = $mysql->query("SELECT `rating` FROM `Previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating`  FROM `Understudy_previous_movies_ratings` WHERE `understudy_id` = $id)");
-  if ($resultt) {
-  }
-  else {
-     echo "Error! $mysql->error <br>";
-   }
+  // if ($resultt) {
+  // }
+  // else {
+  //    echo "Error! $mysql->error <br>";
+  //  }
 
   $rows = mysqli_num_rows($resultt); // количество полученных строк
   for ($i = 0 ; $i < $rows ; ++$i)
@@ -265,7 +266,7 @@
 
 <div class="row text-center" style="margin:10px;">
   <div class=" container col-3">
-  <label class="colorText"> Домашня адреса:</label> 
+  <label class="colorText"> Домашня адреса:</label>
      <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
@@ -308,7 +309,7 @@
 
  <div class="row text-center" style="margin:10px;">
   <div class=" container col-3">
-  <label class="colorText"> Працює до:</label> 
+  <label class="colorText"> Працює до:</label>
   <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
@@ -319,7 +320,7 @@
   echo "<input type= \"date\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"work_until\" value=\"$res[0]\">";
     ?><br>
     </div>
-    
+
     <div class=" container col-3">
     <label class="colorText">Дата народження: </label> <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
@@ -331,7 +332,7 @@
   echo "<input type= \"date\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"date_of_birth\" value=\"$res[0]\" required>";
     ?><br>
     </div>
-    
+
     <div class=" container col-3">
     <label class="colorText">Заробітня плата:</label><?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
@@ -378,7 +379,7 @@
 
 
 
-   </br>  </br> 
+   </br>  </br>
 <hr  size="50"  color="black;" /></br></br>
 <h1 class="colorForAllText text-center" >Зовнішність</h1>
 <div class="row">
@@ -770,6 +771,7 @@ $ratings = $_POST['field_name_Ratings'];
 $skills = $_POST['field_name_Skills'];
 
 
+$id = filter_var(trim($_POST['understudy_id_']),FILTER_SANITIZE_STRING);
 
 $name = filter_var(trim($_POST['first_name']),FILTER_SANITIZE_STRING);
 $last_name = filter_var(trim($_POST['last_name']),FILTER_SANITIZE_STRING);
