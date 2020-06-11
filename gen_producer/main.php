@@ -143,7 +143,7 @@ if (isset($_POST['add'])){
 
 
 if (isset($_POST['fee'])){
-  header("location: /filmStudio/gen_producer/gen_producer_choose.php");
+  header("location: /filmStudio/gen_producer/choose_for_fee.php");
 }
 
 
