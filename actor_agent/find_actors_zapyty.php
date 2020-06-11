@@ -521,7 +521,7 @@ case  'most_expensive_actor':
         $shoeSize =  $_POST['shoeSize'];
         $size =  $_POST['clothingSize'];
         $nationality =  $_POST['selectingNationality'];
-      //  $films = $_POST['selectingFilms'];
+        $films = $_POST['field_name_Films'];
   //  $skills =  $_POST['selectingFilms'];
 
         $quer = "SELECT * FROM `actors` WHERE ";
@@ -635,6 +635,18 @@ case  'most_expensive_actor':
             $quer = $quer . " AND ";
           }
           $quer = $quer . "actor_nationality = \"$nationality\"";
+          $isFirst = false;
+        }
+
+
+        if($films != NULL){
+          if(!$isFirst){
+            $quer = $quer . " AND ";
+          }
+          foreach ($films as $value) {
+          $quer = $quer . "`actor_id` IN(SELECT `actor_id` FROM `actor_filmCrew` WHERE `number_of_film_crew` IN(SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = \"$value\"))";
+        //  $help_query = $mysqli->query("SELECT `actor_id` FROM `actor_filmCrew` WHERE `number_of_film_crew` IN(SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = $films)");
+          }
           $isFirst = false;
         }
 
