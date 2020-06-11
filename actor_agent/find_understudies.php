@@ -33,6 +33,58 @@ function lal(el) {
 }
 
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    var maxFieldFilms = 10; //Input fields increment limitation
+    var addButtonFilms = $('.add_button_Films'); //Add button selector
+    var wrapperFilms = $('.field_wrapper_Films'); //Input field wrapper
+    var fieldHTMLFilms = '<div><input type="text" class="form-control" name="field_name_Films[]" value=""/><a href="javascript:void(0);" class="remove_button_Films"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
+    var xFilms = 1; //Initial field counter is 1
+
+    //Once add button is clicked
+    $(addButtonFilms).click(function(){
+        //Check maximum number of input fields
+        if(xFilms < maxFieldFilms){
+            xFilms++; //Increment field counter
+            $(wrapperFilms).append(fieldHTMLFilms); //Add field html
+        }
+    });
+
+    //Once remove button is clicked
+    $(wrapperFilms).on('click', '.remove_button_Films', function(e){
+        e.preventDefault();
+        $(this).parent('div').remove(); //Remove field html
+        xFilms--; //Decrement field counter
+    });
+
+
+    var maxSkills = 10; //Input fields increment limitation
+    var addButtonSkills = $('.add_button_Skills'); //Add button selector
+    var wrapperSkills = $('.field_wrapper_Skills'); //Input field wrapper
+    var fieldHTMLSkills = '<div><select class="form-control" name="field_name_Skills[]"><option selected></option><option>швидко бігає</option><option>стрибає</option><option>акробат</option><option>плаває</option><option>катається на ковзанах</option><option>професійний плавець</option><option>каскадер</option><option>пригає на скакалці</option><option>жонглює</option><option>знає іспанську</option></select><a href="javascript:void(0);" class="remove_button_Skills"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
+    var xSkills = 1;
+
+
+    //Once add button is clicked
+    $(addButtonSkills).click(function(){
+        //Check maximum number of input fields
+        if(xSkills < maxFieldSkills){
+            xSkills++; //Increment field counter
+            $(wrapperSkills).append(fieldHTMLSkills); //Add field html
+        }
+    });
+
+    //Once remove button is clicked
+    $(wrapperSkills).on('click', '.remove_button_Skills', function(e){
+        e.preventDefault();
+        $(this).parent('div').remove(); //Remove field html
+        xSkills--; //Decrement field counter
+    });
+});
+
+</script>
 <body class="text-center body3">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light style=width=100%;">
@@ -45,9 +97,9 @@ function lal(el) {
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only">(current)</span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Агент по акторах</label>
     </form>
@@ -158,32 +210,40 @@ function lal(el) {
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
 $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie`");
-echo "<select name=\"selectingFilms\"  class=\"select selectpicker  form-control\"><option></option>";
+echo "<div class=\"field_wrapper_Films\"><div>";
+echo "<select name=\"field_name_Films[]\" class=\"select selectpicker form-control\"><option></option>";
 while($stroka = mysqli_fetch_array($result_films)){
 for ($i=0; $i<count($stroka); $i+=2){
-  echo "<option>$stroka[$i]</option>"; 
+  echo "<option >$stroka[$i]</option>";
 }
 }
 echo "</select>";
+echo "<a href=\"javascript:void(0);\" class=\"add_button_Films\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a>";
+echo "</div></div>";
 ?>
 </div></div>
 
 <div class="row">
 <div class="col-md-3 container">
 <label class="colorText" >Особливі навички:</label>
-<select name="selectingSkills"  class="select selectpicker  form-control">
-<option></option>
-  <option>швидко бігає</option>
-  <option>стрибає</option>
-  <option>актробат</option>
-  <option>плаває</option>
-  <option>катається на ковзанах</option>
-  <option>професійний плавець</option>
-  <option>каскадер</option>
-  <option>пригає на скакалці</option>
-  <option>жонглює</option>
-  <option>знає іспанську</option>
-</select>
+<div class="field_wrapper_Skills">
+       <div>
+           <select class="form-control" name="field_name_Skills[]">
+             <option selected></option>
+              <option>швидко бігає</option>
+              <option>стрибає</option>
+              <option>акробат</option>
+              <option>плаває</option>
+              <option>катається на ковзанах</option>
+              <option>професійний плавець</option>
+              <option>каскадер</option>
+              <option>пригає на скакалці</option>
+              <option>жонглює</option>
+              <option>знає іспанську</option>
+            </select>
+           <a href="javascript:void(0);" class="add_button_Skills" title="Add field"><img src="../img/add_icon.png" height='35' width='35'/></a>
+       </div>
+   </div>
 </div></div>
 
 
@@ -315,7 +375,7 @@ while ($stroka = mysqli_fetch_array($result_understudies)){
     echo"<form action=\"editingUnderstudy.php\" method=\"post\">";
 
   echo "<input type=\"hidden\" value = \"" .$stroka['understudy_id'] . "\" name=\"understudy_id\" >";
-    echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";  
+    echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";
       echo"</tr>";
 
    }
