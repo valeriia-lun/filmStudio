@@ -21,7 +21,17 @@ $(document).ready(function(){
     var maxFieldFilms = 10; //Input fields increment limitation
     var addButtonFilms = $('.add_button_Films'); //Add button selector
     var wrapperFilms = $('.field_wrapper_Films'); //Input field wrapper
-    var fieldHTMLFilms = '<div><input type="text"  class="form-control" name="field_name_Films[]" value=""/><a href="javascript:void(0);" class="remove_button_Films"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
+   
+    <?php $mysqli = new mysqli("localhost","root","root","filmstudio");
+$mysqli->query("SET NAMES 'utf8'");
+$result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie`");
+while($stroka = mysqli_fetch_array($result_films)){
+for ($i=0; $i<count($stroka); $i+=2){
+echo "<div><select ><option name=\"field_name_Films[]\" value=\"$i\"/>$stroka[$i]</option></select><a href=\"javascript:void(0);\" class=\"remove_button_Films\"><img src=\"../img/delete_icon.png\" width=\'20\' height=\'20\'/></a></div>'; ";
+}
+}?>
+    var fieldHTMLFilms = document.getElementById("field_name_Films[]");
+
     var xFilms = 1; //Initial field counter is 1
 
     //Once add button is clicked
@@ -206,7 +216,7 @@ $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie`");
 echo "<select name=\"field_name_Films[]\"  class=\"select selectpicker  form-control\"><option></option>";
 while($stroka = mysqli_fetch_array($result_films)){
 for ($i=0; $i<count($stroka); $i+=2){
-  echo "<option>$stroka[$i]</option>";
+  echo "<option value=\"$i\" >$stroka[$i]</option>";
 }
 }
 echo "</select>";
