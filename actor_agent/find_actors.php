@@ -20,7 +20,12 @@ $(document).ready(function(){
     var maxFieldFilms = 10; //Input fields increment limitation
     var addButtonFilms = $('.add_button_Films'); //Add button selector
     var wrapperFilms = $('.field_wrapper_Films'); //Input field wrapper
+<<<<<<< HEAD
+    
+    var fieldHTMLFilms = '<div><input type="text"  class="form-control" name="field_name_Films[]" value=""/><a href="javascript:void(0);" class="remove_button_Films"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
+=======
     var fieldHTMLFilms = '<div><input type="text" class="form-control" name="field_name_Films[]" value=""/><a href="javascript:void(0);" class="remove_button_Films"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
+>>>>>>> 14ae99477ce8a0a7d4d2e6ace0d7dcda859ab6f5
     var xFilms = 1; //Initial field counter is 1
 
     //Once add button is clicked
