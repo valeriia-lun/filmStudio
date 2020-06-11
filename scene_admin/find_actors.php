@@ -65,25 +65,148 @@ function yesnoCheck(that) {
 <form action="find_actors_zapyty.php" method="post">
 <div class="container col-md-3">
 <select  onchange="yesnoCheck(this);" class="select selectpicker  form-control" name="selecting">
-  <option value="max_experience">Актори з найбільшим стажем</option>
+<option value="max_experience" >Актори з найбільшим стажем</option>
   <option value="female">Актори жіночого роду</option>
   <option value="salary_20000_more">Актори із зарплатнею < 20 000 грн</option>
   <option value="blond">Актори блондини</option>
   <option value="movie_zoloto">Актори, що знялися в фільмі 'Золото'</option>
-  <option value="entered_shoe_size">Актори із введеним розміром взуття</option>
-  <option value="expensive">Найдорожчий актор</option>
+  <option value="most_expensive_actor" >Найдорожчі актори</option>
+  <option value="makeByHand">Фільтрувати самостійно</option>
 </select>
+</div></div></br>
 
-<div id="ifYes" style="display: none;">
-    <input type="text" id="entering_values" onkeyup="lal(this)" name="entering_values" />
+
+
+
+<div id = "appearFilters" style="display: none;">
+<div class="row">
+<div class="col-md-3 container">
+<label class="colorText" >Ім'я<input class="form-control" name ="name"></input></label>
 </div>
+<div class="col-md-3 container">
+<label class="colorText" >Прізвище<input class="form-control" name="surname"></input></label>
 </div>
-<div class="btn">
-  <button class ="button btn btn-danger" name="done">Знайти</button>
+<div class="col-md-3 container">
+<label class="colorText" >По-батькові<input class="form-control" name="middleName" ></input></label>
+</div>
+<div class="col-md-3 container">
+<label class="colorText" >Рейтинг<input class="form-control" name="rating" ></input></label>
+</div></div></br>
+
+
+
+
+<div class="row">
+<div class="col-md-3 container">
+<label class="colorText" >Кількість фільмів у яких брали участь<input class="form-control" onkeyup="lal(this)" name="amountOfFilms" ></input></label>
+</div>
+<div class="col-md-3 container">
+<label class="colorText" >Вік<input class="form-control" onkeyup="lal(this)" name="age" ></input></label>
+</div>
+<div class="col-md-3 container">
+<label class="colorText" >Стать</label><select name="selectingSex"   class="select selectpicker  form-control">
+<option ></option>
+  <option >Чоловік</option>
+  <option >Жінка</option>
+</select>
+</div>
+<div class="col-md-3 container">
+<label class="colorText" >Ріст<input class="form-control" onkeyup="lal(this)" name="height" ></input></label></div></div></br>
+
+<div class="row">
+<div class="col-md-3 container">
+<label class="colorText" >Колір волосся:</label>
+<select name="selectingColorOfHair"  class="select selectpicker  form-control">
+<option ></option>
+  <option>Рудий</option>
+  <option>Блонд</option>
+  <option>Брюнет</option>
+  <option>Шатен</option>
+</select>
 </div>
 
+</br>
+<div class="col-md-3 container">
+<label class="colorText" >Довжина волосся</label><input onkeyup="lal(this)" class="form-control" name="hairLength"></input>
+</div>
+<div class="col-md-3 container">
+<label class="colorText" >Колір очей:</label>
+<select name="selectingColorOfEyes"  class="select selectpicker  form-control">
+<option ></option>
+  <option>Блакитний</option>
+  <option >Зелений</option>
+  <option >Карий</option>
+  <option >Сірий</option>
+
+</select></div><div class="col-md-3 container">
+<label class="colorText" >Статура:</label>
+<select name="selectingStature"  class="select selectpicker  form-control">
+<option ></option>
+  <option >Спортивний</option>
+  <option >Худий</option>
+  <option >Повний</option>
+  <option >Стрункий</option>
+</select></div>
+</div>
+</br>
+<div class="row">
+<div class="col-md-3 container">
+<label class="colorText" >Розмір взуття</label><input onkeyup="lal(this)" class="form-control" name="shoeSize" ></input>
+</div>
+<div class="col-md-3 container">
+<label class="colorText" >Розмір одягу</label><input onkeyup="lal(this)" class="form-control" name="clothingSize" ></input></div>
+<div class="col-md-3 container">
+<label class="colorText" >Національність:</label>
+<select name="selectingNationality"  class="select selectpicker  form-control">
+<option></option>
+  <option>Українська</option>
+  <option>Армянська</option>
+  <option>Російська</option>
+  <option>Грузинська</option>
+  <option>Італійська</option>
+  <option>Китайська</option>
+  <option>Арабська</option>
+  <option>Скандинавська</option>
+
+</select></div>
+<div class="col-md-3 container">
+<label class="colorText" >Фільми, в яких брали участь:</label>
+<?php
+$mysqli = new mysqli("localhost","root","root","filmstudio");
+$mysqli->query("SET NAMES 'utf8'");
+$result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie`");
+echo "<select name=\"selectingFilms\"  class=\"select selectpicker  form-control\"><option></option>";
+while($stroka = mysqli_fetch_array($result_films)){
+for ($i=0; $i<count($stroka); $i+=2){
+  echo "<option>$stroka[$i]</option>"; 
+}
+}
+echo "</select>";
+?>
+</div></div>
+</div>
+</div>
+<script>
+function lal(el) {
+  if (el.value.match( /[^0-9]/ ) ) {
+        alert( "Неправильний формат числа! \nМожна використовувати тільки цифри" );
+        el.value = el.value.replace( /[^0-9]/ , "" )
+    }
+}
+
+function yesnoCheck(that) {
+    if(that.value == "makeByHand"){
+      document.getElementById("appearFilters").style.display = "block";
+    }else{
+      document.getElementById("appearFilters").style.display = "none";
+    }
+}
+</script>
+
+<div class="btn noprint">
+  <button class ="button btn btn-primary" name="done">Знайти</button>
+</div>
 </form>
-
 </div>
 <div  style="margin:10px;">
 <table border="1" class=" table table-dark table-hover" >

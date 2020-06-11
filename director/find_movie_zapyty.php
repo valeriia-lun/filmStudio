@@ -252,6 +252,104 @@ FROM Help))");
               echo"</tr>";
              }
             break;
+            case 'makeByHand':
+              $name =  $_POST['name'];
+              $date_release =  $_POST['date_release'];
+              $budget =  $_POST['budget'];
+              $rating =  $_POST['rating'];
+              $selectingGenre =  $_POST['selectingGenre'];
+              $selectingNFCrew =  $_POST['selectingNFCrew'];
+              $selectingNECrew =  $_POST['selectingNECrew'];
+              
+              $quer = "SELECT * FROM `movie` WHERE ";
+              //        echo $quer;
+              //        $quer .= "fff";
+              //        echo $quer;
+              
+                $isFirst = true;
+              
+                if($name != NULL){
+                  if(!$isFirst){
+                    $quer = $quer . " AND ";
+                  }
+                  $quer = $quer . "name_of_movie = \"$name\"";
+                  $isFirst = false;
+                }
+                if($date_release != NULL){
+                //  $isLast = false;
+                  if(!$isFirst){
+                    $quer = $quer . " AND ";
+                  }
+                  $quer = $quer . "date_of_release = '$date_release'";
+                  $isFirst = false;
+                }
+                if($budget != NULL){
+                  if(!$isFirst){
+                    $quer = $quer . " AND ";
+                  }
+                  $quer = $quer . "budget_of_movie = $budget";
+                  $isFirst = false;
+                }
+                if($rating != NULL){
+                  if(!$isFirst){
+                    $quer = $quer . " AND ";
+                  }
+                  $quer = $quer . "rating_of_movie = $rating";
+                  $isFirst = false;
+                }
+               
+                if($selectingNFCrew != NULL){
+                  if(!$isFirst){
+                    $quer = $quer . " AND ";
+                  }
+                  $quer = $quer . "number_of_film_crew =  \"$selectingNFCrew\"";
+                  $isFirst = false;
+                }
+                if($selectingNECrew != NULL){
+                  if(!$isFirst){
+                    $quer = $quer . " AND ";
+                  }
+                  $quer = $quer . "number_of_edit_crew = \"$selectingNECrew\"";
+                  $isFirst = false;
+                }
+                /*if($selectingGenre != NULL){
+                  if(!$isFirst){
+                    $quer = $quer . " AND ";
+                  }
+                  $quer = $quer . "number_of_film_crew = \"$selectingGenre\"";
+                  $isFirst = false;
+                }*/
+                $result_filter = $mysqli->query($quer);
+              
+                if ($result_filter) {
+                //   echo "Success!";
+                 }
+                else {
+                    echo "Error! $mysqli->error <br>";
+                  }
+
+                  
+
+
+while ($stroka = mysqli_fetch_array($result_filter)){
+$temp = $stroka['name_of_movie'];
+$result_movies_genres = $mysqli->query("SELECT `genre` FROM `genres` WHERE `id_movie_genre` IN (SELECT `id_movie_genre` FROM  `movie_genres` WHERE `name_of_movie` = \"$temp\")");
+
+$result_movies_duration = $mysqli->query("SELECT `duration_of_movie` FROM `movie_duration` WHERE `name_of_movie` IN (SELECT `name_of_movie` FROM  `movie` WHERE `name_of_movie` = \"$temp\")");
+
+  echo"<tr>";
+  echo"<td>" . $stroka['name_of_movie'] . "</td>";
+  echo"<td>" . $stroka['date_of_release'] . "</td>";
+  echo"<td>" . $stroka['budget_of_movie'] . "</td>";
+  echo"<td>" . $stroka['rating_of_movie'] . "</td>";
+  echo"<td>" . $stroka['number_of_film_crew'] . "</td>";
+  echo"<td>" . $stroka['number_of_edit_crew'] . "</td>";
+  echo"<td>" .  res($result_movies_genres) . "</td>";
+  echo"<td>" .  res($result_movies_duration) . "</td>";
+  echo"</tr>";
+
+}
+break; 
   }
 }
 ?>

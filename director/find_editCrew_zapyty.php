@@ -59,33 +59,54 @@
 </tr></thead>
 
 <?php
-$mysqli = new mysqli("localhost","root","root","filmstudio");
-$mysqli->query("SET NAMES 'utf8'");
-function res($result){
-  $print = "";
-    if($result)
-    {
-        $rows = mysqli_num_rows($result); // количество полученных строк
-        for ($i = 0 ; $i < $rows ; ++$i)
-        {
-            $row = mysqli_fetch_row($result);
-                for ($j = 0 ; $j < 1 ; ++$j)   $print .= "$row[$j]"."<br/>";
-        }
-    }
-    return $print;
-  }
-  $selecting =  $_POST['selecting'];
-
 if (isset($_POST['done'])){
   $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
 
-
-switch($selecting){
-  case 'finish_edit_crew':
-    $result_edit_crews =  $mysqli->query("SELECT  * FROM edit_crew WHERE `date_finish_edit_crew` = '2020-06-19'");
+        $date_start =  $_POST['date_start'];
+        $date_finish =  $_POST['date_finish'];
+        $selectingHeadId =  $_POST['selectingHeadId'];
+   
+        $quer = "SELECT * FROM `edit_crew` WHERE ";
+   
+                $isFirst = true;
+        
+                if($date_start != NULL){
+                  if(!$isFirst){
+                    $quer = $quer . " AND ";
+                  }
+                  $quer = $quer . "date_start_edit_crew = '$date_start'";
+                  $isFirst = false;
+                }
+                if($date_finish != NULL){
+                //  $isLast = false;
+                  if(!$isFirst){
+                    $quer = $quer . " AND ";
+                  }
+                  $quer = $quer . "date_finish_edit_crew = '$date_finish'";
+                  $isFirst = false;
+                }
+                if($selectingHeadId != NULL){
+                  if(!$isFirst){
+                    $quer = $quer . " AND ";
+                  }
+                  $quer = $quer . "editor_crew_head_id = \"$selectingHeadId\"";
+                  $isFirst = false;
+                }
+                
+        
+                $result_filter = $mysqli->query($quer);
+                if ($result_filter) {
+                //   echo "Success!";
+                 }
+                else {
+                    echo "Error! $mysqli->error <br>";
+                  }
+        
+                $result_filter = $mysqli->query($quer);
+   
 //$mysqli->close();
-while ($stroka = mysqli_fetch_array($result_edit_crews)){
+while ($stroka = mysqli_fetch_array($result_filter)){
     echo"<tr>";
     echo"<form action=\"add_main_editor_to_edit_crew.php\" method=\"post\">";
 
@@ -100,7 +121,7 @@ while ($stroka = mysqli_fetch_array($result_edit_crews)){
 echo "<input type=\"hidden\" value = \"" .$stroka['number_of_edit_crew'] . "\" name=\"number_of_edit_crew\" >";
     echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";
     echo"</tr>";
-   }
+   
 }}
 ?>
 

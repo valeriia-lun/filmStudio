@@ -534,6 +534,199 @@ case  'expensive':
                        }
                       break;
 //?????????????????????????????
+case 'makeByHand':
+  $name =  $_POST['name'];
+  $surname =  $_POST['surname'];
+  $middleName =  $_POST['middleName'];
+  $rating =  $_POST['rating'];
+  $amountOfMovies =  $_POST['amountOfFilms'];
+  $age =  $_POST['age'];
+  $sex =  $_POST['selectingSex'];
+  $height =  $_POST['height'];
+  $hairColor =  $_POST['selectingColorOfHair'];
+  $hairLen=  $_POST['hairLength'];
+  $eyes =  $_POST['selectingColorOfEyes'];
+  $stature =  $_POST['selectingStature'];
+  $shoeSize =  $_POST['shoeSize'];
+  $size =  $_POST['clothingSize'];
+  $nationality =  $_POST['selectingNationality'];
+//  $skills =  $_POST['selectingFilms'];
+
+  $quer = "SELECT * FROM `actors` WHERE ";
+//        echo $quer;
+//        $quer .= "fff";
+//        echo $quer;
+
+  $isFirst = true;
+
+  if($name != NULL){
+    if(!$isFirst){
+      $quer = $quer . " AND ";
+    }
+    $quer = $quer . "actor_name = \"$name\"";
+    $isFirst = false;
+  }
+  if($surname != NULL){
+  //  $isLast = false;
+    if(!$isFirst){
+      $quer = $quer . " AND ";
+    }
+    $quer = $quer . "actor_surname = \"$surname\"";
+    $isFirst = false;
+  }
+  if($middleName != NULL){
+    if(!$isFirst){
+      $quer = $quer . " AND ";
+    }
+    $quer = $quer . "actor_middle_name = \"$middleName\"";
+    $isFirst = false;
+  }
+  if($rating != NULL){
+    if(!$isFirst){
+      $quer = $quer . " AND ";
+    }
+    $quer = $quer . "rating_of_employee = $rating";
+    $isFirst = false;
+  }
+  if($amountOfMovies != NULL){
+    if(!$isFirst){
+      $quer = $quer . " AND ";
+    }
+    $quer = $quer . "amount_of_films_actor_took_part_in = $amountOfMovies";
+    $isFirst = false;
+  }
+  if($age != NULL){
+    if(!$isFirst){
+      $quer = $quer . " AND ";
+    }
+    $quer = $quer . "actor_age = $age";
+    $isFirst = false;
+  }
+  if($sex != NULL){
+    if(!$isFirst){
+      $quer = $quer . " AND ";
+    }
+    $quer = $quer . "actor_sex = \"$sex\"";
+    $isFirst = false;
+  }
+  if($height != NULL){
+    if(!$isFirst){
+      $quer = $quer . " AND ";
+    }
+    $quer = $quer . "actor_height = $height";
+    $isFirst = false;
+  }
+  if($hairColor != NULL){
+    if(!$isFirst){
+      $quer = $quer . " AND ";
+    }
+    $quer = $quer . "actor_color_of_hair = \"$hairColor\"";
+    $isFirst = false;
+  }
+  if($hairLen != NULL){
+    if(!$isFirst){
+      $quer = $quer . " AND ";
+    }
+    $quer = $quer . "actor_length_of_hair = $hairLen";
+    $isFirst = false;
+  }
+  if($eyes != NULL){
+    if(!$isFirst){
+      $quer = $quer . " AND ";
+    }
+    $quer = $quer . "actor_color_of_eyes = \"$eyes\"";
+    $isFirst = false;
+  }
+  if($stature != NULL){
+    if(!$isFirst){
+      $quer = $quer . " AND ";
+    }
+    $quer = $quer . "actor_stature = \"$stature\"";
+    $isFirst = false;
+  }
+  if($shoeSize != NULL){
+    if(!$isFirst){
+      $quer = $quer . " AND ";
+    }
+    $quer = $quer . "actor_shoe_size = $shoeSize";
+    $isFirst = false;
+  }
+  if($size != NULL) {
+    if(!$isFirst){
+      $quer = $quer . " AND ";
+    }
+      $quer = $quer . "actor_clothing_size = $size";
+      $isFirst = false;
+  }
+  if($nationality != NULL){
+    if(!$isFirst){
+      $quer = $quer . " AND ";
+    }
+    $quer = $quer . "actor_nationality = \"$nationality\"";
+    $isFirst = false;
+  }
+
+//  echo $quer;
+
+  $result_filter = $mysqli->query($quer);
+  if ($result_filter) {
+  //   echo "Success!";
+   }
+  else {
+      echo "Error! $mysqli->error <br>";
+    }
+
+//  echo $quer;
+
+  $result_filter = $mysqli->query($quer);
+
+  while ($stroka4 = mysqli_fetch_array($result_filter)){
+    $temp4 = $stroka4['actor_id'];
+    $result_photos4 = $mysqli->query("SELECT `actor_photo` FROM `actors_photo` WHERE `actor_id`  = $temp4");
+    $result_phones4 = $mysqli->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id`  = $temp4");
+    $result_contacts_rel4 = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp4");
+    $result_ratings4 = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `actors_previous_movies_rating` WHERE `actor_id` = $temp4)");
+
+      echo"<tr>";
+      echo"<td>" . $stroka4['actor_id'] . "</td>";
+      echo"<td>" . $stroka4['actor_name'] . "</td>";
+      echo"<td>" . $stroka4['actor_surname'] . "</td>";
+      echo"<td>" . $stroka4['actor_middle_name'] . "</td>";
+      echo"<td>" . $stroka4['actor_experience'] . "</td>";
+      echo"<td>" . $stroka4['rating_of_employee'] . "</td>";
+      echo"<td>" . $stroka4['actor_salary'] . "</td>";
+      echo"<td>" . $stroka4['actor_works_since'] . "</td>";
+      echo"<td>" . $stroka4['actor_works_until'] . "</td>";
+      echo"<td>" . $stroka4['amount_of_films_actor_took_part_in'] . "</td>";
+      echo"<td>" . $stroka4['actor_date_of_birth'] . "</td>";
+      echo"<td>" . $stroka4['actor_place_of_birth'] . "</td>";
+      echo"<td>" . $stroka4['actor_home_address'] . "</td>";
+      echo"<td>" . $stroka4['name_of_position'] . "</td>";
+      echo"<td>" . $stroka4['actor_age'] . "</td>";
+      echo"<td>" . $stroka4['actor_sex'] . "</td>";
+      echo"<td>" . $stroka4['actor_height'] . "</td>";
+      echo"<td>" . $stroka4['actor_color_of_hair'] . "</td>";
+      echo"<td>" . $stroka4['actor_length_of_hair'] . "</td>";
+      echo"<td>" . $stroka4['actor_color_of_eyes'] . "</td>";
+      echo"<td>" . $stroka4['actor_stature'] . "</td>";
+      echo"<td>" . $stroka4['actor_shoe_size'] . "</td>";
+      echo"<td>" . $stroka4['actor_clothing_size'] . "</td>";
+      echo"<td>" . $stroka4['actor_nationality'] . "</td>";
+      echo"<td>" . $stroka4['actor_other_appearance'] . "</td>";
+      echo"<td>" . $stroka4['actor_e-mail'] . "</td>";
+      echo"<td>" . $stroka4['actors_head_id'] . "</td>";
+      echo"<td>" .  res($result_photos4) . "</td>";
+      echo"<td>" .  res($result_phones4) . "</td>";
+      echo"<td>" .  res($result_contacts_rel4) . "</td>";
+      echo"<td>" .  res($result_ratings4) . "</td>";
+      echo"<form action=\"editingActor.php\" method=\"post\">";
+
+  echo "<input type=\"hidden\" value = \"" .$stroka['actor_id'] . "\" name=\"actor_id\" >";
+     
+     }
+
+break;
+
 }
 }
 

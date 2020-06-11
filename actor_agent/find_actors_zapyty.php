@@ -691,7 +691,7 @@ case  'most_expensive_actor':
             echo"<form action=\"editingActor.php\" method=\"post\">";
 
         echo "<input type=\"hidden\" value = \"" .$stroka['actor_id'] . "\" name=\"actor_id\" >";
-            echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";    echo"</tr>";
+
            }
 
       break;

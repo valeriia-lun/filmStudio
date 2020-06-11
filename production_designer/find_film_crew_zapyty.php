@@ -74,26 +74,55 @@ function res($result){
     }
     return $print;
   }
-  $selecting =  $_POST['selecting'];
-
-if (isset($_POST['done'])){
-  $mysqli = new mysqli("localhost","root","root","filmstudio");
-$mysqli->query("SET NAMES 'utf8'");
-
-
-switch($selecting){
-  case 'finish_film_crew':
-    $result_film_crews =  $mysqli->query("SELECT  * FROM film_crew WHERE `date_finish_film_crew` = '2019-12-15'");
-
-    while ($stroka = mysqli_fetch_array($result_film_crews)){
+  if (isset($_POST['done'])){
+    $mysqli = new mysqli("localhost","root","root","filmstudio");
+  $mysqli->query("SET NAMES 'utf8'");
+  
+          $date_start =  $_POST['date_start'];
+          $date_finish =  $_POST['date_finish'];
+  
+        
+          $quer = "SELECT * FROM `film_crew` WHERE ";
+     
+                  $isFirst = true;
+          
+                  if($date_start != NULL){
+                    if(!$isFirst){
+                      $quer = $quer . " AND ";
+                    }
+                    $quer = $quer . "date_start_crew = '$date_start'";
+                    $isFirst = false;
+                  }
+                  if($date_finish != NULL){
+                  //  $isLast = false;
+                    if(!$isFirst){
+                      $quer = $quer . " AND ";
+                    }
+                    $quer = $quer . "date_finish_film_crew = '$date_finish'";
+                    $isFirst = false;
+                  }
+            
+                  
+          
+                  $result_filter = $mysqli->query($quer);
+                  if ($result_filter) {
+                  //   echo "Success!";
+                   }
+                  else {
+                      echo "Error! $mysqli->error <br>";
+                    }
+          
+                  $result_filter = $mysqli->query($quer);
+     
+  //$mysqli->close();
+  while ($stroka = mysqli_fetch_array($result_filter)){
       echo"<tr>";
       echo"<td>" . $stroka['number_of_film_crew'] . "</td>";
       echo"<td>" . $stroka['date_start_crew'] . "</td>";
       echo"<td>" . $stroka['date_finish_film_crew'] . "</td>";
       echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" value = \"" . $stroka['number_of_film_crew'] . "\" name=\"number_of_film_crew\">Додати</button>"."</div></td>";
       echo"</tr>";
-     }
-    break;
+
 
   }
 }

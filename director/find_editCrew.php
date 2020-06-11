@@ -48,13 +48,33 @@
 </div>
 <div class="noprint">
 <form action="find_editCrew_zapyty.php" method="post">
-<div class="container col-md-3">
-<select  class="select selectpicker  form-control" name="selecting">
-  <option value="finish_edit_crew">Групи монтажерів, які закінчили свою роботу 19.06.2020</option>
-</select>
+
+<div class="row">
+<div class=" container col-3" >
+    <label class="colorText">Дата початку роботи: </label><input type="date" class="form-control" name="date_start" maxlength="50" tabindex="2" ><br>
+  </div>
+  <div class=" container col-3" >
+    <label class="colorText">Дата кінця роботи: </label><input type="date" class="form-control" name="date_finish" maxlength="50" tabindex="2" ><br>
+  </div>
+  <div class="col-3 container">
+<label class="colorText" >Табельний номер голови:</label>
+<?php
+$mysqli = new mysqli("localhost","root","root","filmstudio");
+$mysqli->query("SET NAMES 'utf8'");
+$result_headId = $mysqli->query("SELECT `editor_crew_head_id` FROM `edit_crew`");
+echo "<select name=\"selectingHeadId\"  class=\"select selectpicker  form-control\"><option></option>";
+while($stroka = mysqli_fetch_array($result_headId)){
+for ($i=0; $i<count($stroka); $i+=2){
+  echo "<option>$stroka[$i]</option>"; 
+}
+}
+echo "</select>";
+?>
 </div>
+</div>
+
 <div class="btn">
-  <button class ="button btn btn-primary" name="done">Знайти</button>
+  <button class ="button btn btn-danger" name="done">Знайти</button>
 </div>
 </form>
 </div>
@@ -84,7 +104,7 @@ while ($stroka = mysqli_fetch_array($result_edit_crews)){
     echo"<td>" . $stroka['date_start_edit_crew'] . "</td>";
     echo"<td>" . $stroka['date_finish_edit_crew'] . "</td>";
     echo"<td>" . $stroka['editor_crew_head_id'] . "</td>";
-    echo "<td>"."<div  class = \"noprint\">"."<button value = \"" . $stroka['number_of_edit_crew'] . "\" name=\"number_of_edit_crew\">Додати</button>"."</div></td></form>";
+    echo "<td>"."<div  class = \"btn noprint\">"."<button class =\" btn btn-danger\" value = \"" . $stroka['number_of_edit_crew'] . "\" name=\"number_of_edit_crew\">Додати</button>"."</div></td></form>";
     echo"<form action=\"editingEditCrew.php\" method=\"post\">";
 
 echo "<input type=\"hidden\" value = \"" .$stroka['number_of_edit_crew'] . "\" name=\"number_of_edit_crew\" >";

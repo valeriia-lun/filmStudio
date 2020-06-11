@@ -26,7 +26,22 @@ $().datepicker();
   @page { margin: 0;  }
 }
 </style>
+<script>
+  function lal(el) {
+  if (el.value.match( /[^0-9]/ ) ) {
+        alert( "Неправильний формат числа! \nМожна використовувати тільки цифри" );
+        el.value = el.value.replace( /[^0-9]/ , "" )
+    }
+}
 
+function yesnoCheck(that) {
+    if(that.value == "makeByHand"){
+      document.getElementById("appearFilters").style.display = "block";
+    }else{
+      document.getElementById("appearFilters").style.display = "none";
+    }
+}
+</script>
 <body class="text-center body3">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light style=width=100%;">
@@ -53,57 +68,93 @@ $().datepicker();
 
 </div>
 <div class="noprint">
+<form action="find_movie_zapyty.php" method="post">
 <div class="row">
 <div class="col-md-4 container">
-
-<form action="find_movie_zapyty.php" method="post">
-
 <select  onchange="yesnoCheck(this);" class="select selectpicker  form-control" name="selecting">
   <option value="max_rating">Фільми з найбільшим рейтингом</option>
   <option value="max_gonorars">Фільми, які витратили найбільше грошей на гонорари акторам</option>
   <option value="detectives">Фільми-детективи</option>
   <option value="all_understudies">Фільми, в яких брали участь всі дублери кіностудії</option>
   <option value="rating_4">Фільми з рейтингом 4</option>
+  <option value="makeByHand">Фільтрувати самостійно</option>
+
 </select>
 </div></div>
+
+
+<div id = "appearFilters" style="display: none;">
 <div class="row">
 <div class="col-md-3 container">
-<input class="form-control" value="Назва"></input></br>
+<label class="colorText" >Назва:</label><input name = "name" class="form-control" ></input></br>
 </div>
 <div class="col-md-3 container">
-Дата виходу:
-<input class="form-control" value="" type="date"></input>
+<label class="colorText" >Дата виходу:</label>
+<input class="form-control" name="date_release" value="" type="date"></input>
 </div>
 <div class="col-md-3 container">
-<input class="form-control" value="Бюджет"></input>
+<label class="colorText" >Бюджет:</label>
+<input class="form-control" onkeyup="lal(this)" name="budget"></input>
 </div></div>
 
 
 <div class="row">
 <div class="col-md-3 container">
-<input class="form-control" value="Рейтинг"></input></br>
+<label class="colorText" >Рейтинг:</label>
+<input class="form-control" onkeyup="lal(this)" name="rating"></input></br>
 </div>
 <div class="col-md-3 container">
-Жанр:
-<select  onchange="yesnoCheck(this);" class="select selectpicker  form-control" name="selecting">
-  <option value="max_rating">драма</option>
-  <option value="max_gonorars">Фільми, які витратили найбільше грошей на гонорари акторам</option>
+<label class="colorText" >Жанр:</label>
+<select   class="select selectpicker  form-control" name="selectingGenre">
+<option></option>
+  <option >Драма</option>
+  <option >Бойовик</option>
+  <option >Триллер</option>
+  <option >Жахи</option>  
+  <option >Детектив</option>
+  <option >Комедія</option>
+  <option >Вестерн</option>
+  <option >Трагедія</option>
+  <option >Документальний</option>
+  <option >Історичний</option>
 </select></div>
 <div class="col-md-3 container">
-Номер знімальної групи:
-<select  onchange="yesnoCheck(this);" class="select selectpicker  form-control" name="selecting">
-  <option value="max_rating">501</option>
-  <option value="max_gonorars">Фільми, які витратили найбільше грошей на гонорари акторам</option>
-</select></div>
+<label class="colorText" >Номер знімальної групи:</label>
+<?php
+$mysqli = new mysqli("localhost","root","root","filmstudio");
+$mysqli->query("SET NAMES 'utf8'");
+$result_headId = $mysqli->query("SELECT `number_of_film_crew` FROM `film_crew`");
+echo "<select name=\"selectingNFCrew\"  class=\"select selectpicker  form-control\"><option></option>";
+while($stroka = mysqli_fetch_array($result_headId)){
+for ($i=0; $i<count($stroka); $i+=2){
+  echo "<option>$stroka[$i]</option>"; 
+}
+}
+echo "</select>";
+?>
+
+
+</div>
 <div class="col-md-3 container">
-Номер групи монтажерів:
-<select  onchange="yesnoCheck(this);" class="select selectpicker  form-control" name="selecting">
-  <option value="max_rating">301</option>
-  <option value="max_gonorars">Фільми, які витратили найбільше грошей на гонорари акторам</option>
-</select></div>
+<label class="colorText" >Номер групи монтажерів:</label>
+<?php
+$mysqli = new mysqli("localhost","root","root","filmstudio");
+$mysqli->query("SET NAMES 'utf8'");
+$result_headId = $mysqli->query("SELECT `number_of_edit_crew` FROM `edit_crew`");
+echo "<select name=\"selectingNECrew\"  class=\"select selectpicker  form-control\"><option></option>";
+while($stroka = mysqli_fetch_array($result_headId)){
+for ($i=0; $i<count($stroka); $i+=2){
+  echo "<option>$stroka[$i]</option>"; 
+}
+}
+echo "</select>";
+?>
+
 
 </div>
 
+</div>
+</div>
 <div class="btn">
   <button class ="button btn btn-primary" name="done">Знайти</button>
 </div>

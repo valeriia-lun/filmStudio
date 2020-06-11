@@ -104,18 +104,159 @@ function res($result){
     }
     return $print;
   }
-  $selecting =  $_POST['selecting'];
-  $entering_values = $_POST['entering_values'];
+
 if (isset($_POST['done'])){
   $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
 
+$name =  $_POST['name'];
+        $surname =  $_POST['surname'];
+        $middleName =  $_POST['middleName'];
+        $rating =  $_POST['rating'];
+        $amountOfMovies =  $_POST['amountOfFilms'];
+        $age =  $_POST['age'];
+        $sex =  $_POST['selectingSex'];
+        $height =  $_POST['height'];
+        $hairColor =  $_POST['selectingColorOfHair'];
+        $hairLen=  $_POST['hairLength'];
+        $eyes =  $_POST['selectingColorOfEyes'];
+        $stature =  $_POST['selectingStature'];
+        $shoeSize =  $_POST['shoeSize'];
+        $size =  $_POST['clothingSize'];
+        $nationality =  $_POST['selectingNationality'];
+        //$films =  $_POST['selectingFilms'];
+        //$skills =  $_POST['selectingSkills'];
+      
+        $quer = "SELECT * FROM `understudies` WHERE ";
+        //        echo $quer;
+        //        $quer .= "fff";
+        //        echo $quer;
+        
+                $isFirst = true;
+        
+                if($name != NULL){
+                  if(!$isFirst){
+                    $quer = $quer . " AND ";
+                  }
+                  $quer = $quer . "understudy_name = \"$name\"";
+                  $isFirst = false;
+                }
+                if($surname != NULL){
+                //  $isLast = false;
+                  if(!$isFirst){
+                    $quer = $quer . " AND ";
+                  }
+                  $quer = $quer . "understudy_surname = \"$surname\"";
+                  $isFirst = false;
+                }
+                if($middleName != NULL){
+                  if(!$isFirst){
+                    $quer = $quer . " AND ";
+                  }
+                  $quer = $quer . "understudy_middle_name = \"$middleName\"";
+                  $isFirst = false;
+                }
+                if($rating != NULL){
+                  if(!$isFirst){
+                    $quer = $quer . " AND ";
+                  }
+                  $quer = $quer . "rating_of_employee = $rating";
+                  $isFirst = false;
+                }
+                if($amountOfMovies != NULL){
+                  if(!$isFirst){
+                    $quer = $quer . " AND ";
+                  }
+                  $quer = $quer . "amount_of_films_understudy_took_part_in = $amountOfMovies";
+                  $isFirst = false;
+                }
+                if($age != NULL){
+                  if(!$isFirst){
+                    $quer = $quer . " AND ";
+                  }
+                  $quer = $quer . "understudy_age = $age";
+                  $isFirst = false;
+                }
+                if($sex != NULL){
+                  if(!$isFirst){
+                    $quer = $quer . " AND ";
+                  }
+                  $quer = $quer . "understudy_sex = \"$sex\"";
+                  $isFirst = false;
+                }
+                if($height != NULL){
+                  if(!$isFirst){
+                    $quer = $quer . " AND ";
+                  }
+                  $quer = $quer . "understudy_height = $height";
+                  $isFirst = false;
+                }
+                if($hairColor != NULL){
+                  if(!$isFirst){
+                    $quer = $quer . " AND ";
+                  }
+                  $quer = $quer . "understudy_color_of_hair = \"$hairColor\"";
+                  $isFirst = false;
+                }
+                if($hairLen != NULL){
+                  if(!$isFirst){
+                    $quer = $quer . " AND ";
+                  }
+                  $quer = $quer . "understudy_length_of_hair = $hairLen";
+                  $isFirst = false;
+                }
+                if($eyes != NULL){
+                  if(!$isFirst){
+                    $quer = $quer . " AND ";
+                  }
+                  $quer = $quer . "understudy_color_of_eyes = \"$eyes\"";
+                  $isFirst = false;
+                }
+                if($stature != NULL){
+                  if(!$isFirst){
+                    $quer = $quer . " AND ";
+                  }
+                  $quer = $quer . "understudy_stature = \"$stature\"";
+                  $isFirst = false;
+                }
+                if($shoeSize != NULL){
+                  if(!$isFirst){
+                    $quer = $quer . " AND ";
+                  }
+                  $quer = $quer . "understudy_shoe_size = $shoeSize";
+                  $isFirst = false;
+                }
+                if($size != NULL) {
+                  if(!$isFirst){
+                    $quer = $quer . " AND ";
+                  }
+                    $quer = $quer . "understudy_clothing_size = $size";
+                    $isFirst = false;
+                }
+                if($nationality != NULL){
+                  if(!$isFirst){
+                    $quer = $quer . " AND ";
+                  }
+                  $quer = $quer . "understudy_nationality = \"$nationality\"";
+                  $isFirst = false;
+                }
+        
+              //  echo $quer;
+        
+                $result_filter = $mysqli->query($quer);
+                if ($result_filter) {
+                //   echo "Success!";
+                 }
+                else {
+                    echo "Error! $mysqli->error <br>";
+                  }
+        
+              //  echo $quer;
+        
+                $result_filter = $mysqli->query($quer);
+    
 
-switch($selecting){
-  case 'entered_hair_length':
-    $result_understudies =   $mysqli->query("SELECT * FROM `understudies` WHERE `understudy_length_of_hair` = $entering_values");
-
-while ($stroka = mysqli_fetch_array($result_understudies)){
+while ($stroka = mysqli_fetch_array($result_filter)){
     $temp = $stroka['understudy_id'];
 
     $result_skills = $mysqli->query("SELECT `skill` FROM `skills` WHERE `skills_id` IN (SELECT `skills_id` FROM  `understudies_skills` WHERE `understudy_id` = $temp)");
@@ -165,12 +306,14 @@ while ($stroka = mysqli_fetch_array($result_understudies)){
     echo"<form action=\"editingUnderstudy.php\" method=\"post\">";
 
   echo "<input type=\"hidden\" value = \"" .$stroka['understudy_id'] . "\" name=\"understudy_id\" >";
-    echo "<td>"."<div class = \"btn noprint\">"."<button name=\"editBtn\">Змінити</button>"."</div></td></form>";
+
         echo"</tr>";
 
-   }
-  break;
-}}
+
+
+
+}
+}
 ?>
 
 </table>
