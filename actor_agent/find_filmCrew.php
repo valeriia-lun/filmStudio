@@ -80,7 +80,7 @@
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
- $result_film_crews = $mysqli->query("SELECT * FROM `film_crew`");
+$result_film_crews = $mysqli->query("SELECT * FROM `film_crew`");
 
 //$mysqli->close();
 
