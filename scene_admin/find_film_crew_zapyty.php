@@ -56,7 +56,7 @@
 
 <td><div class = "noprint">Додати технічних працівників</div></td>
 </tr></thead>
-
+<form  action = "add_others_to_film_crew.php" method="post">
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
@@ -130,6 +130,7 @@ function res($result){
 ?>
 </table>
 </div>
+</form>
 <div class="btn noprint">
 <button class ="button btn btn-danger" onclick="window.print()">Друкувати</button></br></br></br>
 </div>

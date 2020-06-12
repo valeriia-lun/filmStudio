@@ -42,7 +42,39 @@
       <label class=" mr-sm-2" >Режисер</label>
     </form>
   </div>
-</nav>
+  </nav>
+  <h1 align="center" class="colorForAllText">Інформація про групу монтажерів</h1></br>
+<div  style="margin:10px;">
+<table border="1" class=" table table-dark table-hover" >
+<thead class="thead-dark " style="background-color: #252527;">
+<tr>
+<td>Номер групи монтажерів</td>
+<td>Дата початку роботи групи монтажерів</td>
+<td>Дата закінчення роботи групи монтажерів</td>
+<td>Назва фільму</td>
+</tr></thead>
+
+<?php 
+$mysqli = new mysqli("localhost","root","root","filmstudio");
+$mysqli->query("SET NAMES 'utf8'");
+$number_of_editCrew = $_POST['number_of_edit_crew'];
+$info = $mysqli->query("SELECT * FROM `edit_crew` WHERE `number_of_edit_crew` = $number_of_editCrew");
+$infoFilm = $mysqli->query("SELECT * FROM `movie` WHERE `number_of_edit_crew` = $number_of_editCrew");
+$stroka2 = mysqli_fetch_array($infoFilm);
+
+while ($stroka = mysqli_fetch_array($info)){
+ 
+    echo"<tr>";
+    echo"<td>" . $stroka['number_of_edit_crew'] . "</td>";
+    echo"<td>" . $stroka['date_start_edit_crew'] . "</td>";
+    echo"<td>" . $stroka['date_finish_edit_crew'] . "</td>";
+    echo"<td>" . $stroka2['name_of_movie'] . "</td>";
+    echo"</tr>";
+
+}
+?>
+
+</table></div>
 <h1 align="center" class="colorForAllText">Монтажери</h1></br>
 
 

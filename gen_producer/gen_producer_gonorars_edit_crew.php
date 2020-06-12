@@ -59,21 +59,23 @@ ob_end_clean();*/
 
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
+$name_movie = $_POST['moive_name_edit_crew'];
 
-$number = $_POST['moive_name_edit_crew'];
+
+$number = mysqli_fetch_array($mysqli->query("SELECT number_of_edit_crew FROM `movie` WHERE `name_of_movie` = '$name_movie'"));
 //echo "hello";
 //echo $number;
 
 $result = $mysqli->query("SELECT *
- FROM `editor` WHERE `editor_id` IN (SELECT `editor_id` FROM `editor_crewedit` WHERE `number_of_edit_crew`  = $number)");
+ FROM `editor` WHERE `editor_id` IN (SELECT `editor_id` FROM `editor_crewedit` WHERE `number_of_edit_crew`  IN(SELECT `number_of_edit_crew` FROM `movie` WHERE `name_of_movie` = '$name_movie'))");
 while ($stroka = mysqli_fetch_array($result)){
   $id_e = $stroka['editor_id'];
-  $gonorars_result = $mysqli->query("SELECT editor_fee FROM editor_crewedit WHERE editor_id =  $id_e AND number_of_edit_crew = $number");
+  $gonorars_result = $mysqli->query("SELECT editor_fee FROM editor_crewedit WHERE editor_id =  $id_e AND number_of_edit_crew IN(SELECT `number_of_edit_crew` FROM `movie` WHERE `name_of_movie` = '$name_movie')");
   $gonorars_res = mysqli_fetch_array($gonorars_result);
   $gonorars_use = $gonorars_res[0];
 
   echo"<form  action = \"gonorars_check.php\" method=\"post\"><tr>";
-  echo "<input type=\"hidden\" value = \"" .$number . "\" name=\"number_of_editCrew\" >";
+  echo "<input type=\"hidden\" value = \"" .$number[0] . "\" name=\"number_of_editCrew\" >";
     echo"<td>" . $stroka['editor_id'] . "</td>";
     echo"<td>" . $stroka['editor_name'] . "</td>";
     echo"<td>" . $stroka['editor_surname'] . "</td>";

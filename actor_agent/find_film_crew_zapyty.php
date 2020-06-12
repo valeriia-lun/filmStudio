@@ -57,7 +57,7 @@
 <td><div class = "noprint">Додати акторів та дублерів</div></td>
 </tr></thead>
 
-
+<form action = "add_others_to_film_crew.php" method="post">
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
@@ -119,7 +119,7 @@ function res($result){
   while ($stroka = mysqli_fetch_array($result_filter)){
 
       echo"<tr>";
-      echo"<td>" . $stroka['number_of_film_crew'] . "</td>";
+      echo"<td name=\"number_of_film_crew\">" . $stroka['number_of_film_crew'] . "</td>";
       echo"<td>" . $stroka['date_start_crew'] . "</td>";
       echo"<td>" . $stroka['date_finish_film_crew'] . "</td>";
       echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" value = \"" . $stroka['number_of_film_crew'] . "\" name=\"number_of_film_crew\">Додати</button>"."</div></td>";
@@ -132,6 +132,7 @@ function res($result){
 ?>
 </table>
 </div>
+</form>
 <div class="btn noprint">
 <button class ="button btn btn-danger" onclick="window.print()">Друкувати</button></br></br></br>
 </div>

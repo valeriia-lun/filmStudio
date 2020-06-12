@@ -55,6 +55,8 @@
 <td>Id голови групи монтажерів</td>
 <td><div class = "noprint">Додати монтажерів</div></td>
 </tr></thead>
+
+<form action = "add_editor_to_edit_crew.php" method="post">
 <?php
 if (isset($_POST['done'])){
   $mysqli = new mysqli("localhost","root","root","filmstudio");
@@ -105,7 +107,8 @@ $mysqli->query("SET NAMES 'utf8'");
 //$mysqli->close();
 while ($stroka = mysqli_fetch_array($result_filter)){
     echo"<tr>";
-    echo"<td>" . $stroka['number_of_edit_crew'] . "</td>";
+    echo"<td name=\"number_of_edit_crew\">" . $stroka['number_of_edit_crew'] . "</td>";
+   
     echo"<td>" . $stroka['date_start_edit_crew'] . "</td>";
     echo"<td>" . $stroka['date_finish_edit_crew'] . "</td>";
     echo"<td>" . $stroka['editor_crew_head_id'] . "</td>";
@@ -117,6 +120,7 @@ while ($stroka = mysqli_fetch_array($result_filter)){
 
 </table>
 </div>
+</form>
 <div class="btn noprint">
 <button class ="button btn btn-danger" onclick="window.print()">Друкувати</button></br></br></br>
 </div>
