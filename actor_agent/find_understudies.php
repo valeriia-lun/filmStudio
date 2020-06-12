@@ -40,8 +40,10 @@ $(document).ready(function(){
     var maxFieldFilms = 10; //Input fields increment limitation
     var addButtonFilms = $('.add_button_Films'); //Add button selector
     var wrapperFilms = $('.field_wrapper_Films'); //Input field wrapper
-    var fieldHTMLFilms = '<div><input type="text" class="form-control" name="field_name_Films[]" value=""/><a href="javascript:void(0);" class="remove_button_Films"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
-    var xFilms = 1; //Initial field counter is 1
+    /*var fieldHTMLFilms = ('.field_wrapper_Films select')[0].outerHTML;
+    alert(fieldHTMLFilms);// '<div><input type="text" class="form-control" name="field_name_Films[]" value=""/><a href="javascript:void(0);" class="remove_button_Films"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
+    */var xFilms = 1; //Initial field counter is 1
+    var fieldHTMLFilms = "<div>" + $('.field_wrapper_Films select')[0].outerHTML + "<a href=\"javascript:void(0);\" class=\"remove_button_Films\"><img src=\"../img/delete_icon.png\" width=\'20\' height=\'20\'/></a></div>";
 
     //Once add button is clicked
     $(addButtonFilms).click(function(){
@@ -63,10 +65,10 @@ $(document).ready(function(){
     var maxSkills = 10; //Input fields increment limitation
     var addButtonSkills = $('.add_button_Skills'); //Add button selector
     var wrapperSkills = $('.field_wrapper_Skills'); //Input field wrapper
-    var fieldHTMLSkills = '<div><select class="form-control" name="field_name_Skills[]"><option selected></option><option>швидко бігає</option><option>стрибає</option><option>акробат</option><option>плаває</option><option>катається на ковзанах</option><option>професійний плавець</option><option>каскадер</option><option>пригає на скакалці</option><option>жонглює</option><option>знає іспанську</option></select><a href="javascript:void(0);" class="remove_button_Skills"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
+    // var fieldHTMLSkills = '<div><select class="form-control" name="field_name_Skills[]"><option selected></option><option>швидко бігає</option><option>стрибає</option><option>акробат</option><option>плаває</option><option>катається на ковзанах</option><option>професійний плавець</option><option>каскадер</option><option>пригає на скакалці</option><option>жонглює</option><option>знає іспанську</option></select><a href="javascript:void(0);" class="remove_button_Skills"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
     var xSkills = 1;
 
-
+    var fieldHTMLSkills = "<div>" + $('.field_wrapper_Skills select')[0].outerHTML + "<a href=\"javascript:void(0);\" class=\"remove_button_Skills\"><img src=\"../img/delete_icon.png\" width=\'20\' height=\'20\'/></a></div>";
     //Once add button is clicked
     $(addButtonSkills).click(function(){
         //Check maximum number of input fields
@@ -241,7 +243,7 @@ echo "</div></div>";
               <option>жонглює</option>
               <option>знає іспанську</option>
             </select>
-           <a href="javascript:void(0);" class="add_button_Skills" title="Add field"><img src="../img/add_icon.png" height='35' width='35'/></a>
+           <a href="javascript:void(1);" class="add_button_Skills" title="Add field"><img src="../img/add_icon.png" height='35' width='35'/></a>
        </div>
    </div>
 </div></div>

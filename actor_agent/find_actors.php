@@ -20,23 +20,24 @@ $(document).ready(function(){
     var maxFieldFilms = 10; //Input fields increment limitation
     var addButtonFilms = $('.add_button_Films'); //Add button selector
     var wrapperFilms = $('.field_wrapper_Films'); //Input field wrapper
-    var fieldHTMLFilms = '<div><select name=\"field_name_Films[]\"  class=\"select selectpicker  form-control\"><option></option><a href="javascript:void(0);" class="remove_button_Films"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
-
     <?php
-    // $mysqli = new mysqli("localhost","root","root","filmstudio");
-    // $mysqli->query("SET NAMES 'utf8'");
-    //
-    // $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie`");
-    //
-    // while($stroka = mysqli_fetch_array($result_films)){
-    // for ($i=0; $i<count($stroka); $i+=2){
-    //
-    //   fieldHTMLFilms .= "<option>$stroka[$i]</option>";
-    // }
-    // }
-    // fieldHTMLFilms .= "</select><a href=\"javascript:void(0);\" class=\"add_button_Films\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a></div>";
+    $mysqli = new mysqli("localhost","root","root","filmstudio");
+    $mysqli->query("SET NAMES 'utf8'");
+
+    $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie`");
+    $fieldHTMLFilms = "";
+    while($stroka = mysqli_fetch_array($result_films)){
+    for ($i=0; $i<count($stroka); $i+=2){
+
+      $fieldHTMLFilms .= "<option>$stroka[$i]</option>";
+    }
+    }
+    $fieldHTMLFilms .= "</select><a href=\"javascript:void(0);\" class=\"add_button_Films\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a></div>";
 
     ?>
+    var fieldHTMLFilms = '<div><select name=\"field_name_Films[]\"  class=\"select selectpicker  form-control\"><option></option><a href="javascript:void(0);" class="remove_button_Films"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
+
+
 
     var xFilms = 1; //Initial field counter is 1
 
