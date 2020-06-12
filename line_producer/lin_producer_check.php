@@ -27,9 +27,9 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only">(current)</span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Лінійний продюсер</label>
     </form>
@@ -37,7 +37,7 @@
 </nav>
 <?php
 
-if (isset($_POST['done']) && (isset($_POST['admin_maidan_id']) || isset($_POST['gafer_id']) || isset($_POST['zvukorezhiser_id']) || isset($_POST['operator_id']) || 
+if (isset($_POST['done']) && (isset($_POST['admin_maidan_id']) || isset($_POST['gafer_id']) || isset($_POST['zvukorezhiser_id']) || isset($_POST['operator_id']) ||
 isset($_POST['hud_po_kost_id']) || isset($_POST['hud_post_id']) || isset($_POST['agent_id']))){
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
@@ -52,6 +52,16 @@ $hud_post_id =  $_POST['hud_post_id'];
 $agent_id =  $_POST['agent_id'];
 
 $number_of_film_crew = $_POST['number_of_filmCrewww'];
+
+
+$mysqli->query("DELETE FROM `others_filmCrew` WHERE `number_of_film_crew` = $number_of_film_crew AND `others_id` IN(SELECT `others_id` FROM `Others` WHERE `name_of_position` = 'адміністратор майданчика')");
+$mysqli->query("DELETE FROM `others_filmCrew` WHERE `number_of_film_crew` = $number_of_film_crew AND `others_id` IN(SELECT `others_id` FROM `Others` WHERE `name_of_position` = 'гафер')");
+$mysqli->query("DELETE FROM `others_filmCrew` WHERE `number_of_film_crew` = $number_of_film_crew AND `others_id` IN(SELECT `others_id` FROM `Others` WHERE `name_of_position` = 'звукорежисер')");
+$mysqli->query("DELETE FROM `others_filmCrew` WHERE `number_of_film_crew` = $number_of_film_crew AND `others_id` IN(SELECT `others_id` FROM `Others` WHERE `name_of_position` = 'оператор')");
+$mysqli->query("DELETE FROM `others_filmCrew` WHERE `number_of_film_crew` = $number_of_film_crew AND `others_id` IN(SELECT `others_id` FROM `Others` WHERE `name_of_position` = 'художник по костюмах')");
+$mysqli->query("DELETE FROM `others_filmCrew` WHERE `number_of_film_crew` = $number_of_film_crew AND `others_id` IN(SELECT `others_id` FROM `Others` WHERE `name_of_position` = 'художник-постановщик')");
+$mysqli->query("DELETE FROM `others_filmCrew` WHERE `number_of_film_crew` = $number_of_film_crew AND `others_id` IN(SELECT `others_id` FROM `Others` WHERE `name_of_position` = 'агент по акторах')");
+
 
 if ( $admin_maidan_id != '') {
         foreach($admin_maidan_id as $value){

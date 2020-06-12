@@ -27,9 +27,9 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only">(current)</span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Генеральний монтажер</label>
     </form>
@@ -42,15 +42,22 @@ $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
 
 
+
 $editor_id =  $_POST['editor_id'];
 $number_of_editCrew = $_POST['number_of_editCrewww'];
 $is_head = $_POST['is_head'];
 
+$mysqli->query("DELETE FROM `editor_crewEdit` WHERE `number_of_edit_crew` = $number_of_editCrew");
+
 if ( $editor_id != '') {
-if(isset($_POST['is_head']) && $_POST['is_head'] == 'Yes')
-{
+// if(isset($_POST['is_head']))
+// {
   foreach($editor_id as $value){
-    $result = $mysqli->query("INSERT INTO `editor_crewEdit`(`number_of_edit_crew`, `editor_id`, `editor_fee`, `is_head`) VALUES ('$number_of_editCrew', '$value','0', '1')");
+    if($is_head == 1){
+      $result = $mysqli->query("INSERT INTO `editor_crewEdit`(`number_of_edit_crew`, `editor_id`, `editor_fee`, `is_head`) VALUES ('$number_of_editCrew', '$value','0', '1')");
+    } else {
+      $result = $mysqli->query("INSERT INTO `editor_crewedit`(`number_of_edit_crew`, `editor_id`, `editor_fee`, `is_head`) VALUES ('$number_of_editCrew', '$value','0', '$0')");
+    }
   if ($result) {
     echo "</br></br></br><h1 class=\"colorForAllText\">Монтажерів успішно додано до монтажної групи!</h1>";
    }
@@ -59,20 +66,27 @@ else {
   echo "<script><a href=\"#\" class=\"btn btn-danger\" onclick=\"history.back();return false;\">Назад</a></script>";
     }
   }
-}
-else
-{
-  foreach($editor_id as $value){
-    $result = $mysqli->query("INSERT INTO `editor_crewedit`(`number_of_edit_crew`, `editor_id`, `editor_fee`, `is_head`) VALUES ('$number_of_editCrew', '$value','0', '$0')");
-  if ($result) {
-    echo "</br></br></br><h1 class=\"colorForAllText\">Монтажерів успішно додано до монтажної групи!</h1>";
-   }
-else {
-  echo "</br></br></br><h1 class=\"colorForAllText\">Здається, щось пішло не так, монтажерів не було додано..</h1>";
-  echo "<script><a href=\"#\" class=\"btn btn-danger\" onclick=\"history.back();return false;\">Назад</a></script>";
-    }
-  }
-}
+//}
+
+
+// else
+// {
+//   foreach($editor_id as $value){
+//     if ($result) {
+//         echo "Success!";
+//       }
+//     else {
+//          echo "Error! $mysqli->error <br>";
+//        }
+//   if ($result) {
+//     echo "</br></br></br><h1 class=\"colorForAllText\">Монтажерів успішно додано до монтажної групи!</h1>";
+//    }
+// else {
+//   echo "</br></br></br><h1 class=\"colorForAllText\">Здається, щось пішло не так, монтажерів не було додано..</h1>";
+//   echo "<script><a href=\"#\" class=\"btn btn-danger\" onclick=\"history.back();return false;\">Назад</a></script>";
+//     }
+//   }
+// }
 
 
 

@@ -27,9 +27,9 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only">(current)</span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Художник по костюмах</label>
     </form>
@@ -45,6 +45,8 @@ $mysqli->query("SET NAMES 'utf8'");
 
 $others_id =  $_POST['others_id'];
 $number_of_film_crew = $_POST['number_of_filmCrewww'];
+
+$mysqli->query("DELETE FROM `others_filmCrew` WHERE `number_of_film_crew` = $number_of_filmCrew AND `others_id` IN(SELECT `others_id` FROM `Others` WHERE `name_of_position` = 'помічник художника по костюмах')");
 
 
 

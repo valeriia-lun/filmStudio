@@ -35,9 +35,9 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only">(current)</span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Лінійний продюсер</label>
     </form>
@@ -97,9 +97,9 @@ $used_start = $date_start_this_film_crew[0];
 $used_finish = $date_finish_this_film_crew[0];
 
 
-$result_others=$mysqli->query("SELECT * FROM others WHERE `name_of_position` = 'адміністратор майданчика' AND others_id NOT IN (SELECT DISTINCT others_id FROM others_filmcrew WHERE number_of_film_crew
+$result_others=$mysqli->query("SELECT * FROM others WHERE `name_of_position` = 'адміністратор майданчика' AND (others_id NOT IN (SELECT DISTINCT others_id FROM others_filmcrew WHERE number_of_film_crew
  IN(SELECT number_of_film_crew FROM film_crew WHERE ((date_finish_film_crew BETWEEN '$used_start' AND '$used_finish') OR
-(date_start_crew BETWEEN  '$used_start' AND  '$used_finish'))))");
+(date_start_crew BETWEEN  '$used_start' AND  '$used_finish')))) OR  others_id IN (SELECT others_id FROM `others_filmcrew` WHERE number_of_film_crew = $number_of_filmCrew))");
 while ($stroka = mysqli_fetch_array($result_others)){
   $temp = $stroka['others_id'];
 
@@ -128,7 +128,19 @@ while ($stroka = mysqli_fetch_array($result_others)){
     echo"<td>" .  res($result_others_phones) . "</td>";
     echo"<td>" .  res($result_others_contacts_rel) . "</td>";
     echo"<td>" .  res($result_others_ratings) . "</td>";
-    echo"<td>" ."<input type=\"checkbox\" class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"admin_maidan_id[]\" >";
+
+    $res = $mysqli->query("SELECT * FROM `others_filmCrew` WHERE `number_of_film_crew` = $number_of_filmCrew AND `others_id` = $temp");
+
+    $re = mysqli_fetch_array($res);
+
+    if($re[0] != ""){
+      echo"<td>" ."<input type=\"checkbox\" checked class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"admin_maidan_id[]\" >";
+
+    }else{
+      echo"<td>" ."<input type=\"checkbox\" checked class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"admin_maidan_id[]\" >";
+    }
+
+
     echo"</tr>";
    }
 
@@ -176,9 +188,9 @@ $mysqli->query("SET NAMES 'utf8'");
  $used_finish = $date_finish_this_film_crew[0];
 
 
- $result_others=$mysqli->query("SELECT * FROM others WHERE `name_of_position` = 'гафер' AND others_id NOT IN (SELECT DISTINCT others_id FROM others_filmcrew WHERE number_of_film_crew
+ $result_others=$mysqli->query("SELECT * FROM others WHERE `name_of_position` = 'гафер' AND (others_id NOT IN (SELECT DISTINCT others_id FROM others_filmcrew WHERE number_of_film_crew
   IN(SELECT number_of_film_crew FROM film_crew WHERE ((date_finish_film_crew BETWEEN '$used_start' AND '$used_finish') OR
- (date_start_crew BETWEEN  '$used_start' AND  '$used_finish'))))");
+ (date_start_crew BETWEEN  '$used_start' AND  '$used_finish')))) OR  others_id IN (SELECT others_id FROM `others_filmcrew` WHERE number_of_film_crew = $number_of_filmCrew))");
 //$mysqli->close();
 
 while ($stroka = mysqli_fetch_array($result_others)){
@@ -209,7 +221,19 @@ while ($stroka = mysqli_fetch_array($result_others)){
     echo"<td>" .  res($result_others_phones) . "</td>";
     echo"<td>" .  res($result_others_contacts_rel) . "</td>";
     echo"<td>" .  res($result_others_ratings) . "</td>";
-    echo"<td>" ."<input type=\"checkbox\" class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"gafer_id[]\" >";
+
+    $res = $mysqli->query("SELECT * FROM `others_filmCrew` WHERE `number_of_film_crew` = $number_of_filmCrew AND `others_id` = $temp");
+
+    $re = mysqli_fetch_array($res);
+
+    if($re[0] != ""){
+      echo"<td>" ."<input type=\"checkbox\" checked class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"gafer_id[]\" >";
+
+    }else{
+      echo"<td>" ."<input type=\"checkbox\" class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"gafer_id[]\" >";
+    }
+
+
     echo"</tr>";
    }
 
@@ -256,9 +280,9 @@ $mysqli->query("SET NAMES 'utf8'");
  $used_finish = $date_finish_this_film_crew[0];
 
 
- $result_others=$mysqli->query("SELECT * FROM others WHERE `name_of_position` = 'звукорежисер' AND others_id NOT IN (SELECT DISTINCT others_id FROM others_filmcrew WHERE number_of_film_crew
+ $result_others=$mysqli->query("SELECT * FROM others WHERE `name_of_position` = 'звукорежисер' AND (others_id NOT IN (SELECT DISTINCT others_id FROM others_filmcrew WHERE number_of_film_crew
   IN(SELECT number_of_film_crew FROM film_crew WHERE ((date_finish_film_crew BETWEEN '$used_start' AND '$used_finish') OR
- (date_start_crew BETWEEN  '$used_start' AND  '$used_finish'))))");
+ (date_start_crew BETWEEN  '$used_start' AND  '$used_finish')))) OR  others_id IN (SELECT others_id FROM `others_filmcrew` WHERE number_of_film_crew = $number_of_filmCrew))");
 //$mysqli->close();
 
 while ($stroka = mysqli_fetch_array($result_others)){
@@ -289,7 +313,20 @@ while ($stroka = mysqli_fetch_array($result_others)){
     echo"<td>" .  res($result_others_phones) . "</td>";
     echo"<td>" .  res($result_others_contacts_rel) . "</td>";
     echo"<td>" .  res($result_others_ratings) . "</td>";
-    echo"<td>" ."<input type=\"checkbox\" class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"zvukorezhiser_id[]\" >";
+
+    $res = $mysqli->query("SELECT * FROM `others_filmCrew` WHERE `number_of_film_crew` = $number_of_filmCrew AND `others_id` = $temp");
+
+    $re = mysqli_fetch_array($res);
+
+    if($re[0] != ""){
+      echo"<td>" ."<input type=\"checkbox\" checked class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"zvukorezhiser_id[]\" >";
+
+    }else{
+      echo"<td>" ."<input type=\"checkbox\" class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"zvukorezhiser_id[]\" >";
+    }
+
+
+
     echo"</tr>";
    }
 
@@ -337,9 +374,9 @@ $mysqli->query("SET NAMES 'utf8'");
  $used_finish = $date_finish_this_film_crew[0];
 
 
- $result_others=$mysqli->query("SELECT * FROM others WHERE `name_of_position` = 'оператор' AND others_id NOT IN (SELECT DISTINCT others_id FROM others_filmcrew WHERE number_of_film_crew
+ $result_others=$mysqli->query("SELECT * FROM others WHERE `name_of_position` = 'оператор' AND (others_id NOT IN (SELECT DISTINCT others_id FROM others_filmcrew WHERE number_of_film_crew
   IN(SELECT number_of_film_crew FROM film_crew WHERE ((date_finish_film_crew BETWEEN '$used_start' AND '$used_finish') OR
- (date_start_crew BETWEEN  '$used_start' AND  '$used_finish'))))");
+ (date_start_crew BETWEEN  '$used_start' AND  '$used_finish')))) OR  others_id IN (SELECT others_id FROM `others_filmcrew` WHERE number_of_film_crew = $number_of_filmCrew))");
 //$mysqli->close();
 
 while ($stroka = mysqli_fetch_array($result_others)){
@@ -370,7 +407,22 @@ while ($stroka = mysqli_fetch_array($result_others)){
     echo"<td>" .  res($result_others_phones) . "</td>";
     echo"<td>" .  res($result_others_contacts_rel) . "</td>";
     echo"<td>" .  res($result_others_ratings) . "</td>";
-    echo"<td>" ."<input type=\"checkbox\" class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"operator_id[]\" >";
+
+    $res = $mysqli->query("SELECT * FROM `others_filmCrew` WHERE `number_of_film_crew` = $number_of_filmCrew AND `others_id` = $temp");
+
+    $re = mysqli_fetch_array($res);
+
+    if($re[0] != ""){
+      echo"<td>" ."<input type=\"checkbox\" checked class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"operator_id[]\" >";
+
+    }else{
+      echo"<td>" ."<input type=\"checkbox\" class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"operator_id[]\" >";
+    }
+
+
+
+
+
     echo"</tr>";
    }
 
@@ -418,9 +470,9 @@ $mysqli->query("SET NAMES 'utf8'");
  $used_finish = $date_finish_this_film_crew[0];
 
 
- $result_others=$mysqli->query("SELECT * FROM others WHERE `name_of_position` = 'художник по костюмах' AND others_id NOT IN (SELECT DISTINCT others_id FROM others_filmcrew WHERE number_of_film_crew
+ $result_others=$mysqli->query("SELECT * FROM others WHERE `name_of_position` = 'художник по костюмах' AND (others_id NOT IN (SELECT DISTINCT others_id FROM others_filmcrew WHERE number_of_film_crew
   IN(SELECT number_of_film_crew FROM film_crew WHERE ((date_finish_film_crew BETWEEN '$used_start' AND '$used_finish') OR
- (date_start_crew BETWEEN  '$used_start' AND  '$used_finish'))))");
+ (date_start_crew BETWEEN  '$used_start' AND  '$used_finish')))) OR  others_id IN (SELECT others_id FROM `others_filmcrew` WHERE number_of_film_crew = $number_of_filmCrew))");
 
 //$mysqli->close();
 
@@ -452,7 +504,22 @@ while ($stroka = mysqli_fetch_array($result_others)){
     echo"<td>" .  res($result_others_phones) . "</td>";
     echo"<td>" .  res($result_others_contacts_rel) . "</td>";
     echo"<td>" .  res($result_others_ratings) . "</td>";
-    echo"<td>" ."<input type=\"checkbox\" class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"hud_po_kost_id[]\" >";
+
+
+    $res = $mysqli->query("SELECT * FROM `others_filmCrew` WHERE `number_of_film_crew` = $number_of_filmCrew AND `others_id` = $temp");
+
+    $re = mysqli_fetch_array($res);
+
+    if($re[0] != ""){
+      echo"<td>" ."<input type=\"checkbox\" checked class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"hud_po_kost_id[]\" >";
+
+    }else{
+      echo"<td>" ."<input type=\"checkbox\" class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"hud_po_kost_id[]\" >";
+    }
+
+
+
+
     echo"</tr>";
    }
 
@@ -500,9 +567,9 @@ $mysqli->query("SET NAMES 'utf8'");
  $used_finish = $date_finish_this_film_crew[0];
 
 
- $result_others=$mysqli->query("SELECT * FROM others WHERE `name_of_position` = 'художник-постановщик' AND others_id NOT IN (SELECT DISTINCT others_id FROM others_filmcrew WHERE number_of_film_crew
+ $result_others=$mysqli->query("SELECT * FROM others WHERE `name_of_position` = 'художник-постановщик' AND (others_id NOT IN (SELECT DISTINCT others_id FROM others_filmcrew WHERE number_of_film_crew
   IN(SELECT number_of_film_crew FROM film_crew WHERE ((date_finish_film_crew BETWEEN '$used_start' AND '$used_finish') OR
- (date_start_crew BETWEEN  '$used_start' AND  '$used_finish'))))");
+ (date_start_crew BETWEEN  '$used_start' AND  '$used_finish')))) OR  others_id IN (SELECT others_id FROM `others_filmcrew` WHERE number_of_film_crew = $number_of_filmCrew))");
 //$mysqli->close();
 
 while ($stroka = mysqli_fetch_array($result_others)){
@@ -533,7 +600,21 @@ while ($stroka = mysqli_fetch_array($result_others)){
     echo"<td>" .  res($result_others_phones) . "</td>";
     echo"<td>" .  res($result_others_contacts_rel) . "</td>";
     echo"<td>" .  res($result_others_ratings) . "</td>";
-    echo"<td>" ."<input type=\"checkbox\" class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"hud_post_id[]\" >";
+
+    $res = $mysqli->query("SELECT * FROM `others_filmCrew` WHERE `number_of_film_crew` = $number_of_filmCrew AND `others_id` = $temp");
+
+    $re = mysqli_fetch_array($res);
+
+    if($re[0] != ""){
+      echo"<td>" ."<input type=\"checkbox\" checked class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"hud_post_id[]\" >";
+
+    }else{
+      echo"<td>" ."<input type=\"checkbox\" class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"hud_post_id[]\" >";
+    }
+
+
+
+
     echo"</tr>";
    }
 
@@ -584,9 +665,9 @@ $used_start = $date_start_this_film_crew[0];
 $used_finish = $date_finish_this_film_crew[0];
 
 
-$result_others=$mysqli->query("SELECT * FROM others WHERE `name_of_position` = 'агент по акторах' AND others_id NOT IN (SELECT DISTINCT others_id FROM others_filmcrew WHERE number_of_film_crew
+$result_others=$mysqli->query("SELECT * FROM others WHERE `name_of_position` = 'агент по акторах' AND (others_id NOT IN (SELECT DISTINCT others_id FROM others_filmcrew WHERE number_of_film_crew
  IN(SELECT number_of_film_crew FROM film_crew WHERE ((date_finish_film_crew BETWEEN '$used_start' AND '$used_finish') OR
-(date_start_crew BETWEEN  '$used_start' AND  '$used_finish'))))");
+(date_start_crew BETWEEN  '$used_start' AND  '$used_finish')))) OR  others_id IN (SELECT others_id FROM `others_filmcrew` WHERE number_of_film_crew = $number_of_filmCrew))");
 while ($stroka = mysqli_fetch_array($result_others)){
   $temp = $stroka['others_id'];
 
@@ -615,7 +696,18 @@ while ($stroka = mysqli_fetch_array($result_others)){
     echo"<td>" .  res($result_others_phones) . "</td>";
     echo"<td>" .  res($result_others_contacts_rel) . "</td>";
     echo"<td>" .  res($result_others_ratings) . "</td>";
-    echo"<td>" ."<input type=\"checkbox\" class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"agent_id[]\" >";
+
+    $res = $mysqli->query("SELECT * FROM `others_filmCrew` WHERE `number_of_film_crew` = $number_of_filmCrew AND `others_id` = $temp");
+
+    $re = mysqli_fetch_array($res);
+
+    if($re[0] != ""){
+      echo"<td>" ."<input type=\"checkbox\" checked class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"agent_id[]\" >";
+
+    }else{
+      echo"<td>" ."<input type=\"checkbox\" class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"agent_id[]\" >";
+    }
+
     echo"</tr>";
    }
 

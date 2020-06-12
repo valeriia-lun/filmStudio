@@ -58,6 +58,12 @@ $name_movie = $_POST['moive_name_film_crew'];
 
 
 $number = mysqli_fetch_array($mysqli->query("SELECT number_of_film_crew FROM `movie` WHERE `name_of_movie` = $name_movie"));
+if ($number) {
+    echo "Success!";
+  }
+else {
+     echo "Error! $mysqli->error <br>";
+   }
 //echo "hello";
 print_r($number);
 
