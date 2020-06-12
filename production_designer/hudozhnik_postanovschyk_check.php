@@ -27,9 +27,9 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only">(current)</span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Художник-постановщик</label>
     </form>
@@ -45,11 +45,14 @@ $mysqli->query("SET NAMES 'utf8'");
 $others_id =  $_POST['others_id'];
 $number_of_film_crew = $_POST['number_of_filmCrewww'];
 
+$mysqli->query("DELETE FROM `others_filmCrew` WHERE `number_of_film_crew` = $number_of_film_crew AND `others_id` IN(SELECT `others_id` FROM `Others` WHERE `name_of_position` = 'помічник художникапостановщика')");
+
+
 if ( $others_id != '') {
         foreach($others_id as $value){
           $result = $mysqli->query("INSERT INTO `others_filmcrew`(`number_of_film_crew`, `others_id`, `others_fee`) VALUES ('$number_of_film_crew', '$value','0')");
         if ($result) {
-          
+
           echo "</br></br></br><h1 class=\"colorForAllText\">Співробітників успішно додано до знімальної групи!</h1>";
          }
       else {
