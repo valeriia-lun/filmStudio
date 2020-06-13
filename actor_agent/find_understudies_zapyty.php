@@ -33,14 +33,15 @@ table{zoom: 40%;}
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item ">
         <a class="nav-link" href="main.php">Головна<span class="sr-only">(current)</span></a>
       </li>
     </ul>
-
+<div  >
     <form class=" my-2 my-lg-0">
-      <label class=" mr-sm-2" >Агент по акторах</label>
+      <label  class=" mr-sm-2" >Посада:&nbsp;Агент по акторах</label>
     </form>
+</div>
   </div>
 </nav>
 <div>
@@ -126,7 +127,7 @@ $name =  $_POST['name'];
         $shoeSize =  $_POST['shoeSize'];
         $size =  $_POST['clothingSize'];
         $nationality =  $_POST['selectingNationality'];
-        $films =  $_POST['field_name_Films'];
+        $films =  $_POST['field_name_Films[]'];
         $skills =  $_POST['field_name_Skills'];
 
         $quer = "SELECT * FROM `understudies` WHERE ";
@@ -293,7 +294,7 @@ $name =  $_POST['name'];
                       $quer = $quer . " AND ";
                     }
                     echo $value;
-                    $quer = $quer . "`understudy_id` IN (SELECT `understudy_id` FROM `Understudies_filmCrew` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = \"$value\"))";
+                    $quer = $quer . "`understudy_id` IN (SELECT `understudy_id` FROM `understudies_filmcrew` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = \"'$value'\"))";
                     $isFirst = false;
                     $notFirst = true;
                   }

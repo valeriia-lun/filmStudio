@@ -30,7 +30,7 @@
 <h2 class="colorText">Оберіть свою посаду</h2></br>
 
   <form action="" method="post">
-    <div class="row">
+    <div class="row ">
   <div class="container col-4 text-center">
 
     <select  class="select selectpicker  form-control"   name="position">
@@ -48,9 +48,11 @@
     <option value="production_designer">Художник-постановщик</option>
 
 </select><br></br>
-  <div class="btn form-control">
+
+  <div class="btn ">
   
- <input type="submit"  class ="button btn btn-primary " value="Увійти"><br> 
+ <input type="submit"  class ="button btn btn-danger " value="Увійти"><br> 
+ </div>
  </div>
  </div>
 </div>

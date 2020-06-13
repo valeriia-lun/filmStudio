@@ -15,24 +15,25 @@
 <link rel="stylesheet" href="..\style.css">
 </head>
 <body class="text-center body3">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="..\index.php">Вибір посади</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand"  href="..\index.php">Вибір посади</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Головна<span class="sr-only">(current)</span></a>
-      </li>     
+    </div>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="nav navbar-nav mr-auto">
+      <li class="nav-item nav-link active" ><a href="#" style="color:red;">Головна<span class="sr-only">(current)</span></a></li>
     </ul>
-   
     <form class=" my-2 my-lg-0">
-      <label class=" mr-sm-2" >Агент по акторах</label>
+      <label class=" mr-sm-2" >Посада:&nbsp;&nbsp;Агент по акторах</label>
     </form>
+    </div>
   </div>
 </nav>
+
 
 </br><h4 class="colorForAllText">База даних кіностудії</h4>
 <h4  class="colorForAllText"> "Victoria Studio"</h4></br></br></br></br>

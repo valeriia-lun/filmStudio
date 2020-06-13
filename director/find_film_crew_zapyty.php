@@ -117,21 +117,27 @@ function res($result){
      
   //$mysqli->close();
   while ($stroka = mysqli_fetch_array($result_filter)){
-        echo"<tr>";
-        echo"<form action=\"add_others_to_film_crew.php\" method=\"post\">";
+    $temp = $stroka['number_of_film_crew'];
+    echo"<tr>";
+    echo"<form action=\"add_others_to_film_crew.php\" method=\"post\">";
 
-        echo"<td>" . $stroka['number_of_film_crew'] . "</td>";
-        echo"<td>" . $stroka['date_start_crew'] . "</td>";
-        echo"<td>" . $stroka['date_finish_film_crew'] . "</td>";
-
-        echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" value = \"" . $stroka['number_of_film_crew'] . "\" name=\"number_of_film_crew\">Додати</button>"."</div></td></form>";
-
-            echo"<form action=\"editingFilmCrew.php\" method=\"post\">";
-
-        echo "<input type=\"hidden\" value = \"" .$stroka['number_of_film_crew'] . "\" name=\"number_of_film_crew\" >";
-            echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";
-        echo"</tr>";
+    echo"<td>" . $stroka['number_of_film_crew'] . "</td>";
+    echo"<td>" . $stroka['date_start_crew'] . "</td>";
+    echo"<td>" . $stroka['date_finish_film_crew'] . "</td>";
     
+    $res = $mysqli->query("SELECT * FROM `film_crew` WHERE `date_finish_film_crew` > CURDATE() AND `number_of_film_crew` = $temp");
+    $re = mysqli_fetch_array($res);
+    if($re){
+    echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" value = \"" . $stroka['number_of_film_crew'] . "\" name=\"number_of_film_crew\">Додати</button>"."</div></td></form>";
+    }else{  echo "<td></td>";}
+
+        echo"<form action=\"editingFilmCrew.php\" method=\"post\">";
+
+    echo "<input type=\"hidden\" value = \"" .$stroka['number_of_film_crew'] . "\" name=\"number_of_film_crew\" >";
+    echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";
+
+
+    echo"</tr>";
 
   }
 }

@@ -106,13 +106,20 @@ $mysqli->query("SET NAMES 'utf8'");
    
 //$mysqli->close();
 while ($stroka = mysqli_fetch_array($result_filter)){
+  $temp = $stroka['number_of_edit_crew'];
     echo"<tr>";
     echo"<td name=\"number_of_edit_crew\">" . $stroka['number_of_edit_crew'] . "</td>";
    
     echo"<td>" . $stroka['date_start_edit_crew'] . "</td>";
     echo"<td>" . $stroka['date_finish_edit_crew'] . "</td>";
     echo"<td>" . $stroka['editor_crew_head_id'] . "</td>";
-    echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" value = \"" . $stroka['number_of_edit_crew'] . "\" name=\"number_of_edit_crew\">Додати</button>"."</div></td>";
+    $res = $mysqli->query("SELECT * FROM `edit_crew` WHERE `date_finish_edit_crew` > CURDATE() AND `number_of_edit_crew` = $temp");
+    $re = mysqli_fetch_array($res);
+    if($re){
+      echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" value = \"" . $stroka['number_of_edit_crew'] . "\" name=\"number_of_edit_crew\">Додати</button>"."</div></td>";
+    }else{
+     echo "<td></td>";
+    }
     echo"</tr>";
    }
 }
