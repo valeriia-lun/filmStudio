@@ -52,6 +52,7 @@
 
 <?php
 
+
 if (isset($_POST['logIn'])){
   $mysql = new mysqli('localhost','root','root','filmStudio');
 

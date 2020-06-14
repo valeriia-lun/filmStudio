@@ -107,8 +107,8 @@ function lal(el) {
   <?php
   //if (isset($_POST['editBtn'])){
     $name = filter_var(trim($_POST['name_of_movie']),FILTER_SANITIZE_STRING);
-    echo $name;
-    echo "string";
+    // echo $name;
+    // echo "string";
   //  $name = "anuka";
   //}
   print_r( $name);
@@ -319,6 +319,128 @@ $res = mysqli_fetch_array($result);
 echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"rating\" value=\"$res[0]\" required>";
    ?>   </div>  </div>
    </div><br><br>
+
+   <br><br><h1 class="colorForAllText">Змінити знімальну групу</h1><br>
+
+
+   <div class="row text-center" style="margin:10px;">
+       <div class=" container col-3" >
+       <label class="colorText">Номер знімальної групи: </label>
+       <?php
+
+   $mysql = new mysqli("localhost","root","root","filmstudio");
+   $mysql->query("SET NAMES 'utf8'");
+
+
+   $result = $mysql->query("SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = '$name'");
+
+
+   $numb = mysqli_fetch_array($result);
+
+
+
+   $resultt = $mysql->query("SELECT `number_of_film_crew` FROM `film_crew` WHERE `number_of_film_crew` = '$numb[0]'");
+
+   $res = mysqli_fetch_array($resultt);
+
+
+   echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"number_of_film_crew\" value=\"$res[0]\" required>";
+      ?><br>
+       </div>
+       <div class=" container col-3" >
+       <label class="colorText">Дата початку роботи: </label> <?php
+     $mysql = new mysqli("localhost","root","root","filmstudio");
+     $mysql->query("SET NAMES 'utf8'");
+     $result = $mysql->query("SELECT `date_start_crew` FROM `film_crew` WHERE `number_of_film_crew` = '$numb[0]'");
+
+     $res = mysqli_fetch_array($result);
+
+     echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"date_start\" value=\"$res[0]\" required>";
+       ?><br>
+
+   </div>
+     <div class=" container col-3" >
+     <label class="colorText">Дата закінчення роботи:</label>  <?php
+     $mysql = new mysqli("localhost","root","root","filmstudio");
+     $mysql->query("SET NAMES 'utf8'");
+     $result = $mysql->query("SELECT `date_finish_film_crew` FROM `film_crew` WHERE `number_of_film_crew` = '$numb[0]'");
+
+     $res = mysqli_fetch_array($result);
+
+     echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"date_finish\" value=\"$res[0]\" required>";
+       ?><br>
+
+   </div>
+   <div class="btn">
+   <input type="submit" class ="button btn btn-primary" value="Додати" name="addToFilmCrew">
+   </div><br><br><br></div><br>
+
+
+
+   <br><br><h1 class="colorForAllText">Змінити групу монтажерів</h1><br>
+
+   <div class="row text-center" style="margin:10px;">
+       <div class=" container col-3" >
+       <label class="colorText">Номер групи монтажерів: </label>
+       <?php
+       $mysql = new mysqli("localhost","root","root","filmstudio");
+       $mysql->query("SET NAMES 'utf8'");
+       $result = $mysql->query("SELECT `number_of_edit_crew` FROM `movie` WHERE `name_of_movie` = '$name'");
+
+
+       $numb = mysqli_fetch_array($result);
+
+
+   $result = $mysql->query("SELECT `number_of_edit_crew` FROM `edit_crew` WHERE `number_of_edit_crew` = '$numb[0]'");
+
+   $res = mysqli_fetch_array($result);
+
+   echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"number_of_edit_crew\" value=\"$res[0]\" required>";
+      ?><br>
+   </div>
+   <div class=" container col-3" >
+       <label class="colorText">Дата початку роботи: </label> <?php
+     $mysql = new mysqli("localhost","root","root","filmstudio");
+     $mysql->query("SET NAMES 'utf8'");
+     $result = $mysql->query("SELECT `date_start_edit_crew` FROM `edit_crew` WHERE `number_of_edit_crew` = '$numb[0]'");
+
+     $res = mysqli_fetch_array($result);
+
+     echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"date_start\" value=\"$res[0]\" required>";
+       ?><br>
+   </div>
+   <div class=" container col-3" >
+     <label class="colorText">Дата закінчення роботи:</label><?php
+     $mysql = new mysqli("localhost","root","root","filmstudio");
+     $mysql->query("SET NAMES 'utf8'");
+     $result = $mysql->query("SELECT `date_finish_edit_crew` FROM `edit_crew` WHERE `number_of_edit_crew` = '$numb[0]'");
+
+     $res = mysqli_fetch_array($result);
+
+     echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"date_finish\" value=\"$res[0]\" required>";
+       ?><br>
+   </div></div><br>
+
+
+   <div class="row text-center" style="margin:10px;">
+       <div class=" container col-4" >
+       <label class="colorText">Голова: </label><?php
+       $mysql = new mysqli("localhost","root","root","filmstudio");
+       $mysql->query("SET NAMES 'utf8'");
+       $result = $mysql->query("SELECT `editor_crew_head_id` FROM `edit_crew` WHERE `number_of_edit_crew` = '$numb[0]'");
+
+       $res = mysqli_fetch_array($result);
+
+       echo "<input type= \"text\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"head\" value=\"$res[0]\" required>";
+         ?><br>
+   </div></div><br>
+
+
+
+
+
+
+
    <div class="btn">
    <input type="submit" class ="button btn btn-primary" value="Змінити" name="edit">
    </div><br><br><br>
@@ -332,6 +454,10 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
 
 
 <?php
+
+if (isset($_POST['addToFilmCrew'])){
+echo "string";
+}
 if (isset($_POST['edit'])){
 
 $mysql = new mysqli('localhost','root','root','filmStudio');
