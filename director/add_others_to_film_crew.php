@@ -169,10 +169,10 @@ while ($stroka = mysqli_fetch_array($result_others)){
     $re = mysqli_fetch_array($res);
 
     if($re[0] != ""){
-      echo"<td>" ."<input type=\"checkbox\" checked value = \"" . $stroka['others_id'] . "\" name=\"scenarist_id[]\" >";
+      echo"<td>" ."<input class=\"form-control\" type=\"checkbox\" checked value = \"" . $stroka['others_id'] . "\" name=\"scenarist_id[]\" >";
 
     }else{
-      echo"<td>" ."<input type=\"checkbox\" value = \"" . $stroka['others_id'] . "\" name=\"scenarist_id[]\" >";
+      echo"<td>" ."<input  class=\"form-control\" type=\"checkbox\" value = \"" . $stroka['others_id'] . "\" name=\"scenarist_id[]\" >";
     }
 
     echo"</tr>";
@@ -213,7 +213,7 @@ while ($stroka = mysqli_fetch_array($result_others)){
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
- $result_others = $mysqli->query("SELECT * FROM `others` WHERE `name_of_position` = 'лінійний продюсер'");
+ //$result_others = $mysqli->query("SELECT * FROM `others` WHERE `name_of_position` = 'лінійний продюсер'");
  $number_of_filmCrew = $_POST['number_of_film_crew'];
 
 $start = $mysqli->query("SELECT `date_start_crew` FROM `film_crew` WHERE `number_of_film_crew` = $number_of_filmCrew");
@@ -226,7 +226,7 @@ $used_finish = $date_finish_this_film_crew[0];
 
 $result_others=$mysqli->query("SELECT * FROM others WHERE `name_of_position` = 'лінійний продюсер' AND (others_id NOT IN (SELECT DISTINCT others_id FROM others_filmcrew WHERE number_of_film_crew
  IN(SELECT number_of_film_crew FROM film_crew WHERE ((date_finish_film_crew BETWEEN '$used_start' AND '$used_finish') OR
-(date_start_crew BETWEEN  '$used_start' AND  '$used_finish')))) others_id IN (SELECT others_id FROM `others_filmcrew` WHERE number_of_film_crew = $number_of_filmCrew  ))");
+(date_start_crew BETWEEN  '$used_start' AND  '$used_finish')))) OR others_id IN (SELECT others_id FROM `others_filmcrew` WHERE number_of_film_crew = $number_of_filmCrew  ))");
 //$mysqli->close();
 
 while ($stroka = mysqli_fetch_array($result_others)){

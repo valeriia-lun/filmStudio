@@ -37,14 +37,14 @@
   </div>
 </nav>
 
-<br><br><h1 class="colorForAllText">Змінити групу монтажерів</h1><br>
-
+<br><br><h1 class="colorForAllText">Змінити групу монтажерів</h1>
+<small>Поля, позначені </small><small style="color:red;">*</small><small> - обов'язкові.</small></br></br>
 
 <form action="" method="post">
 
 <div class="row text-center" style="margin:10px;">
     <div class=" container col-3" >
-    <label class="colorText">Номер групи монтажерів: </label> <?php
+    <label class="colorText">Номер групи монтажерів: </label><label style="color:red;">*</label> <?php
   if (isset($_POST['editBtn'])){
     $numb = filter_var(trim($_POST['number_of_edit_crew']),FILTER_SANITIZE_STRING);
 
@@ -60,7 +60,7 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
    ?><br>
 </div>
 <div class=" container col-3" >
-    <label class="colorText">Дата початку роботи: </label> <?php
+    <label class="colorText">Дата початку роботи: </label><label style="color:red;">*</label> <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
   $result = $mysql->query("SELECT `date_start_edit_crew` FROM `edit_crew` WHERE `number_of_edit_crew` = $numb");
@@ -71,7 +71,7 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
     ?><br>
 </div>
 <div class=" container col-3" >
-  <label class="colorText">Дата закінчення роботи:</label><?php
+  <label class="colorText">Дата закінчення роботи:</label><label style="color:red;">*</label><?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
   $result = $mysql->query("SELECT `date_finish_edit_crew` FROM `edit_crew` WHERE `number_of_edit_crew` = $numb");
@@ -84,8 +84,8 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
 
 
 <div class="row text-center" style="margin:10px;">
-    <div class=" container col-4" >
-    <label class="colorText">Голова: </label><?php
+    <div class=" container col-2" >
+    <label class="colorText">Голова: </label><label style="color:red;">*</label><?php
     $mysql = new mysqli("localhost","root","root","filmstudio");
     $mysql->query("SET NAMES 'utf8'");
     $result = $mysql->query("SELECT `editor_crew_head_id` FROM `edit_crew` WHERE `number_of_edit_crew` = $numb");

@@ -67,7 +67,7 @@
         var maxFieldRatings = 10; //Input fields increment limitation
         var addButtonRatings = $('.add_button_Ratings'); //Add button selector
         var wrapperRatings = $('.field_wrapper_Ratings'); //Input field wrapper
-        var fieldHTMLRatings = '<div><input type="text" class="form-control" name="field_name_Ratings[]" value=""/><a href="javascript:void(0);" class="remove_button_Ratings"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
+        var fieldHTMLRatings = '<div><div class=" container col-5"><input type="text" class="form-control" name="field_name_Ratings[]" value=""/><a href="javascript:void(0);" class="remove_button_Ratings"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div></div>'; //New input field html
         var xRatings = 1; //Initial field counter is 1
 
         //Once add button is clicked
@@ -90,7 +90,7 @@
         var maxFieldSkills = 10; //Input fields increment limitation
         var addButtonSkills = $('.add_button_Skills'); //Add button selector
         var wrapperSkills = $('.field_wrapper_Skills'); //Input field wrapper
-        var fieldHTMLSkills = '<div><select class="form-control" name="field_name_Skills[]"><option value="1" selected>швидко бігає</option><option value="2">стрибає</option><option value="3">акробат</option><option value="4">плаває</option><option value="5">катається на ковзанах</option><option value="6">професійний плавець</option><option value="7">каскадер</option><option value="8">пригає на скакалці</option><option value="9">жонглює</option><option value="10">знає іспанську</option></select><a href="javascript:void(0);" class="remove_button_Skills"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
+        var fieldHTMLSkills = '<div><select class="form-control" name="field_name_Skills[]"><option value="0" selected></option><option value="1" >швидко бігає</option><option value="2">стрибає</option><option value="3">акробат</option><option value="4">плаває</option><option value="5">катається на ковзанах</option><option value="6">професійний плавець</option><option value="7">каскадер</option><option value="8">пригає на скакалці</option><option value="9">жонглює</option><option value="10">знає іспанську</option></select><a href="javascript:void(0);" class="remove_button_Skills"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
         var xSkills = 1; //Initial field counter is 1
 
         //Once add button is clicked
@@ -154,36 +154,35 @@ function lal(el) {
     </form>
   </div>
 </nav>
-<br><br><h1 class="colorForAllText">Додати дублера</h1><br>
-
+<br><br><h1 class="colorForAllText">Додати дублера</h1>
+<small>Поля, позначені </small><small style="color:red;">*</small><small> - обов'язкові.</small></br></br>
 <form action="" method="post">
-
 <div class="row text-center" style="margin:10px;">
     <div class=" container col-3" >
-    <label class="colorText">Ім'я: </label><input type="text" class="form-control" name="first_name" maxlength="50" tabindex="2" required><br>
+    <label class="colorText">Ім'я: </label><label style="color:red;">*</label><input type="text" class="form-control" name="first_name" maxlength="50" tabindex="2" required><br>
   </div>
   <div class="container col-3">
-  <label class="colorText">Прізвище:</label> <input type="text" class="form-control" name="last_name" maxlength="50" tabindex="2" required><br>
+  <label class="colorText">Прізвище:</label> <label style="color:red;">*</label><input type="text" class="form-control" name="last_name" maxlength="50" tabindex="2" required><br>
   </div>
   <div class="container col-3">
-  <label class="colorText">По-батькові: </label><input type="text" class="form-control" name="middle_name" maxlength="50" tabindex="2" required><br>
+  <label class="colorText">По-батькові: </label><label style="color:red;">*</label><input type="text" class="form-control" name="middle_name" maxlength="50" tabindex="2" required><br>
   </div>  </div></br>
 
   <div class="row">
   <div class=" container col-3">
-  <label class="colorText">Телефон:</label>
+  <label class="colorText">Телефон:</label><label style="color:red;">*</label>
   <div class="field_wrapper_Phones">
          <div>
-             <input type="text" onkeyup="lal(this)" class="form-control" name="field_name_Phones[]" value=""/>
+             <input type="text" onkeyup="lal(this)" class="form-control" name="field_name_Phones[]" value="" required/>
              <a href="javascript:void(0);" class="add_button_Phones" title="Add field"><img src="../img/add_icon.png"  height='35' width='35'/></a>
          </div>
      </div>
      </div>
      <div class=" container col-3">
-     <label class="colorText">Контакти близьких:</label>
+     <label class="colorText">Контакти близьких:</label><label style="color:red;">*</label>
   <div class="field_wrapper_Contacts">
          <div>
-             <input type="text" onkeyup="lal(this)" class="form-control" name="field_name_Contacts[]" value=""/>
+             <input type="text" onkeyup="lal(this)" class="form-control" name="field_name_Contacts[]" value="" required/>
              <a href="javascript:void(0);" class="add_button_Contacts" title="Add field"><img src="../img/add_icon.png" height='35' width='35'/></a>
          </div>
      </div>
@@ -191,141 +190,144 @@ function lal(el) {
   <div class=" container col-3">
   <label class="colorText">Рейтинги фільмів, у яких брал(а) участь:</label>
   <div class="field_wrapper_Ratings">
-      <div>
-          <input type="text" class="form-control" name="field_name_Ratings[]" value=""/>
+      <div>  <div class=" container col-5">
+          <input type="text" style="width:100px;" class="form-control" name="field_name_Ratings[]" value=""/>
+          </div>
           <a href="javascript:void(0);" class="add_button_Ratings" title="Add field"><img src="../img/add_icon.png" height='35' width='35'/></a>
       </div>     </div>
   </div>
     </div> </br>
 
     <div class="row">
+    <div class=" container col-2">
+  <label class="colorText">Дата народження: </label><label style="color:red;">*</label><input type="date" class="form-control" name="date_of_birth" maxlength="50" tabindex="2" required><br>
+  </div>
   <div class=" container col-3">
-    <label class="colorText">Домашня адреса: </label><input type="text" class="form-control" name="address" maxlength="50" tabindex="2" required><br>
-    </div>
+  <label class="colorText">Заробітня плата:</label><label style="color:red;">*</label>
+  <div class=" container col-6">
+  <input onkeyup="lal(this)" type="text" class="form-control"  name="salary" maxlength="50" tabindex="2" required><br></div>
+  </div>
+
 
 
     <div class=" container col-3">
-  <label class="colorText">Стаж: </label><input onkeyup="lal(this)" type="text" class="form-control" name="years" maxlength="50" tabindex="2" required><br>
+  <label class="colorText">Стаж: </label><label style="color:red;">*</label>
+  <div class=" container col-5">
+  <input type="text" onkeyup="lal(this)" class="form-control" name="years" maxlength="50" tabindex="2" required><br>
   </div>
-  <div class=" container col-3">
-  <label class="colorText"> Працюе з: </label><input type="date" class="form-control" name="work_since" maxlength="50" tabindex="2" required><br>
+  </div>
+  <div class=" container col-2">
+  <label class="colorText"> Працює з: </label><label style="color:red;">*</label><input type="date" class="form-control" name="work_since" maxlength="50" tabindex="2" required><br>
   </div>
   </div></br>
 
 
   <div class="row">
-  <div class=" container col-3">
-  <label class="colorText">Дата народження: </label><input type="date" class="form-control" id="date_of_birth" name="date_of_birth" maxlength="50" tabindex="2" required><br>
-  </div>
-  <div class=" container col-3">
-  <label class="colorText">Заробітня плата:</label><input onkeyup="lal(this)" type="text" class="form-control"  name="salary" maxlength="50" tabindex="2" required><br>
-  </div>
-  <div class=" container col-3">
-  <label class="colorText">Місце народження: </label><input type="text" class="form-control" name="place_of_birth" maxlength="50" tabindex="2" required><br>
+  <div class=" container col-5">
+    <label class="colorText">Домашня адреса: </label><label style="color:red;">*</label><input type="text" class="form-control" name="address" maxlength="50" tabindex="2" required><br>
+    </div>
+  <div class=" container col-5">
+  <label class="colorText">Місце народження: </label><label style="color:red;">*</label><input type="text" class="form-control" name="place_of_birth" maxlength="50" tabindex="2" required><br>
   </div> </div></br>
 
   <div class="row">
   <div class=" container col-4">
-  <label class="colorText">E-mail: </label><input type="text" maxlength="50" class="form-control" name="email" tabindex="2" required><br>
+  <label class="colorText">E-mail: </label><label style="color:red;">*</label><input type="text" maxlength="50" id='email' class="form-control" name="email" tabindex="2" required><br>
   </div> </div>
 
-  </br></br>
-
+  </br>  </br>
   <hr  size="50"  color="black;" />
 <h1 class="colorForAllText text-center">Зовнішність</h1>
 
 
 <div class="row">
   <div class=" container col-3">
-<label class="colorText">Стать: </label><select class="form-control" name="sex">
+<label class="colorText">Стать: </label><label style="color:red;">*</label><select class="form-control" name="sex">
    <option selected>Жіноча</option>
    <option>Чоловіча</option>
    </select><br>
    </div>
    <div class=" container col-3">
-   <label class="colorText">Зріст: </label><input onkeyup="lal(this)" type="text" class="form-control" name="height" maxlength="50" tabindex="2" required><br>
+   <label class="colorText">Зріст: </label><label style="color:red;">*</label>
+ <div class=" container col-5">
+   <input onkeyup="lal(this)" type="text" class="form-control" name="height" maxlength="50" tabindex="2" required><br>
+ </div>
    </div>
    <div class=" container col-3">
-   <label class="colorText">Колір волосся:</label>
+   <label class="colorText">Колір волосся:</label><label style="color:red;">*</label>
    <select class="form-control" name="hair_color">
    <option selected>Чорний</option>
    <option>Блонд</option>
    <option>Рудий</option>
-   <option>Шатен</option>
-   <option>Брюнет</option>
-    <option>Блакитний</option>
-	 <option>Червоний</option>
-	  <option>Сивий</option>
-	   <option>Русявий</option>
-	    <option>Зелений</option>
-		 <option>Сірий</option>
-		  <option>Жовтий</option>
-		   <option>Фіолетовий</option>
-		    <option>Помаранчевий</option>
-			 <option>Рожевий</option>
-			  <option>Синій</option>
+   <option>Коричневий</option>
+   <option>Білий</option>
    </select>
    </div></div><br>
 
    <div class="row">
   <div class=" container col-3">
-   <label class="colorText">Довжина волосся:</label><input onkeyup="lal(this)" type="text" class="form-control" name="hair_len" maxlength="50" tabindex="2" required><br>
+   <label class="colorText">Довжина волосся:</label><label style="color:red;">*</label>
+<div class=" container col-5">
+   <input onkeyup="lal(this)" type="text" class="form-control" name="hair_len" maxlength="50" tabindex="2" required><br>
+</div>
    </div>
    <div class=" container col-3">
-   <label class="colorText"> Колір очей:</label>
+
+<label class="colorText">Розмір взуття: </label><label style="color:red;">*</label>
+<div class=" container col-5">
+<input onkeyup="lal(this)" type="text" class="form-control" name="shoe_size" maxlength="50" tabindex="2" required><br>
+</div>
+</div>
+<div class=" container col-3">
+<label class="colorText"> Розмір одягу: </label><label style="color:red;">*</label>
+ <div class=" container col-5">
+<input onkeyup="lal(this)" type="text" class="form-control" name="size" maxlength="50" tabindex="2" required><br></div>
+</div>
+</div><br>
+
+<div class="row">
+<div class=" container col-3">
+   <label class="colorText"> Колір очей:</label><label style="color:red;">*</label>
    <select class="form-control" name="eyes">
    <option selected>Блакитний</option>
    <option>Сірий</option>
    <option>Зелений</option>
-   <option>Карий</option>
-     <option>Синій</option>
-	  <option>Янтарний</option>  
- <option>Чорний</option>   
-	<option>Жовтий</option>     
-		
+   <option>Карі</option>
    </select><br>
    </div>
    <div class=" container col-3">
-   <label class="colorText"> Статура:</label>
+   <label class="colorText"> Статура:</label><label style="color:red;">*</label>
    <select class="form-control" name="stature">
    <option selected>Худий</option>
    <option>Спортивний</option>
    <option>Товстий</option>
    </select>
    </div>
-</div><br>
-
-<div class="row">
-  <div class=" container col-3">
-<label class="colorText">Розмір взуття: </label><input onkeyup="lal(this)" type="text" class="form-control" name="shoe_size" maxlength="50" tabindex="2" required><br>
-</div>
+  
 <div class=" container col-3">
-<label class="colorText"> Розмір одягу: </label><input onkeyup="lal(this)" type="text" class="form-control" name="size" maxlength="50" tabindex="2" required><br>
-</div>
-<div class=" container col-3">
-<label class="colorText"> Національність: </label><input type="text" class="form-control" name="nationality" maxlength="50" tabindex="2" required><br>
+<label class="colorText"> Національність: </label><label style="color:red;">*</label><input type="text" class="form-control" name="nationality" maxlength="50" tabindex="2" required><br>
 </div> </div>
-
 <div class="row">
-  <div class=" container col-3">
-  <label class="colorText"> Інше: </label><input type="text" name="other" class="form-control" maxlength="50" tabindex="2" required><br>
-</div>
+  <div class=" container col-6">
+  <label class="colorText"> Інше: </label><input type="text" name="other" class="form-control" maxlength="50" tabindex="2" ><br>
+</div></div><br>
 <div class=" container col-3">
 
-<label class="colorText">Особливі навички:</label>
+<label class="colorText">Особливі навички:</label><label style="color:red;">*</label>
   <div class="field_wrapper_Skills">
          <div>
              <select class="form-control" name="field_name_Skills[]">
-                <option value="1" selected>швидко бігає</option>
-                <option value="2">стрибає</option>
-                <option value="3">акробат</option>
-                <option value="4">плаває</option>
-                <option value="5">катається на ковзанах</option>
-                <option value="6">професійний плавець</option>
-                <option value="7">каскадер</option>
-                <option value="8">пригає на скакалці</option>
-                <option value="9">жонглює</option>
-                <option value="10">знає іспанську</option>
+             <option value="1" selected></option>
+                <option value="2" >швидко бігає</option>
+                <option value="3">стрибає</option>
+                <option value="4">акробат</option>
+                <option value="5">плаває</option>
+                <option value="6">катається на ковзанах</option>
+                <option value="7">професійний плавець</option>
+                <option value="8">каскадер</option>
+                <option value="9">пригає на скакалці</option>
+                <option value="10">жонглює</option>
+                <option value="11">знає іспанську</option>
               </select>
              <a href="javascript:void(0);" class="add_button_Skills" title="Add field"><img src="../img/add_icon.png" height='35' width='35'/></a>
          </div>

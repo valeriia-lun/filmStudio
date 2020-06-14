@@ -79,7 +79,7 @@
         var maxFieldRatings = 10; //Input fields increment limitation
         var addButtonRatings = $('.add_button_Ratings'); //Add button selector
         var wrapperRatings = $('.field_wrapper_Ratings'); //Input field wrapper
-        var fieldHTMLRatings = '<div><input type="text" class="form-control" name="field_name_Ratings[]" value=""/><a href="javascript:void(0);" class="remove_button_Ratings"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
+        var fieldHTMLRatings = '<div><div class=" container col-5"><input type="text" class="form-control" name="field_name_Ratings[]" value=""/><a href="javascript:void(0);" class="remove_button_Ratings"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div></div>'; //New input field html
         var xRatings = 1; //Initial field counter is 1
 
         //Once add button is clicked
@@ -124,7 +124,7 @@ function lal(el) {
 
 </script>
 </head>
-<body class="text-center body3">
+<body class="text-center body3 body2">
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="..\index.php">Вибір посади</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -143,14 +143,14 @@ function lal(el) {
     </form>
   </div>
 </nav>
-<br><br><h1 class="colorForAllText">Змінити співробітника знімальної групи</h1><br>
-
+<br><br><h1 class="colorForAllText">Змінити співробітника знімальної групи</h1>
+<small>Поля, позначені </small><small style="color:red;">*</small><small> - обов'язкові.</small></br></br>
 
 <form action="" method="post">
 
 <div class="row text-center" style="margin:10px;">
     <div class=" container col-4" >
-    <label class="colorText">   Назва посади: </label>
+    <label class="colorText">   Назва посади: </label><label style="color:red;">*</label>
 
    <?php
    if (isset($_POST['editBtn'])){
@@ -179,7 +179,7 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
     ?><br>
   </div>
   <div class="container col-3">
-  <label class="colorText">Прізвище:</label>
+  <label class="colorText">Прізвище:</label><label style="color:red;">*</label>
    <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
@@ -191,7 +191,7 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
     ?><br>
    </div>
   <div class="container col-3">
-  <label class="colorText">По-батькові: </label> <?php
+  <label class="colorText">По-батькові: </label> <label style="color:red;">*</label><?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
 $result = $mysql->query("SELECT `others_middle_name` FROM `Others` WHERE `others_id` = $id");
@@ -203,7 +203,7 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
 
     <div class="row">
     <div class=" container col-3">
-    <label class="colorText">Телефон:</label> <div class="field_wrapper_Phones">
+    <label class="colorText">Телефон:</label><label style="color:red;">*</label> <div class="field_wrapper_Phones">
  <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
@@ -224,7 +224,7 @@ for ($i = 0 ; $i < $rows ; ++$i)
 }
 ?></div><br></div>
 <div class=" container col-3">
-<label class="colorText">Контакти близьких:</label><div class="field_wrapper_Contacts">
+<label class="colorText">Контакти близьких:</label><label style="color:red;">*</label><div class="field_wrapper_Contacts">
 <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
@@ -264,7 +264,7 @@ $row = mysqli_fetch_row($resultt);
  {
      $row = mysqli_fetch_row($resultt);
          for ($j = 0 ; $j < 1 ; ++$j){
-           echo "<div><input type= \"text\" maxlength=\"50\" class=\"form-control\" name=\"field_name_Ratings[]\" tabindex=\"2\" value=\"$row[$j]\" required>";
+           echo "<div><div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" class=\"form-control\" name=\"field_name_Ratings[]\" tabindex=\"2\" value=\"$row[$j]\" required></div>";
            if($i == 0){
                echo "<a href=\"javascript:void(0);\" class=\"add_button_Ratings\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a></div>";
            } else{
@@ -277,25 +277,46 @@ $row = mysqli_fetch_row($resultt);
     </div> </br>
 
     <div class="row">
+    <div class=" container col-2">
+  <label class="colorText">Дата народження: </label><label style="color:red;">*</label> <?php
+ $mysql = new mysqli("localhost","root","root","filmstudio");
+ $mysql->query("SET NAMES 'utf8'");
+ $result = $mysql->query("SELECT `others_date_of_birth` FROM `Others` WHERE `others_id` = $id");
+
+ $res = mysqli_fetch_array($result);
+
+ echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" id=\"date_of_birth\" name=\"date_of_birth\" value=\"$res[0]\" required>";
+     ?><br>
+
+</div>
   <div class=" container col-3">
-    <label class="colorText">Домашня адреса: </label>
-    <?php
+  <label class="colorText">Заробітня плата:</label><label style="color:red;">*</label><?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
-$result = $mysql->query("SELECT `others_home_address` FROM `Others` WHERE `others_id` = $id");
+$result = $mysql->query("SELECT `others_salary` FROM `Others` WHERE `others_id` = $id");
 
 $res = mysqli_fetch_array($result);
 
-echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"address\" value=\"$res[0]\" required>";
+echo "<div class=\" container col-5\"><input type= \"text\" onkeyup=\"lal(this)\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"salary\" value=\"$res[0]\" required></div>";
     ?><br>
+  </div> 
+  <div class=" container col-2">
+    <label class="colorText"> Працює до:</label>
 
+   <?php
+ $mysql = new mysqli("localhost","root","root","filmstudio");
+ $mysql->query("SET NAMES 'utf8'");
+ $result = $mysql->query("SELECT `others_work_until` FROM `Others` WHERE `others_id` = $id");
 
+ $res = mysqli_fetch_array($result);
 
+ echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" id=\"work_until\" name=\"work_until\" value=\"$res[0]\">";
+     ?><br>
 </div>
 
 
 <div class=" container col-3">
-<label class="colorText">Стаж: </label>
+<label class="colorText">Стаж: </label><label style="color:red;">*</label>
    <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
@@ -303,11 +324,11 @@ $result = $mysql->query("SELECT `others_experience` FROM `Others` WHERE `others_
 
 $res = mysqli_fetch_array($result);
 
-echo "<input type= \"text\" onkeyup=\"lal(this)\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"years\" value=\"$res[0]\" required>";
+echo " <div class=\" container col-5\"><input type= \"text\" onkeyup=\"lal(this)\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"years\" value=\"$res[0]\" required></div>";
     ?><br>
 </div>
-  <div class=" container col-3">
-  <label class="colorText"> Працює з: </label> <?php
+  <div class=" container col-2">
+  <label class="colorText"> Працює з: </label><label style="color:red;">*</label> <?php
  $mysql = new mysqli("localhost","root","root","filmstudio");
  $mysql->query("SET NAMES 'utf8'");
  $result = $mysql->query("SELECT `others_work_since` FROM `Others` WHERE `others_id` = $id");
@@ -324,46 +345,8 @@ echo "<input type= \"text\" onkeyup=\"lal(this)\" maxlength=\"50\" class=\"form-
 
 
 <div class="row">
-  <div class=" container col-3">
-    <label class="colorText"> Працює до:</label>
-
-   <?php
- $mysql = new mysqli("localhost","root","root","filmstudio");
- $mysql->query("SET NAMES 'utf8'");
- $result = $mysql->query("SELECT `others_work_until` FROM `Others` WHERE `others_id` = $id");
-
- $res = mysqli_fetch_array($result);
-
- echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" id=\"work_until\" name=\"work_until\" value=\"$res[0]\">";
-     ?><br>
-</div>
-<div class=" container col-3">
-  <label class="colorText">Дата народження: </label> <?php
- $mysql = new mysqli("localhost","root","root","filmstudio");
- $mysql->query("SET NAMES 'utf8'");
- $result = $mysql->query("SELECT `others_date_of_birth` FROM `Others` WHERE `others_id` = $id");
-
- $res = mysqli_fetch_array($result);
-
- echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" id=\"date_of_birth\" name=\"date_of_birth\" value=\"$res[0]\" required>";
-     ?><br>
-
-</div>
-  <div class=" container col-3">
-  <label class="colorText">Заробітня плата:</label><?php
-$mysql = new mysqli("localhost","root","root","filmstudio");
-$mysql->query("SET NAMES 'utf8'");
-$result = $mysql->query("SELECT `others_salary` FROM `Others` WHERE `others_id` = $id");
-
-$res = mysqli_fetch_array($result);
-
-echo "<input type= \"text\" onkeyup=\"lal(this)\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"salary\" value=\"$res[0]\" required>";
-    ?><br>
-  </div> </div></br>
-
-<div class="row">
-<div class="container col-4">
-<label class="colorText">Місце народження: </label><?php
+<div class="container col-5">
+<label class="colorText">Місце народження: </label><label style="color:red;">*</label><?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
 $result = $mysql->query("SELECT `others_place_of_birth` FROM `Others` WHERE `others_id` = $id");
@@ -372,8 +355,27 @@ $res = mysqli_fetch_array($result);
 
 echo "<input type= \"text\" maxlength=\"50\" tabindex=\"2\" class=\"form-control\" name=\"placeBirth\" value=\"$res[0]\" required>";
     ?><br></div>
+<div class=" container col-5">
+    <label class="colorText">Домашня адреса: </label><label style="color:red;">*</label>
+    <?php
+$mysql = new mysqli("localhost","root","root","filmstudio");
+$mysql->query("SET NAMES 'utf8'");
+$result = $mysql->query("SELECT `others_home_address` FROM `Others` WHERE `others_id` = $id");
+
+$res = mysqli_fetch_array($result);
+
+echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"address\" value=\"$res[0]\" required>";
+    ?><br>
+
+
+
+</div>
+</div></br>
+
+<div class="row">
+
   <div class="container col-4">
-  <label class="colorText">E-mail: </label> <?php
+  <label class="colorText">E-mail: </label><label style="color:red;">*</label> <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
 $result = $mysql->query("SELECT `others_e-mail` FROM `Others` WHERE `others_id` = $id");

@@ -65,7 +65,7 @@
         var maxFieldRatings = 10; //Input fields increment limitation
         var addButtonRatings = $('.add_button_Ratings'); //Add button selector
         var wrapperRatings = $('.field_wrapper_Ratings'); //Input field wrapper
-        var fieldHTMLRatings = '<div><input type="text" class="form-control" name="field_name_Ratings[]" value=""/><a href="javascript:void(0);" class="remove_button_Ratings"><img src="../img/delete_icon.png" width=\'20\' height=\'20\' /></a></div>'; //New input field html
+        var fieldHTMLRatings = '<div><div class=" container col-5"><input type="text" class="form-control" name="field_name_Ratings[]" value=""/><a href="javascript:void(0);" class="remove_button_Ratings"><img src="../img/delete_icon.png" width=\'20\' height=\'20\' /></a></div></div>'; //New input field html
         var xRatings = 1; //Initial field counter is 1
 
         //Once add button is clicked
@@ -172,36 +172,43 @@ function lal(el) {
   <div class=" container col-3">
   <label class="colorText">Рейтинги фільмів, у яких брал(а) участь:</label>
   <div class="field_wrapper_Ratings">
-      <div>
-          <input type="text" class="form-control" name="field_name_Ratings[]" value=""/>
+      <div>  <div class=" container col-5">
+          <input type="text" style="width:100px;" class="form-control" name="field_name_Ratings[]" value=""/>
+          </div>
           <a href="javascript:void(0);" class="add_button_Ratings" title="Add field"><img src="../img/add_icon.png" height='35' width='35'/></a>
       </div>     </div>
   </div>
     </div> </br>
 
     <div class="row">
+    <div class=" container col-2">
+  <label class="colorText">Дата народження: </label><label style="color:red;">*</label><input type="date" class="form-control" name="date_of_birth" maxlength="50" tabindex="2" required><br>
+  </div>
   <div class=" container col-3">
-    <label class="colorText">Домашня адреса: </label><label style="color:red;">*</label><input type="text" class="form-control" name="address" maxlength="50" tabindex="2" required><br>
-    </div>
+  <label class="colorText">Заробітня плата:</label><label style="color:red;">*</label>
+  <div class=" container col-6">
+  <input onkeyup="lal(this)" type="text" class="form-control"  name="salary" maxlength="50" tabindex="2" required><br></div>
+  </div>
+
 
 
     <div class=" container col-3">
-  <label class="colorText">Стаж: </label><label style="color:red;">*</label><input type="text" onkeyup="lal(this)" class="form-control" name="years" maxlength="50" tabindex="2" required><br>
+  <label class="colorText">Стаж: </label><label style="color:red;">*</label>
+  <div class=" container col-5">
+  <input type="text" onkeyup="lal(this)" class="form-control" name="years" maxlength="50" tabindex="2" required><br>
   </div>
-  <div class=" container col-3">
-  <label class="colorText"> Працюе з: </label><label style="color:red;">*</label><input type="date" class="form-control" name="work_since" maxlength="50" tabindex="2" required><br>
+  </div>
+  <div class=" container col-2">
+  <label class="colorText"> Працює з: </label><label style="color:red;">*</label><input type="date" class="form-control" name="work_since" maxlength="50" tabindex="2" required><br>
   </div>
   </div></br>
 
 
   <div class="row">
-  <div class=" container col-3">
-  <label class="colorText">Дата народження: </label><label style="color:red;">*</label><input type="date" class="form-control" name="date_of_birth" maxlength="50" tabindex="2" required><br>
-  </div>
-  <div class=" container col-3">
-  <label class="colorText">Заробітня плата:</label><label style="color:red;">*</label><input onkeyup="lal(this)" type="text" class="form-control"  name="salary" maxlength="50" tabindex="2" required><br>
-  </div>
-  <div class=" container col-3">
+  <div class=" container col-5">
+    <label class="colorText">Домашня адреса: </label><label style="color:red;">*</label><input type="text" class="form-control" name="address" maxlength="50" tabindex="2" required><br>
+    </div>
+  <div class=" container col-5">
   <label class="colorText">Місце народження: </label><label style="color:red;">*</label><input type="text" class="form-control" name="place_of_birth" maxlength="50" tabindex="2" required><br>
   </div> </div></br>
 
@@ -223,7 +230,10 @@ function lal(el) {
    </select><br>
    </div>
    <div class=" container col-3">
-   <label class="colorText">Зріст: </label><label style="color:red;">*</label><input onkeyup="lal(this)" type="text" class="form-control" name="height" maxlength="50" tabindex="2" required><br>
+   <label class="colorText">Зріст: </label><label style="color:red;">*</label>
+ <div class=" container col-5">
+   <input onkeyup="lal(this)" type="text" class="form-control" name="height" maxlength="50" tabindex="2" required><br>
+ </div>
    </div>
    <div class=" container col-3">
    <label class="colorText">Колір волосся:</label><label style="color:red;">*</label>
@@ -238,9 +248,27 @@ function lal(el) {
 
    <div class="row">
   <div class=" container col-3">
-   <label class="colorText">Довжина волосся:</label><label style="color:red;">*</label><input onkeyup="lal(this)" type="text" class="form-control" name="hair_len" maxlength="50" tabindex="2" required><br>
+   <label class="colorText">Довжина волосся:</label><label style="color:red;">*</label>
+<div class=" container col-5">
+   <input onkeyup="lal(this)" type="text" class="form-control" name="hair_len" maxlength="50" tabindex="2" required><br>
+</div>
    </div>
    <div class=" container col-3">
+
+<label class="colorText">Розмір взуття: </label><label style="color:red;">*</label>
+<div class=" container col-5">
+<input onkeyup="lal(this)" type="text" class="form-control" name="shoe_size" maxlength="50" tabindex="2" required><br>
+</div>
+</div>
+<div class=" container col-3">
+<label class="colorText"> Розмір одягу: </label><label style="color:red;">*</label>
+ <div class=" container col-5">
+<input onkeyup="lal(this)" type="text" class="form-control" name="size" maxlength="50" tabindex="2" required><br></div>
+</div>
+</div><br>
+
+<div class="row">
+<div class=" container col-3">
    <label class="colorText"> Колір очей:</label><label style="color:red;">*</label>
    <select class="form-control" name="eyes">
    <option selected>Блакитний</option>
@@ -257,20 +285,12 @@ function lal(el) {
    <option>Товстий</option>
    </select>
    </div>
-</div><br>
-
-<div class="row">
-  <div class=" container col-3">
-<label class="colorText">Розмір взуття: </label><label style="color:red;">*</label><input onkeyup="lal(this)" type="text" class="form-control" name="shoe_size" maxlength="50" tabindex="2" required><br>
-</div>
-<div class=" container col-3">
-<label class="colorText"> Розмір одягу: </label><label style="color:red;">*</label><input onkeyup="lal(this)" type="text" class="form-control" name="size" maxlength="50" tabindex="2" required><br>
-</div>
+  
 <div class=" container col-3">
 <label class="colorText"> Національність: </label><label style="color:red;">*</label><input type="text" class="form-control" name="nationality" maxlength="50" tabindex="2" required><br>
 </div> </div>
 <div class="row">
-  <div class=" container col-3">
+  <div class=" container col-6">
   <label class="colorText"> Інше: </label><input type="text" name="other" class="form-control" maxlength="50" tabindex="2" ><br>
 </div></div><br>
 

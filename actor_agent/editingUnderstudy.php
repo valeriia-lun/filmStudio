@@ -80,7 +80,7 @@
         var maxFieldRatings = 10; //Input fields increment limitation
         var addButtonRatings = $('.add_button_Ratings'); //Add button selector
         var wrapperRatings = $('.field_wrapper_Ratings'); //Input field wrapper
-        var fieldHTMLRatings = '<div><input type="text" class="form-control" name="field_name_Ratings[]" value=""/><a href="javascript:void(0);" class="remove_button_Ratings"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
+        var fieldHTMLRatings = '<div><div class=" container col-5"><input type="text" class="form-control" name="field_name_Ratings[]" value=""/><a href="javascript:void(0);" class="remove_button_Ratings"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div></div>'; //New input field html
         var xRatings = 1; //Initial field counter is 1
 
         //Once add button is clicked
@@ -168,13 +168,13 @@ function lal(el) {
   </div>
 </nav>
 
-<br><br><h1 class="colorForAllText">Змінити інформацію про дублера</h1><br>
-
+<br><br><h1 class="colorForAllText">Змінити інформацію про дублера</h1>
+<small>Поля, позначені </small><small style="color:red;">*</small><small> - обов'язкові.</small></br></br>
 
 <form action="" method="post">
 <div class="row text-center" style="margin:10px;">
     <div class=" container col-3" >
-    <label class="colorText">Ім'я: </label>
+    <label class="colorText">Ім'я: </label><label style="color:red;">*</label>
     <?php
     if (isset($_POST['editBtn'])){
       $id = filter_var(trim($_POST['understudy_id']),FILTER_SANITIZE_STRING);
@@ -192,7 +192,7 @@ function lal(el) {
      ?><br>
    </div>
   <div class="container col-3">
-  <label class="colorText">Прізвище:</label>
+  <label class="colorText">Прізвище:</label><label style="color:red;">*</label>
     <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
@@ -204,7 +204,7 @@ function lal(el) {
      ?><br>
      </div>
   <div class="container col-3">
-  <label class="colorText">По-батькові: </label> <?php
+  <label class="colorText">По-батькові: </label><label style="color:red;">*</label> <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
   $result = $mysql->query("SELECT `understudy_middle_name` FROM `Understudies` WHERE `understudy_id` = $id");
@@ -220,7 +220,7 @@ function lal(el) {
 
 <div class="row text-center" style="margin:10px;">
   <div class=" container col-3">
-  <label class="colorText">Телефон:</label> <div class="field_wrapper_Phones">
+  <label class="colorText">Телефон:</label> <label style="color:red;">*</label><div class="field_wrapper_Phones">
   <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
@@ -241,7 +241,7 @@ function lal(el) {
   }
   ?></div><br></div>
 <div class=" container col-3">
-<label class="colorText">Контакти близьких:</label> <div class="field_wrapper_Contacts">
+<label class="colorText">Контакти близьких:</label> <label style="color:red;">*</label><div class="field_wrapper_Contacts">
          <?php
        $mysql = new mysqli("localhost","root","root","filmstudio");
        $mysql->query("SET NAMES 'utf8'");
@@ -281,7 +281,7 @@ function lal(el) {
   {
     $row = mysqli_fetch_row($resultt);
         for ($j = 0 ; $j < 1 ; ++$j){
-          echo "<div><input type= \"text\" maxlength=\"50\" class=\"form-control\" name=\"field_name_Ratings[]\" tabindex=\"2\" value=\"$row[$j]\" required>";
+          echo "<div><div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" class=\"form-control\" name=\"field_name_Ratings[]\" tabindex=\"2\" value=\"$row[$j]\" required></div>";
           if($i == 0){
               echo "<a href=\"javascript:void(0);\" class=\"add_button_Ratings\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a></div>";
           } else{
@@ -298,22 +298,33 @@ function lal(el) {
 
 
 <div class="row text-center" style="margin:10px;">
-  <div class=" container col-3">
-  <label class="colorText"> Домашня адреса:</label>
-     <?php
+
+<div class=" container col-2">
+    <label class="colorText">Дата народження: </label> <label style="color:red;">*</label><?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
-  $result = $mysql->query("SELECT `understudy_home_address` FROM `Understudies` WHERE `understudy_id` = $id");
+  $result = $mysql->query("SELECT `understudy_date_of_birth` FROM `Understudies` WHERE `understudy_id` = $id");
 
   $res = mysqli_fetch_array($result);
 
-  echo "<input type= \"text\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"address\" value=\"$res[0]\" required>";
-     ?><br>
+  echo "<input type= \"date\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" id=\"date_of_birth\" name=\"date_of_birth\" value=\"$res[0]\" required>";
+    ?><br>
+    </div>
 
-</div>
+    <div class=" container col-3">
+    <label class="colorText">Заробітня плата:</label><label style="color:red;">*</label><?php
+  $mysql = new mysqli("localhost","root","root","filmstudio");
+  $mysql->query("SET NAMES 'utf8'");
+  $result = $mysql->query("SELECT `understudy_salary` FROM `Understudies` WHERE `understudy_id` = $id");
+
+  $res = mysqli_fetch_array($result);
+
+  echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\"  onkeyup=\"lal(this)\" class=\"form-control\" tabindex=\"2\" name=\"salary\" value=\"$res[0]\" required></div>";
+   ?></div>
+
 
  <div class=" container col-3">
-<label class="colorText">Стаж: </label>
+<label class="colorText">Стаж: </label><label style="color:red;">*</label>
   <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
@@ -321,11 +332,11 @@ function lal(el) {
 
   $res = mysqli_fetch_array($result);
 
-  echo "<input type= \"text\" maxlength=\"50\" onkeyup=\"lal(this)\" class=\"form-control\" tabindex=\"2\" name=\"years\" value=\"$res[0]\" required>";
+  echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" onkeyup=\"lal(this)\" class=\"form-control\" tabindex=\"2\" name=\"years\" value=\"$res[0]\" required></div>";
    ?><br>
   </div>
-<div class=" container col-3">
-<label class="colorText">Працює з: </label><?php
+<div class=" container col-2">
+<label class="colorText">Працює з: </label><label style="color:red;">*</label><?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
   $result = $mysql->query("SELECT `understudy_works_since` FROM `Understudies` WHERE `understudy_id` = $id");
@@ -341,7 +352,40 @@ function lal(el) {
 
 
  <div class="row text-center" style="margin:10px;">
-  <div class=" container col-3">
+ <div class=" container col-5">
+  <label class="colorText">Місце народження:</label> <label style="color:red;">*</label> <?php
+  $mysql = new mysqli("localhost","root","root","filmstudio");
+  $mysql->query("SET NAMES 'utf8'");
+  $result = $mysql->query("SELECT `understudy_place_of_birth` FROM `Understudies` WHERE `understudy_id` = $id");
+
+  $res = mysqli_fetch_array($result);
+
+  echo "<input type= \"text\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"place_of_birth\" value=\"$res[0]\" required>";
+   ?><br></div>
+  
+    <div class=" container col-5">
+  <label class="colorText"> Домашня адреса:</label><label style="color:red;">*</label>
+     <?php
+  $mysql = new mysqli("localhost","root","root","filmstudio");
+  $mysql->query("SET NAMES 'utf8'");
+  $result = $mysql->query("SELECT `understudy_home_address` FROM `Understudies` WHERE `understudy_id` = $id");
+
+  $res = mysqli_fetch_array($result);
+
+  echo "<input type= \"text\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"address\" value=\"$res[0]\" required>";
+     ?><br>
+
+</div>
+  
+  </div></br>
+
+
+
+
+
+<div class="row " style="margin:10px;">
+
+<div class=" container col-4">
   <label class="colorText"> Працює до:</label>
   <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
@@ -353,48 +397,9 @@ function lal(el) {
   echo "<input type= \"date\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" id=\"work_until\" name=\"work_until\" value=\"$res[0]\">";
     ?><br>
     </div>
-
-    <div class=" container col-3">
-    <label class="colorText">Дата народження: </label> <?php
-  $mysql = new mysqli("localhost","root","root","filmstudio");
-  $mysql->query("SET NAMES 'utf8'");
-  $result = $mysql->query("SELECT `understudy_date_of_birth` FROM `Understudies` WHERE `understudy_id` = $id");
-
-  $res = mysqli_fetch_array($result);
-
-  echo "<input type= \"date\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" id=\"date_of_birth\" name=\"date_of_birth\" value=\"$res[0]\" required>";
-    ?><br>
-    </div>
-
-    <div class=" container col-3">
-    <label class="colorText">Заробітня плата:</label><?php
-  $mysql = new mysqli("localhost","root","root","filmstudio");
-  $mysql->query("SET NAMES 'utf8'");
-  $result = $mysql->query("SELECT `understudy_salary` FROM `Understudies` WHERE `understudy_id` = $id");
-
-  $res = mysqli_fetch_array($result);
-
-  echo "<input type= \"text\" maxlength=\"50\"  onkeyup=\"lal(this)\" class=\"form-control\" tabindex=\"2\" name=\"salary\" value=\"$res[0]\" required>";
-   ?></div></div></br>
-
-
-
-
-
-<div class="row " style="margin:10px;">
-  <div class=" container col-4">
-  <label class="colorText">Місце народження:</label>  <?php
-  $mysql = new mysqli("localhost","root","root","filmstudio");
-  $mysql->query("SET NAMES 'utf8'");
-  $result = $mysql->query("SELECT `understudy_place_of_birth` FROM `Understudies` WHERE `understudy_id` = $id");
-
-  $res = mysqli_fetch_array($result);
-
-  echo "<input type= \"text\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"place_of_birth\" value=\"$res[0]\" required>";
-   ?><br></div>
-
+   
    <div class=" container col-4">
-   <label class="colorText">E-mail: </label> <?php
+   <label class="colorText">E-mail: </label> <label style="color:red;">*</label><?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
   $result = $mysql->query("SELECT `understudy_e-mail` FROM `Understudies` WHERE `understudy_id` = $id");
@@ -417,7 +422,7 @@ function lal(el) {
 <h1 class="colorForAllText text-center" >Зовнішність</h1>
 <div class="row">
   <div class=" container col-3">
-<label class="colorText">Стать: </label>
+<label class="colorText">Стать: </label><label style="color:red;">*</label>
      <select class="form-control" name="sex">
      <?php
      $mysql = new mysqli("localhost","root","root","filmstudio");
@@ -442,18 +447,18 @@ function lal(el) {
 
       </div>
    <div class=" container col-3">
-   <label class="colorText">Зріст: </label>  <?php
+   <label class="colorText">Зріст: </label> <label style="color:red;">*</label> <?php
      $mysql = new mysqli("localhost","root","root","filmstudio");
      $mysql->query("SET NAMES 'utf8'");
      $result = $mysql->query("SELECT `understudy_height` FROM `Understudies` WHERE `understudy_id` = $id");
 
      $res = mysqli_fetch_array($result);
 
-     echo "<input type= \"text\" maxlength=\"50\" onkeyup=\"lal(this)\" class=\"form-control\" tabindex=\"2\" name=\"height\" value=\"$res[0]\" required>";
+     echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" onkeyup=\"lal(this)\" class=\"form-control\" tabindex=\"2\" name=\"height\" value=\"$res[0]\" required></div>";
       ?><br>
   </div>
     <div class=" container col-3">
-    <label class="colorText">  Колір волосся: </label>
+    <label class="colorText">  Колір волосся: </label><label style="color:red;">*</label>
      <select class="form-control" name="hairColor">
        <?php
         $mysql = new mysqli("localhost","root","root","filmstudio");
@@ -505,18 +510,48 @@ function lal(el) {
 
 <div class="row">
 <div class=" container col-3">
-<label class="colorText">   Довжина волосся: </label><?php
+<label class="colorText">   Довжина волосся: </label><label style="color:red;">*</label><?php
      $mysql = new mysqli("localhost","root","root","filmstudio");
      $mysql->query("SET NAMES 'utf8'");
      $result = $mysql->query("SELECT `understudy_length_of_hair` FROM `Understudies` WHERE `understudy_id` = $id");
 
      $res = mysqli_fetch_array($result);
 
-     echo "<input type= \"text\" maxlength=\"50\" onkeyup=\"lal(this)\" class=\"form-control\" tabindex=\"2\" name=\"hairLen\" value=\"$res[0]\" required>";
+     echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" onkeyup=\"lal(this)\" class=\"form-control\" tabindex=\"2\" name=\"hairLen\" value=\"$res[0]\" required></div>";
+      ?><br>
+</div>
+   
+<div class=" container col-3">
+<label class="colorText">  Розмір взуття: </label><label style="color:red;">*</label><?php
+     $mysql = new mysqli("localhost","root","root","filmstudio");
+     $mysql->query("SET NAMES 'utf8'");
+     $result = $mysql->query("SELECT `understudy_shoe_size` FROM `Understudies` WHERE `understudy_id` = $id");
+
+     $res = mysqli_fetch_array($result);
+
+     echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" onkeyup=\"lal(this)\" class=\"form-control\" tabindex=\"2\" name=\"shoe\" value=\"$res[0]\" required></div>";
       ?><br>
 </div>
    <div class=" container col-3">
-   <label class="colorText">Колір очей: </label>
+   <label class="colorText">   Розмір одягу:</label><label style="color:red;">*</label> <?php
+     $mysql = new mysqli("localhost","root","root","filmstudio");
+     $mysql->query("SET NAMES 'utf8'");
+     $result = $mysql->query("SELECT `understudy_clothing_size` FROM `Understudies` WHERE `understudy_id` = $id");
+
+     $res = mysqli_fetch_array($result);
+
+     echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" onkeyup=\"lal(this)\" class=\"form-control\" tabindex=\"2\" name=\"size\" value=\"$res[0]\" required></div>";
+      ?><br>
+ </div>
+  </div>
+
+
+
+
+
+<div class="row">
+<div class=" container col-3">
+   <label class="colorText">Колір очей: </label><label style="color:red;">*</label>
      <select class="form-control" name="eyes">
        <?php
         $mysql = new mysqli("localhost","root","root","filmstudio");
@@ -553,7 +588,7 @@ function lal(el) {
 
      </div>
    <div class=" container col-3">
-   <label class="colorText">  Статура: </label>
+   <label class="colorText">  Статура: </label><label style="color:red;">*</label>
      <select class="form-control" name="stature">
      <?php
      $mysql = new mysqli("localhost","root","root","filmstudio");
@@ -581,38 +616,9 @@ function lal(el) {
 
      </select><br>
   </div>
-
-  </div>
-
-
-
-
-
-<div class="row">
-  <div class=" container col-3">
-<label class="colorText">  Розмір взуття: </label><?php
-     $mysql = new mysqli("localhost","root","root","filmstudio");
-     $mysql->query("SET NAMES 'utf8'");
-     $result = $mysql->query("SELECT `understudy_shoe_size` FROM `Understudies` WHERE `understudy_id` = $id");
-
-     $res = mysqli_fetch_array($result);
-
-     echo "<input type= \"text\" maxlength=\"50\" onkeyup=\"lal(this)\" class=\"form-control\" tabindex=\"2\" name=\"shoe\" value=\"$res[0]\" required>";
-      ?><br>
-</div>
+ 
    <div class=" container col-3">
-   <label class="colorText">   Розмір одягу:</label> <?php
-     $mysql = new mysqli("localhost","root","root","filmstudio");
-     $mysql->query("SET NAMES 'utf8'");
-     $result = $mysql->query("SELECT `understudy_clothing_size` FROM `Understudies` WHERE `understudy_id` = $id");
-
-     $res = mysqli_fetch_array($result);
-
-     echo "<input type= \"text\" maxlength=\"50\" onkeyup=\"lal(this)\" class=\"form-control\" tabindex=\"2\" name=\"size\" value=\"$res[0]\" required>";
-      ?><br>
- </div>
-   <div class=" container col-3">
-   <label class="colorText">   Національність: </label> <?php
+   <label class="colorText">   Національність: </label><label style="color:red;">*</label> <?php
      $mysql = new mysqli("localhost","root","root","filmstudio");
      $mysql->query("SET NAMES 'utf8'");
      $result = $mysql->query("SELECT `understudy_nationality` FROM `Understudies` WHERE `understudy_id` = $id");
