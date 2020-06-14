@@ -378,7 +378,7 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
 </br>
 </br>
 
-   <div class="container col-8" >
+   <div class="container col-9" >
    <label class="colorText">Склад:</label>
    <table border="1" class=" table table-dark table-hover" >
    <thead class="thead-dark " style="background-color: #252527;">
@@ -393,6 +393,7 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
    <td>Ел.пошта</td>
    <td>Телефон</td>
    <td>Контакти близьких</td>
+   <td>Прибрати зі складу групи</td> 
    </tr></thead>
    <?php
 
@@ -443,9 +444,9 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
    while ($stroka = mysqli_fetch_array($result_understudies)){
      $temp = $stroka['understudy_id'];
 
-     // $result_phones = $mysqli->query("SELECT `understudy_phone_number` FROM `understudy_phones` WHERE `understudy_id` IN (SELECT `understudy_id` FROM  `understudies` WHERE `understudy_id` = $temp)");
-     //
-     // $result_contacts_rel = $mysqli->query("SELECT `understudy_relatives_phone_numbers` FROM `understudies_contacts_of_relatives` WHERE `understudy_id` IN (SELECT `understudy_id` FROM  `understudies` WHERE `understudy_id` = $temp)");
+     $result_phones = $mysql->query("SELECT `understudy_phone_number` FROM `understudy_phones` WHERE `understudy_id` IN (SELECT `understudy_id` FROM  `understudies` WHERE `understudy_id` = $temp)");
+     
+     $result_contacts_rel = $mysql->query("SELECT `understudy_relatives_phone_numbers` FROM `understudies_contacts_of_relatives` WHERE `understudy_id` IN (SELECT `understudy_id` FROM  `understudies` WHERE `understudy_id` = $temp)");
 
 
      echo"<tr>";
@@ -457,8 +458,8 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
      echo"<td>" . $stroka['name_of_position'] . "</td>";
      echo"<td>" . $stroka['understudy_age'] . "</td>";
      echo"<td>" . $stroka['understudy_e-mail'] . "</td>";
-     // echo"<td>" .  res($result_phones) . "</td>";
-     // echo"<td>" .  res($result_contacts_rel) . "</td>";
+      echo"<td>" .  res($result_phones) . "</td>";
+     echo"<td>" .  res($result_contacts_rel) . "</td>";
      echo"</tr>";
    }
 
@@ -468,10 +469,9 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
    while ($stroka = mysqli_fetch_array($result_others)){
      $temp = $stroka['others_id'];
 
-     // $result_phones = $mysqli->query("SELECT `understudy_phone_number` FROM `understudy_phones` WHERE `understudy_id` IN (SELECT `understudy_id` FROM  `understudies` WHERE `understudy_id` = $temp)");
-     //
-     // $result_contacts_rel = $mysqli->query("SELECT `understudy_relatives_phone_numbers` FROM `understudies_contacts_of_relatives` WHERE `understudy_id` IN (SELECT `understudy_id` FROM  `understudies` WHERE `understudy_id` = $temp)");
-
+     $result_phones = $mysql->query("SELECT `others_phone_number` FROM `others_phones` WHERE `others_id` IN (SELECT `others_id` FROM  `others` WHERE `others_id` = $temp)");
+     $result_contacts_rel = $mysql->query("SELECT `others_relatives_phone_numbers` FROM `others_contacts_of_relatives` WHERE `others_id` IN (SELECT `others_id` FROM  `others` WHERE `others_id` = $temp)");
+  
 
      echo"<tr>";
      echo"<td>" . $stroka['others_id'] . "</td>";
@@ -482,14 +482,14 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
      echo"<td>" . $stroka['name_of_position'] . "</td>";
      echo"<td>" . $stroka['others_age'] . "</td>";
      echo"<td>" . $stroka['others_e-mail'] . "</td>";
-     // echo"<td>" .  res($result_phones) . "</td>";
-     // echo"<td>" .  res($result_contacts_rel) . "</td>";
+     echo"<td>" .  res($result_phones) . "</td>";
+     echo"<td>" .  res($result_contacts_rel) . "</td>";
 
      if($stroka['name_of_position'] == "лінійний продюсер" || $stroka['name_of_position'] == "режисер" || $stroka['name_of_position'] == "сценарист"){
        echo"<form action=\"editingFilmCrew.php\" method=\"post\">";
 
    echo "<input type=\"hidden\" value = \"" .$stroka['others_id'] . "\" name=\"others_id\" >";
-   echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"delete\">Прибрати зі складу группи</button>"."</div></td></form>";
+   echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"delete\">Прибрати</button>"."</div></td></form>";
      }
      echo"</tr>";
    }

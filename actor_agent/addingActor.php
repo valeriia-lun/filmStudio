@@ -65,7 +65,7 @@
         var maxFieldRatings = 10; //Input fields increment limitation
         var addButtonRatings = $('.add_button_Ratings'); //Add button selector
         var wrapperRatings = $('.field_wrapper_Ratings'); //Input field wrapper
-        var fieldHTMLRatings = '<div><div class=" container col-5"><input type="text" class="form-control" name="field_name_Ratings[]" value=""/><a href="javascript:void(0);" class="remove_button_Ratings"><img src="../img/delete_icon.png" width=\'20\' height=\'20\' /></a></div></div>'; //New input field html
+        var fieldHTMLRatings = '<div class=" container col-5"><input type="text" class="form-control" name="field_name_Ratings[]" value=""/><a href="javascript:void(0);" class="remove_button_Ratings"><img src="../img/delete_icon.png" width=\'20\' height=\'20\' /></a></div>'; //New input field html
         var xRatings = 1; //Initial field counter is 1
 
         //Once add button is clicked
@@ -112,6 +112,12 @@ function lal(el) {
         el.value = el.value.replace( /[^0-9]/ , "" )
     }
 }
+function lal2(el) {
+  if (el.value.match( /[^a-zA-Zа-яёА-ЯЁ]/u )){
+        alert( "Неправильний формат запису! \nМожна використовувати тільки літери!" );
+        el.value = el.value.replace(/[^a-zA-Zа-яёА-ЯЁ]/u  , "" )
+    }
+}
 
 </script>
 </head>
@@ -141,7 +147,7 @@ function lal(el) {
 <form id = "form_id" action="" method="post" >
 <div class="row text-center" style="margin:10px;">
     <div class=" container col-3" >
-    <label class="colorText">Ім'я: </label><label style="color:red;">*</label><input type="text" class="form-control" name="first_name" maxlength="50" tabindex="2" required><br>
+    <label class="colorText">Ім'я: </label><label style="color:red;">*</label><input onkeyup="lal2(this)" type="text" class="form-control" name="first_name" maxlength="50" tabindex="2" required><br>
   </div>
   <div class="container col-3">
   <label class="colorText">Прізвище:</label> <label style="color:red;">*</label><input type="text" class="form-control" name="last_name" maxlength="50" tabindex="2" required><br>
