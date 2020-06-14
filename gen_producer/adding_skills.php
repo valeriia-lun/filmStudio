@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta  charset=utf-8>
-<title>Обрати групу</title>
+<title>Додати особливі навички</title>
 <style>
    select {
     width: 300px;
@@ -44,83 +44,26 @@
     </form>
   </div>
 </nav>
-
 </br></br></br></br>
+
+
+<form action="gen_producer_check_skills.php" method="POST"> 
 <div class="row">
-<div class="container col-md-4">
+  <div class=" container col-4">
+<label style="  color: #410a14;
+    font-family: Courier New, Courier, monospace;
+    font-style: oblique 40deg bold;
+    font-weight: 580;
+    font-size: 20pt;
+    background-color: #bbb8b5;">Назва навички: </label><input  type="text" class="form-control" name="skill_name" maxlength="50" tabindex="2" required><br>
 
-<form action = "gen_producer_gonorars_film_crew.php" method="post">
-<h1 class="colorForAllText"> Обрати Фільм</h1>
-    <select  class=" form-control " name="moive_name_film_crew">
-<?php
-$mysqli = new mysqli("localhost","root","root","filmstudio");
-$mysqli->query("SET NAMES 'utf8'");
-$result = $mysqli->query("SELECT `name_of_movie` FROM `movie`");
-$movie;
-while ($stroka = mysqli_fetch_array($result)){
-    echo"<option>" . $stroka['name_of_movie'] . "</option>";
-    $movie =  $stroka['name_of_movie'];
-   }
-?>
-</select>
-
-</br>
-<div class="btn  col-md-11">
-  <button class="button btn btn-danger"  name="filmCrew">Призначити гонорари знімальній групі</button>
-</div></div>
-</br></br></br></br>
-</form>
-
-<div class="container col-4">
-<form action = "gen_producer_gonorars_edit_crew.php" method="post">
-<h1 class="colorForAllText"> Обрати Фільм</h1>
-    <select  class=" form-control " name="moive_name_edit_crew">
-<?php
-
-$mysqli = new mysqli("localhost","root","root","filmstudio");
-$mysqli->query("SET NAMES 'utf8'");
-$result = $mysqli->query("SELECT `name_of_movie` FROM `movie`");
-$movie;
-while ($stroka = mysqli_fetch_array($result)){
-    echo"<option>" . $stroka['name_of_movie'] . "</option>";
-    $movie =  $stroka['name_of_movie'];
-   }
-?>
-</select>
-
-</br>
-<div class="btn  col-10">
-  <button class="button btn btn-danger"  name="filmCrew">Призначити гонорари групі монтажерів</button>
-</div></div></div>
-</br></br></br></br>
+  <div class="btn">
+  <input type="submit" class ="button btn btn-danger" value="Додати" name="adding_skills"><br>
+  </div>
 </form>
 
 
 
-
-<?php
-if (isset($_POST['filmCrew'])){
-
-  $movie = $_POST['movie_name'];
-
-  $mysqli = new mysqli("localhost","root","root","filmstudio");
-  $mysqli->query("SET NAMES 'utf8'");
-
-  $result = $mysqli->query("SELECT `number_of_filmCrew`
-   FROM `movie` WHERE `name_of_movie` = $movie");
-
-   $number_filmCrew = mysqli_fetch_array($result);
-echo $number_filmCrew[0];
-   echo"<form action=\"gen_producer_gonorars_film_crew.php\" method=\"post\">";
-   echo "<input type=\"hidden\" value = \"" .$number_filmCrew[0] . "\" name=\"number\" ></form>";
-
-  // header("location: /filmStudio/gen_producer/gen_producer_gonorars_film_crew.php");
-
-}
-
-
-
- ?>
 
 
 </body>

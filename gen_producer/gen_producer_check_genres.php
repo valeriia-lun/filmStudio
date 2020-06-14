@@ -1,18 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 <meta  charset=utf-8>
-<title>Обрати групу</title>
-<style>
-   select {
-    width: 300px;
-   }
-   .verstka2{
-  text-align: center;
-  float: left;
-}
-  </style>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<title>Генеральний продюсер</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
  <!-- Latest compiled and minified JavaScript -->
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
@@ -45,83 +36,25 @@
   </div>
 </nav>
 
-</br></br></br></br>
-<div class="row">
-<div class="container col-md-4">
-
-<form action = "gen_producer_gonorars_film_crew.php" method="post">
-<h1 class="colorForAllText"> Обрати Фільм</h1>
-    <select  class=" form-control " name="moive_name_film_crew">
-<?php
-$mysqli = new mysqli("localhost","root","root","filmstudio");
-$mysqli->query("SET NAMES 'utf8'");
-$result = $mysqli->query("SELECT `name_of_movie` FROM `movie`");
-$movie;
-while ($stroka = mysqli_fetch_array($result)){
-    echo"<option>" . $stroka['name_of_movie'] . "</option>";
-    $movie =  $stroka['name_of_movie'];
-   }
-?>
-</select>
-
-</br>
-<div class="btn  col-md-11">
-  <button class="button btn btn-danger"  name="filmCrew">Призначити гонорари знімальній групі</button>
-</div></div>
-</br></br></br></br>
-</form>
-
-<div class="container col-4">
-<form action = "gen_producer_gonorars_edit_crew.php" method="post">
-<h1 class="colorForAllText"> Обрати Фільм</h1>
-    <select  class=" form-control " name="moive_name_edit_crew">
 <?php
 
-$mysqli = new mysqli("localhost","root","root","filmstudio");
-$mysqli->query("SET NAMES 'utf8'");
-$result = $mysqli->query("SELECT `name_of_movie` FROM `movie`");
-$movie;
-while ($stroka = mysqli_fetch_array($result)){
-    echo"<option>" . $stroka['name_of_movie'] . "</option>";
-    $movie =  $stroka['name_of_movie'];
-   }
-?>
-</select>
-
-</br>
-<div class="btn  col-10">
-  <button class="button btn btn-danger"  name="filmCrew">Призначити гонорари групі монтажерів</button>
-</div></div></div>
-</br></br></br></br>
-</form>
-
-
-
-
-<?php
-if (isset($_POST['filmCrew'])){
-
-  $movie = $_POST['movie_name'];
-
+if (isset($_POST['adding_genres'])){
   $mysqli = new mysqli("localhost","root","root","filmstudio");
   $mysqli->query("SET NAMES 'utf8'");
-
-  $result = $mysqli->query("SELECT `number_of_filmCrew`
-   FROM `movie` WHERE `name_of_movie` = $movie");
-
-   $number_filmCrew = mysqli_fetch_array($result);
-echo $number_filmCrew[0];
-   echo"<form action=\"gen_producer_gonorars_film_crew.php\" method=\"post\">";
-   echo "<input type=\"hidden\" value = \"" .$number_filmCrew[0] . "\" name=\"number\" ></form>";
-
-  // header("location: /filmStudio/gen_producer/gen_producer_gonorars_film_crew.php");
-
+  $name_of_genre =  $_POST['genre_name'];
+  $max_id = $mysqli->query("SELECT MAX(id_movie_genre) FROM genres");
+  $max_id_result = mysqli_fetch_array($max_id);
+  $max_id_result_use = $max_id_result[0];
+  $max_id_result_use++;
+    $result = $mysqli->query("INSERT INTO `genres`(`id_movie_genre`, `genre`) VALUES ('$max_id_result_use', ' $name_of_genre')");
+  if ($result) {
+    echo "</br></br></br><h1 class=\"colorForAllText\">Жанр успішно додано!</h1>";
+  }
+else {
+  echo "</br></br></br><h1 class=\"colorForAllText\">Здається, щось пішло не так, жанр не було додано..</h1>";
+   }
 }
 
-
-
- ?>
-
-
+?>
 </body>
 </html>
