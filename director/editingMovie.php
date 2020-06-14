@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
@@ -52,10 +53,9 @@
               xGenre--; //Decrement field counter
           });
 
-
-          $(function() {
-          $().datepicker();
-          });
+// $(function() {
+//           $().datepicker();
+//           });
     </script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
@@ -125,10 +125,11 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" name=\"name_
 
     $mysql = new mysqli("localhost","root","root","filmstudio");
     $mysql->query("SET NAMES 'utf8'");
-    $result = $mysql->query("SELECT `genre` FROM `genres` WHERE `id_movie_genre` IN (SELECT `id_movie_genre` FROM `Movie_genres` WHERE `name_of_movie` = \"$name\")");
-    $resulttt = $mysql->query("SELECT `id_movie_genre` FROM `Movie_genres` WHERE `name_of_movie` = \"$name\"");
+    $result = $mysql->query("SELECT genre FROM genres WHERE id_movie_genre IN (SELECT id_movie_genre FROM Movie_genres WHERE name_of_movie = \"$name\")");
+    $resulttt = $mysql->query("SELECT id_movie_genre FROM Movie_genres WHERE name_of_movie = \"$name\"");
 
-    $rows = mysqli_num_rows($result); // количество полученных строк
+
+$rows = mysqli_num_rows($result); // количество полученных строк
     for ($i = 0 ; $i < $rows ; ++$i)
     {
     $row = mysqli_fetch_row($result);
@@ -210,7 +211,9 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" name=\"name_
           echo "<option value=\"1\">Бойовик</option>";
           echo "<option value=\"8\">Трагедія</option>";
           echo "<option value=\"9\">Документальний</option>";
-          echo "<option value=\"10\">Історичний</option>";
+
+
+echo "<option value=\"10\">Історичний</option>";
         }
         if($row[$j] == 'Трагедія'){
           echo "<option value=\"2\">Драма</option>";
@@ -261,7 +264,7 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" name=\"name_
 <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
-$result = $mysql->query("SELECT `date_of_release` FROM `movie` WHERE `name_of_movie` = \"$name\"");
+$result = $mysql->query("SELECT date_of_release FROM movie WHERE name_of_movie = \"$name\"");
 
 $res = mysqli_fetch_array($result);
 
@@ -277,7 +280,7 @@ echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
            <label class="colorText"> Бюджет:</label> <label style="color:red;">*</label><?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
-$result = $mysql->query("SELECT `budget_of_movie` FROM `movie` WHERE `name_of_movie` = \"$name\"");
+$result = $mysql->query("SELECT budget_of_movie FROM movie WHERE name_of_movie = \"$name\"");
 
 $res = mysqli_fetch_array($result);
 
@@ -291,7 +294,7 @@ echo "  <div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" o
 <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
-$result = $mysql->query("SELECT `duration_of_movie` FROM `Movie_duration` WHERE `name_of_movie` = \"$name\"");
+$result = $mysql->query("SELECT duration_of_movie FROM Movie_duration WHERE name_of_movie = \"$name\"");
 
 $rows = mysqli_num_rows($result); // количество полученных строк
 for ($i = 0 ; $i < $rows ; ++$i)
@@ -313,7 +316,7 @@ $row = mysqli_fetch_row($result);
     <label class="colorText">Рейтинг:</label><?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
-$result = $mysql->query("SELECT `rating_of_movie` FROM `movie` WHERE `name_of_movie` = \"$name\"");
+$result = $mysql->query("SELECT rating_of_movie FROM movie WHERE name_of_movie = \"$name\"");
 
 $res = mysqli_fetch_array($result);
 
@@ -333,14 +336,14 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
    $mysql->query("SET NAMES 'utf8'");
 
 
-   $result = $mysql->query("SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = '$name'");
+   $result = $mysql->query("SELECT number_of_film_crew FROM movie WHERE name_of_movie = '$name'");
 
 
    $numb = mysqli_fetch_array($result);
 
 
 
-   $resultt = $mysql->query("SELECT `number_of_film_crew` FROM `film_crew` WHERE `number_of_film_crew` = '$numb[0]'");
+   $resultt = $mysql->query("SELECT number_of_film_crew FROM film_crew WHERE number_of_film_crew = '$numb[0]'");
 
    $res = mysqli_fetch_array($resultt);
 
@@ -352,7 +355,7 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
        <label class="colorText">Дата початку роботи: </label> <?php
      $mysql = new mysqli("localhost","root","root","filmstudio");
      $mysql->query("SET NAMES 'utf8'");
-     $result = $mysql->query("SELECT `date_start_crew` FROM `film_crew` WHERE `number_of_film_crew` = '$numb[0]'");
+     $result = $mysql->query("SELECT date_start_crew FROM film_crew WHERE number_of_film_crew = '$numb[0]'");
 
      $res = mysqli_fetch_array($result);
 
@@ -365,7 +368,7 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
      <?php
      $mysql = new mysqli("localhost","root","root","filmstudio");
      $mysql->query("SET NAMES 'utf8'");
-     $result = $mysql->query("SELECT `date_finish_film_crew` FROM `film_crew` WHERE `number_of_film_crew` = '$numb[0]'");
+     $result = $mysql->query("SELECT date_finish_film_crew FROM film_crew WHERE number_of_film_crew = '$numb[0]'");
 
      $res = mysqli_fetch_array($result);
 
@@ -373,9 +376,12 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
        ?><br>
 
    </div>
+   </div>
+</br>
+</br>
+</br>
 
-
-   <div class=" container col-4" >
+   <div class="container col-8" >
    <label class="colorText">Склад:</label>
    <table border="1" class=" table table-dark table-hover" >
    <thead class="thead-dark " style="background-color: #252527;">
@@ -410,14 +416,15 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
    $mysql = new mysqli("localhost","root","root","filmstudio");
    $mysql->query("SET NAMES 'utf8'");
 
-   $result = $mysql->query("SELECT * FROM `actors` WHERE `actor_id` IN(SELECT `actor_id` FROM `actor_filmcrew`  WHERE  `number_of_film_crew` = '$numb[0]')");
+
+$result = $mysql->query("SELECT * FROM actors WHERE actor_id IN(SELECT actor_id FROM actor_filmcrew  WHERE  number_of_film_crew = '$numb[0]')");
 
    while ($stroka = mysqli_fetch_array($result)){
      $temp = $stroka['actor_id'];
 
-     $result_phones = $mysql->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id`  = $temp");
+     $result_phones = $mysql->query("SELECT actor_phone_number FROM actors_phones WHERE actor_id  = $temp");
 
-     $result_contacts_rel = $mysql->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp");
+     $result_contacts_rel = $mysql->query("SELECT actor_relatives_phone_numbers FROM actor_contacts_of_relatives WHERE actor_id  = $temp");
 
      echo"<tr>";
      echo"<td>" . $stroka['actor_id'] . "</td>";
@@ -434,15 +441,15 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
 
    }
 
-   $result_understudies = $mysql->query("SELECT * FROM `understudies` WHERE `understudy_id` IN(SELECT `understudy_id` FROM `understudies_filmcrew`  WHERE  `number_of_film_crew` = '$numb[0]')");
+   $result_understudies = $mysql->query("SELECT * FROM understudies WHERE understudy_id IN(SELECT understudy_id FROM understudies_filmcrew  WHERE  number_of_film_crew = '$numb[0]')");
 
 
    while ($stroka = mysqli_fetch_array($result_understudies)){
      $temp = $stroka['understudy_id'];
 
-     // $result_phones = $mysqli->query("SELECT `understudy_phone_number` FROM `understudy_phones` WHERE `understudy_id` IN (SELECT `understudy_id` FROM  `understudies` WHERE `understudy_id` = $temp)");
+     // $result_phones = $mysqli->query("SELECT understudy_phone_number FROM understudy_phones WHERE understudy_id IN (SELECT understudy_id FROM  understudies WHERE understudy_id = $temp)");
      //
-     // $result_contacts_rel = $mysqli->query("SELECT `understudy_relatives_phone_numbers` FROM `understudies_contacts_of_relatives` WHERE `understudy_id` IN (SELECT `understudy_id` FROM  `understudies` WHERE `understudy_id` = $temp)");
+     // $result_contacts_rel = $mysqli->query("SELECT understudy_relatives_phone_numbers FROM understudies_contacts_of_relatives WHERE understudy_id IN (SELECT understudy_id FROM  understudies WHERE understudy_id = $temp)");
 
 
      echo"<tr>";
@@ -459,15 +466,15 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
      echo"</tr>";
    }
 
-   $result_others = $mysql->query("SELECT * FROM `others` WHERE `others_id` IN(SELECT `others_id` FROM `others_filmcrew`  WHERE  `number_of_film_crew` = '$numb[0]')");
+   $result_others = $mysql->query("SELECT * FROM others WHERE others_id IN(SELECT others_id FROM others_filmcrew  WHERE  number_of_film_crew = '$numb[0]')");
 
 
    while ($stroka = mysqli_fetch_array($result_others)){
      $temp = $stroka['others_id'];
 
-     // $result_phones = $mysqli->query("SELECT `understudy_phone_number` FROM `understudy_phones` WHERE `understudy_id` IN (SELECT `understudy_id` FROM  `understudies` WHERE `understudy_id` = $temp)");
+     // $result_phones = $mysqli->query("SELECT understudy_phone_number FROM understudy_phones WHERE understudy_id IN (SELECT understudy_id FROM  understudies WHERE understudy_id = $temp)");
      //
-     // $result_contacts_rel = $mysqli->query("SELECT `understudy_relatives_phone_numbers` FROM `understudies_contacts_of_relatives` WHERE `understudy_id` IN (SELECT `understudy_id` FROM  `understudies` WHERE `understudy_id` = $temp)");
+     // $result_contacts_rel = $mysqli->query("SELECT understudy_relatives_phone_numbers FROM understudies_contacts_of_relatives WHERE understudy_id IN (SELECT understudy_id FROM  understudies WHERE understudy_id = $temp)");
 
 
      echo"<tr>";
@@ -482,7 +489,8 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
      // echo"<td>" .  res($result_phones) . "</td>";
      // echo"<td>" .  res($result_contacts_rel) . "</td>";
 
-     if($stroka['name_of_position'] == "лінійний продюсер" || $stroka['name_of_position'] == "режисер" || $stroka['name_of_position'] == "сценарист"){
+
+if($stroka['name_of_position'] == "лінійний продюсер" || $stroka['name_of_position'] == "режисер" || $stroka['name_of_position'] == "сценарист"){
        echo"<form action=\"editingFilmCrew.php\" method=\"post\">";
 
    echo "<input type=\"hidden\" value = \"" .$stroka['others_id'] . "\" name=\"others_id\" >";
@@ -514,13 +522,13 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
        <?php
        $mysql = new mysqli("localhost","root","root","filmstudio");
        $mysql->query("SET NAMES 'utf8'");
-       $result = $mysql->query("SELECT `number_of_edit_crew` FROM `movie` WHERE `name_of_movie` = '$name'");
+       $result = $mysql->query("SELECT number_of_edit_crew FROM movie WHERE name_of_movie = '$name'");
 
 
        $numb = mysqli_fetch_array($result);
 
 
-   $result = $mysql->query("SELECT `number_of_edit_crew` FROM `edit_crew` WHERE `number_of_edit_crew` = '$numb[0]'");
+   $result = $mysql->query("SELECT number_of_edit_crew FROM edit_crew WHERE number_of_edit_crew = '$numb[0]'");
 
    $res = mysqli_fetch_array($result);
 
@@ -531,7 +539,7 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
        <label class="colorText">Дата початку роботи: </label> <?php
      $mysql = new mysqli("localhost","root","root","filmstudio");
      $mysql->query("SET NAMES 'utf8'");
-     $result = $mysql->query("SELECT `date_start_edit_crew` FROM `edit_crew` WHERE `number_of_edit_crew` = '$numb[0]'");
+     $result = $mysql->query("SELECT date_start_edit_crew FROM edit_crew WHERE number_of_edit_crew = '$numb[0]'");
 
      $res = mysqli_fetch_array($result);
 
@@ -542,7 +550,7 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
      <label class="colorText">Дата закінчення роботи:</label><?php
      $mysql = new mysqli("localhost","root","root","filmstudio");
      $mysql->query("SET NAMES 'utf8'");
-     $result = $mysql->query("SELECT `date_finish_edit_crew` FROM `edit_crew` WHERE `number_of_edit_crew` = '$numb[0]'");
+     $result = $mysql->query("SELECT date_finish_edit_crew FROM edit_crew WHERE number_of_edit_crew = '$numb[0]'");
 
      $res = mysqli_fetch_array($result);
 
@@ -558,35 +566,68 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
        $mysql->query("SET NAMES 'utf8'");
     //   $name_of_movie = $_POST['name_of_movie'];
 
-       $number_of_editCreww = $mysql->query("SELECT `number_of_edit_crew` FROM `movie` WHERE `name_of_movie` =  \"$name\"");
+       $number_of_editCreww = $mysql->query("SELECT number_of_edit_crew FROM movie WHERE name_of_movie =  \"$name\"");
        $number_of_editCrew = mysqli_fetch_array($number_of_editCreww);
      $num = $number_of_editCrew[0];
 
 
-       $start = $mysql->query("SELECT `date_start_edit_crew` FROM `edit_crew` WHERE `number_of_edit_crew` = $num");
-       $finish = $mysql->query("SELECT `date_finish_edit_crew` FROM `edit_crew` WHERE `number_of_edit_crew` = $num");
-       
+       $start = $mysql->query("SELECT date_start_edit_crew FROM edit_crew WHERE number_of_edit_crew = $num");
+       $finish = $mysql->query("SELECT date_finish_edit_crew FROM edit_crew WHERE number_of_edit_crew = $num");
+
        $date_start_this_edit_crew = mysqli_fetch_array($start); //arrays with 1 element
        $date_finish_this_edit_crew = mysqli_fetch_array($finish);
        $used_start = $date_start_this_edit_crew[0];
        $used_finish = $date_finish_this_edit_crew[0];
-       
-       
 
 
-
-       $result_editing_movie=$mysql->query("SELECT `editor_id`, `editor_surname`,`editor_name`,`editor_middle_name` FROM `editor` WHERE editor_id NOT IN (SELECT DISTINCT editor_id FROM editor_crewedit WHERE number_of_edit_crew
+       $result_editor_id=$mysql->query("SELECT editor_id  FROM editor WHERE editor_id NOT IN (SELECT DISTINCT editor_id FROM editor_crewedit WHERE number_of_edit_crew
         IN(SELECT number_of_edit_crew FROM edit_crew WHERE ((date_finish_edit_crew BETWEEN '$used_start' AND '$used_finish') OR
        (date_start_edit_crew BETWEEN  '$used_start' AND  '$used_finish'))))");
 
 
+$result_editor_surname=$mysql->query("SELECT editor_surname  FROM editor WHERE editor_id NOT IN (SELECT DISTINCT editor_id FROM editor_crewedit WHERE number_of_edit_crew
+      IN(SELECT number_of_edit_crew FROM edit_crew WHERE ((date_finish_edit_crew BETWEEN '$used_start' AND '$used_finish') OR
+      (date_start_edit_crew BETWEEN  '$used_start' AND  '$used_finish'))))");
 
-echo  $result_editing_movie[0];
-      // $result = $mysql->query("SELECT `editor_crew_head_id` FROM `edit_crew` WHERE `number_of_edit_crew` = '$numb[0]'");
 
-       $res = mysqli_fetch_array($result_editing_movie);
-       echo $res[0];
-      //  echo "<input type= \"text\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"head\" value=\"$res[0]\" required>";
+
+      $result_editor_middle_name=$mysql->query("SELECT editor_middle_name  FROM editor WHERE editor_id NOT IN (SELECT DISTINCT editor_id FROM editor_crewedit WHERE number_of_edit_crew
+      IN(SELECT number_of_edit_crew FROM edit_crew WHERE ((date_finish_edit_crew BETWEEN '$used_start' AND '$used_finish') OR
+      (date_start_edit_crew BETWEEN  '$used_start' AND  '$used_finish'))))");
+
+
+      $result_editor_name=$mysql->query("SELECT editor_name  FROM editor WHERE editor_id NOT IN (SELECT DISTINCT editor_id FROM editor_crewedit WHERE number_of_edit_crew
+      IN(SELECT number_of_edit_crew FROM edit_crew WHERE ((date_finish_edit_crew BETWEEN '$used_start' AND '$used_finish') OR
+      (date_start_edit_crew BETWEEN  '$used_start' AND  '$used_finish'))))");
+
+
+
+
+       echo "<select name=\"head\" class=\"select selectpicker  required form-control\">";
+       while($stroka_id = mysqli_fetch_array($result_editor_id) && $stroka_surname = mysqli_fetch_array($result_editor_surname) &&
+         $stroka_name = mysqli_fetch_array($result_editor_name) &&   $stroka_middle_name = mysqli_fetch_array($result_editor_middle_name) ){
+       for ($i=0; $i<count($stroka_id); $i++){
+        // for ($j=0; $j<count($stroka_surname); $j+=2){
+        //   for ($k=0; $k<count($stroka_name); $k+=2){
+        //     for ($n=0; $n<count($stroka_middle_name); $n+=2){
+         echo "<option> $stroka_surname[$i] $stroka_name[$i] $stroka_middle_name[$i], id:$stroka_id[$i]</option>";
+      //  }
+      // }}
+
+    }
+  }
+      //  for ($i=0; $i<count($stroka_name); $i+=2){
+      //   echo "<option>$stroka_name[$i]</option>";
+      // }
+      // for ($i=0; $i<count($stroka_surname); $i+=2){
+      //   echo "<option>$stroka_surname[$i]</option>";
+      // }
+      // for ($i=0; $i<count($stroka_middle_name); $i+=2){
+      //   echo "<option>$stroka_middle_name[$i]</option>";
+      // }
+
+
+
          ?><br>
    </div></div><br>
 
@@ -629,7 +670,7 @@ $dateRelease = filter_var(trim($_POST['date_of_release']),FILTER_SANITIZE_STRING
 $rating = filter_var(trim($_POST['rating']),FILTER_SANITIZE_STRING);
 $budget = filter_var(trim($_POST['budget']),FILTER_SANITIZE_STRING);
 
-$ans = $mysql->query("UPDATE `movie` SET `name_of_movie` = '$newName', `budget_of_movie` = '$budget' WHERE `name_of_movie` = '$movieName' ");
+$ans = $mysql->query("UPDATE movie SET name_of_movie = '$newName', budget_of_movie = '$budget' WHERE name_of_movie = '$movieName' ");
 if ($ans) {
    echo "Success!";
  }
@@ -638,7 +679,7 @@ else {
   }
 
   if($dateRelease != NULL){
-    $anss = $mysql->query("UPDATE `movie` SET `date_of_release` = '$dateRelease' WHERE `name_of_movie` = '$newName'");
+    $anss = $mysql->query("UPDATE movie SET date_of_release = '$dateRelease' WHERE name_of_movie = '$newName'");
       if ($anss) {
          echo "Success!";
        }
@@ -648,7 +689,7 @@ else {
   }
 
   if($rating != NULL){
-    $anss = $mysql->query("UPDATE `movie` SET `rating_of_movie` = '$rating' WHERE `name_of_movie` = '$newName'");
+    $anss = $mysql->query("UPDATE movie SET rating_of_movie = '$rating' WHERE name_of_movie = '$newName'");
       if ($anss) {
          echo "Success!";
        }
@@ -659,12 +700,12 @@ else {
 
 
 
-  $mysql->query("DELETE FROM `Movie_genres` WHERE `name_of_movie` = '$movieName'");
-  $mysql->query("DELETE FROM `Movie_duration` WHERE `name_of_movie` = '$movieName'");
+  $mysql->query("DELETE FROM Movie_genres WHERE name_of_movie = '$movieName'");
+  $mysql->query("DELETE FROM Movie_duration WHERE name_of_movie = '$movieName'");
 
 
-  foreach ($genres as $value) {
-  $result = $mysql->query("INSERT INTO `Movie_genres`(`id_movie_genre`, `name_of_movie`)
+foreach ($genres as $value) {
+  $result = $mysql->query("INSERT INTO Movie_genres(id_movie_genre, name_of_movie)
     VALUES ('$value','$newName')");
     if ($result) {
        echo "Success!";
@@ -676,7 +717,7 @@ else {
 
 
   foreach ($durations as $value) {
-  $result = $mysql->query("INSERT INTO `Movie_duration`(`duration_of_movie`, `name_of_movie`)
+  $result = $mysql->query("INSERT INTO Movie_duration(duration_of_movie, name_of_movie)
     VALUES ('$value','$newName')");
     if ($result) {
        echo "Success!";
