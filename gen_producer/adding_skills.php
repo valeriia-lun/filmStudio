@@ -46,7 +46,7 @@
 </nav>
 </br></br></br></br>
 
-
+<small>Поля, позначені </small><small style="color:red;">*</small><small> - обов'язкові.</small></br></br>
 <form action="gen_producer_check_skills.php" method="POST"> 
 <div class="row">
   <div class=" container col-4">
@@ -55,7 +55,7 @@
     font-style: oblique 40deg bold;
     font-weight: 580;
     font-size: 20pt;
-    background-color: #bbb8b5;">Назва навички: </label><input  type="text" class="form-control" name="skill_name" maxlength="50" tabindex="2" required><br>
+    background-color: #bbb8b5;">Назва навички: </label><label style="color:red;">*</label><input  type="text" class="form-control" name="skill_name" maxlength="50" tabindex="2" required><br>
 
   <div class="btn">
   <input type="submit" class ="button btn btn-danger" value="Додати" name="adding_skills"><br>

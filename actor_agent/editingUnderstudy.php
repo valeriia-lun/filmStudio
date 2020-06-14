@@ -168,13 +168,13 @@ function lal(el) {
   </div>
 </nav>
 
-<br><br><h1 class="colorForAllText">Змінити інформацію про дублера</h1><br>
-
+<br><br><h1 class="colorForAllText">Змінити інформацію про дублера</h1>
+<small>Поля, позначені </small><small style="color:red;">*</small><small> - обов'язкові.</small></br></br>
 
 <form action="" method="post">
 <div class="row text-center" style="margin:10px;">
     <div class=" container col-3" >
-    <label class="colorText">Ім'я: </label>
+    <label class="colorText">Ім'я: </label><label style="color:red;">*</label>
     <?php
     if (isset($_POST['editBtn'])){
       $id = filter_var(trim($_POST['understudy_id']),FILTER_SANITIZE_STRING);
@@ -192,7 +192,7 @@ function lal(el) {
      ?><br>
    </div>
   <div class="container col-3">
-  <label class="colorText">Прізвище:</label>
+  <label class="colorText">Прізвище:</label><label style="color:red;">*</label>
     <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
@@ -204,7 +204,7 @@ function lal(el) {
      ?><br>
      </div>
   <div class="container col-3">
-  <label class="colorText">По-батькові: </label> <?php
+  <label class="colorText">По-батькові: </label><label style="color:red;">*</label> <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
   $result = $mysql->query("SELECT `understudy_middle_name` FROM `Understudies` WHERE `understudy_id` = $id");
@@ -220,7 +220,7 @@ function lal(el) {
 
 <div class="row text-center" style="margin:10px;">
   <div class=" container col-3">
-  <label class="colorText">Телефон:</label> <div class="field_wrapper_Phones">
+  <label class="colorText">Телефон:</label> <label style="color:red;">*</label><div class="field_wrapper_Phones">
   <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
@@ -241,7 +241,7 @@ function lal(el) {
   }
   ?></div><br></div>
 <div class=" container col-3">
-<label class="colorText">Контакти близьких:</label> <div class="field_wrapper_Contacts">
+<label class="colorText">Контакти близьких:</label> <label style="color:red;">*</label><div class="field_wrapper_Contacts">
          <?php
        $mysql = new mysqli("localhost","root","root","filmstudio");
        $mysql->query("SET NAMES 'utf8'");
@@ -299,7 +299,7 @@ function lal(el) {
 
 <div class="row text-center" style="margin:10px;">
   <div class=" container col-3">
-  <label class="colorText"> Домашня адреса:</label>
+  <label class="colorText"> Домашня адреса:</label><label style="color:red;">*</label>
      <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
@@ -313,7 +313,7 @@ function lal(el) {
 </div>
 
  <div class=" container col-3">
-<label class="colorText">Стаж: </label>
+<label class="colorText">Стаж: </label><label style="color:red;">*</label>
   <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
@@ -325,7 +325,7 @@ function lal(el) {
    ?><br>
   </div>
 <div class=" container col-3">
-<label class="colorText">Працює з: </label><?php
+<label class="colorText">Працює з: </label><label style="color:red;">*</label><?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
   $result = $mysql->query("SELECT `understudy_works_since` FROM `Understudies` WHERE `understudy_id` = $id");
@@ -355,7 +355,7 @@ function lal(el) {
     </div>
 
     <div class=" container col-3">
-    <label class="colorText">Дата народження: </label> <?php
+    <label class="colorText">Дата народження: </label> <label style="color:red;">*</label><?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
   $result = $mysql->query("SELECT `understudy_date_of_birth` FROM `Understudies` WHERE `understudy_id` = $id");
@@ -367,7 +367,7 @@ function lal(el) {
     </div>
 
     <div class=" container col-3">
-    <label class="colorText">Заробітня плата:</label><?php
+    <label class="colorText">Заробітня плата:</label><label style="color:red;">*</label><?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
   $result = $mysql->query("SELECT `understudy_salary` FROM `Understudies` WHERE `understudy_id` = $id");
@@ -383,7 +383,7 @@ function lal(el) {
 
 <div class="row " style="margin:10px;">
   <div class=" container col-4">
-  <label class="colorText">Місце народження:</label>  <?php
+  <label class="colorText">Місце народження:</label> <label style="color:red;">*</label> <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
   $result = $mysql->query("SELECT `understudy_place_of_birth` FROM `Understudies` WHERE `understudy_id` = $id");
@@ -394,7 +394,7 @@ function lal(el) {
    ?><br></div>
 
    <div class=" container col-4">
-   <label class="colorText">E-mail: </label> <?php
+   <label class="colorText">E-mail: </label> <label style="color:red;">*</label><?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
   $result = $mysql->query("SELECT `understudy_e-mail` FROM `Understudies` WHERE `understudy_id` = $id");
@@ -417,7 +417,7 @@ function lal(el) {
 <h1 class="colorForAllText text-center" >Зовнішність</h1>
 <div class="row">
   <div class=" container col-3">
-<label class="colorText">Стать: </label>
+<label class="colorText">Стать: </label><label style="color:red;">*</label>
      <select class="form-control" name="sex">
      <?php
      $mysql = new mysqli("localhost","root","root","filmstudio");
@@ -442,7 +442,7 @@ function lal(el) {
 
       </div>
    <div class=" container col-3">
-   <label class="colorText">Зріст: </label>  <?php
+   <label class="colorText">Зріст: </label> <label style="color:red;">*</label> <?php
      $mysql = new mysqli("localhost","root","root","filmstudio");
      $mysql->query("SET NAMES 'utf8'");
      $result = $mysql->query("SELECT `understudy_height` FROM `Understudies` WHERE `understudy_id` = $id");
@@ -453,7 +453,7 @@ function lal(el) {
       ?><br>
   </div>
     <div class=" container col-3">
-    <label class="colorText">  Колір волосся: </label>
+    <label class="colorText">  Колір волосся: </label><label style="color:red;">*</label>
      <select class="form-control" name="hairColor">
        <?php
         $mysql = new mysqli("localhost","root","root","filmstudio");
@@ -505,7 +505,7 @@ function lal(el) {
 
 <div class="row">
 <div class=" container col-3">
-<label class="colorText">   Довжина волосся: </label><?php
+<label class="colorText">   Довжина волосся: </label><label style="color:red;">*</label><?php
      $mysql = new mysqli("localhost","root","root","filmstudio");
      $mysql->query("SET NAMES 'utf8'");
      $result = $mysql->query("SELECT `understudy_length_of_hair` FROM `Understudies` WHERE `understudy_id` = $id");
@@ -516,7 +516,7 @@ function lal(el) {
       ?><br>
 </div>
    <div class=" container col-3">
-   <label class="colorText">Колір очей: </label>
+   <label class="colorText">Колір очей: </label><label style="color:red;">*</label>
      <select class="form-control" name="eyes">
        <?php
         $mysql = new mysqli("localhost","root","root","filmstudio");
@@ -553,7 +553,7 @@ function lal(el) {
 
      </div>
    <div class=" container col-3">
-   <label class="colorText">  Статура: </label>
+   <label class="colorText">  Статура: </label><label style="color:red;">*</label>
      <select class="form-control" name="stature">
      <?php
      $mysql = new mysqli("localhost","root","root","filmstudio");
@@ -590,7 +590,7 @@ function lal(el) {
 
 <div class="row">
   <div class=" container col-3">
-<label class="colorText">  Розмір взуття: </label><?php
+<label class="colorText">  Розмір взуття: </label><label style="color:red;">*</label><?php
      $mysql = new mysqli("localhost","root","root","filmstudio");
      $mysql->query("SET NAMES 'utf8'");
      $result = $mysql->query("SELECT `understudy_shoe_size` FROM `Understudies` WHERE `understudy_id` = $id");
@@ -601,7 +601,7 @@ function lal(el) {
       ?><br>
 </div>
    <div class=" container col-3">
-   <label class="colorText">   Розмір одягу:</label> <?php
+   <label class="colorText">   Розмір одягу:</label><label style="color:red;">*</label> <?php
      $mysql = new mysqli("localhost","root","root","filmstudio");
      $mysql->query("SET NAMES 'utf8'");
      $result = $mysql->query("SELECT `understudy_clothing_size` FROM `Understudies` WHERE `understudy_id` = $id");
@@ -612,7 +612,7 @@ function lal(el) {
       ?><br>
  </div>
    <div class=" container col-3">
-   <label class="colorText">   Національність: </label> <?php
+   <label class="colorText">   Національність: </label><label style="color:red;">*</label> <?php
      $mysql = new mysqli("localhost","root","root","filmstudio");
      $mysql->query("SET NAMES 'utf8'");
      $result = $mysql->query("SELECT `understudy_nationality` FROM `Understudies` WHERE `understudy_id` = $id");

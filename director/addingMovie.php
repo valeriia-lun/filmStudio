@@ -200,19 +200,19 @@ function lal(el) {
   </div>
 </nav>
 
-<br><br><h1 class="colorForAllText">Додати фільм</h1><br>
-
+<br><br><h1 class="colorForAllText">Додати фільм</h1>
+<small>Поля, позначені </small><small style="color:red;">*</small><small> - обов'язкові.</small></br></br>
 <div>
   <form action="" method="post" onsubmit="return checkForm(this);">
   <div class="row text-center" style="margin:10px;">
     <div class=" container col-3" >
-    <label class="colorText">Назва:  </label><input type="text" class="form-control"  name="movie_name" maxlength="50" tabindex="2" required><br>
+    <label class="colorText">Назва:  </label><label style="color:red;">*</label><input type="text" class="form-control"  name="movie_name" maxlength="50" tabindex="2" required><br>
     </div>
     <div class=" container col-3" >
-    <label class="colorText">Жанр:</label>
+    <label class="colorText">Жанр:</label><label style="color:red;">*</label>
         <div class="field_wrapper_Genre">
                <div>
-                   <select class="form-control"  name="field_name_Genre[]">
+                   <select class="form-control"  name="field_name_Genre[]" required>
                      <option value="1" selected>Бойовик</option>
                      <option value="2">Драма</option>
                      <option value="3">Триллер</option>
@@ -229,27 +229,27 @@ function lal(el) {
            </div>
            </div>
            <div class=" container col-3" >
-           <label class="colorText"> Бюджет:</label> <input type="text" onkeyup="lal(this)" class="form-control"  name="budget" maxlength="50" tabindex="2" required><br>
+           <label class="colorText"> Бюджет:</label><label style="color:red;">*</label> <input type="text" onkeyup="lal(this)" class="form-control"  name="budget" maxlength="50" tabindex="2" required><br>
            </div>  </div>
 </div><br><br>
 
 <br><br><h1 class="colorForAllText">Знімальна група</h1><br>
   <div class="row text-center" style="margin:10px;">
     <div class=" container col-4" >
-    <label class="colorText">Дата початку роботи: </label><input type="date" class="form-control" id="date_start_filmCrew" name="date_start_filmCrew" maxlength="50" tabindex="2" required><br>
+    <label class="colorText">Дата початку роботи: </label><label style="color:red;">*</label><input type="date" class="form-control" id="date_start_filmCrew" name="date_start_filmCrew" maxlength="50" tabindex="2" required><br>
   </div>
   <div class=" container col-4" >
-  <label class="colorText">Дата закінчення роботи:</label> <input type="date" class="form-control" id="date_end_filmCrew" name="date_end_filmCrew" maxlength="50" tabindex="2" required><br>
+  <label class="colorText">Дата закінчення роботи:</label> <label style="color:red;">*</label><input type="date" class="form-control" id="date_end_filmCrew" name="date_end_filmCrew" maxlength="50" tabindex="2" required><br>
   </div></div><br>
 
 
   <br><br><h1 class="colorForAllText">Група монтажерів</h1><br>
   <div class="row text-center" style="margin:10px;">
     <div class=" container col-4" >
-    <label class="colorText">Дата початку роботи: </label><input type="date" class="form-control" name="date_start_editCrew" maxlength="50" tabindex="2" required><br>
+    <label class="colorText">Дата початку роботи: </label><label style="color:red;">*</label><input type="date" class="form-control" name="date_start_editCrew" maxlength="50" tabindex="2" required><br>
   </div>
   <div class=" container col-4" >
-  <label class="colorText">Дата закінчення роботи:</label> <input type="date" class="form-control" name="date_end_editCrew" maxlength="50" tabindex="2" required><br>
+  <label class="colorText">Дата закінчення роботи:</label><label style="color:red;">*</label> <input type="date" class="form-control" name="date_end_editCrew" maxlength="50" tabindex="2" required><br>
   </div></div><br>
 
 

@@ -9,7 +9,7 @@
         var maxFieldDur = 10; //Input fields increment limitation
         var addButtonDur = $('.add_button_Dur'); //Add button selector
         var wrapperDur = $('.field_wrapper_Dur'); //Input field wrapper
-        var fieldHTMLDur = '<div><input type="text" name="field_name_Dur[]" value=""/><a href="javascript:void(0);" class="remove_button_Dur"><img src="../img/delete-icon.png" /></a></div>'; //New input field html
+        var fieldHTMLDur = '<div><input type="text" name="field_name_Dur[]" class= "form-control" value=""/><a href="javascript:void(0);" class="remove_button_Dur"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
         var xDur = 1; //Initial field counter is 1
 
         //Once add button is clicked
@@ -33,7 +33,7 @@
           var maxFieldGenre = 10; //Input fields increment limitation
           var addButtonGenre = $('.add_button_Skills'); //Add button selector
           var wrapperGenre = $('.field_wrapper_Skills'); //Input field wrapper
-          var fieldHTMLGenre = '<div><select name="field_name_Genre[]"><option value="1" selected>Бойовик</option><option value="2">Драма</option><option value="3">Триллер</option><option value="4">Жахи</option><option value="5">Детектив</option><option value="6">Комедія</option><option value="7">Вестерн</option><option value="8">Трагедія</option><option value="9">Документальний</option><option value="10">Історичний</option></select><a href="javascript:void(0);" class="remove_button_Genre"><img src="../img/delete-icon.png" /></a></div>'; //New input field html
+          var fieldHTMLGenre = '<div><select  class= "form-control" name="field_name_Genre[]"><option value="1" selected>Бойовик</option><option value="2">Драма</option><option value="3">Триллер</option><option value="4">Жахи</option><option value="5">Детектив</option><option value="6">Комедія</option><option value="7">Вестерн</option><option value="8">Трагедія</option><option value="9">Документальний</option><option value="10">Історичний</option></select><a href="javascript:void(0);" class="remove_button_Genre"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
           var xGenre = 1; //Initial field counter is 1
 
           //Once add button is clicked
@@ -96,22 +96,22 @@ function lal(el) {
   </div>
 </nav>
 
-<br><br><h1 class="colorForAllText">Змінити фільм</h1><br>
-
+<br><br><h1 class="colorForAllText">Змінити фільм</h1>
+<small>Поля, позначені </small><small style="color:red;">*</small><small> - обов'язкові.</small></br></br>
 
 
 
   <form action="" method="post">
   <div class="row text-center" style="margin:10px;">
-    <div class=" container col-3" >  <label class="colorText">Назва:  </label>
+    <div class=" container col-3" >  <label class="colorText">Назва:  </label><label style="color:red;">*</label>
   <?php
   //if (isset($_POST['editBtn'])){
     $name = filter_var(trim($_POST['name_of_movie']),FILTER_SANITIZE_STRING);
-    echo $name;
-    echo "string";
+   // echo $name;
+    //echo "string";
   //  $name = "anuka";
   //}
-  print_r( $name);
+  //print_r( $name);
   echo "<input type=\"hidden\" value = \"" .$name . "\" name=\"name_of_movie\" >";
 
 echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" name=\"name_of_movie_new\" tabindex=\"2\" value=\"$name\" required>";
@@ -119,7 +119,7 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" name=\"name_
 ?><br>
   </div>
     <div class=" container col-3" >
-    <label class="colorText">Жанр:</label><div class="field_wrapper_Genre">
+    <label class="colorText">Жанр:</label><label style="color:red;">*</label><div class="field_wrapper_Genre">
     <select class="form-control">
     <?php
 
@@ -246,9 +246,9 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" name=\"name_
           echo "<option value=\"1\">Бойовик</option>";
         }
         if($i == 0){
-            echo "<a href=\"javascript:void(0);\" class=\"add_button_Genre\" title=\"Add field\"><img src=\"../img/add-icon.png\" width='10'/></a></div>";
+            echo "<a href=\"javascript:void(0);\" class=\"add_button_Genre\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a></div>";
         } else{
-              echo "<a href=\"javascript:void(0);\" class=\"remove_button_Genre\"><img src=\"../img/delete-icon.png\" /></a></div>";
+              echo "<a href=\"javascript:void(0);\" class=\"remove_button_Genre\"><img src=\"../img/delete_icon.png\" width=\'20\' height=\'20\'/></a></div>";
         }
       }
     }
@@ -259,7 +259,7 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" name=\"name_
   </div>
 
            <div class=" container col-3" >
-           <label class="colorText"> Бюджет:</label> <?php
+           <label class="colorText"> Бюджет:</label> <label style="color:red;">*</label><?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
 $result = $mysql->query("SELECT `budget_of_movie` FROM `movie` WHERE `name_of_movie` = \"$name\"");
@@ -281,7 +281,7 @@ $result = $mysql->query("SELECT `date_of_release` FROM `movie` WHERE `name_of_mo
 
 $res = mysqli_fetch_array($result);
 
-echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"date_of_release\" value=\"$res[0]\" required>";
+echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"date_of_release\" value=\"$res[0]\" >";
    ?><br>
   </div>
     <div class=" container col-3" >
@@ -297,11 +297,11 @@ for ($i = 0 ; $i < $rows ; ++$i)
 {
 $row = mysqli_fetch_row($result);
     for ($j = 0 ; $j < 1 ; ++$j){
-      echo "<div><input type= \"text\" maxlength=\"50\" class=\"form-control\" name=\"field_name_Dur[]\" tabindex=\"2\" value=\"$row[$j]\" required>";
+      echo "<div><input type= \"text\" maxlength=\"50\" class=\"form-control\" name=\"field_name_Dur[]\" tabindex=\"2\" value=\"$row[$j]\" >";
       if($i == 0){
-          echo "<a href=\"javascript:void(0);\" class=\"add_button_Dur\" title=\"Add field\"><img src=\"../img/add-icon.png\" width='10'/></a></div>";
+          echo "<a href=\"javascript:void(0);\" class=\"add_button_Dur\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a></div>";
       } else{
-            echo "<a href=\"javascript:void(0);\" class=\"remove_button_Dur\"><img src=\"../img/delete-icon.png\" /></a></div>";
+            echo "<a href=\"javascript:void(0);\" class=\"remove_button_Dur\"><img src=\"../img/delete_icon.png\" width=\'20\' height=\'20\'/></a></div>";
       }
     }
 }
@@ -316,7 +316,7 @@ $result = $mysql->query("SELECT `rating_of_movie` FROM `movie` WHERE `name_of_mo
 
 $res = mysqli_fetch_array($result);
 
-echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"rating\" value=\"$res[0]\" required>";
+echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"rating\" value=\"$res[0]\" >";
    ?>   </div>  </div>
    </div><br><br>
    <div class="btn">

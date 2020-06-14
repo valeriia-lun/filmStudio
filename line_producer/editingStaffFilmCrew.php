@@ -143,13 +143,13 @@ function lal(el) {
     </form>
   </div>
 </nav>
-<br><br><h1 class="colorForAllText">Змінити співробітника знімальної групи</h1><br>
-
+<br><br><h1 class="colorForAllText">Змінити співробітника знімальної групи</h1>
+<small>Поля, позначені </small><small style="color:red;">*</small><small> - обов'язкові.</small></br></br>
 <form action="" method="post">
 
 <div class="row text-center" style="margin:10px;">
     <div class=" container col-4" >
-    <label class="colorText">   Назва посади: </label>
+    <label class="colorText">   Назва посади: </label><label style="color:red;">*</label>
    <?php
    if (isset($_POST['editBtn'])){
      $id = filter_var(trim($_POST['others_id']),FILTER_SANITIZE_STRING);
@@ -169,7 +169,7 @@ echo $res[0];
 
 <div class="row text-center" style="margin:10px;">
   <div class=" container col-3" >
-  <label class="colorText">Ім'я: </label>
+  <label class="colorText">Ім'я: </label><label style="color:red;">*</label>
    <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
@@ -181,7 +181,7 @@ echo "<input type= \"text\" maxlength=\"50\" tabindex=\"2\" class=\"form-control
     ?><br>
   </div>
   <div class="container col-3">
-  <label class="colorText">Прізвище:</label>
+  <label class="colorText">Прізвище:</label><label style="color:red;">*</label>
    <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
@@ -193,7 +193,7 @@ echo "<input type= \"text\" maxlength=\"50\" tabindex=\"2\" class=\"form-control
     ?><br>
    </div>
   <div class="container col-3">
-  <label class="colorText">По-батькові: </label> <?php
+  <label class="colorText">По-батькові: </label><label style="color:red;">*</label> <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
 $result = $mysql->query("SELECT `others_middle_name` FROM `Others` WHERE `others_id` = $id");
@@ -208,7 +208,7 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
 
 <div class="row">
 <div class=" container col-3">
-<label class="colorText">Телефон:</label> <div class="field_wrapper_Phones">
+<label class="colorText">Телефон:</label><label style="color:red;">*</label> <div class="field_wrapper_Phones">
  <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
@@ -229,7 +229,7 @@ for ($i = 0 ; $i < $rows ; ++$i)
 }
 ?></div><br></div><br>
 <div class=" container col-3">
-<label class="colorText">Контакти близьких:</label> <div class="field_wrapper_Contacts">
+<label class="colorText">Контакти близьких:</label><label style="color:red;">*</label> <div class="field_wrapper_Contacts">
     <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
@@ -285,7 +285,7 @@ for ($i = 0 ; $i < $rows ; ++$i)
 
 <div class="row">
   <div class=" container col-3">
-    <label class="colorText">Домашня адреса: </label>
+    <label class="colorText">Домашня адреса: </label><label style="color:red;">*</label>
     <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
@@ -303,7 +303,7 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
 
 
 <div class=" container col-3">
-<label class="colorText">Стаж: </label>
+<label class="colorText">Стаж: </label><label style="color:red;">*</label>
    <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
@@ -315,7 +315,7 @@ echo "<input type= \"text\" maxlength=\"50\" onkeyup=\"lal(this)\" class=\"form-
     ?><br>
  </div>
   <div class=" container col-3">
-  <label class="colorText"> Працює з: </label> <?php
+  <label class="colorText"> Працює з: </label><label style="color:red;">*</label> <?php
  $mysql = new mysqli("localhost","root","root","filmstudio");
  $mysql->query("SET NAMES 'utf8'");
  $result = $mysql->query("SELECT `others_work_since` FROM `Others` WHERE `others_id` = $id");
@@ -345,7 +345,7 @@ echo "<input type= \"text\" maxlength=\"50\" onkeyup=\"lal(this)\" class=\"form-
      ?><br>
 </div>
 <div class=" container col-3">
-  <label class="colorText">Дата народження: </label>  <?php
+  <label class="colorText">Дата народження: </label><label style="color:red;">*</label>  <?php
  $mysql = new mysqli("localhost","root","root","filmstudio");
  $mysql->query("SET NAMES 'utf8'");
  $result = $mysql->query("SELECT `others_date_of_birth` FROM `Others` WHERE `others_id` = $id");
@@ -357,7 +357,7 @@ echo "<input type= \"text\" maxlength=\"50\" onkeyup=\"lal(this)\" class=\"form-
 
 </div>
   <div class=" container col-3">
-  <label class="colorText">Заробітня плата:</label><?php
+  <label class="colorText">Заробітня плата:</label><label style="color:red;">*</label><?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
 $result = $mysql->query("SELECT `others_salary` FROM `Others` WHERE `others_id` = $id");
@@ -370,7 +370,7 @@ echo "<input type= \"text\" maxlength=\"50\" onkeyup=\"lal(this)\" class=\"form-
 
 <div class="row">
 <div class="container col-4">
-<label class="colorText">Місце народження:</label>  <?php
+<label class="colorText">Місце народження:</label> <label style="color:red;">*</label> <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
 $result = $mysql->query("SELECT `others_place_of_birth` FROM `Others` WHERE `others_id` = $id");
@@ -380,7 +380,7 @@ $res = mysqli_fetch_array($result);
 echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"placeBirth\" value=\"$res[0]\" required>";
     ?><br></div>
     <div class="container col-4">
-    <label class="colorText">E-mail: </label>  <?php
+    <label class="colorText">E-mail: </label> <label style="color:red;">*</label> <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
 $result = $mysql->query("SELECT `others_e-mail` FROM `Others` WHERE `others_id` = $id");

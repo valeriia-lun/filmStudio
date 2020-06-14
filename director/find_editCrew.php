@@ -110,7 +110,7 @@ while ($stroka = mysqli_fetch_array($result_edit_crews)){
     if($re){
       echo "<td>"."<div  class = \"btn noprint\">"."<button class =\" btn btn-danger\" value = \"" . $stroka['number_of_edit_crew'] . "\" name=\"number_of_edit_crew\">Додати</button>"."</div></td></form>";
     }else{
-     echo "<td></td>";
+     echo "<td></td></form>";
     }
    
     echo"<form action=\"editingEditCrew.php\" method=\"post\">";

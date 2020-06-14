@@ -121,14 +121,14 @@ function lal(el) {
     </form>
   </div>
 </nav>
-<br><br><h1 class="colorForAllText">Змінити монтажера</h1><br>
-
+<br><br><h1 class="colorForAllText">Змінити монтажера</h1>
+<small>Поля, позначені </small><small style="color:red;">*</small><small> - обов'язкові.</small></br></br>
 
 <form action="" method="post">
 
 <div class="row text-center" style="margin:10px;">
     <div class=" container col-3" >
-    <label class="colorText">Ім'я: </label>
+    <label class="colorText">Ім'я: </label><label style="color:red;">*</label>
    <?php
    if (isset($_POST['editBtn'])){
      $id = filter_var(trim($_POST['editor_id']),FILTER_SANITIZE_STRING);
@@ -147,7 +147,7 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
     ?><br>
   </div>
   <div class="container col-3">
-  <label class="colorText">Прізвище:</label>
+  <label class="colorText">Прізвище:</label><label style="color:red;">*</label>
    <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
@@ -160,7 +160,7 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
 <br>
 </div>
   <div class="container col-3">
-  <label class="colorText">По-батькові: </label>
+  <label class="colorText">По-батькові: </label><label style="color:red;">*</label>
       <?php
    $mysql = new mysqli("localhost","root","root","filmstudio");
    $mysql->query("SET NAMES 'utf8'");
@@ -173,7 +173,7 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
 
        <div class="row">
        <div class=" container col-3">
-       <label class="colorText">Телефон:</label>
+       <label class="colorText">Телефон:</label><label style="color:red;">*</label>
       <div class="field_wrapper_Phones">
     <?php
  $mysql = new mysqli("localhost","root","root","filmstudio");
@@ -196,7 +196,7 @@ for ($i = 0 ; $i < $rows ; ++$i)
  ?></div><br>
   </div>
      <div class=" container col-3">
-     <label class="colorText">Контакти близьких:</label>
+     <label class="colorText">Контакти близьких:</label><label style="color:red;">*</label>
    <div class="field_wrapper_Contacts">
     <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
@@ -221,7 +221,7 @@ for ($i = 0 ; $i < $rows ; ++$i)
  }
   ?></div><br></div>
   <div class=" container col-3">
-  <label class="colorText">E-mail: </label>   <?php
+  <label class="colorText">E-mail: </label>  <label style="color:red;">*</label> <?php
    $mysql = new mysqli("localhost","root","root","filmstudio");
    $mysql->query("SET NAMES 'utf8'");
    $result = $mysql->query("SELECT `editor_e-mail` FROM `editor` WHERE `editor_id` = $id");
@@ -236,7 +236,7 @@ for ($i = 0 ; $i < $rows ; ++$i)
 
 <div class="row">
 <div class=" container col-3">
-<label class="colorText">Домашня адреса: </label>
+<label class="colorText">Домашня адреса: </label><label style="color:red;">*</label>
    <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
@@ -251,7 +251,7 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
 
 
 <div class=" container col-3">
-<label class="colorText">Стаж: </label>
+<label class="colorText">Стаж: </label><label style="color:red;">*</label>
     <?php
    $mysql = new mysqli("localhost","root","root","filmstudio");
    $mysql->query("SET NAMES 'utf8'");
@@ -263,7 +263,7 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
        ?><br>
   </div>
   <div class=" container col-3">
-  <label class="colorText"> Працюе з: </label>
+  <label class="colorText"> Працюеє з: </label><label style="color:red;">*</label>
    <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
@@ -289,7 +289,7 @@ $res = mysqli_fetch_array($result);
 echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" id=\"work_until\" name=\"work_until\" value=\"$res[0]\">";
     ?><br></div>
   <div class=" container col-3">
-  <label class="colorText">Дата народження: </label>
+  <label class="colorText">Дата народження: </label><label style="color:red;">*</label>
    <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
@@ -301,7 +301,7 @@ echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
     ?><br>
   </div>
   <div class=" container col-3">
-  <label class="colorText">Заробітня плата:</label>
+  <label class="colorText">Заробітня плата:</label><label style="color:red;">*</label>
    <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
