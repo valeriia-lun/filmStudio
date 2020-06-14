@@ -78,7 +78,7 @@ span.psw {
   background-color: #fefefe;
   margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 30%; /* Could be more or less, depending on screen size */
 }
 
 /* The Close Button (x) */
@@ -135,8 +135,7 @@ span.psw {
 
   <form class="modal-content animate" action="action_page.php" method="post">
     <div class="imgcontainer">
-      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-      <img src="img_avatar2.png" alt="Avatar" class="avatar">
+    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
     </div>
 
     <div class="container">
@@ -147,17 +146,14 @@ span.psw {
       <input type="password" placeholder="Введіть пароль" name="psw" required>
 
       <button type="submit" name="logIn">Увійти</button>
-      <label>
-        <input type="checkbox" checked="checked" name="remember"> Запам'ятати мене
-      </label>
+
     </div>
 
-    <div class="container" style="background-color:#f1f1f1">
+<!--    <div class="container" style="background-color:#f1f1f1">
    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Закрити</button>
    <button class="psw" onclick="document.getElementById('id02').style.display='block'"  style="width:auto;">Реєстрація</button>
 
-    <!--  <span class="psw"><a href="#">Реєстрація</a></span> -->
-    </div>
+  </div> -->
   </form>
 </div>
 

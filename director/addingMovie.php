@@ -67,9 +67,9 @@ function lal(el) {
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only"></span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Режисер</label>
     </form>
@@ -108,6 +108,27 @@ function lal(el) {
            <label class="colorText"> Бюджет:</label> <input type="text" onkeyup="lal(this)" class="form-control"  name="budget" maxlength="50" tabindex="2" required><br>
            </div>  </div>
 </div><br><br>
+
+<br><br><h1 class="colorForAllText">Знімальна група</h1><br>
+  <div class="row text-center" style="margin:10px;">
+    <div class=" container col-4" >
+    <label class="colorText">Дата початку роботи: </label><input type="date" class="form-control" name="date_start_filmCrew" maxlength="50" tabindex="2" required><br>
+  </div>
+  <div class=" container col-4" >
+  <label class="colorText">Дата закінчення роботи:</label> <input type="date" class="form-control" name="date_end_filmCrew" maxlength="50" tabindex="2" required><br>
+  </div></div><br>
+
+
+  <br><br><h1 class="colorForAllText">Група монтажерів</h1><br>
+  <div class="row text-center" style="margin:10px;">
+    <div class=" container col-4" >
+    <label class="colorText">Дата початку роботи: </label><input type="date" class="form-control" name="date_start_editCrew" maxlength="50" tabindex="2" required><br>
+  </div>
+  <div class=" container col-4" >
+  <label class="colorText">Дата закінчення роботи:</label> <input type="date" class="form-control" name="date_end_editCrew" maxlength="50" tabindex="2" required><br>
+  </div></div><br>
+
+
 <div class="btn">
 <input type="submit" class ="button btn btn-primary" value="Додати" name="add">
 </div><br><br><br>
@@ -123,9 +144,41 @@ if (isset($_POST['add'])){
 
 $mysql = new mysqli('localhost','root','root','filmStudio');
 
+
+
+
+
+
+$max_id_edit = $mysql->query("SELECT MAX(`number_of_edit_crew`) FROM `edit_crew`");
+$stroka_edit = mysqli_fetch_array($max_id_edit);
+$numEditCrew = $stroka_edit[0] + 1;
+
+$dateStartEditCrew = filter_var(trim($_POST['date_start_editCrew']),FILTER_SANITIZE_STRING);
+$dateEndEditCrew = filter_var(trim($_POST['date_end_editCrew']),FILTER_SANITIZE_STRING);
+
+
+$success = $mysql->query("INSERT INTO `edit_crew` (`number_of_edit_crew`, `date_start_edit_crew`, `date_finish_edit_crew`)
+VALUES ('$numEditCrew', '$dateStartEditCrew', '$dateEndEditCrew')");
+
+
+
+$max_id_film = $mysql->query("SELECT MAX(`number_of_film_crew`) FROM `film_crew`");
+$stroka_film = mysqli_fetch_array($max_id_film);
+$numFilmCrew = $stroka_film[0] + 1;
+
+$dateStartFilmCrew = filter_var(trim($_POST['date_start_filmCrew']),FILTER_SANITIZE_STRING);
+$dateEndFilmCrew = filter_var(trim($_POST['date_end_filmCrew']),FILTER_SANITIZE_STRING);
+
+
+$result = $mysql->query("INSERT INTO `film_crew` (`number_of_film_crew`, `date_start_crew`, `date_finish_film_crew`)
+VALUES ('$numFilmCrew', '$dateStartFilmCrew', '$dateEndFilmCrew')");
+
+
+
+
+
+
 $genres = $_POST['field_name_Genre'];
-
-
 
 $name = $_POST['movie_name'];
 $budget = $_POST['budget'];
@@ -133,8 +186,8 @@ $budget = $_POST['budget'];
 
 $mysql->query("SET NAMES 'utf8'");
 
-$result = $mysql->query("INSERT INTO `movie` (`name_of_movie`, `budget_of_movie`)
-VALUES ('$name', '$budget')");
+$result = $mysql->query("INSERT INTO `movie` (`name_of_movie`, `budget_of_movie`, `number_of_film_crew`, `number_of_edit_crew`)
+VALUES ('$name', '$budget', '$numFilmCrew', '$numEditCrew')");
    if ($result) {
       echo "Success!";
     }
@@ -155,8 +208,6 @@ $result = $mysql->query("INSERT INTO `Movie_genres`(`id_movie_genre`, `name_of_m
       echo "Error! $mysql->error <br>";
     }
 }
-
-
 
 
 

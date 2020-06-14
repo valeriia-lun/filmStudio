@@ -26,9 +26,9 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="#">Головна<span class="sr-only">(current)</span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Режисер</label>
     </form>
@@ -41,15 +41,9 @@
 <div class="row body2">
 <div class=" container col-md-4">
 
-<h3 class="colorText">Додавання до бази</h3></br>
   <form action="" method="post">
-  <select name="choice" class="select selectpicker  form-control">
-    <option value="movie">Фільм</option>
-    <option value="film_crew">Знімальну групу</option>
-    <option value="edit_crew">Групу монтажерів</option>
-</select>
 <div class="btn">
-<input type="submit" class ="button btn btn-primary" value="Додати" name="add"><br>
+<input type="submit" class ="button btn btn-primary" value="Створити Фільм" name="add"><br>
 </div>
 </form>
 </div>
@@ -102,22 +96,7 @@
 
 <?php
 if (isset($_POST['add'])){
-  $choice = $_POST['choice'];
-
-  switch ($choice) {
-    case 'movie':
-      header("location: /filmStudio/director/addingMovie.php");
-      break;
-
-    case 'film_crew':
-      header("location: /filmStudio/director/addingFilmCrew.php");
-      break;
-
-    case 'edit_crew':
-      header("location: /filmStudio/director/addingEditCrew.php");
-      break;
-
-  }
+  header("Location: /filmStudio/director/addingMovie.php");
 }
 
 if (isset($_POST['find'])){
