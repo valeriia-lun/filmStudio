@@ -600,13 +600,13 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
        echo "<select name=\"head\" class=\"select selectpicker  required form-control\">";
        while($stroka_id = mysqli_fetch_array($result_editor_id) && $stroka_surname = mysqli_fetch_array($result_editor_surname) && 
          $stroka_name = mysqli_fetch_array($result_editor_name) &&   $stroka_middle_name = mysqli_fetch_array($result_editor_middle_name) ){
-       for ($i=0; $i<count($stroka_id); $i+=2){
-        // for ($j=0; $j<count($stroka_surname); $j+=2){
-        //   for ($k=0; $k<count($stroka_name); $k+=2){
-        //     for ($n=0; $n<count($stroka_middle_name); $n+=2){
-         echo "<option> $stroka_surname[$i] $stroka_name[$i] $stroka_middle_name[$i], id:$stroka_id[$i]</option>";
-      //  }
-      // }}
+       for ($i=0; $i<count($stroka_id); $i++){
+         for ($j=0; $j<count($stroka_surname); $j++){
+        for ($k=0; $k<count($stroka_name); $k++){
+           for ($n=0; $n<count($stroka_middle_name); $n++){
+         echo "<option> $stroka_surname[$j] $stroka_name[$k] $stroka_middle_name[$n] id:$stroka_id[$i]</option>";
+      }
+      }}
     
     }
   }
