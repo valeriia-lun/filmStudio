@@ -36,8 +36,7 @@
   </div>
 </nav>
 
-</br><h4 class="colorForAllText">База даних кіностудії</h4>
-<h4  class="colorForAllText"> "Victoria Studio"</h4></br></br></br></br>
+</br></br></br>
 
 <div class="row body2">
 <div class=" container col-md-3">
@@ -51,7 +50,7 @@
 </select>
 
 <div class="btn">
-<input type="submit" class ="button btn btn-primary" value="Додати" name="add"><br>
+<input type="submit" class =" btn btn-danger" value="Додати" name="add"><br>
 </div>
 </form>
 </div>
@@ -63,7 +62,7 @@
   <form action="" method="post">
 
   <div class="btn">
-  <input type="submit" class ="button btn btn-primary" value="Призначити" name="fee"><br>
+  <input type="submit" class =" btn btn-danger" value="Призначити" name="fee"><br>
   </div>
 </form>
 </div>
@@ -107,10 +106,53 @@
 </select>
 
 <div class="btn">
-<input type="submit" class ="button btn btn-primary" value="Знайти" name="find">
+<input type="submit" class =" btn btn-danger" value="Знайти" name="find">
 </div>
 </form>
+</div></div></br></br></br>
+
+
+
+
+
+
+
+
+<div class="row body2">
+<div class="container col-md-3 ">
+
+<h3 class="colorText">Додавання жанрів</h3>
+  <form action="" method="post">
+  <div class="btn">
+  <input type="submit" class =" btn btn-danger" value="Додати" name="genres_add"><br>
+  </div>
+</form>
+</div>
+
+
+<div class="container col-md-3 ">
+
+<h3 class="colorText">Додавання особливих навичок</h3>
+  <form action="" method="post">
+  <div class="btn">
+  <input type="submit" class =" btn btn-danger" value="Додати" name="skills_add"><br>
+  </div>
+</form>
+</div>
+
+
+
+<div class="container col-md-3 ">
+
+<h3 class="colorText">Перегляд логінів та паролів</h3>
+  <form action="" method="post">
+  <div class="btn">
+  <input type="submit" class =" btn btn-danger" value="Переглянути" name="show_logins"><br>
+  </div>
+</form>
 </div></div>
+
+
 
 
 </body>
@@ -145,6 +187,24 @@ if (isset($_POST['add'])){
 if (isset($_POST['fee'])){
   header("location: /filmStudio/gen_producer/choose_for_fee.php");
 }
+
+
+
+
+
+if (isset($_POST['genres_add'])){
+  header("location: /filmStudio/gen_producer/adding_genres.php");
+}
+
+if (isset($_POST['skills_add'])){
+  header("location: /filmStudio/gen_producer/adding_skills.php");
+}
+
+if (isset($_POST['show_logins'])){
+  header("location: /filmStudio/gen_producer/show_logins.php");
+}
+
+
 
 
 if (isset($_POST['find'])){
