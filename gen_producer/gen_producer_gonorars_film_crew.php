@@ -203,7 +203,7 @@ if(empty($_POST["gonorar1"]) || empty($_POST["gonorar2"]) || empty($_POST["gonor
 function lal(el) {
   if (el.value.match( /[^0-9]/ ) ) {
         alert( "Неправильний формат числа! \nМожна використовувати тільки цифри" );
-        el.value = el.value.replace( /[^0-9]/ , "" )
+           el.value = el.value= "" ;
     }
 }
 </script>

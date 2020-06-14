@@ -23,6 +23,16 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
 </script>
 <link rel="stylesheet" href="..\style.css">
+<script>
+
+function lal2(el) {
+if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
+        alert( "Неправильний формат запису! \nМожна використовувати тільки літери!" );
+        el.value = el.value= "" ;
+    }
+}
+
+</script>
 </head>
 <body class="text-center body3">
 
@@ -55,7 +65,7 @@
     font-style: oblique 40deg bold;
     font-weight: 580;
     font-size: 20pt;
-    background-color: #bbb8b5;">Назва жанру: </label><label style="color:red;">*</label><input  type="text" class="form-control" name="genre_name" maxlength="50" tabindex="2" required><br>
+    background-color: #bbb8b5;">Назва жанру: </label><label style="color:red;">*</label><input   onkeyup="lal2(this)" type="text" class="form-control" name="genre_name" maxlength="50" tabindex="2" required><br>
 
   <div class="btn">
   <input type="submit" class ="button btn btn-danger" value="Додати" name="adding_genres"><br>
