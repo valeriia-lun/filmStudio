@@ -283,8 +283,8 @@ $res = mysqli_fetch_array($result);
 
 echo "  <div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" onkeyup=\"lal(this)\" class=\"form-control\" tabindex=\"2\" name=\"budget\" value=\"$res[0]\" required></div>";
    ?><br>
- </div> 
-    
+ </div>
+
     <div class=" container col-3" >
     <label class="colorText">Тривалість:</label>
   <div class="field_wrapper_Dur">
@@ -361,7 +361,8 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
 
    </div>
      <div class=" container col-3" >
-     <label class="colorText">Дата закінчення роботи:</label>  <?php
+     <label class="colorText">Дата закінчення роботи:</label>
+     <?php
      $mysql = new mysqli("localhost","root","root","filmstudio");
      $mysql->query("SET NAMES 'utf8'");
      $result = $mysql->query("SELECT `date_finish_film_crew` FROM `film_crew` WHERE `number_of_film_crew` = '$numb[0]'");
@@ -372,6 +373,63 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
        ?><br>
 
    </div>
+
+
+   <div class=" container col-4" >
+   <label class="colorText">Склад:</label>
+   <table border="1" class=" table table-dark table-hover" >
+   <thead class="thead-dark " style="background-color: #252527;">
+   <tr>
+   <td>Id</td>
+   <td>ПІБ</td>
+   <td>Стаж</td>
+   <td>Рейтинг</td>
+   <td>Кількість фільмів, у яких брав участь</td>
+   <td>Професія</td>
+   <td>Вік</td>
+   <td>Ел.пошта</td>
+   <td>Телефон</td>
+   <td>Контакти близьких</td>
+   </tr></thead>
+   <?php
+   $mysql = new mysqli("localhost","root","root","filmstudio");
+   $mysql->query("SET NAMES 'utf8'");
+
+   $result = $mysql->query("SELECT * FROM `actors` WHERE `actor_id` IN(SELECT `actor_id` FROM `actor_filmcrew`  WHERE  `number_of_film_crew` = '$numb[0]')");
+
+   while ($stroka = mysqli_fetch_array($result)){
+     $temp = $stroka['actor_id'];
+
+     // $result_phones = $mysqli->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id`  = $temp");
+     //
+     // $result_contacts_rel = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp");
+
+
+     echo"<tr>";
+     echo"<td>" . $stroka['actor_id'] . "</td>";
+     echo"<td>" . $stroka['actor_surname'] . " " . $stroka['actor_name']. " " . $stroka['actor_middle_name'] .  "</td>";
+     echo"<td>" . $stroka['actor_experience'] . "</td>";
+     echo"<td>" . $stroka['rating_of_employee'] . "</td>";
+     echo"<td>" . $stroka['amount_of_films_actor_took_part_in'] . "</td>";
+     echo"<td>" . $stroka['name_of_position'] . "</td>";
+     echo"<td>" . $stroka['actor_age'] . "</td>";
+     echo"<td>" . $stroka['actor_e-mail'] . "</td>";
+     // echo"<td>" .  res($result_phones) . "</td>";
+     // echo"<td>" .  res($result_contacts_rel) . "</td>";
+     echo"</tr>";
+
+
+
+   }
+
+
+   ?></table>
+
+   <br>
+
+ </div>
+
+
    <div class="btn">
    <input type="submit" class ="button btn btn-primary" value="Додати" name="addToFilmCrew">
    </div><br><br><br></div><br>
@@ -485,6 +543,8 @@ echo  $result_editing_movie[0];
 if (isset($_POST['addToFilmCrew'])){
 echo "string";
 }
+
+
 if (isset($_POST['edit'])){
 
 $mysql = new mysqli('localhost','root','root','filmStudio');
