@@ -7,80 +7,80 @@
 
     $(document).ready(function(){
 
-    var dateStartFilmCrew = document.getElementById('date_start_filmCrew');
-    var dateEndFilmCrew = document.getElementById('date_end_filmCrew');
+    // var dateStartFilmCrew = document.getElementById('date_start_filmCrew');
+    // var dateEndFilmCrew = document.getElementById('date_end_filmCrew');
 
-    var dateStartEditCrew = document.getElementById('date_start_editCrew');
-    var dateEndEditCrew = document.getElementById('date_end_editCrew');
+    // var dateStartEditCrew = document.getElementById('date_start_editCrew');
+    // var dateEndEditCrew = document.getElementById('date_end_editCrew');
 
-    dateEndFilmCrew.addEventListener('change', function() {
-      if(dateEndFilmCrew < dateStartFilmCrew){
-        alert("Дата закінчення роботи знімальної групи повинна бути більше за дату початку роботи знімальної групи!!!");
-        document.getElementById('date_end_filmCrew').value = "";
-      }
+    // dateEndFilmCrew.addEventListener('change', function() {
+    //   if(dateEndFilmCrew < dateStartFilmCrew){
+    //     alert("Дата закінчення роботи знімальної групи повинна бути більше за дату початку роботи знімальної групи!!!");
+    //     document.getElementById('date_end_filmCrew').value = "";
+    //   }
 
-      if(dateEndFilmCrew >= dateStartEditCrew){
-        alert("Дата початку роботи групи монтажерів повинна бути більше за дату закінчення роботи знімальної групи!!!");
-        document.getElementById('date_end_filmCrew').value = "";
-      }
+    //   if(dateEndFilmCrew >= dateStartEditCrew){
+    //     alert("Дата початку роботи групи монтажерів повинна бути більше за дату закінчення роботи знімальної групи!!!");
+    //     document.getElementById('date_end_filmCrew').value = "";
+    //   }
 
-      if(dateEndFilmCrew >= dateEndFilmCrew){
-        alert("Дата закінчення роботи групи монтажерів повинна бути більше за дату закінчення роботи знімальної групи!!!");
-        document.getElementById('date_end_filmCrew').value = "";
-      }
-    });
+    //   if(dateEndFilmCrew >= dateEndFilmCrew){
+    //     alert("Дата закінчення роботи групи монтажерів повинна бути більше за дату закінчення роботи знімальної групи!!!");
+    //     document.getElementById('date_end_filmCrew').value = "";
+    //   }
+    // });
 
-    dateStartFilmCrew.addEventListener('change', function() {
-      if(dateEndFilmCrew < dateStartFilmCrew){
-        alert("Дата закінчення роботи знімальної групи повинна бути більше за дату початку роботи знімальної групи!!!");
-        document.getElementById('date_start_filmCrew').value = "";
-      }
-      if(dateEndEditCrew <= dateStartFilmCrew){
-        alert("Дата закінчення роботи групи монтажерів повинна бути більше за дату початку роботи знімальної групи!!!");
-        document.getElementById('date_start_filmCrew').value = "";
-      }
-      if(dateStartEditCrew <= dateStartFilmCrew){
-        alert("Дата початку роботи групи монтажерів повинна бути більше за дату початку роботи знімальної групи!!!");
-        document.getElementById('date_start_filmCrew').value = "";
-      }
+    // dateStartFilmCrew.addEventListener('change', function() {
+    //   if(dateEndFilmCrew < dateStartFilmCrew){
+    //     alert("Дата закінчення роботи знімальної групи повинна бути більше за дату початку роботи знімальної групи!!!");
+    //     document.getElementById('date_start_filmCrew').value = "";
+    //   }
+    //   if(dateEndEditCrew <= dateStartFilmCrew){
+    //     alert("Дата закінчення роботи групи монтажерів повинна бути більше за дату початку роботи знімальної групи!!!");
+    //     document.getElementById('date_start_filmCrew').value = "";
+    //   }
+    //   if(dateStartEditCrew <= dateStartFilmCrew){
+    //     alert("Дата початку роботи групи монтажерів повинна бути більше за дату початку роботи знімальної групи!!!");
+    //     document.getElementById('date_start_filmCrew').value = "";
+    //   }
 
-    });
+    // });
 
-    dateEndEditCrew.addEventListener('change', function() {
-      if(dateEndEditCrew < dateStartEditCrew){
-        alert("Дата закінчення роботи групи монтажерів повинна бути більше за дату початку роботи групи монтажерів!!!");
-        document.getElementById('date_end_editCrew').value = "";
-      }
+    // dateEndEditCrew.addEventListener('change', function() {
+    //   if(dateEndEditCrew < dateStartEditCrew){
+    //     alert("Дата закінчення роботи групи монтажерів повинна бути більше за дату початку роботи групи монтажерів!!!");
+    //     document.getElementById('date_end_editCrew').value = "";
+    //   }
 
-      if(dateEndEditCrew <= dateStartFilmCrew){
-        alert("Дата закінчення роботи групи монтажерів повинна бути більше за дату початку роботи знімальної групи!!!");
-        document.getElementById('date_end_editCrew').value = "";
-      }
+    //   if(dateEndEditCrew <= dateStartFilmCrew){
+    //     alert("Дата закінчення роботи групи монтажерів повинна бути більше за дату початку роботи знімальної групи!!!");
+    //     document.getElementById('date_end_editCrew').value = "";
+    //   }
 
-      if(dateEndEditCrew <= dateEndFilmCrew){
-        alert("Дата закінчення роботи групи монтажерів повинна бути більше за дату закінчення роботи знімальної групи!!!");
-        document.getElementById('date_end_editCrew').value = "";
-      }
-
-
-    });
-
-    dateStartEditCrew.addEventListener('change', function() {
-      if(dateStartEditCrew <= dateEndFilmCrew){
-        alert("Дата початку роботи групи монтажерів повинна бути більше за дату закінчення роботи знімальної групи!!!");
-        document.getElementById('date_start_editCrew').value = "";
-      }
-      if(dateStartEditCrew > dateEndEditCrew){
-        alert("Дата початку роботи групи монтажерів повинна бути менше за дату закінчення роботи рупи монтажерів!!!");
-        document.getElementById('date_start_editCrew').value = "";
-      }
-      if(dateStartEditCrew <= dateStartFilmCrew){
-        alert("Дата початку роботи групи монтажерів повинна бути більше за дату початку роботи знімальної групи!!!");
-        document.getElementById('date_start_editCrew').value = "";
-      }
+    //   if(dateEndEditCrew <= dateEndFilmCrew){
+    //     alert("Дата закінчення роботи групи монтажерів повинна бути більше за дату закінчення роботи знімальної групи!!!");
+    //     document.getElementById('date_end_editCrew').value = "";
+    //   }
 
 
-    });
+    // });
+
+    // dateStartEditCrew.addEventListener('change', function() {
+    //   if(dateStartEditCrew <= dateEndFilmCrew){
+    //     alert("Дата початку роботи групи монтажерів повинна бути більше за дату закінчення роботи знімальної групи!!!");
+    //     document.getElementById('date_start_editCrew').value = "";
+    //   }
+    //   if(dateStartEditCrew > dateEndEditCrew){
+    //     alert("Дата початку роботи групи монтажерів повинна бути менше за дату закінчення роботи рупи монтажерів!!!");
+    //     document.getElementById('date_start_editCrew').value = "";
+    //   }
+    //   if(dateStartEditCrew <= dateStartFilmCrew){
+    //     alert("Дата початку роботи групи монтажерів повинна бути більше за дату початку роботи знімальної групи!!!");
+    //     document.getElementById('date_start_editCrew').value = "";
+    //   }
+
+
+    // });
 
 
     var maxFieldGenre = 10; //Input fields increment limitation
