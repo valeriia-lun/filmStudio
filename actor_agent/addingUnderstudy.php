@@ -67,7 +67,7 @@
         var maxFieldRatings = 10; //Input fields increment limitation
         var addButtonRatings = $('.add_button_Ratings'); //Add button selector
         var wrapperRatings = $('.field_wrapper_Ratings'); //Input field wrapper
-        var fieldHTMLRatings = '<div><input type="text" class="form-control" name="field_name_Ratings[]" value=""/><a href="javascript:void(0);" class="remove_button_Ratings"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
+        var fieldHTMLRatings = '<div><div class=" container col-5"><input type="text" class="form-control" name="field_name_Ratings[]" value=""/><a href="javascript:void(0);" class="remove_button_Ratings"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div></div>'; //New input field html
         var xRatings = 1; //Initial field counter is 1
 
         //Once add button is clicked

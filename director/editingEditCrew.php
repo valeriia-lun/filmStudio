@@ -84,7 +84,7 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
 
 
 <div class="row text-center" style="margin:10px;">
-    <div class=" container col-4" >
+    <div class=" container col-2" >
     <label class="colorText">Голова: </label><label style="color:red;">*</label><?php
     $mysql = new mysqli("localhost","root","root","filmstudio");
     $mysql->query("SET NAMES 'utf8'");

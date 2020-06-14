@@ -139,32 +139,34 @@ function lal(el) {
          </div>
      </div>
   </div>
-  <div class=" container col-3">
-  <label class="colorText">E-mail: </label><label style="color:red;">*</label><input type="text" maxlength="50" class="form-control" name="email" tabindex="2" required><br>
-  </div>
+ 
     </div> </br>
 
     <div class="row">
+    <div class=" container col-2">
+  <label class="colorText">Дата народження: </label><label style="color:red;">*</label><input type="date" class="form-control" id="date_of_birth" name="date_of_birth" maxlength="50" tabindex="2" required><br>
+  </div>
   <div class=" container col-3">
-    <label class="colorText">Домашня адреса: </label><label style="color:red;">*</label><input type="text" class="form-control" name="address" maxlength="50" tabindex="2" required><br>
-    </div>
+  <label class="colorText">Заробітня плата:</label><label style="color:red;">*</label>  <div class=" container col-5"><input onkeyup="lal(this)"type="text" class="form-control"  name="salary" maxlength="50" tabindex="2" required></div><br>
+  </div>
+
 
 
     <div class=" container col-3">
-  <label class="colorText">Стаж: </label><label style="color:red;">*</label><input onkeyup="lal(this)" type="text" class="form-control" name="years" maxlength="50" tabindex="2" required><br>
+  <label class="colorText">Стаж: </label><label style="color:red;">*</label>  <div class=" container col-5"><input onkeyup="lal(this)" type="text" class="form-control" name="years" maxlength="50" tabindex="2" required></div><br>
   </div>
-  <div class=" container col-3">
+  <div class=" container col-2">
   <label class="colorText"> Працює з: </label><label style="color:red;">*</label><input type="date" class="form-control" name="work_since" maxlength="50" tabindex="2" required><br>
   </div>
   </div></br>
 
 
   <div class="row">
-  <div class=" container col-3">
-  <label class="colorText">Дата народження: </label><label style="color:red;">*</label><input type="date" class="form-control" id="date_of_birth" name="date_of_birth" maxlength="50" tabindex="2" required><br>
-  </div>
-  <div class=" container col-3">
-  <label class="colorText">Заробітня плата:</label><label style="color:red;">*</label><input onkeyup="lal(this)"type="text" class="form-control"  name="salary" maxlength="50" tabindex="2" required><br>
+  <div class=" container col-5">
+    <label class="colorText">Домашня адреса: </label><label style="color:red;">*</label><input type="text" class="form-control" name="address" maxlength="50" tabindex="2" required><br>
+    </div>
+    <div class=" container col-5">
+  <label class="colorText">E-mail: </label><label style="color:red;">*</label><input type="text" maxlength="50" class="form-control" name="email" tabindex="2" required><br>
   </div>
  </div></br>
 

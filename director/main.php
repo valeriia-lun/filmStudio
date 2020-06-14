@@ -120,7 +120,7 @@ if (isset($_POST['find'])){
         break;
 
         case 'line_producer':
-        header("location: /filmStudio/director/lin_producer_find.php");
+        header("location: /filmStudio/director/find_others.php");
           break;
 
           case 'requisite':

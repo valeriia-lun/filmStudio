@@ -220,34 +220,46 @@ for ($i = 0 ; $i < $rows ; ++$i)
 
  }
   ?></div><br></div>
-  <div class=" container col-3">
-  <label class="colorText">E-mail: </label>  <label style="color:red;">*</label> <?php
-   $mysql = new mysqli("localhost","root","root","filmstudio");
-   $mysql->query("SET NAMES 'utf8'");
-   $result = $mysql->query("SELECT `editor_e-mail` FROM `editor` WHERE `editor_id` = $id");
-
-   $res = mysqli_fetch_array($result);
-
-   echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"email\" value=\"$res[0]\" required>";
-       ?><br>
-</div>
-
-</div> </br>
-
-<div class="row">
-<div class=" container col-3">
-<label class="colorText">Домашня адреса: </label><label style="color:red;">*</label>
+   <div class=" container col-3">
+  <label class="colorText">Заробітня плата:</label><label style="color:red;">*</label>
    <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
-$result = $mysql->query("SELECT `editor_home_address` FROM `editor` WHERE `editor_id` = $id");
+$result = $mysql->query("SELECT `editor_salary` FROM `editor` WHERE `editor_id` = $id");
 
 $res = mysqli_fetch_array($result);
 
-echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"address\" value=\"$res[0]\" required>";
+echo "  <div class=\" container col-5\"><input type= \"text\" onkeyup=\"lal(this)\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"salary\" value=\"$res[0]\" required></div>";
     ?><br>
+   </div>
+  
+</div> </br>
 
- </div>
+<div class="row">
+<div class=" container col-2">
+<label class="colorText">   Працює до:</label>
+   <?php
+$mysql = new mysqli("localhost","root","root","filmstudio");
+$mysql->query("SET NAMES 'utf8'");
+$result = $mysql->query("SELECT `editor_works_until` FROM `editor` WHERE `editor_id` = $id");
+
+$res = mysqli_fetch_array($result);
+
+echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" id=\"work_until\" name=\"work_until\" value=\"$res[0]\">";
+    ?><br></div>
+  <div class=" container col-2">
+  <label class="colorText">Дата народження: </label><label style="color:red;">*</label>
+   <?php
+$mysql = new mysqli("localhost","root","root","filmstudio");
+$mysql->query("SET NAMES 'utf8'");
+$result = $mysql->query("SELECT `editor_date_of_birth` FROM `editor` WHERE `editor_id` = $id");
+
+$res = mysqli_fetch_array($result);
+
+echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" id=\"date_of_birth\" name=\"date_of_birth\" value=\"$res[0]\" required>";
+    ?><br>
+  </div>
+
 
 
 <div class=" container col-3">
@@ -259,11 +271,11 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
 
    $res = mysqli_fetch_array($result);
 
-   echo "<input type= \"text\" onkeyup=\"lal(this)\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"years\" value=\"$res[0]\" required>";
+   echo "<div class=\" container col-5\"><input type= \"text\" onkeyup=\"lal(this)\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"years\" value=\"$res[0]\" required></div>";
        ?><br>
   </div>
-  <div class=" container col-3">
-  <label class="colorText"> Працюеє з: </label><label style="color:red;">*</label>
+  <div class=" container col-2">
+  <label class="colorText"> Працює з: </label><label style="color:red;">*</label>
    <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
@@ -277,44 +289,37 @@ echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
 
 
 <div class="row">
-<div class=" container col-3">
-<label class="colorText">   Працює до:</label>
+
+
+
+
+ 
+</br>
+ <div class=" container col-5">
+  <label class="colorText">E-mail: </label>  <label style="color:red;">*</label> <?php
+   $mysql = new mysqli("localhost","root","root","filmstudio");
+   $mysql->query("SET NAMES 'utf8'");
+   $result = $mysql->query("SELECT `editor_e-mail` FROM `editor` WHERE `editor_id` = $id");
+
+   $res = mysqli_fetch_array($result);
+
+   echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"email\" value=\"$res[0]\" required>";
+       ?><br>
+</div>
+
+ <div class=" container col-5">
+<label class="colorText">Домашня адреса: </label><label style="color:red;">*</label>
    <?php
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
-$result = $mysql->query("SELECT `editor_works_until` FROM `editor` WHERE `editor_id` = $id");
+$result = $mysql->query("SELECT `editor_home_address` FROM `editor` WHERE `editor_id` = $id");
 
 $res = mysqli_fetch_array($result);
 
-echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" id=\"work_until\" name=\"work_until\" value=\"$res[0]\">";
-    ?><br></div>
-  <div class=" container col-3">
-  <label class="colorText">Дата народження: </label><label style="color:red;">*</label>
-   <?php
-$mysql = new mysqli("localhost","root","root","filmstudio");
-$mysql->query("SET NAMES 'utf8'");
-$result = $mysql->query("SELECT `editor_date_of_birth` FROM `editor` WHERE `editor_id` = $id");
-
-$res = mysqli_fetch_array($result);
-
-echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" id=\"date_of_birth\" name=\"date_of_birth\" value=\"$res[0]\" required>";
+echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"address\" value=\"$res[0]\" required>";
     ?><br>
-  </div>
-  <div class=" container col-3">
-  <label class="colorText">Заробітня плата:</label><label style="color:red;">*</label>
-   <?php
-$mysql = new mysqli("localhost","root","root","filmstudio");
-$mysql->query("SET NAMES 'utf8'");
-$result = $mysql->query("SELECT `editor_salary` FROM `editor` WHERE `editor_id` = $id");
 
-$res = mysqli_fetch_array($result);
-
-echo "<input type= \"text\" onkeyup=\"lal(this)\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"salary\" value=\"$res[0]\" required>";
-    ?><br>
-   </div>
- </div></br>
-
-
+ </div> </div>
 
   </br>  </br>
 
