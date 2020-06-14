@@ -3,7 +3,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Кіностудія "Victoria Studio"</title>
-   
+
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -25,7 +25,7 @@
 
 <div>
 
-  <form class="" action="action_page.php" method="post">
+  <form class="" action="" method="post">
     <div class="row">
     <div class="container  col-5">
       <label style="font-size: 17pt;" class="colorText">Логін:</label>
@@ -37,7 +37,7 @@
       <input  class="form-control" type="password" placeholder="Введіть пароль" name="psw" required>
     </div>   </div></br></br>
     <div class="row">
-    <div class="container  col-5">
+    <div class="container col-5">
       <div class="btn">
   <input type="submit" class ="button btn btn-danger" value="Увійти" name="logIn"><br>
   </div>
@@ -46,10 +46,81 @@
 
 </div>
 
-
-
-
-
-
 </body>
 </html>
+
+
+<?php
+
+if (isset($_POST['logIn'])){
+  $mysql = new mysqli('localhost','root','root','filmStudio');
+
+  $login = filter_var(trim($_POST['uname']),FILTER_SANITIZE_STRING);
+  $password = filter_var(trim($_POST['psw']),FILTER_SANITIZE_STRING);
+
+$ps = "" . md5($password);
+//echo(md5($password));
+  $success = $mysql->query("SELECT `position` FROM `loginPassword` WHERE `login` = '$login' AND `password` = '$ps'");
+
+
+
+     $stroka = mysqli_fetch_array($success);
+  //   echo $stroka[0];
+
+
+     if($stroka[0] == ""){
+       echo "<script language='javascript'>";
+       echo 'alert("Неправильний логін/пароль!");';
+       echo "</script>";
+     }
+
+
+     switch ($stroka[0]) {
+       case 'Генеральний продюсер':
+           header('Location: /filmStudio/gen_producer/main.php');
+         break;
+
+       case 'Режисер':
+           header('Location: /filmStudio/director/main.php');
+         break;
+
+       case 'Лінійний продюсер':
+           header('Location: /filmStudio/line_producer/main.php');
+         break;
+
+       case 'Адміністратор майданчика':
+           header('Location: /filmStudio/scene_admin/main.php');
+         break;
+
+       case 'Агент по акторах':
+           header('Location: /filmStudio/actor_agent/main.php');
+         break;
+
+       case 'Головний монтажер':
+           header('Location: /filmStudio/chief_editor/main.php');
+         break;
+
+       case 'Оператор':
+          header('Location: /filmStudio/operator/main.php');
+         break;
+
+       case 'Звукорежисер':
+          header('Location: /filmStudio/sound_director/main.php');
+         break;
+
+       case 'Гафер':
+          header('Location: /filmStudio/light_director/main.php');
+         break;
+
+       case 'Художник по костюмах':
+          header('Location: /filmStudio/costume_designer/main.php');
+         break;
+
+       case 'Художник-постановщик':
+          header('Location: /filmStudio/production_designer/main.php');
+         break;
+     }
+
+}
+
+ ?>
