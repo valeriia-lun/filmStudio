@@ -1,22 +1,5 @@
 <?php
 
-if (isset($_POST['regist'])){
-  $mysql = new mysqli('localhost','root','root','filmStudio');
-
-  $login = filter_var(trim($_POST['uname_reg']),FILTER_SANITIZE_STRING);
-  $password = filter_var(trim($_POST['psw_reg']),FILTER_SANITIZE_STRING);
-  $position = filter_var(trim($_POST['position_reg']),FILTER_SANITIZE_STRING);
-
-  $success = $mysql->query("INSERT INTO `loginPassword` (`login`, `password`, `position`)
-  VALUES ('$login', '$password', '$position')");
-  if ($success) {
-      echo "Success!";
-    }
-  else {
-       echo "Error! $mysqli->error <br>";
-     }
-
-}
 
 if (isset($_POST['logIn'])){
   $mysql = new mysqli('localhost','root','root','filmStudio');
