@@ -642,7 +642,7 @@ case  'most_expensive_actor':
 
 
 
-        $a = mysqli_fetch_array($films);
+      //  $a = mysqli_fetch_array($films);
 
         //$notFirst = false;
         if($films != NULL){
@@ -658,6 +658,7 @@ case  'most_expensive_actor':
               echo $value;
               $quer = $quer . "`actor_id` IN (SELECT `actor_id` FROM `actor_filmCrew` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = \"$value\"))";
               $isFirst = false;
+              $i++;
           //    $notFirst = true;
             }
 

@@ -17,44 +17,29 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-    var maxFieldFilms = 10; //Input fields increment limitation
-    var addButtonFilms = $('.add_button_Films'); //Add button selector
-    var wrapperFilms = $('.field_wrapper_Films'); //Input field wrapper
-    <?php
-    $mysqli = new mysqli("localhost","root","root","filmstudio");
-    $mysqli->query("SET NAMES 'utf8'");
+  var maxFieldFilms = 10; //Input fields increment limitation
+  var addButtonFilms = $('.add_button_Films'); //Add button selector
+  var wrapperFilms = $('.field_wrapper_Films'); //Input field wrapper
+  /*var fieldHTMLFilms = ('.field_wrapper_Films select')[0].outerHTML;
+  alert(fieldHTMLFilms);// '<div><input type="text" class="form-control" name="field_name_Films[]" value=""/><a href="javascript:void(0);" class="remove_button_Films"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
+  */var xFilms = 1; //Initial field counter is 1
+  var fieldHTMLFilms = "<div><select name=\"field_name_Films[]\"  class=\"select selectpicker  form-control\">" + $('.field_wrapper_Films select')[0].innerHTML + "</select><a href=\"javascript:void(0);\" class=\"remove_button_Films\"><img src=\"../img/delete_icon.png\" width=\'20\' height=\'20\'/></a></div>";
 
-    $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie`");
-    $fieldHTMLFilms = "";
-    while($stroka = mysqli_fetch_array($result_films)){
-    for ($i=0; $i<count($stroka); $i+=2){
+  //Once add button is clicked
+  $(addButtonFilms).click(function(){
+      //Check maximum number of input fields
+      if(xFilms < maxFieldFilms){
+          xFilms++; //Increment field counter
+          $(wrapperFilms).append(fieldHTMLFilms); //Add field html
+      }
+  });
 
-      $fieldHTMLFilms .= "<option>$stroka[$i]</option>";
-    }
-    }
-    $fieldHTMLFilms .= "</select><a href=\"javascript:void(0);\" class=\"add_button_Films\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a></div>";
+  //Once remove button is clicked
+  $(wrapperFilms).on('click', '.remove_button_Films', function(e){
+      e.preventDefault();
+      $(this).parent('div').remove(); //Remove field html
+      xFilms--; //Decrement field counter
 
-    ?>
-    var fieldHTMLFilms = '<div><select name=\"field_name_Films[]\"  class=\"select selectpicker  form-control\"><option></option><a href="javascript:void(0);" class="remove_button_Films"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
-
-
-
-    var xFilms = 1; //Initial field counter is 1
-
-    //Once add button is clicked
-    $(addButtonFilms).click(function(){
-        //Check maximum number of input fields
-        if(xFilms < maxFieldFilms){
-            xFilms++; //Increment field counter
-            $(wrapperFilms).append(fieldHTMLFilms); //Add field html
-        }
-    });
-
-    //Once remove button is clicked
-    $(wrapperFilms).on('click', '.remove_button_Films', function(e){
-        e.preventDefault();
-        $(this).parent('div').remove(); //Remove field html
-        xFilms--; //Decrement field counter
     });
 });
 
