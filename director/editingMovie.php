@@ -392,6 +392,21 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
    <td>Контакти близьких</td>
    </tr></thead>
    <?php
+
+   function res($result){
+  $print = "";
+    if($result)
+    {
+        $rows = mysqli_num_rows($result); // количество полученных строк
+        for ($i = 0 ; $i < $rows ; ++$i)
+        {
+            $row = mysqli_fetch_row($result);
+                for ($j = 0 ; $j < 1 ; ++$j)   $print .= "$row[$j]"."<br/>";
+        }
+    }
+    return $print;
+  }
+
    $mysql = new mysqli("localhost","root","root","filmstudio");
    $mysql->query("SET NAMES 'utf8'");
 
@@ -400,10 +415,9 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
    while ($stroka = mysqli_fetch_array($result)){
      $temp = $stroka['actor_id'];
 
-     // $result_phones = $mysqli->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id`  = $temp");
-     //
-     // $result_contacts_rel = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp");
+     $result_phones = $mysql->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id`  = $temp");
 
+     $result_contacts_rel = $mysql->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp");
 
      echo"<tr>";
      echo"<td>" . $stroka['actor_id'] . "</td>";
@@ -414,18 +428,74 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
      echo"<td>" . $stroka['name_of_position'] . "</td>";
      echo"<td>" . $stroka['actor_age'] . "</td>";
      echo"<td>" . $stroka['actor_e-mail'] . "</td>";
-     // echo"<td>" .  res($result_phones) . "</td>";
-     // echo"<td>" .  res($result_contacts_rel) . "</td>";
+     echo"<td>" .  res($result_phones) . "</td>";
+     echo"<td>" .  res($result_contacts_rel) . "</td>";
      echo"</tr>";
-
-
 
    }
 
+   $result_understudies = $mysql->query("SELECT * FROM `understudies` WHERE `understudy_id` IN(SELECT `understudy_id` FROM `understudies_filmcrew`  WHERE  `number_of_film_crew` = '$numb[0]')");
 
-   ?></table>
+
+   while ($stroka = mysqli_fetch_array($result_understudies)){
+     $temp = $stroka['understudy_id'];
+
+     // $result_phones = $mysqli->query("SELECT `understudy_phone_number` FROM `understudy_phones` WHERE `understudy_id` IN (SELECT `understudy_id` FROM  `understudies` WHERE `understudy_id` = $temp)");
+     //
+     // $result_contacts_rel = $mysqli->query("SELECT `understudy_relatives_phone_numbers` FROM `understudies_contacts_of_relatives` WHERE `understudy_id` IN (SELECT `understudy_id` FROM  `understudies` WHERE `understudy_id` = $temp)");
+
+
+     echo"<tr>";
+     echo"<td>" . $stroka['understudy_id'] . "</td>";
+     echo"<td>" . $stroka['understudy_surname'] . " " . $stroka['understudy_name']. " " . $stroka['understudy_middle_name'] .  "</td>";
+     echo"<td>" . $stroka['understudy_experience'] . "</td>";
+     echo"<td>" . $stroka['rating_of_employee'] . "</td>";
+     echo"<td>" . $stroka['amount_of_films_understudy_took_part_in'] . "</td>";
+     echo"<td>" . $stroka['name_of_position'] . "</td>";
+     echo"<td>" . $stroka['understudy_age'] . "</td>";
+     echo"<td>" . $stroka['understudy_e-mail'] . "</td>";
+     // echo"<td>" .  res($result_phones) . "</td>";
+     // echo"<td>" .  res($result_contacts_rel) . "</td>";
+     echo"</tr>";
+   }
+
+   $result_others = $mysql->query("SELECT * FROM `others` WHERE `others_id` IN(SELECT `others_id` FROM `others_filmcrew`  WHERE  `number_of_film_crew` = '$numb[0]')");
+
+
+   while ($stroka = mysqli_fetch_array($result_others)){
+     $temp = $stroka['others_id'];
+
+     // $result_phones = $mysqli->query("SELECT `understudy_phone_number` FROM `understudy_phones` WHERE `understudy_id` IN (SELECT `understudy_id` FROM  `understudies` WHERE `understudy_id` = $temp)");
+     //
+     // $result_contacts_rel = $mysqli->query("SELECT `understudy_relatives_phone_numbers` FROM `understudies_contacts_of_relatives` WHERE `understudy_id` IN (SELECT `understudy_id` FROM  `understudies` WHERE `understudy_id` = $temp)");
+
+
+     echo"<tr>";
+     echo"<td>" . $stroka['others_id'] . "</td>";
+     echo"<td>" . $stroka['others_surname'] . " " . $stroka['others_name']. " " . $stroka['others_middle_name'] .  "</td>";
+     echo"<td>" . $stroka['others_experience'] . "</td>";
+     echo"<td>" . $stroka['rating_of_employee'] . "</td>";
+     echo"<td>" . $stroka['amount_of_films_others_took_part_in'] . "</td>";
+     echo"<td>" . $stroka['name_of_position'] . "</td>";
+     echo"<td>" . $stroka['others_age'] . "</td>";
+     echo"<td>" . $stroka['others_e-mail'] . "</td>";
+     // echo"<td>" .  res($result_phones) . "</td>";
+     // echo"<td>" .  res($result_contacts_rel) . "</td>";
+
+     if($stroka['name_of_position'] == "лінійний продюсер" || $stroka['name_of_position'] == "режисер" || $stroka['name_of_position'] == "сценарист"){
+       echo"<form action=\"editingFilmCrew.php\" method=\"post\">";
+
+   echo "<input type=\"hidden\" value = \"" .$stroka['others_id'] . "\" name=\"others_id\" >";
+   echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"delete\">Прибрати зі складу группи</button>"."</div></td></form>";
+     }
+     echo"</tr>";
+   }
+
+
+   ?>
 
    <br>
+   </table>
 
  </div>
 
