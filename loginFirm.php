@@ -58,15 +58,21 @@ if (isset($_POST['logIn'])){
   $login = filter_var(trim($_POST['uname']),FILTER_SANITIZE_STRING);
   $password = filter_var(trim($_POST['psw']),FILTER_SANITIZE_STRING);
 
-  $success = $mysql->query("SELECT `position` FROM `loginPassword` WHERE `login` = '$login' AND `password` = '$password'");
+$ps = "" . md5($password);
+//echo(md5($password));
+  $success = $mysql->query("SELECT `position` FROM `loginPassword` WHERE `login` = '$login' AND `password` = '$ps'");
 
-  if(!$success){
-    echo "<script language='javascript'>";
-    echo 'alert("Неправильний логін/пароль!");';
-    echo "</script>";
-  }
+
+
      $stroka = mysqli_fetch_array($success);
-     echo $stroka[0];
+  //   echo $stroka[0];
+
+
+     if($stroka[0] == ""){
+       echo "<script language='javascript'>";
+       echo 'alert("Неправильний логін/пароль!");';
+       echo "</script>";
+     }
 
 
      switch ($stroka[0]) {

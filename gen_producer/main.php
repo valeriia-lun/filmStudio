@@ -41,6 +41,11 @@
 <div class="row body2">
 <div class=" container col-md-3">
 
+  <?php
+
+echo md5("director2940");
+   ?>
+
 <h3 class="colorText">Додавання співробітників</h3></br>
   <form action="" method="post">
     <select name="choice" class="select selectpicker  form-control">
