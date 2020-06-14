@@ -373,9 +373,12 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
        ?><br>
 
    </div>
+   </div>
+</br>
+</br>
+</br>
 
-
-   <div class=" container col-4" >
+   <div class="container col-8" >
    <label class="colorText">Склад:</label>
    <table border="1" class=" table table-dark table-hover" >
    <thead class="thead-dark " style="background-color: #252527;">
