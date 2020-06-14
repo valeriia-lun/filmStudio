@@ -556,11 +556,37 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
        <label class="colorText">Голова: </label><?php
        $mysql = new mysqli("localhost","root","root","filmstudio");
        $mysql->query("SET NAMES 'utf8'");
-       $result = $mysql->query("SELECT `editor_crew_head_id` FROM `edit_crew` WHERE `number_of_edit_crew` = '$numb[0]'");
+    //   $name_of_movie = $_POST['name_of_movie'];
 
-       $res = mysqli_fetch_array($result);
+       $number_of_editCreww = $mysql->query("SELECT `number_of_edit_crew` FROM `movie` WHERE `name_of_movie` =  \"$name\"");
+       $number_of_editCrew = mysqli_fetch_array($number_of_editCreww);
+     $num = $number_of_editCrew[0];
 
-       echo "<input type= \"text\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"head\" value=\"$res[0]\" required>";
+
+       $start = $mysql->query("SELECT `date_start_edit_crew` FROM `edit_crew` WHERE `number_of_edit_crew` = $num");
+       $finish = $mysql->query("SELECT `date_finish_edit_crew` FROM `edit_crew` WHERE `number_of_edit_crew` = $num");
+       
+       $date_start_this_edit_crew = mysqli_fetch_array($start); //arrays with 1 element
+       $date_finish_this_edit_crew = mysqli_fetch_array($finish);
+       $used_start = $date_start_this_edit_crew[0];
+       $used_finish = $date_finish_this_edit_crew[0];
+       
+       
+
+
+
+       $result_editing_movie=$mysql->query("SELECT `editor_id`, `editor_surname`,`editor_name`,`editor_middle_name` FROM `editor` WHERE editor_id NOT IN (SELECT DISTINCT editor_id FROM editor_crewedit WHERE number_of_edit_crew
+        IN(SELECT number_of_edit_crew FROM edit_crew WHERE ((date_finish_edit_crew BETWEEN '$used_start' AND '$used_finish') OR
+       (date_start_edit_crew BETWEEN  '$used_start' AND  '$used_finish'))))");
+
+
+
+echo  $result_editing_movie[0];
+      // $result = $mysql->query("SELECT `editor_crew_head_id` FROM `edit_crew` WHERE `number_of_edit_crew` = '$numb[0]'");
+
+       $res = mysqli_fetch_array($result_editing_movie);
+       echo $res[0];
+      //  echo "<input type= \"text\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"head\" value=\"$res[0]\" required>";
          ?><br>
    </div></div><br>
 
