@@ -8,65 +8,72 @@ if (isset($_POST['logIn'])){
   $password = filter_var(trim($_POST['psw']),FILTER_SANITIZE_STRING);
 
 
-  $success = $mysql->query("SELECT `position` FROM `loginPassword` WHERE `login` = '$login' AND `password` = '$password'");
-  if ($success) {
-      echo "Success!";
-    }
-  else {
-       echo "Error! $mysqli->error <br>";
-     }
+  $logins = $mysql->query("SELECT `login` FROM `loginPassword`");
+  $logins_use = mysqli_fetch_array($logins);
+  $passwords = $mysql->query("SELECT `password` FROM `loginPassword`");
+  $passwords_use = mysqli_fetch_array($passwords);
 
+for($i=0; $i<count($logins_use); $i++){
+if($login != $logins_use[$i] && $password != $passwords_use[$i]){
+  echo "<script language='javascript'>";
+  echo 'alert("Неправильний логін/пароль!");';
+  echo "</script>";
+  header('Location: /filmStudio/loginFirm.php');
+
+}
+  $success = $mysql->query("SELECT `position` FROM `loginPassword` WHERE `login` = '$login' AND `password` = '$password'");
      $stroka = mysqli_fetch_array($success);
      echo $stroka[0];
 
 
      switch ($stroka[0]) {
-       case 'gen_producer':
+       case 'Генеральний продюсер':
            header('Location: /filmStudio/gen_producer/main.php');
          break;
 
-       case 'director':
+       case 'Режисер':
            header('Location: /filmStudio/director/main.php');
          break;
 
-       case 'line_producer':
+       case 'Лінійний продюсер':
            header('Location: /filmStudio/line_producer/main.php');
          break;
 
-       case 'scene_admin':
+       case 'Адміністратор майданчика':
            header('Location: /filmStudio/scene_admin/main.php');
          break;
 
-       case 'actor_agent':
+       case 'Агент по акторах':
            header('Location: /filmStudio/actor_agent/main.php');
          break;
 
-       case 'chief_editor':
+       case 'Головний монтажер':
            header('Location: /filmStudio/chief_editor/main.php');
          break;
 
-       case 'operator':
+       case 'Оператор':
           header('Location: /filmStudio/operator/main.php');
          break;
 
-       case 'sound_director':
+       case 'Звукорежисер':
           header('Location: /filmStudio/sound_director/main.php');
          break;
 
-       case 'light_director':
+       case 'Гафер':
           header('Location: /filmStudio/light_director/main.php');
          break;
 
-       case 'costume_designer':
+       case 'Художник по костюмах':
           header('Location: /filmStudio/costume_designer/main.php');
          break;
 
-       case 'production_designer':
+       case 'Художник-постановщик':
           header('Location: /filmStudio/production_designer/main.php');
          break;
      }
 
-
+    }
+  
 }
 
  ?>

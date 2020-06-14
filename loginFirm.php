@@ -33,7 +33,7 @@
     </div>   </div></br></br>
     <div class="row">
     <div class="container  col-5">
-      <label style="font-size: 17pt;" class="colorText" >Пароль:</label>
+      <label style="font-size: 17pt;"  class="colorText" >Пароль:</label>
       <input  class="form-control" type="password" placeholder="Введіть пароль" name="psw" required>
     </div>   </div></br></br>
     <div class="row">

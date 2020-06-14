@@ -238,8 +238,19 @@ function lal(el) {
    <option selected>Чорний</option>
    <option>Блонд</option>
    <option>Рудий</option>
-   <option>Коричневий</option>
-   <option>Білий</option>
+   <option>Шатен</option>
+   <option>Брюнет</option>
+    <option>Блакитний</option>
+	 <option>Червоний</option>
+	  <option>Сивий</option>
+	   <option>Русявий</option>
+	    <option>Зелений</option>
+		 <option>Сірий</option>
+		  <option>Жовтий</option>
+		   <option>Фіолетовий</option>
+		    <option>Помаранчевий</option>
+			 <option>Рожевий</option>
+			  <option>Синій</option>
    </select>
    </div></div><br>
    
@@ -253,7 +264,12 @@ function lal(el) {
    <option selected>Блакитний</option>
    <option>Сірий</option>
    <option>Зелений</option>
-   <option>Карі</option>
+   <option>Карий</option>
+     <option>Синій</option>
+	  <option>Янтарний</option>  
+ <option>Чорний</option>   
+	<option>Жовтий</option>     
+		
    </select><br>
    </div>
    <div class=" container col-3">
@@ -414,7 +430,7 @@ if (isset($_POST['add'])){
 
 
   foreach ($ratings as $value) {
-    echo "PEZDA";
+
   //   $id_r = $mysql->query("SELECT id_previous_movie_rating FROM `Previous_movies_rating` WHERE rating = $value");
   $value *= 10;
       $result = $mysql->query("INSERT INTO `Understudy_previous_movies_ratings`(`id_previous_movie_rating`, `understudy_id`)
