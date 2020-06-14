@@ -43,7 +43,7 @@
 
   <form action="" method="post">
 <div class="btn">
-<input type="submit" class ="button btn btn-primary" value="Створити Фільм" name="add"><br>
+</br></br></br><input type="submit" class ="button btn btn-primary" value="Створити фільм" name="add"><br>
 </div>
 </form>
 </div>
