@@ -6,6 +6,83 @@
     <script type="text/javascript">
 
     $(document).ready(function(){
+
+    var dateStartFilmCrew = document.getElementById('date_start_filmCrew');
+    var dateEndFilmCrew = document.getElementById('date_end_filmCrew');
+
+    var dateStartEditCrew = document.getElementById('date_start_editCrew');
+    var dateEndEditCrew = document.getElementById('date_end_editCrew');
+
+    dateEndFilmCrew.addEventListener('change', function() {
+      if(dateEndFilmCrew < dateStartFilmCrew){
+        alert("Дата закінчення роботи знімальної групи повинна бути більше за дату початку роботи знімальної групи!!!");
+        document.getElementById('date_end_filmCrew').value = "";
+      }
+
+      if(dateEndFilmCrew >= dateStartEditCrew){
+        alert("Дата початку роботи групи монтажерів повинна бути більше за дату закінчення роботи знімальної групи!!!");
+        document.getElementById('date_end_filmCrew').value = "";
+      }
+
+      if(dateEndFilmCrew >= dateEndFilmCrew){
+        alert("Дата закінчення роботи групи монтажерів повинна бути більше за дату закінчення роботи знімальної групи!!!");
+        document.getElementById('date_end_filmCrew').value = "";
+      }
+    });
+
+    dateStartFilmCrew.addEventListener('change', function() {
+      if(dateEndFilmCrew < dateStartFilmCrew){
+        alert("Дата закінчення роботи знімальної групи повинна бути більше за дату початку роботи знімальної групи!!!");
+        document.getElementById('date_start_filmCrew').value = "";
+      }
+      if(dateEndEditCrew <= dateStartFilmCrew){
+        alert("Дата закінчення роботи групи монтажерів повинна бути більше за дату початку роботи знімальної групи!!!");
+        document.getElementById('date_start_filmCrew').value = "";
+      }
+      if(dateStartEditCrew <= dateStartFilmCrew){
+        alert("Дата початку роботи групи монтажерів повинна бути більше за дату початку роботи знімальної групи!!!");
+        document.getElementById('date_start_filmCrew').value = "";
+      }
+
+    });
+
+    dateEndEditCrew.addEventListener('change', function() {
+      if(dateEndEditCrew < dateStartEditCrew){
+        alert("Дата закінчення роботи групи монтажерів повинна бути більше за дату початку роботи групи монтажерів!!!");
+        document.getElementById('date_end_editCrew').value = "";
+      }
+
+      if(dateEndEditCrew <= dateStartFilmCrew){
+        alert("Дата закінчення роботи групи монтажерів повинна бути більше за дату початку роботи знімальної групи!!!");
+        document.getElementById('date_end_editCrew').value = "";
+      }
+
+      if(dateEndEditCrew <= dateEndFilmCrew){
+        alert("Дата закінчення роботи групи монтажерів повинна бути більше за дату закінчення роботи знімальної групи!!!");
+        document.getElementById('date_end_editCrew').value = "";
+      }
+
+
+    });
+
+    dateStartEditCrew.addEventListener('change', function() {
+      if(dateStartEditCrew <= dateEndFilmCrew){
+        alert("Дата початку роботи групи монтажерів повинна бути більше за дату закінчення роботи знімальної групи!!!");
+        document.getElementById('date_start_editCrew').value = "";
+      }
+      if(dateStartEditCrew > dateEndEditCrew){
+        alert("Дата початку роботи групи монтажерів повинна бути менше за дату закінчення роботи рупи монтажерів!!!");
+        document.getElementById('date_start_editCrew').value = "";
+      }
+      if(dateStartEditCrew <= dateStartFilmCrew){
+        alert("Дата початку роботи групи монтажерів повинна бути більше за дату початку роботи знімальної групи!!!");
+        document.getElementById('date_start_editCrew').value = "";
+      }
+
+
+    });
+
+
     var maxFieldGenre = 10; //Input fields increment limitation
     var addButtonGenre = $('.add_button_Genre'); //Add button selector
     var wrapperGenre = $('.field_wrapper_Genre'); //Input field wrapper
@@ -31,10 +108,50 @@
 
 
 });
-    $(function() {
-    $().datepicker();
-    });
+    // $(function() {
+    // $().datepicker();
+    // });
 
+
+    function checkDate(field)
+      {
+        var allowBlank = true;
+        var minYear = 1902;
+        var maxYear = (new Date()).getFullYear();
+
+        var errorMsg = "";
+
+        var dateEndEditCrew = Document.getElementById('date_end_editCrew').getInnerHTML();
+        var dateStartEditCrew = Document.getElementById('date_start_editCrew').getInnerHTML();
+
+
+        // regular expression to match required date format
+        re = /^(\d{1,2})\/(\d{1,2})\/(\d{4})$/;
+
+        if(field.value != '') {
+          if(regs = field.value.match(re)) {
+            if(regs[1] < 1 || regs[1] > 31) {
+              errorMsg = "Invalid value for day: " + regs[1];
+            } else if(regs[2] < 1 || regs[2] > 12) {
+              errorMsg = "Invalid value for month: " + regs[2];
+            } else if(regs[3] < minYear || regs[3] > maxYear) {
+              errorMsg = "Invalid value for year: " + regs[3] + " - must be between " + minYear + " and " + maxYear;
+            }
+          } else {
+            errorMsg = "Invalid date format: " + field.value;
+          }
+        } else if(!allowBlank) {
+          errorMsg = "Empty date not allowed!";
+        }
+
+        if(errorMsg != "") {
+          alert(errorMsg);
+          field.focus();
+          return false;
+        }
+
+        return true;
+      }
 
   </script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -54,6 +171,13 @@ function lal(el) {
     }
 }
 
+</script>
+<script type="text/javascript">
+
+  function checkForm(form)
+  {
+    return checkDate(form.startdate);
+  }
 </script>
 </head>
 <body class="text-center body3">
@@ -79,7 +203,7 @@ function lal(el) {
 <br><br><h1 class="colorForAllText">Додати фільм</h1><br>
 
 <div>
-  <form action="" method="post">
+  <form action="" method="post" onsubmit="return checkForm(this);">
   <div class="row text-center" style="margin:10px;">
     <div class=" container col-3" >
     <label class="colorText">Назва:  </label><input type="text" class="form-control"  name="movie_name" maxlength="50" tabindex="2" required><br>
@@ -112,10 +236,10 @@ function lal(el) {
 <br><br><h1 class="colorForAllText">Знімальна група</h1><br>
   <div class="row text-center" style="margin:10px;">
     <div class=" container col-4" >
-    <label class="colorText">Дата початку роботи: </label><input type="date" class="form-control" name="date_start_filmCrew" maxlength="50" tabindex="2" required><br>
+    <label class="colorText">Дата початку роботи: </label><input type="date" class="form-control" id="date_start_filmCrew" name="date_start_filmCrew" maxlength="50" tabindex="2" required><br>
   </div>
   <div class=" container col-4" >
-  <label class="colorText">Дата закінчення роботи:</label> <input type="date" class="form-control" name="date_end_filmCrew" maxlength="50" tabindex="2" required><br>
+  <label class="colorText">Дата закінчення роботи:</label> <input type="date" class="form-control" id="date_end_filmCrew" name="date_end_filmCrew" maxlength="50" tabindex="2" required><br>
   </div></div><br>
 
 
