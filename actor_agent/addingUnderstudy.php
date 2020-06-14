@@ -5,6 +5,19 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function(){
+
+
+      var dateOfBirthh = document.getElementById('date_of_birth');
+      dateOfBirthh.addEventListener('change', function() {
+        if(dateOfBirthh >= Date()){
+                alert("Дата народження повинна бути меншою за сьогодні!!!");
+                document.getElementById('date_of_birth').value = "";
+              }
+      });
+
+
+
+
         var maxFieldPhones = 10; //Input fields increment limitation
         var addButtonPhones = $('.add_button_Phones'); //Add button selector
         var wrapperPhones = $('.field_wrapper_Phones'); //Input field wrapper
@@ -133,9 +146,9 @@ function lal(el) {
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only"></span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Агент по акторах</label>
     </form>
@@ -183,7 +196,7 @@ function lal(el) {
           <a href="javascript:void(0);" class="add_button_Ratings" title="Add field"><img src="../img/add_icon.png" height='35' width='35'/></a>
       </div>     </div>
   </div>
-    </div> </br> 
+    </div> </br>
 
     <div class="row">
   <div class=" container col-3">
@@ -197,12 +210,12 @@ function lal(el) {
   <div class=" container col-3">
   <label class="colorText"> Працюе з: </label><input type="date" class="form-control" name="work_since" maxlength="50" tabindex="2" required><br>
   </div>
-  </div></br> 
+  </div></br>
 
-  
+
   <div class="row">
   <div class=" container col-3">
-  <label class="colorText">Дата народження: </label><input type="date" class="form-control" name="date_of_birth" maxlength="50" tabindex="2" required><br>
+  <label class="colorText">Дата народження: </label><input type="date" class="form-control" id="date_of_birth" name="date_of_birth" maxlength="50" tabindex="2" required><br>
   </div>
   <div class=" container col-3">
   <label class="colorText">Заробітня плата:</label><input onkeyup="lal(this)" type="text" class="form-control"  name="salary" maxlength="50" tabindex="2" required><br>
@@ -216,7 +229,7 @@ function lal(el) {
   <label class="colorText">E-mail: </label><input type="text" maxlength="50" class="form-control" name="email" tabindex="2" required><br>
   </div> </div>
 
-  </br></br> 
+  </br></br>
 
   <hr  size="50"  color="black;" />
 <h1 class="colorForAllText text-center">Зовнішність</h1>
@@ -242,7 +255,7 @@ function lal(el) {
    <option>Білий</option>
    </select>
    </div></div><br>
-   
+
    <div class="row">
   <div class=" container col-3">
    <label class="colorText">Довжина волосся:</label><input onkeyup="lal(this)" type="text" class="form-control" name="hair_len" maxlength="50" tabindex="2" required><br>
