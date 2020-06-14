@@ -400,9 +400,9 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
    while ($stroka = mysqli_fetch_array($result)){
      $temp = $stroka['actor_id'];
 
-     // $result_phones = $mysqli->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id`  = $temp");
-     //
-     // $result_contacts_rel = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp");
+      $result_phones = $mysqli->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id`  = $temp");
+     
+     $result_contacts_rel = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp");
 
 
      echo"<tr>";
@@ -414,8 +414,8 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
      echo"<td>" . $stroka['name_of_position'] . "</td>";
      echo"<td>" . $stroka['actor_age'] . "</td>";
      echo"<td>" . $stroka['actor_e-mail'] . "</td>";
-     // echo"<td>" .  res($result_phones) . "</td>";
-     // echo"<td>" .  res($result_contacts_rel) . "</td>";
+      echo"<td>" .  res($result_phones) . "</td>";
+      echo"<td>" .  res($result_contacts_rel) . "</td>";
      echo"</tr>";
 
 
@@ -502,21 +502,53 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
        $used_finish = $date_finish_this_edit_crew[0];
        
        
-
-
-
-       $result_editing_movie=$mysql->query("SELECT `editor_id`, `editor_surname`,`editor_name`,`editor_middle_name` FROM `editor` WHERE editor_id NOT IN (SELECT DISTINCT editor_id FROM editor_crewedit WHERE number_of_edit_crew
+       $result_editor_id=$mysql->query("SELECT editor_id  FROM `editor` WHERE editor_id NOT IN (SELECT DISTINCT editor_id FROM editor_crewedit WHERE number_of_edit_crew
         IN(SELECT number_of_edit_crew FROM edit_crew WHERE ((date_finish_edit_crew BETWEEN '$used_start' AND '$used_finish') OR
        (date_start_edit_crew BETWEEN  '$used_start' AND  '$used_finish'))))");
 
+      $result_editor_surname=$mysql->query("SELECT editor_surname  FROM `editor` WHERE editor_id NOT IN (SELECT DISTINCT editor_id FROM editor_crewedit WHERE number_of_edit_crew
+      IN(SELECT number_of_edit_crew FROM edit_crew WHERE ((date_finish_edit_crew BETWEEN '$used_start' AND '$used_finish') OR
+      (date_start_edit_crew BETWEEN  '$used_start' AND  '$used_finish'))))");
 
 
-echo  $result_editing_movie[0];
-      // $result = $mysql->query("SELECT `editor_crew_head_id` FROM `edit_crew` WHERE `number_of_edit_crew` = '$numb[0]'");
 
-       $res = mysqli_fetch_array($result_editing_movie);
-       echo $res[0];
-      //  echo "<input type= \"text\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"head\" value=\"$res[0]\" required>";
+      $result_editor_middle_name=$mysql->query("SELECT editor_middle_name  FROM `editor` WHERE editor_id NOT IN (SELECT DISTINCT editor_id FROM editor_crewedit WHERE number_of_edit_crew
+      IN(SELECT number_of_edit_crew FROM edit_crew WHERE ((date_finish_edit_crew BETWEEN '$used_start' AND '$used_finish') OR
+      (date_start_edit_crew BETWEEN  '$used_start' AND  '$used_finish'))))");
+
+
+      $result_editor_name=$mysql->query("SELECT editor_name  FROM `editor` WHERE editor_id NOT IN (SELECT DISTINCT editor_id FROM editor_crewedit WHERE number_of_edit_crew
+      IN(SELECT number_of_edit_crew FROM edit_crew WHERE ((date_finish_edit_crew BETWEEN '$used_start' AND '$used_finish') OR
+      (date_start_edit_crew BETWEEN  '$used_start' AND  '$used_finish'))))");
+  
+  
+
+
+       echo "<select name=\"head\" class=\"select selectpicker  required form-control\">";
+       while($stroka_id = mysqli_fetch_array($result_editor_id) && $stroka_surname = mysqli_fetch_array($result_editor_surname) && 
+         $stroka_name = mysqli_fetch_array($result_editor_name) &&   $stroka_middle_name = mysqli_fetch_array($result_editor_middle_name) ){
+       for ($i=0; $i<count($stroka_id); $i+=2){
+        // for ($j=0; $j<count($stroka_surname); $j+=2){
+        //   for ($k=0; $k<count($stroka_name); $k+=2){
+        //     for ($n=0; $n<count($stroka_middle_name); $n+=2){
+         echo "<option> $stroka_surname[$i] $stroka_name[$i] $stroka_middle_name[$i], id:$stroka_id[$i]</option>";
+      //  }
+      // }}
+    
+    }
+  }
+      //  for ($i=0; $i<count($stroka_name); $i+=2){
+      //   echo "<option>$stroka_name[$i]</option>";
+      // }  
+      // for ($i=0; $i<count($stroka_surname); $i+=2){
+      //   echo "<option>$stroka_surname[$i]</option>";
+      // }  
+      // for ($i=0; $i<count($stroka_middle_name); $i+=2){
+      //   echo "<option>$stroka_middle_name[$i]</option>";
+      // }
+
+
+  
          ?><br>
    </div></div><br>
 
