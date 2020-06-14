@@ -1,18 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
 <meta  charset=utf-8>
-<title>Логіни та паролі</title>
-<style>
-   select {
-    width: 300px;
-   }
-   .verstka2{
-  text-align: center;
-  float: left;
-}
-  </style>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<title>Генеральний продюсер</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
  <!-- Latest compiled and minified JavaScript -->
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
@@ -24,14 +15,6 @@
 </script>
 <link rel="stylesheet" href="..\style.css">
 </head>
-<style type="text/css">
-
-@media print {
-  .noprint { display: none; }
-@page { margin: 0; }
-
-  }
-</style>
 <body class="text-center body3">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light style=width=100%;">
@@ -53,44 +36,43 @@
   </div>
 </nav>
 
-</br></br>
-<h1 align="center" class="colorForAllText">Логіни та паролі співробітників</h1></br></br>
-<div class="row ">
-<div class="container col-md-11 ">
-<div>
-<table border="1" class=" table table-dark table-hover" >
-<thead class="thead-dark " style="background-color: #252527;">
-<tr>
-<td>Посада</td>
-<td>Логін</td>
-<td>Пароль</td>
-<td><div class = "noprint">Змінити логін або пароль</div></td>
-</tr></thead>
-
+<form  action="edit_logins_check.php" method="post">
+<div class="row">
+<div class=" container col-3">
 <?php
-$mysqli = new mysqli("localhost","root","root","filmstudio");
-$mysqli->query("SET NAMES 'utf8'");
-$result_logins = $mysqli->query("SELECT * FROM `loginpassword`");
-while ($stroka = mysqli_fetch_array($result_logins)){
-  echo"<tr>";
-  echo"<td>" . $stroka['position'] . "</td>";
-  echo"<td>" . $stroka['login'] . "</td>";
-  echo"<td>" . $stroka['password'] . "</td>";
-  echo"<form action=\"edit_logins.php\" method=\"post\">";
-  echo "<input type=\"hidden\" value = \"" .$stroka['position'] . "\" name=\"position\" >";
 
-      echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" >Змінити</button>"."</div></td></form>";  
-  echo"</tr>";
-}
-?>
-</table>
 
-</div></div></div></br></br>
+  $mysqli = new mysqli("localhost","root","root","filmstudio");
+  $mysqli->query("SET NAMES 'utf8'");
 
-<div class="row ">
-<div class="container col-md-4 ">
-<div class="btn noprint">
-<button  class ="button btn btn-danger" onclick="window.print()">Друкувати</button></br></br>
-</div></div></div>
+
+  $position =  $_POST['position'];
+  echo "</br><input type=\"hidden\" value = \"" .$position . "\" name=\"pos\" >";
+echo "<label style=\" font-size: 20pt;\" class=\"colorForAllText\">   $position</label></div></div></br></br>";
+
+
+  echo"<div class=\"row\"><div class=\" container col-3\">";
+echo"<label class=\"colorText\"> Логін: </label>";
+
+
+$result = $mysqli->query("SELECT `login` FROM `loginpassword` WHERE `position` = '$position'");
+$res = mysqli_fetch_array($result);
+echo "<input type= \"text\"  class=\"form-control\" name=\"log\" value=\"$res[0]\" required> </div>";
+
+  
+
+ 
+
+echo"<div class=\" container col-3\">";
+echo "<label class=\"colorText\"> Пароль: </label>";
+$result = $mysqli->query("SELECT `password` FROM `loginpassword` WHERE `position` = '$position'");
+$res = mysqli_fetch_array($result);
+echo "<input type= \"text\"  class=\"form-control\"  name=\"pass\" value=\"$res[0]\" required> </div> </div>";
+ 
+  ?></br></br>
+<div class="btn">
+<input type="submit" class ="button btn btn-primary" name="edit_logins_button" value="Змінити" name="edit">
+</div><br><br><br>
+</form>
 </body>
 </html>
