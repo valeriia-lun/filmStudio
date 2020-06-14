@@ -5,6 +5,34 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function(){
+      var dateOfBirthh = document.getElementById('date_of_birth');
+      var dateOfWorkSince = document.getElementById('work_since');
+      var dateOfWorkUntil = document.getElementById('work_until');
+
+
+      dateOfBirthh.addEventListener('change', function() {
+        if(dateOfBirthh >= Date()){
+                alert("Дата народження повинна бути меншою за сьогодні!!!");
+                document.getElementById('date_of_birth').value = "";
+              }
+      });
+
+      dateOfWorkSince.addEventListener('change', function() {
+        if(dateOfWorkSince.value > dateOfWorkUntil.value){
+                alert("Дата початку роботи повинна бути меншою або рівною за дату закінчення роботи!!!");
+                document.getElementById('work_since').value = "";
+              }
+      });
+
+      dateOfWorkUntil.addEventListener('change', function() {
+        if(dateOfWorkSince.value > dateOfWorkUntil.value){
+                alert("Дата початку роботи повинна бути меншою або рівною за дату закінчення роботи!!!");
+                document.getElementById('work_until').value = "";
+              }
+      });
+
+
+
         var maxFieldPhones = 10; //Input fields increment limitation
         var addButtonPhones = $('.add_button_Phones'); //Add button selector
         var wrapperPhones = $('.field_wrapper_Phones'); //Input field wrapper
@@ -293,7 +321,7 @@ $result = $mysql->query("SELECT `actor_works_since` FROM `actors` WHERE `actor_i
 
 $res = mysqli_fetch_array($result);
 
-echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"work_since\" value=\"$res[0]\" required>";
+echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" id=\"work_since\" name=\"work_since\" value=\"$res[0]\" required>";
   ?>
 
 </div>
@@ -313,7 +341,7 @@ $result = $mysql->query("SELECT `actor_works_until` FROM `actors` WHERE `actor_i
 
 $res = mysqli_fetch_array($result);
 
-echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"work_until\" value=\"$res[0]\">";
+echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" id=\"work_until\" name=\"work_until\" value=\"$res[0]\">";
   ?><br>
 </div>
 
@@ -326,7 +354,7 @@ $result = $mysql->query("SELECT `actor_date_of_birth` FROM `actors` WHERE `actor
 
 $res = mysqli_fetch_array($result);
 
-echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"date_of_birth\" value=\"$res[0]\" required>";
+echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" id=\"date_of_birth\" name=\"date_of_birth\" value=\"$res[0]\" required>";
   ?><br>
 </div>
 
