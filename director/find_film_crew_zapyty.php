@@ -22,7 +22,7 @@
 }
 
 @media print {
-  
+
   .noprint { display: none; }
 
 #printOnly{}
@@ -40,7 +40,7 @@
 #pageFooter:after {
     counter-increment: page;
     content: counter(page) ;
-    
+
     font-size: 20pt;
 }
 </style>
@@ -56,9 +56,9 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only">(current)</span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Режисер</label>
     </form>
@@ -74,10 +74,11 @@
 <thead class="thead-dark " style="background-color: #252527;">
 <tr>
 <td>Номер знімальної групи</td>
+<td>Назва фільму</td>
+
 <td>Дата початку роботи знімальної групи</td>
 <td>Дата закінчення роботи знімальної групи</td>
 
-<td><div class = "noprint">Додати сценариста і лінійного продюсера</div></td>
 <td><div class = "noprint">Змінити інформацію</div></td>
 </tr></thead>
 
@@ -101,15 +102,18 @@ function res($result){
   if (isset($_POST['done'])){
     $mysqli = new mysqli("localhost","root","root","filmstudio");
   $mysqli->query("SET NAMES 'utf8'");
-  
+
           $date_start =  $_POST['date_start'];
           $date_finish =  $_POST['date_finish'];
-  
-        
+          $movieName =  $_POST['selectingFilms'];
+
+
+
+
           $quer = "SELECT * FROM `film_crew` WHERE ";
-     
+
                   $isFirst = true;
-          
+
                   if($date_start != NULL){
                     if(!$isFirst){
                       $quer = $quer . " AND ";
@@ -125,9 +129,19 @@ function res($result){
                     $quer = $quer . "date_finish_film_crew = '$date_finish'";
                     $isFirst = false;
                   }
-            
-                  
-          
+
+                  if($movieName != NULL){
+                  //  $isLast = false;
+                    if(!$isFirst){
+                      $quer = $quer . " AND ";
+                    }
+                    $quer = $quer . "number_of_film_crew IN(SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = '$movieName') ";
+                    $isFirst = false;
+                    echo $quer;
+                  }
+
+
+
                   $result_filter = $mysqli->query($quer);
                   if ($result_filter) {
                   //   echo "Success!";
@@ -135,29 +149,35 @@ function res($result){
                   else {
                       echo "Error! $mysqli->error <br>";
                     }
-          
+
                   $result_filter = $mysqli->query($quer);
-     
+
   //$mysqli->close();
   while ($stroka = mysqli_fetch_array($result_filter)){
     $temp = $stroka['number_of_film_crew'];
+
+    $result_movie = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` = $temp");
+
     echo"<tr>";
-    echo"<form action=\"add_others_to_film_crew.php\" method=\"post\">";
 
     echo"<td>" . $stroka['number_of_film_crew'] . "</td>";
+    $value = res($result_movie);
+
+    echo"<td>" . $value . "</td>";
+
     echo"<td>" . $stroka['date_start_crew'] . "</td>";
     echo"<td>" . $stroka['date_finish_film_crew'] . "</td>";
-    
-    $res = $mysqli->query("SELECT * FROM `film_crew` WHERE `date_finish_film_crew` > CURDATE() AND `number_of_film_crew` = $temp");
-    $re = mysqli_fetch_array($res);
-    if($re){
-    echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" value = \"" . $stroka['number_of_film_crew'] . "\" name=\"number_of_film_crew\">Додати</button>"."</div></td></form>";
-    }else{  echo "<td></td>";}
 
-        echo"<form action=\"editingFilmCrew.php\" method=\"post\">";
+    // $res = $mysqli->query("SELECT * FROM `film_crew` WHERE `date_finish_film_crew` > CURDATE() AND `number_of_film_crew` = $temp");
+    // $re = mysqli_fetch_array($res);
+    // if($re){
+    // echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" value = \"" . $stroka['number_of_film_crew'] . "\" name=\"number_of_film_crew\">Додати</button>"."</div></td></form>";
+    // }else{  echo "<td></td>";}
+    echo"<form action=\"editingMovie.php\" method=\"post\">";
 
-    echo "<input type=\"hidden\" value = \"" .$stroka['number_of_film_crew'] . "\" name=\"number_of_film_crew\" >";
-    echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";
+echo "<input type=\"hidden\" value = \"" .$value . "\" name=\"name_of_movie\" >";
+echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";
+
 
 
     echo"</tr>";
@@ -166,12 +186,12 @@ function res($result){
 }
 ?>
 </table>
-</div><div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку: 
-  <?php 
-    $currentDateTime = date('Y-m-d'); 
+</div><div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку:
+  <?php
+    $currentDateTime = date('Y-m-d');
     echo $currentDateTime;
   ?></p></div>
-  
+
   <div id="printOnly" class="row ">
 <div class="col-12 container fixed-bottom">
   <div id="content">

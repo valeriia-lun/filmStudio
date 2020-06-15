@@ -491,16 +491,21 @@ $result = $mysql->query("SELECT * FROM actors WHERE actor_id IN(SELECT actor_id 
      echo"<td>" .  res($result_phones) . "</td>";
      echo"<td>" .  res($result_contacts_rel) . "</td>";
 
-     $res = $mysql->query("SELECT * FROM `others_filmCrew` WHERE `number_of_film_crew` = '$numb[0]' AND `others_id` = $temp AND  `others_id` IN(SELECT `others_id` FROM `others` WHERE `name_of_position` = 'сценарист' OR `name_of_position` = 'лінійний продюсер' )");
+     $res = $mysql->query("SELECT * FROM `others_filmCrew` WHERE `number_of_film_crew` = '$numb[0]' AND `others_id` = $temp  AND  `others_id` IN(SELECT `others_id` FROM `others` WHERE (`name_of_position` = 'сценарист' OR
+       `name_of_position` = 'режисер' )OR `name_of_position` = 'лінійний продюсер' )");
 
      $re = mysqli_fetch_array($res);
 
-     if($re[0] != ""){
-       echo"<td>" ."<input type=\"checkbox\" checked class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"others_id[]\" >";
+     if($stroka['name_of_position'] == "режисер" || $stroka['name_of_position'] == "лінійний продюсер" || $stroka['name_of_position'] == "сценарист"){
+       if($re[0] != "") {
+         echo"<td>" ."<input type=\"checkbox\" checked class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"others_id[]\" >";
 
-     }else{
-       echo"<td>" ."<input type=\"checkbox\" class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"others_id[]\" >";
+       }else{
+         echo"<td>" ."<input type=\"checkbox\" class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"others_id[]\" >";
+       }
      }
+
+
 
      echo"</tr>";
 
@@ -540,7 +545,7 @@ $result = $mysql->query("SELECT * FROM actors WHERE actor_id IN(SELECT actor_id 
     $used_finish = $date_finish_this_film_crew[0];
 
 
-    $result_others=$mysqli->query("SELECT * FROM others WHERE (`name_of_position` = 'лінійний продюсер' OR  `name_of_position` = 'сценарист') AND (others_id NOT IN (SELECT DISTINCT others_id FROM others_filmcrew WHERE number_of_film_crew
+    $result_others=$mysqli->query("SELECT * FROM others WHERE (`name_of_position` = 'лінійний продюсер' OR  `name_of_position` = 'сценарист' OR  `name_of_position` = 'режисер') AND (others_id NOT IN (SELECT DISTINCT others_id FROM others_filmcrew WHERE number_of_film_crew
      IN(SELECT number_of_film_crew FROM film_crew WHERE ((date_finish_film_crew BETWEEN '$used_start' AND '$used_finish') OR
     (date_start_crew BETWEEN  '$used_start' AND  '$used_finish')))) )");
 
@@ -878,7 +883,7 @@ foreach ($genres as $value) {
 
 
 
-  $ans = $mysql->query("DELETE FROM `others_filmCrew` WHERE `number_of_film_crew` = '$number_film_crew' AND `others_id` IN(SELECT `others_id` FROM `Others` WHERE `name_of_position` = 'сценарист' OR `name_of_position` = 'лінійний продюсер')");
+  $ans = $mysql->query("DELETE FROM `others_filmCrew` WHERE `number_of_film_crew` = '$number_film_crew' AND `others_id` IN(SELECT `others_id` FROM `Others` WHERE `name_of_position` = 'сценарист' OR `name_of_position` = 'лінійний продюсер' OR `name_of_position` = 'режисер')");
 
   foreach($others_id as $value){
     $result = $mysql->query("INSERT INTO `others_filmcrew`(`number_of_film_crew`, `others_id`, `others_fee`) VALUES ('$number_film_crew', '$value','0')");
