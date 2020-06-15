@@ -23,7 +23,7 @@
 }
 
 @media print {
-
+  
   .noprint { display: none; }
 table{zoom: 40%;}
 #printOnly{}
@@ -41,7 +41,7 @@ table{zoom: 40%;}
 #pageFooter:after {
     counter-increment: page;
     content: counter(page) ;
-
+    
     font-size: 20pt;
 }
 </style>
@@ -83,6 +83,7 @@ $(document).ready(function(){
     });
 
 
+<<<<<<< HEAD
 //     var maxFieldSkills = 10; //Input fields increment limitation
 //     var addButtonSkills = $('.add_button_Skills'); //Add button selector
 //     var wrapperSkills = $('.field_wrapper_Skills'); //Input field wrapper
@@ -108,6 +109,13 @@ $(document).ready(function(){
 //         $(this).parent('div').remove(); //Remove field html
 //         xSkills--; //Decrement field counter
 //     });
+=======
+    var maxSkills = 10; //Input fields increment limitation
+    var addButtonSkills = $('.add_button_Skills'); //Add button selector
+    var wrapperSkills = $('.field_wrapper_Skills'); //Input field wrapper
+    // var fieldHTMLSkills = '<div><select class="form-control" name="field_name_Skills[]"><option selected></option><option>швидко бігає</option><option>стрибає</option><option>акробат</option><option>плаває</option><option>катається на ковзанах</option><option>професійний плавець</option><option>каскадер</option><option>пригає на скакалці</option><option>жонглює</option><option>знає іспанську</option></select><a href="javascript:void(0);" class="remove_button_Skills"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
+    var xSkills = 1;
+>>>>>>> parent of a8e419b... Update find_understudies.php
 
     var fieldHTMLSkills = "<div>" + $('.field_wrapper_Skills select')[0].outerHTML + "<a href=\"javascript:void(0);\" class=\"remove_button_Skills\"><img src=\"../img/delete_icon.png\" width=\'20\' height=\'20\'/></a></div>";
     //Once add button is clicked
@@ -119,6 +127,15 @@ $(document).ready(function(){
         }
     });
 
+<<<<<<< HEAD
+=======
+    //Once remove button is clicked
+    $(wrapperSkills).on('click', '.remove_button_Skills', function(e){
+        e.preventDefault();
+        $(this).parent('div').remove(); //Remove field html
+        xSkills--; //Decrement field counter
+    });
+>>>>>>> parent of a8e419b... Update find_understudies.php
 });
 
 </script>
@@ -263,28 +280,21 @@ echo "</div></div>";
 <div class="row">
 <div class="col-md-3 container">
 <label class="colorText" >Особливі навички:</label>
-<div class=\"field_wrapper_Skills\"><div>
-  <select name="field_name_Skills[]" class="select selectpicker form-control">
-    <option></option>
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
 $result_skills = $mysqli->query("SELECT `skill` FROM `skills`");
-// echo "<div class=\"field_wrapper_Skills\"><div>";
-// echo "<select name=\"field_name_Skills[]\" class=\"select selectpicker form-control\"><option></option>";
+echo "<div class=\"field_wrapper_Skills\"><div>";
+echo "<select name=\"field_name_Skills[]\" class=\"select selectpicker form-control\"><option></option>";
 while($stroka = mysqli_fetch_array($result_skills)){
 for ($i=0; $i<count($stroka); $i+=2){
   echo "<option >$stroka[$i]</option>";
 }
 }
-// echo "</select>";
-// echo "<a href=\"javascript:void(0);\" class=\"add_button_Skills\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a>";
-// echo "</div></div>";
+echo "</select>";
+echo "<a href=\"javascript:void(0);\" class=\"add_button_Skills\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a>";
+echo "</div></div>";
 ?>
-</select>
-<a href="javascript:void(0);" class="add_button_Skills" title="Add field"><img src="../img/add_icon.png" height='35' width='35'/></a>
-</div></div>
-
 
 <!-- <div class="field_wrapper_Skills">
        <div>
@@ -428,7 +438,7 @@ while ($stroka = mysqli_fetch_array($result_understudies)){
     echo"<td>" .  res($result_phones) . "</td>";
     echo"<td >" .  res($result_contacts_rel) . "</td>";
     echo"<td class = \" noprint\">" .  res($result_ratings) . "</td>";
-
+ 
     echo"<form action=\"editingUnderstudy.php\" method=\"post\">";
 
   echo "<input type=\"hidden\" value = \"" .$stroka['understudy_id'] . "\" name=\"understudy_id\" >";
@@ -440,12 +450,12 @@ while ($stroka = mysqli_fetch_array($result_understudies)){
 ?>
 
 </table>
-</div><div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку:
-  <?php
-    $currentDateTime = date('Y-m-d');
+</div><div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку: 
+  <?php 
+    $currentDateTime = date('Y-m-d'); 
     echo $currentDateTime;
   ?></p></div>
-
+  
   <div id="printOnly" class="row ">
 <div class="col-12 container fixed-bottom">
   <div id="content">
