@@ -359,7 +359,7 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
 
      $res = mysqli_fetch_array($result);
 
-     echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"date_start\" value=\"$res[0]\" required>";
+     echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"date_start_film_crew\" value=\"$res[0]\" required>";
        ?><br>
 
    </div>
@@ -372,7 +372,7 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
 
      $res = mysqli_fetch_array($result);
 
-     echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"date_finish\" value=\"$res[0]\" required>";
+     echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"date_finish_film_crew\" value=\"$res[0]\" required>";
        ?><br>
 
    </div>
@@ -477,7 +477,7 @@ $result = $mysql->query("SELECT * FROM actors WHERE actor_id IN(SELECT actor_id 
      $result_contacts_rel = $mysql->query("SELECT `others_relatives_phone_numbers` FROM `others_contacts_of_relatives` WHERE `others_id` IN (SELECT `others_id` FROM  `others` WHERE `others_id` = $temp)");
 
 
-     echo"<tr>";
+     echo"<tr id=\"others_row\">";
      echo"<td>" . $stroka['others_id'] . "</td>";
      echo"<td>" . $stroka['others_surname'] . " " . $stroka['others_name']. " " . $stroka['others_middle_name'] .  "</td>";
      echo"<td>" . $stroka['others_experience'] . "</td>";
@@ -489,17 +489,93 @@ $result = $mysql->query("SELECT * FROM actors WHERE actor_id IN(SELECT actor_id 
      echo"<td>" .  res($result_phones) . "</td>";
      echo"<td>" .  res($result_contacts_rel) . "</td>";
 
+     $res = $mysql->query("SELECT * FROM `others_filmCrew` WHERE `number_of_film_crew` = '$numb[0]' AND `others_id` = $temp AND  `others_id` IN(SELECT `others_id` FROM `others` WHERE `name_of_position` = 'сценарист' OR `name_of_position` = 'лінійний продюсер' )");
 
-if($stroka['name_of_position'] == "лінійний продюсер" || $stroka['name_of_position'] == "режисер" || $stroka['name_of_position'] == "сценарист"){
-       echo"<form action=\"editingFilmCrew.php\" method=\"post\">";
+     $re = mysqli_fetch_array($res);
 
-   echo "<input type=\"hidden\" value = \"" .$stroka['others_id'] . "\" name=\"others_id\" >";
-   echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"delete\">Прибрати</button>"."</div></td></form>";
+     if($re[0] != ""){
+       echo"<td>" ."<input type=\"checkbox\" checked class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"others_id[]\" >";
+
+     }else{
+       echo"<td>" ."<input type=\"checkbox\" class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"others_id[]\" >";
      }
+
      echo"</tr>";
+
+
+// if($stroka['name_of_position'] == "лінійний продюсер" || $stroka['name_of_position'] == "режисер" || $stroka['name_of_position'] == "сценарист"){
+//        echo"<form action=\"\" method=\"post\">";
+//    echo "<input type=\"hidden\" value = \"" .$stroka['others_id'] . "\" name=\"others_id\" >";
+//    echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" id=\"btn_for_delete\" name=\"delete\">Прибрати</button>"."</div></td></form>";
+//      }
+//      echo"</tr>";
    }
 
 
+
+
+
+
+
+
+
+
+   if (isset($_POST['addToFilmCrew'])){
+     $mysqli = new mysqli("localhost","root","root","filmstudio");
+     $mysqli->query("SET NAMES 'utf8'");
+     $result = $mysqli->query("SELECT number_of_film_crew FROM movie WHERE name_of_movie = '$name'");
+
+
+     $numb = mysqli_fetch_array($result);
+
+     $number_of_filmCrew = $numb[0];
+
+    $start = $mysqli->query("SELECT `date_start_crew` FROM `film_crew` WHERE `number_of_film_crew` = $number_of_filmCrew");
+    $finish = $mysqli->query("SELECT `date_finish_film_crew` FROM `film_crew` WHERE `number_of_film_crew` = $number_of_filmCrew");
+    $date_start_this_film_crew = mysqli_fetch_array($start); //arrays with 1 element
+    $date_finish_this_film_crew = mysqli_fetch_array($finish);
+    $used_start = $date_start_this_film_crew[0];
+    $used_finish = $date_finish_this_film_crew[0];
+
+
+    $result_others=$mysqli->query("SELECT * FROM others WHERE (`name_of_position` = 'лінійний продюсер' OR  `name_of_position` = 'сценарист') AND (others_id NOT IN (SELECT DISTINCT others_id FROM others_filmcrew WHERE number_of_film_crew
+     IN(SELECT number_of_film_crew FROM film_crew WHERE ((date_finish_film_crew BETWEEN '$used_start' AND '$used_finish') OR
+    (date_start_crew BETWEEN  '$used_start' AND  '$used_finish')))) )");
+
+
+    while ($stroka = mysqli_fetch_array($result_others)){
+      $temp = $stroka['others_id'];
+
+      $result_others_phones = $mysqli->query("SELECT `others_phone_number` FROM `others_phones` WHERE `others_id` IN (SELECT `others_id` FROM  `others` WHERE `others_id` = $temp)");
+      $result_others_contacts_rel = $mysqli->query("SELECT `others_relatives_phone_numbers` FROM `others_contacts_of_relatives` WHERE `others_id` IN (SELECT `others_id` FROM  `others` WHERE `others_id` = $temp)");
+
+      echo"<tr>";
+      echo"<td>" . $stroka['others_id'] . "</td>";
+      echo"<td>" . $stroka['others_surname'] . " " . $stroka['others_name']. " " . $stroka['others_middle_name'] .  "</td>";
+      echo"<td>" . $stroka['others_experience'] . "</td>";
+      echo"<td>" . $stroka['rating_of_employee'] . "</td>";
+      echo"<td>" . $stroka['amount_of_films_others_took_part_in'] . "</td>";
+      echo"<td>" . $stroka['name_of_position'] . "</td>";
+      echo"<td>" . $stroka['others_age'] . "</td>";
+      echo"<td>" . $stroka['others_e-mail'] . "</td>";
+      echo"<td>" .  res($result_others_phones) . "</td>";
+      echo"<td>" .  res($result_others_contacts_rel) . "</td>";
+
+
+        $res = $mysqli->query("SELECT * FROM `others_filmCrew` WHERE `number_of_film_crew` = $number_of_filmCrew AND `others_id` = $temp");
+
+        $re = mysqli_fetch_array($res);
+
+        if($re[0] != ""){
+          echo"<td>" ."<input type=\"checkbox\" checked class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"others_id[]\" >";
+
+        }else{
+          echo"<td>" ."<input type=\"checkbox\" class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"others_id[]\" >";
+        }
+
+        echo"</tr>";
+        }
+   }
    ?>
 
    <br>
@@ -511,6 +587,8 @@ if($stroka['name_of_position'] == "лінійний продюсер" || $stroka
    <div class="btn">
    <input type="submit" class ="button btn btn-primary" value="Додати" name="addToFilmCrew">
    </div><br><br><br></div><br>
+
+
 
 
 
@@ -543,7 +621,7 @@ if($stroka['name_of_position'] == "лінійний продюсер" || $stroka
 
      $res = mysqli_fetch_array($result);
 
-     echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"date_start\" value=\"$res[0]\" required>";
+     echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"date_start_edit_crew\" value=\"$res[0]\" required>";
        ?><br>
    </div>
    <div class=" container col-3" >
@@ -554,7 +632,7 @@ if($stroka['name_of_position'] == "лінійний продюсер" || $stroka
 
      $res = mysqli_fetch_array($result);
 
-     echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"date_finish\" value=\"$res[0]\" required>";
+     echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"date_finish_edit_crew\" value=\"$res[0]\" required>";
        ?><br>
    </div></div><br>
 
@@ -672,9 +750,7 @@ if($stroka['name_of_position'] == "лінійний продюсер" || $stroka
 
 <?php
 
-if (isset($_POST['addToFilmCrew'])){
-echo "string";
-}
+
 
 
 if (isset($_POST['edit'])){
@@ -747,6 +823,79 @@ foreach ($genres as $value) {
         echo "Error! $mysql->error <br>";
       }
   }
+
+
+
+
+
+  $number_film_crew = filter_var(trim($_POST['number_of_film_crew']),FILTER_SANITIZE_STRING);
+
+  $dateStart_filmcrew = filter_var(trim($_POST['date_start_film_crew']),FILTER_SANITIZE_STRING);
+  $dateFinish_filmcrew = filter_var(trim($_POST['date_finish_film_crew']),FILTER_SANITIZE_STRING);
+
+
+  $result = $mysql->query("SELECT number_of_film_crew FROM movie WHERE name_of_movie = '$name'");
+
+  $numb = mysqli_fetch_array($result);
+  $ans = $mysql->query("UPDATE `film_crew` SET `number_of_film_crew` = '$number_film_crew', `date_start_crew` = '$dateStart_filmcrew', `date_finish_film_crew`= '$dateFinish_filmcrew' WHERE `number_of_film_crew` = '$numb' ");
+  if ($ans) {
+   echo "Success!";
+  }
+  else {
+    echo "Error! $mysql->error <br>";
+  }
+
+
+
+
+
+  $number_edit_crew = filter_var(trim($_POST['number_of_edit_crew']),FILTER_SANITIZE_STRING);
+  $dateStart_editcrew = filter_var(trim($_POST['date_start']),FILTER_SANITIZE_STRING);
+  $dateFinish_editcrew = filter_var(trim($_POST['date_finish']),FILTER_SANITIZE_STRING);
+  $head = filter_var(trim($_POST['head']),FILTER_SANITIZE_STRING);
+
+
+  $result = $mysql->query("SELECT number_of_edit_crew FROM movie WHERE name_of_movie = '$name'");
+
+  $numb = mysqli_fetch_array($result);
+
+  $ans = $mysql->query("UPDATE `edit_crew` SET `number_of_edit_crew` = '$number_edit_crew', `date_start_edit_crew` = '$dateStart_editcrew', `date_finish_edit_crew`= '$dateFinish_editcrew' ,`editor_crew_head_id`= '$head' WHERE `number_of_edit_crew` = '$numb' ");
+  if ($ans) {
+   echo "Success!";
+  }
+  else {
+    echo "Error! $mysql->error <br>";
+  }
+
+
+
+
+
+  $ans = $mysql->query("DELETE FROM `others_filmCrew` WHERE `number_of_film_crew` = $number_film_crew AND `others_id` IN(SELECT `others_id` FROM `Others` WHERE `name_of_position` = 'сценарист' OR `name_of_position` = 'лінійний продюсер')");
+
+  foreach($others_id as $value){
+    $result = $mysql->query("INSERT INTO `others_filmcrew`(`number_of_film_crew`, `others_id`, `others_fee`) VALUES ('$number_film_crew', '$value','0')");
+  if ($result) {
+    echo "</br></br></br><h1 class=\"colorForAllText\">Сценаристів успішно додано до знімальної групи!</h1>";
+   }
+else {
+  echo "</br></br></br><h1 class=\"colorForAllText\">Здається, щось пішло не так, сценаристів не було додано..</h1>";
+  echo "<a href=\"#\"  class=\"btn btn-danger\" onclick=\"history.back();return false;\">Назад</a>";
+    }
+
+    if ($result) {
+     echo "Success!";
+    }
+    else {
+      echo "Error! $mysql->error <br>";
+    }
+  }
+
+
+
+
+
+
 
 $mysql->close();
 
