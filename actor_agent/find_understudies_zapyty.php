@@ -313,7 +313,8 @@ $name =  $_POST['name'];
                       $quer = $quer . " AND ";
                     }
                     echo $value;
-                    $quer = $quer . "`understudy_id` IN (SELECT `understudy_id` FROM `understudies_filmcrew` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = '$value'))";
+                    $quer = $quer . "`understudy_id` IN (SELECT `understudy_id` FROM `understudies_filmcrew` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = \"$value\"))";
+                    $i++;
                     $isFirst = false;
                     $notFirst = true;
                   }
