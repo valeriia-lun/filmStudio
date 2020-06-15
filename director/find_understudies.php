@@ -23,11 +23,32 @@
 }</script>
 </head>
 <style type="text/css">
-@media print {
-  .noprint { display: none; }
- table{zoom: 40%;}
+@media screen
+{
+    #printOnly{display:none;}
+}
 
-@page { margin: 0; size: landscape;}
+@media print {
+  
+  .noprint { display: none; }
+table{zoom: 40%;}
+#printOnly{}
+@page { margin: 0; size: landscape; }
+
+  }
+  #content {
+    display: table;
+}
+
+#pageFooter {
+    display: table-footer-group;
+}
+
+#pageFooter:after {
+    counter-increment: page;
+    content: counter(page) ;
+    
+    font-size: 20pt;
 }
 </style>
 <body class="text-center body3">
@@ -210,39 +231,36 @@ function yesnoCheck(that) {
 <table border="1" class=" table table-dark table-hover" >
 <thead class="thead-dark " style="background-color: #252527;">
 <tr>
-<td>Id</td>
+<td >Id</td>
 <td>Ім'я</td>
 <td>Прізвище</td>
 <td>По-батькові</td>
 <td>Стаж</td>
 <td>Рейтинг</td>
-<td>Зарплата</td>
-<td>Працює з</td>
-<td>Працює до</td>
-<td>Кількість фільмів, у яких брав участь</td>
-<td>Дата народження</td>
-<td>Місце народження</td>
+<td class = "noprint"><div class = "noprint">Зарплата</div></td>
+<td class = "noprint"><div class = "noprint">Працює з</div></td>
+<td class = "noprint"><div class = "noprint">Працює до</div></td>
+<td class = "noprint"><div class = "noprint">Кількість фільмів, у яких брав участь</div></td>
+<td class = "noprint"><div class = "noprint">Дата народження</div></td>
+<td class = "noprint"><div class = "noprint">Місце народження</div></td>
 <td>Місце проживання</td>
-<td>Професія</td>
+<td class = "noprint"><div class = "noprint">Професія</div></td>
 <td>Вік</td>
 <td>Стать</td>
-<td>Ріст</td>
-<td>Колір волосся</td>
-<td>Довжина волосся</td>
-<td>Колір очей</td>
-<td>Статура</td>
+<td >Ріст</td>
+<td class = "noprint"><div class = "noprint">Колір волосся</div></td>
+<td class = "noprint"><div class = "noprint">Довжина волосся</div></td>
+<td class = "noprint"><div class = "noprint">Колір очей</div></td>
+<td class = "noprint"><div class = "noprint">Статура</div></td>
 <td>Розмір взуття</td>
 <td>Розмір одягу</td>
-<td>Національність</td>
-<td>Інші елементи зовнішності</td>
-<td>Ел.пошта</td>
-<td>Id керуючого</td>
-
+<td class = "noprint"><div class = "noprint">Національність</div></td>
+<td class = "noprint"><div class = "noprint">Інші елементи зовнішності</div></td>
+<td >Ел.пошта</td>
 <td>Особливі навички</td>
-<td>Фото</td>
 <td>Телефон</td>
 <td>Контакти близьких</td>
-<td>Рейтинги фільмів, в яких брали участь </td>
+<td class = "noprint"><div class = "noprint">Рейтинги фільмів, в яких брали участь</div></td>
 </tr></thead>
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
@@ -279,39 +297,38 @@ while ($stroka = mysqli_fetch_array($result_understudies)){
     $result_ratings = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `understudy_previous_movies_ratings` WHERE `understudy_id` = $temp)");
 
    
-    echo"<tr>";
+   echo"<tr>";
     echo"<td>" . $stroka['understudy_id'] . "</td>";
     echo"<td>" . $stroka['understudy_name'] . "</td>";
     echo"<td>" . $stroka['understudy_surname'] . "</td>";
     echo"<td>" . $stroka['understudy_middle_name'] . "</td>";
     echo"<td>" . $stroka['understudy_experience'] . "</td>";
     echo"<td>" . $stroka['rating_of_employee'] . "</td>";
-    echo"<td>" . $stroka['understudy_salary'] . "</td>";
-    echo"<td>" . $stroka['understudy_works_since'] . "</td>";
-    echo"<td>" . $stroka['understudy_works_until'] . "</td>";
-    echo"<td>" . $stroka['amount_of_films_understudy_took_part_in'] . "</td>";
-    echo"<td>" . $stroka['understudy_date_of_birth'] . "</td>";
-    echo"<td>" . $stroka['understudy_place_of_birth'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['understudy_salary'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['understudy_works_since'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['understudy_works_until'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['amount_of_films_understudy_took_part_in'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['understudy_date_of_birth'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['understudy_place_of_birth'] . "</td>";
     echo"<td>" . $stroka['understudy_home_address'] . "</td>";
-    echo"<td>" . $stroka['name_of_position'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['name_of_position'] . "</td>";
     echo"<td>" . $stroka['understudy_age'] . "</td>";
     echo"<td>" . $stroka['understudy_sex'] . "</td>";
     echo"<td>" . $stroka['understudy_height'] . "</td>";
-    echo"<td>" . $stroka['understudy_color_of_hair'] . "</td>";
-    echo"<td>" . $stroka['understudy_length_of_hair'] . "</td>";
-    echo"<td>" . $stroka['understudy_color_of_eyes'] . "</td>";
-    echo"<td>" . $stroka['understudy_stature'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['understudy_color_of_hair'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['understudy_length_of_hair'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['understudy_color_of_eyes'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['understudy_stature'] . "</td>";
     echo"<td>" . $stroka['understudy_shoe_size'] . "</td>";
     echo"<td>" . $stroka['understudy_clothing_size'] . "</td>";
-    echo"<td>" . $stroka['understudy_nationality'] . "</td>";
-    echo"<td>" . $stroka['understudy_other_appearance'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['understudy_nationality'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['understudy_other_appearance'] . "</td>";
     echo"<td>" . $stroka['understudy_e-mail'] . "</td>";
-    echo"<td>" . $stroka['understudy_head_id'] . "</td>";
+
     echo"<td>" .  res($result_skills) . "</td>";
-    echo"<td>" .  res($result_photos) . "</td>";
     echo"<td>" .  res($result_phones) . "</td>";
-    echo"<td>" .  res($result_contacts_rel) . "</td>";
-    echo"<td>" .  res($result_ratings) . "</td>";
+    echo"<td >" .  res($result_contacts_rel) . "</td>";
+    echo"<td class = \" noprint\">" .  res($result_ratings) . "</td>";
  
     echo"</tr>";
     
@@ -320,7 +337,16 @@ while ($stroka = mysqli_fetch_array($result_understudies)){
 ?>
 
 </table>
-</div>
+</div><div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку: 
+  <?php 
+    $currentDateTime = date('Y-m-d'); 
+    echo $currentDateTime;
+  ?></p></div>
+  
+  <div id="printOnly" class="row ">
+<div class="col-12 container fixed-bottom">
+  <div id="content">
+  <div id="pageFooter"></div></div></div></div>
 <div class="btn noprint">
 <button class ="button btn btn-danger" onclick="window.print()">Друкувати</button></br></br></br>
 </div>

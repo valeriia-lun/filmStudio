@@ -16,9 +16,32 @@
 <link rel="stylesheet" href="..\style.css">
 </head>
 <style type="text/css">
+@media screen
+{
+    #printOnly{display:none;}
+}
+
 @media print {
+  
   .noprint { display: none; }
-  @page { margin: 0; }
+
+#printOnly{}
+@page { margin: 0; }
+
+  }
+  #content {
+    display: table;
+}
+
+#pageFooter {
+    display: table-footer-group;
+}
+
+#pageFooter:after {
+    counter-increment: page;
+    content: counter(page) ;
+    
+    font-size: 20pt;
 }
 </style>
 <body class="text-center body3">
@@ -65,12 +88,12 @@
 <td>Ім'я</td>
 <td>Прізвище </td>
 <td>По-батькові </td>
-<td>Зарплата </td>
+<td class = "noprint"><div class = "noprint">Зарплата</div></td>
 <td>Місце проживання</td>
-<td>Працює з</td>
-<td>Працює до</td>
+<td class = "noprint"><div class = "noprint">Працює з</div></td>
+<td class = "noprint"><div class = "noprint">Працює до</div></td>
 <td>Стаж</td>
-<td>Дата народження</td>
+<td class = "noprint"><div class = "noprint">Дата народження</div></td>
 <td>Ел.пошта</td>
 <td>Телефон</td>
 <td>Контакти близьких</td>
@@ -102,17 +125,17 @@ while ($stroka = mysqli_fetch_array($result_editors)){
   $result_phones = $mysqli->query("SELECT `editor_phone_number` FROM `editor_phones` WHERE `editor_id` IN (SELECT `editor_id` FROM  `editor` WHERE `editor_id` = $temp)");
   $result_contacts_rel = $mysqli->query("SELECT `editor_relatives_phone_numbers` FROM `editor_contacts_of_relatives` WHERE `editor_id` IN (SELECT `editor_id` FROM  `editor` WHERE `editor_id` = $temp)");
 
-    echo"<tr>";
+      echo"<tr>";
     echo"<td>" . $stroka['editor_id'] . "</td>";
     echo"<td>" . $stroka['editor_name'] . "</td>";
     echo"<td>" . $stroka['editor_surname'] . "</td>";
     echo"<td>" . $stroka['editor_middle_name'] . "</td>";
-    echo"<td>" . $stroka['editor_salary'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['editor_salary'] . "</td>";
     echo"<td>" . $stroka['editor_home_address'] . "</td>";
-    echo"<td>" . $stroka['editor_works_since'] . "</td>";
-    echo"<td>" . $stroka['editor_works_until'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['editor_works_since'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['editor_works_until'] . "</td>";
     echo"<td>" . $stroka['editor_experience'] . "</td>";
-    echo"<td>" . $stroka['editor_date_of_birth'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['editor_date_of_birth'] . "</td>";
     echo"<td>" . $stroka['editor_e-mail'] . "</td>";
 
     echo"<td>" .  res($result_phones) . "</td>";
@@ -124,6 +147,16 @@ while ($stroka = mysqli_fetch_array($result_editors)){
 
 </table>
 </div>
+<div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку: 
+  <?php 
+    $currentDateTime = date('Y-m-d'); 
+    echo $currentDateTime;
+  ?></p></div>
+  
+  <div id="printOnly" class="row ">
+<div class="col-12 container fixed-bottom">
+  <div id="content">
+  <div id="pageFooter"></div></div></div></div>
 <div class="btn noprint">
 <button class ="button btn btn-danger" onclick="window.print()">Друкувати</button></br></br></br>
 </div>

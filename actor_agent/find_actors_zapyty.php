@@ -16,11 +16,32 @@
 <link rel="stylesheet" href="..\style.css">
 </head>
 <style type="text/css">
+@media screen
+{
+    #printOnly{display:none;}
+}
+
 @media print {
+  
   .noprint { display: none; }
 table{zoom: 40%;}
+#printOnly{}
+@page { margin: 0; size: landscape; }
 
-@page { margin: 0; size: landscape;}
+  }
+  #content {
+    display: table;
+}
+
+#pageFooter {
+    display: table-footer-group;
+}
+
+#pageFooter:after {
+    counter-increment: page;
+    content: counter(page) ;
+    
+    font-size: 20pt;
 }
 </style>
 <body class="text-center body3">
@@ -82,7 +103,7 @@ table{zoom: 40%;}
 <td>Національність</td>
 <td>Інші елементи зовнішності</td>
 <td>Ел.пошта</td>
-<td>Id керуючого</td>
+
 
 <td>Фото</td>
 <td>Телефон</td>
@@ -216,42 +237,41 @@ while ($stroka = mysqli_fetch_array($result_actors)){
   $result_contacts_rel = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp");
   $result_ratings = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `actors_previous_movies_rating` WHERE `actor_id` = $temp)");
 
-    echo"<tr>";
+        echo"<tr >";
     echo"<td>" . $stroka['actor_id'] . "</td>";
     echo"<td>" . $stroka['actor_name'] . "</td>";
     echo"<td>" . $stroka['actor_surname'] . "</td>";
     echo"<td>" . $stroka['actor_middle_name'] . "</td>";
     echo"<td>" . $stroka['actor_experience'] . "</td>";
     echo"<td>" . $stroka['rating_of_employee'] . "</td>";
-    echo"<td>" . $stroka['actor_salary'] . "</td>";
-    echo"<td>" . $stroka['actor_works_since'] . "</td>";
-    echo"<td>" . $stroka['actor_works_until'] . "</td>";
-    echo"<td>" . $stroka['amount_of_films_actor_took_part_in'] . "</td>";
-    echo"<td>" . $stroka['actor_date_of_birth'] . "</td>";
-    echo"<td>" . $stroka['actor_place_of_birth'] . "</td>";
-    echo"<td>" . $stroka['actor_home_address'] . "</td>";
-    echo"<td>" . $stroka['name_of_position'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['actor_salary'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['actor_works_since'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['actor_works_until'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['amount_of_films_actor_took_part_in'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['actor_date_of_birth'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['actor_place_of_birth'] . "</td>";
+    echo"<td >" . $stroka['actor_home_address'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['name_of_position'] . "</td>";
     echo"<td>" . $stroka['actor_age'] . "</td>";
     echo"<td>" . $stroka['actor_sex'] . "</td>";
-    echo"<td>" . $stroka['actor_height'] . "</td>";
-    echo"<td>" . $stroka['actor_color_of_hair'] . "</td>";
-    echo"<td>" . $stroka['actor_length_of_hair'] . "</td>";
-    echo"<td>" . $stroka['actor_color_of_eyes'] . "</td>";
-    echo"<td>" . $stroka['actor_stature'] . "</td>";
+    echo"<td >" . $stroka['actor_height'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['actor_color_of_hair'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['actor_length_of_hair'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['actor_color_of_eyes'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['actor_stature'] . "</td>";
     echo"<td>" . $stroka['actor_shoe_size'] . "</td>";
     echo"<td>" . $stroka['actor_clothing_size'] . "</td>";
-    echo"<td>" . $stroka['actor_nationality'] . "</td>";
-    echo"<td>" . $stroka['actor_other_appearance'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['actor_nationality'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['actor_other_appearance'] . "</td>";
     echo"<td>" . $stroka['actor_e-mail'] . "</td>";
-    echo"<td>" . $stroka['actors_head_id'] . "</td>";
-    echo"<td>" .  res($result_photos) . "</td>";
     echo"<td>" .  res($result_phones) . "</td>";
     echo"<td>" .  res($result_contacts_rel) . "</td>";
-    echo"<td>" .  res($result_ratings) . "</td>";
+    echo"<td class = \" noprint\">" .  res($result_ratings) . "</td>";
+
     echo"<form action=\"editingActor.php\" method=\"post\">";
 
   echo "<input type=\"hidden\" value = \"" .$stroka['actor_id'] . "\" name=\"actor_id\" >";
-    echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";       echo"</tr>";
+    echo "<td  class = \" noprint\">"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";       echo"</tr>";
    }
   break;
 
@@ -267,42 +287,40 @@ while ($stroka = mysqli_fetch_array($result_actors)){
       $result_contacts_rel = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp");
       $result_ratings = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `actors_previous_movies_rating` WHERE `actor_id` = $temp)");
 
-        echo"<tr>";
-        echo"<td>" . $stroka['actor_id'] . "</td>";
-        echo"<td>" . $stroka['actor_name'] . "</td>";
-        echo"<td>" . $stroka['actor_surname'] . "</td>";
-        echo"<td>" . $stroka['actor_middle_name'] . "</td>";
-        echo"<td>" . $stroka['actor_experience'] . "</td>";
-        echo"<td>" . $stroka['rating_of_employee'] . "</td>";
-        echo"<td>" . $stroka['actor_salary'] . "</td>";
-        echo"<td>" . $stroka['actor_works_since'] . "</td>";
-        echo"<td>" . $stroka['actor_works_until'] . "</td>";
-        echo"<td>" . $stroka['amount_of_films_actor_took_part_in'] . "</td>";
-        echo"<td>" . $stroka['actor_date_of_birth'] . "</td>";
-        echo"<td>" . $stroka['actor_place_of_birth'] . "</td>";
-        echo"<td>" . $stroka['actor_home_address'] . "</td>";
-        echo"<td>" . $stroka['name_of_position'] . "</td>";
-        echo"<td>" . $stroka['actor_age'] . "</td>";
-        echo"<td>" . $stroka['actor_sex'] . "</td>";
-        echo"<td>" . $stroka['actor_height'] . "</td>";
-        echo"<td>" . $stroka['actor_color_of_hair'] . "</td>";
-        echo"<td>" . $stroka['actor_length_of_hair'] . "</td>";
-        echo"<td>" . $stroka['actor_color_of_eyes'] . "</td>";
-        echo"<td>" . $stroka['actor_stature'] . "</td>";
-        echo"<td>" . $stroka['actor_shoe_size'] . "</td>";
-        echo"<td>" . $stroka['actor_clothing_size'] . "</td>";
-        echo"<td>" . $stroka['actor_nationality'] . "</td>";
-        echo"<td>" . $stroka['actor_other_appearance'] . "</td>";
-        echo"<td>" . $stroka['actor_e-mail'] . "</td>";
-        echo"<td>" . $stroka['actors_head_id'] . "</td>";
-        echo"<td>" .  res($result_photos) . "</td>";
-        echo"<td>" .  res($result_phones) . "</td>";
-        echo"<td>" .  res($result_contacts_rel) . "</td>";
-        echo"<td>" .  res($result_ratings) . "</td>";
+         echo"<tr >";
+    echo"<td>" . $stroka['actor_id'] . "</td>";
+    echo"<td>" . $stroka['actor_name'] . "</td>";
+    echo"<td>" . $stroka['actor_surname'] . "</td>";
+    echo"<td>" . $stroka['actor_middle_name'] . "</td>";
+    echo"<td>" . $stroka['actor_experience'] . "</td>";
+    echo"<td>" . $stroka['rating_of_employee'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['actor_salary'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['actor_works_since'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['actor_works_until'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['amount_of_films_actor_took_part_in'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['actor_date_of_birth'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['actor_place_of_birth'] . "</td>";
+    echo"<td >" . $stroka['actor_home_address'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['name_of_position'] . "</td>";
+    echo"<td>" . $stroka['actor_age'] . "</td>";
+    echo"<td>" . $stroka['actor_sex'] . "</td>";
+    echo"<td >" . $stroka['actor_height'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['actor_color_of_hair'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['actor_length_of_hair'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['actor_color_of_eyes'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['actor_stature'] . "</td>";
+    echo"<td>" . $stroka['actor_shoe_size'] . "</td>";
+    echo"<td>" . $stroka['actor_clothing_size'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['actor_nationality'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['actor_other_appearance'] . "</td>";
+    echo"<td>" . $stroka['actor_e-mail'] . "</td>";
+    echo"<td>" .  res($result_phones) . "</td>";
+    echo"<td>" .  res($result_contacts_rel) . "</td>";
+    echo"<td class = \" noprint\">" .  res($result_ratings) . "</td>";
         echo"<form action=\"editingActor.php\" method=\"post\">";
 
     echo "<input type=\"hidden\" value = \"" .$stroka['actor_id'] . "\" name=\"actor_id\" >";
-        echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";
+        echo "<td  class = \" noprint\">"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";
            echo"</tr>";
        }
       break;
@@ -318,42 +336,40 @@ while ($stroka = mysqli_fetch_array($result_actors)){
       $result_contacts_rel3 = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp3");
       $result_ratings3 = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `actors_previous_movies_rating` WHERE `actor_id` = $temp3)");
 
-        echo"<tr>";
-        echo"<td>" . $stroka3['actor_id'] . "</td>";
-        echo"<td>" . $stroka3['actor_name'] . "</td>";
-        echo"<td>" . $stroka3['actor_surname'] . "</td>";
-        echo"<td>" . $stroka3['actor_middle_name'] . "</td>";
-        echo"<td>" . $stroka3['actor_experience'] . "</td>";
-        echo"<td>" . $stroka3['rating_of_employee'] . "</td>";
-        echo"<td>" . $stroka3['actor_salary'] . "</td>";
-        echo"<td>" . $stroka3['actor_works_since'] . "</td>";
-        echo"<td>" . $stroka3['actor_works_until'] . "</td>";
-        echo"<td>" . $stroka3['amount_of_films_actor_took_part_in'] . "</td>";
-        echo"<td>" . $stroka3['actor_date_of_birth'] . "</td>";
-        echo"<td>" . $stroka3['actor_place_of_birth'] . "</td>";
-        echo"<td>" . $stroka3['actor_home_address'] . "</td>";
-        echo"<td>" . $stroka3['name_of_position'] . "</td>";
-        echo"<td>" . $stroka3['actor_age'] . "</td>";
-        echo"<td>" . $stroka3['actor_sex'] . "</td>";
-        echo"<td>" . $stroka3['actor_height'] . "</td>";
-        echo"<td>" . $stroka3['actor_color_of_hair'] . "</td>";
-        echo"<td>" . $stroka3['actor_length_of_hair'] . "</td>";
-        echo"<td>" . $stroka3['actor_color_of_eyes'] . "</td>";
-        echo"<td>" . $stroka3['actor_stature'] . "</td>";
-        echo"<td>" . $stroka3['actor_shoe_size'] . "</td>";
-        echo"<td>" . $stroka3['actor_clothing_size'] . "</td>";
-        echo"<td>" . $stroka3['actor_nationality'] . "</td>";
-        echo"<td>" . $stroka3['actor_other_appearance'] . "</td>";
-        echo"<td>" . $stroka3['actor_e-mail'] . "</td>";
-        echo"<td>" . $stroka3['actors_head_id'] . "</td>";
-        echo"<td>" .  res($result_photos3) . "</td>";
-        echo"<td>" .  res($result_phones3) . "</td>";
-        echo"<td>" .  res($result_contacts_rel3) . "</td>";
-        echo"<td>" .  res($result_ratings3) . "</td>";
+        echo"<tr >";
+    echo"<td>" . $stroka3['actor_id'] . "</td>";
+    echo"<td>" . $stroka3['actor_name'] . "</td>";
+    echo"<td>" . $stroka3['actor_surname'] . "</td>";
+    echo"<td>" . $stroka3['actor_middle_name'] . "</td>";
+    echo"<td>" . $stroka3['actor_experience'] . "</td>";
+    echo"<td>" . $stroka3['rating_of_employee'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_salary'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_works_since'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_works_until'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['amount_of_films_actor_took_part_in'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_date_of_birth'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_place_of_birth'] . "</td>";
+    echo"<td >" . $stroka3['actor_home_address'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['name_of_position'] . "</td>";
+    echo"<td>" . $stroka3['actor_age'] . "</td>";
+    echo"<td>" . $stroka3['actor_sex'] . "</td>";
+    echo"<td >" . $stroka3['actor_height'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_color_of_hair'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_length_of_hair'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_color_of_eyes'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_stature'] . "</td>";
+    echo"<td>" . $stroka3['actor_shoe_size'] . "</td>";
+    echo"<td>" . $stroka3['actor_clothing_size'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['actor_nationality'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['actor_other_appearance'] . "</td>";
+    echo"<td>" . $stroka3['actor_e-mail'] . "</td>";
+    echo"<td>" .  res($result_phones3) . "</td>";
+    echo"<td>" .  res($result_contacts_rel3) . "</td>";
+    echo"<td class = \" noprint\">" .  res($result_ratings3) . "</td>";
         echo"<form action=\"editingActor.php\" method=\"post\">";
 
     echo "<input type=\"hidden\" value = \"" .$stroka['actor_id'] . "\" name=\"actor_id\" >";
-        echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";    echo"</tr>";
+        echo "<td  class = \" noprint\">"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";    echo"</tr>";
        }
       break;
 
@@ -367,42 +383,40 @@ while ($stroka = mysqli_fetch_array($result_actors)){
           $result_contacts_rel3 = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp3");
           $result_ratings3 = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `actors_previous_movies_rating` WHERE `actor_id` = $temp3)");
 
-            echo"<tr>";
-            echo"<td>" . $stroka3['actor_id'] . "</td>";
-            echo"<td>" . $stroka3['actor_name'] . "</td>";
-            echo"<td>" . $stroka3['actor_surname'] . "</td>";
-            echo"<td>" . $stroka3['actor_middle_name'] . "</td>";
-            echo"<td>" . $stroka3['actor_experience'] . "</td>";
-            echo"<td>" . $stroka3['rating_of_employee'] . "</td>";
-            echo"<td>" . $stroka3['actor_salary'] . "</td>";
-            echo"<td>" . $stroka3['actor_works_since'] . "</td>";
-            echo"<td>" . $stroka3['actor_works_until'] . "</td>";
-            echo"<td>" . $stroka3['amount_of_films_actor_took_part_in'] . "</td>";
-            echo"<td>" . $stroka3['actor_date_of_birth'] . "</td>";
-            echo"<td>" . $stroka3['actor_place_of_birth'] . "</td>";
-            echo"<td>" . $stroka3['actor_home_address'] . "</td>";
-            echo"<td>" . $stroka3['name_of_position'] . "</td>";
-            echo"<td>" . $stroka3['actor_age'] . "</td>";
-            echo"<td>" . $stroka3['actor_sex'] . "</td>";
-            echo"<td>" . $stroka3['actor_height'] . "</td>";
-            echo"<td>" . $stroka3['actor_color_of_hair'] . "</td>";
-            echo"<td>" . $stroka3['actor_length_of_hair'] . "</td>";
-            echo"<td>" . $stroka3['actor_color_of_eyes'] . "</td>";
-            echo"<td>" . $stroka3['actor_stature'] . "</td>";
-            echo"<td>" . $stroka3['actor_shoe_size'] . "</td>";
-            echo"<td>" . $stroka3['actor_clothing_size'] . "</td>";
-            echo"<td>" . $stroka3['actor_nationality'] . "</td>";
-            echo"<td>" . $stroka3['actor_other_appearance'] . "</td>";
-            echo"<td>" . $stroka3['actor_e-mail'] . "</td>";
-            echo"<td>" . $stroka3['actors_head_id'] . "</td>";
-            echo"<td>" .  res($result_photos3) . "</td>";
-            echo"<td>" .  res($result_phones3) . "</td>";
-            echo"<td>" .  res($result_contacts_rel3) . "</td>";
-            echo"<td>" .  res($result_ratings3) . "</td>";
+            echo"<tr >";
+    echo"<td>" . $stroka3['actor_id'] . "</td>";
+    echo"<td>" . $stroka3['actor_name'] . "</td>";
+    echo"<td>" . $stroka3['actor_surname'] . "</td>";
+    echo"<td>" . $stroka3['actor_middle_name'] . "</td>";
+    echo"<td>" . $stroka3['actor_experience'] . "</td>";
+    echo"<td>" . $stroka3['rating_of_employee'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_salary'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_works_since'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_works_until'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['amount_of_films_actor_took_part_in'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_date_of_birth'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_place_of_birth'] . "</td>";
+    echo"<td >" . $stroka3['actor_home_address'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['name_of_position'] . "</td>";
+    echo"<td>" . $stroka3['actor_age'] . "</td>";
+    echo"<td>" . $stroka3['actor_sex'] . "</td>";
+    echo"<td >" . $stroka3['actor_height'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_color_of_hair'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_length_of_hair'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_color_of_eyes'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_stature'] . "</td>";
+    echo"<td>" . $stroka3['actor_shoe_size'] . "</td>";
+    echo"<td>" . $stroka3['actor_clothing_size'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['actor_nationality'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['actor_other_appearance'] . "</td>";
+    echo"<td>" . $stroka3['actor_e-mail'] . "</td>";
+    echo"<td>" .  res($result_phones3) . "</td>";
+    echo"<td>" .  res($result_contacts_rel3) . "</td>";
+    echo"<td class = \" noprint\">" .  res($result_ratings3) . "</td>";
             echo"<form action=\"editingActor.php\" method=\"post\">";
 
         echo "<input type=\"hidden\" value = \"" .$stroka['actor_id'] . "\" name=\"actor_id\" >";
-            echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";    echo"</tr>";
+            echo "<td  class = \" noprint\">"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";    echo"</tr>";
            }
           break;
 
@@ -415,42 +429,40 @@ while ($stroka = mysqli_fetch_array($result_actors)){
               $result_contacts_rel3 = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp3");
               $result_ratings3 = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `actors_previous_movies_rating` WHERE `actor_id` = $temp3)");
 
-                echo"<tr>";
-                echo"<td>" . $stroka3['actor_id'] . "</td>";
-                echo"<td>" . $stroka3['actor_name'] . "</td>";
-                echo"<td>" . $stroka3['actor_surname'] . "</td>";
-                echo"<td>" . $stroka3['actor_middle_name'] . "</td>";
-                echo"<td>" . $stroka3['actor_experience'] . "</td>";
-                echo"<td>" . $stroka3['rating_of_employee'] . "</td>";
-                echo"<td>" . $stroka3['actor_salary'] . "</td>";
-                echo"<td>" . $stroka3['actor_works_since'] . "</td>";
-                echo"<td>" . $stroka3['actor_works_until'] . "</td>";
-                echo"<td>" . $stroka3['amount_of_films_actor_took_part_in'] . "</td>";
-                echo"<td>" . $stroka3['actor_date_of_birth'] . "</td>";
-                echo"<td>" . $stroka3['actor_place_of_birth'] . "</td>";
-                echo"<td>" . $stroka3['actor_home_address'] . "</td>";
-                echo"<td>" . $stroka3['name_of_position'] . "</td>";
-                echo"<td>" . $stroka3['actor_age'] . "</td>";
-                echo"<td>" . $stroka3['actor_sex'] . "</td>";
-                echo"<td>" . $stroka3['actor_height'] . "</td>";
-                echo"<td>" . $stroka3['actor_color_of_hair'] . "</td>";
-                echo"<td>" . $stroka3['actor_length_of_hair'] . "</td>";
-                echo"<td>" . $stroka3['actor_color_of_eyes'] . "</td>";
-                echo"<td>" . $stroka3['actor_stature'] . "</td>";
-                echo"<td>" . $stroka3['actor_shoe_size'] . "</td>";
-                echo"<td>" . $stroka3['actor_clothing_size'] . "</td>";
-                echo"<td>" . $stroka3['actor_nationality'] . "</td>";
-                echo"<td>" . $stroka3['actor_other_appearance'] . "</td>";
-                echo"<td>" . $stroka3['actor_e-mail'] . "</td>";
-                echo"<td>" . $stroka3['actors_head_id'] . "</td>";
-                echo"<td>" .  res($result_photos3) . "</td>";
-                echo"<td>" .  res($result_phones3) . "</td>";
-                echo"<td>" .  res($result_contacts_rel3) . "</td>";
-                echo"<td>" .  res($result_ratings3) . "</td>";
+                echo"<tr >";
+    echo"<td>" . $stroka3['actor_id'] . "</td>";
+    echo"<td>" . $stroka3['actor_name'] . "</td>";
+    echo"<td>" . $stroka3['actor_surname'] . "</td>";
+    echo"<td>" . $stroka3['actor_middle_name'] . "</td>";
+    echo"<td>" . $stroka3['actor_experience'] . "</td>";
+    echo"<td>" . $stroka3['rating_of_employee'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_salary'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_works_since'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_works_until'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['amount_of_films_actor_took_part_in'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_date_of_birth'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_place_of_birth'] . "</td>";
+    echo"<td >" . $stroka3['actor_home_address'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['name_of_position'] . "</td>";
+    echo"<td>" . $stroka3['actor_age'] . "</td>";
+    echo"<td>" . $stroka3['actor_sex'] . "</td>";
+    echo"<td >" . $stroka3['actor_height'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_color_of_hair'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_length_of_hair'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_color_of_eyes'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_stature'] . "</td>";
+    echo"<td>" . $stroka3['actor_shoe_size'] . "</td>";
+    echo"<td>" . $stroka3['actor_clothing_size'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['actor_nationality'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['actor_other_appearance'] . "</td>";
+    echo"<td>" . $stroka3['actor_e-mail'] . "</td>";
+    echo"<td>" .  res($result_phones3) . "</td>";
+    echo"<td>" .  res($result_contacts_rel3) . "</td>";
+    echo"<td class = \" noprint\">" .  res($result_ratings3) . "</td>";
                 echo"<form action=\"editingActor.php\" method=\"post\">";
 
             echo "<input type=\"hidden\" value = \"" .$stroka['actor_id'] . "\" name=\"actor_id\" >";
-                echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";    echo"</tr>";
+                echo "<td  class = \" noprint\">"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";    echo"</tr>";
                }
               break;
 
@@ -465,42 +477,40 @@ case  'most_expensive_actor':
     $result_contacts_rel3 = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp3");
     $result_ratings3 = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `actors_previous_movies_rating` WHERE `actor_id` = $temp3)");
 
-      echo"<tr>";
-      echo"<td>" . $stroka3['actor_id'] . "</td>";
-      echo"<td>" . $stroka3['actor_name'] . "</td>";
-      echo"<td>" . $stroka3['actor_surname'] . "</td>";
-      echo"<td>" . $stroka3['actor_middle_name'] . "</td>";
-      echo"<td>" . $stroka3['actor_experience'] . "</td>";
-      echo"<td>" . $stroka3['rating_of_employee'] . "</td>";
-      echo"<td>" . $stroka3['actor_salary'] . "</td>";
-      echo"<td>" . $stroka3['actor_works_since'] . "</td>";
-      echo"<td>" . $stroka3['actor_works_until'] . "</td>";
-      echo"<td>" . $stroka3['amount_of_films_actor_took_part_in'] . "</td>";
-      echo"<td>" . $stroka3['actor_date_of_birth'] . "</td>";
-      echo"<td>" . $stroka3['actor_place_of_birth'] . "</td>";
-      echo"<td>" . $stroka3['actor_home_address'] . "</td>";
-      echo"<td>" . $stroka3['name_of_position'] . "</td>";
-      echo"<td>" . $stroka3['actor_age'] . "</td>";
-      echo"<td>" . $stroka3['actor_sex'] . "</td>";
-      echo"<td>" . $stroka3['actor_height'] . "</td>";
-      echo"<td>" . $stroka3['actor_color_of_hair'] . "</td>";
-      echo"<td>" . $stroka3['actor_length_of_hair'] . "</td>";
-      echo"<td>" . $stroka3['actor_color_of_eyes'] . "</td>";
-      echo"<td>" . $stroka3['actor_stature'] . "</td>";
-      echo"<td>" . $stroka3['actor_shoe_size'] . "</td>";
-      echo"<td>" . $stroka3['actor_clothing_size'] . "</td>";
-      echo"<td>" . $stroka3['actor_nationality'] . "</td>";
-      echo"<td>" . $stroka3['actor_other_appearance'] . "</td>";
-      echo"<td>" . $stroka3['actor_e-mail'] . "</td>";
-      echo"<td>" . $stroka3['actors_head_id'] . "</td>";
-      echo"<td>" .  res($result_photos3) . "</td>";
-      echo"<td>" .  res($result_phones3) . "</td>";
-      echo"<td>" .  res($result_contacts_rel3) . "</td>";
-      echo"<td>" .  res($result_ratings3) . "</td>";
+     echo"<tr >";
+    echo"<td>" . $stroka3['actor_id'] . "</td>";
+    echo"<td>" . $stroka3['actor_name'] . "</td>";
+    echo"<td>" . $stroka3['actor_surname'] . "</td>";
+    echo"<td>" . $stroka3['actor_middle_name'] . "</td>";
+    echo"<td>" . $stroka3['actor_experience'] . "</td>";
+    echo"<td>" . $stroka3['rating_of_employee'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_salary'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_works_since'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_works_until'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['amount_of_films_actor_took_part_in'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_date_of_birth'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_place_of_birth'] . "</td>";
+    echo"<td >" . $stroka3['actor_home_address'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['name_of_position'] . "</td>";
+    echo"<td>" . $stroka3['actor_age'] . "</td>";
+    echo"<td>" . $stroka3['actor_sex'] . "</td>";
+    echo"<td >" . $stroka3['actor_height'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_color_of_hair'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_length_of_hair'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_color_of_eyes'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka3['actor_stature'] . "</td>";
+    echo"<td>" . $stroka3['actor_shoe_size'] . "</td>";
+    echo"<td>" . $stroka3['actor_clothing_size'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['actor_nationality'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['actor_other_appearance'] . "</td>";
+    echo"<td>" . $stroka3['actor_e-mail'] . "</td>";
+    echo"<td>" .  res($result_phones3) . "</td>";
+    echo"<td>" .  res($result_contacts_rel3) . "</td>";
+    echo"<td class = \" noprint\">" .  res($result_ratings3) . "</td>";
       echo"<form action=\"editingActor.php\" method=\"post\">";
 
   echo "<input type=\"hidden\" value = \"" .$stroka['actor_id'] . "\" name=\"actor_id\" >";
-      echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";    echo"</tr>";
+      echo "<td  class = \" noprint\">"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";    echo"</tr>";
      }
     break;
 //?????????????????????????????
@@ -716,16 +726,16 @@ case  'most_expensive_actor':
             echo"<td>" . $stroka4['actor_nationality'] . "</td>";
             echo"<td>" . $stroka4['actor_other_appearance'] . "</td>";
             echo"<td>" . $stroka4['actor_e-mail'] . "</td>";
-            echo"<td>" . $stroka4['actors_head_id'] . "</td>";
+          
             echo"<td>" .  res($result_photos4) . "</td>";
             echo"<td>" .  res($result_phones4) . "</td>";
             echo"<td>" .  res($result_contacts_rel4) . "</td>";
             echo"<td>" .  res($result_ratings4) . "</td>";
-            echo"<form action=\"editingActor.php\" method=\"post\">";
+           echo"<form action=\"editingActor.php\" method=\"post\">";
 
-        echo "<input type=\"hidden\" value = \"" .$stroka['actor_id'] . "\" name=\"actor_id\" >";
-
-           }
+  echo "<input type=\"hidden\" value = \"" .$stroka['actor_id'] . "\" name=\"actor_id\" >";
+      echo "<td  class = \" noprint\">"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";    echo"</tr>";
+     }
 
       break;
 
@@ -738,7 +748,16 @@ case  'most_expensive_actor':
 
 
 </table>
-</div>
+</div><div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку: 
+  <?php 
+    $currentDateTime = date('Y-m-d'); 
+    echo $currentDateTime;
+  ?></p></div>
+  
+  <div id="printOnly" class="row ">
+<div class="col-12 container fixed-bottom">
+  <div id="content">
+  <div id="pageFooter"></div></div></div></div>
 <div class="btn noprint">
 <button class ="button btn btn-danger" onclick="window.print()">Друкувати</button></br></br></br>
 </div>
