@@ -17,11 +17,32 @@
 </head>
 
 <style type="text/css">
+@media screen
+{
+    #printOnly{display:none;}
+}
+
 @media print {
+  
   .noprint { display: none; }
 table{zoom: 40%;}
+#printOnly{}
+@page { margin: 0; size: landscape; }
 
-@page { margin: 0; size: landscape;}
+  }
+  #content {
+    display: table;
+}
+
+#pageFooter {
+    display: table-footer-group;
+}
+
+#pageFooter:after {
+    counter-increment: page;
+    content: counter(page) ;
+    
+    font-size: 20pt;
 }
 </style>
 <body class="text-center body3">
@@ -68,27 +89,25 @@ table{zoom: 40%;}
 <table border="1" class=" table table-dark table-hover" >
 <thead class="thead-dark " style="background-color: #252527;">
 <tr>
-<td>Id</td>
+<td >Id</td>
 <td>Ім'я</td>
 <td>Прізвище</td>
 <td>По-батькові</td>
 <td>Стаж</td>
 <td>Рейтинг</td>
-<td>Зарплата</td>
+<td class = "noprint"><div class = "noprint">Зарплата</div></td>
 <td>Місце проживання</td>
-<td>Працює з</td>
-<td>Працює до</td>
-<td>Кількість фільмів, у яких брав участь</td>
-<td>Дата народження</td>
-<td>Місце народження</td>
-<td>Професія</td>
-<td>Ел.пошта</td>
-<td>Id керуючого</td>
-
+<td class = "noprint"><div class = "noprint">Працює з</div></td>
+<td class = "noprint"><div class = "noprint">Працює до</div></td>
+<td class = "noprint"><div class = "noprint">Кількість фільмів, у яких брав участь</div></td>
+<td class = "noprint"><div class = "noprint">Дата народження</div></td>
+<td class = "noprint"><div class = "noprint">Місце народження</div></td>
+<td class = "noprint"><div class = "noprint">Професія</div></td>
+<td >Ел.пошта</td>
 <td>Телефон</td>
 <td>Контакти близьких</td>
-<td>Рейтинги фільмів, в яких брали участь </td>
-<td><div class = "noprint">Зміна інформації</div></td>
+<td class = "noprint"><div class = "noprint">Рейтинги фільмів, в яких брали участь</div></td>
+<td class = "noprint"><div class = "noprint">Зміна інформації</div></td>
 </tr></thead>
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
@@ -117,7 +136,7 @@ while ($stroka = mysqli_fetch_array($result_others)){
   $result_others_contacts_rel = $mysqli->query("SELECT `others_relatives_phone_numbers` FROM `others_contacts_of_relatives` WHERE `others_id` IN (SELECT `others_id` FROM  `others` WHERE `others_id` = $temp)");
   $result_others_ratings = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `others_previous_movies_ratings` WHERE `others_id` = $temp)");
 
-    echo"<tr>";
+ 
     echo"<tr>";
     echo"<td>" . $stroka['others_id'] . "</td>";
     echo"<td>" . $stroka['others_name'] . "</td>";
@@ -134,7 +153,7 @@ while ($stroka = mysqli_fetch_array($result_others)){
     echo"<td>" . $stroka['others_place_of_birth'] . "</td>";
     echo"<td>" . $stroka['name_of_position'] . "</td>";
     echo"<td>" . $stroka['others_e-mail'] . "</td>";
-    echo"<td>" . $stroka['others_head_id'] . "</td>";
+
     echo"<td>" .  res($result_others_phones) . "</td>";
     echo"<td>" .  res($result_others_contacts_rel) . "</td>";
     echo"<td>" .  res($result_others_ratings) . "</td>";
@@ -151,6 +170,16 @@ while ($stroka = mysqli_fetch_array($result_others)){
 
 </table>
 </div>
+<div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку: 
+  <?php 
+    $currentDateTime = date('Y-m-d'); 
+    echo $currentDateTime;
+  ?></p></div>
+  
+  <div id="printOnly" class="row ">
+<div class="col-12 container fixed-bottom">
+  <div id="content">
+  <div id="pageFooter"></div></div></div></div>
 <div class="btn noprint">
 <button class ="button btn btn-danger" onclick="window.print()">Друкувати</button></br></br></br>
 </div>

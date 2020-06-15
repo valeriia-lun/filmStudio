@@ -17,11 +17,32 @@
 </head>
 
 <style type="text/css">
-@media print {
-  .noprint { display: none; }
-  table{zoom: 40%;}
+@media screen
+{
+    #printOnly{display:none;}
+}
 
-@page { margin: 0; size: landscape;}
+@media print {
+  
+  .noprint { display: none; }
+table{zoom: 40%;}
+#printOnly{}
+@page { margin: 0; size: landscape; }
+
+  }
+  #content {
+    display: table;
+}
+
+#pageFooter {
+    display: table-footer-group;
+}
+
+#pageFooter:after {
+    counter-increment: page;
+    content: counter(page) ;
+    
+    font-size: 20pt;
 }
 </style>
 <body class="text-center body3">
@@ -65,26 +86,24 @@
 <table border="1" class=" table table-dark table-hover" >
 <thead class="thead-dark " style="background-color: #252527;">
 <tr>
-<td>Id</td>
+<td >Id</td>
 <td>Ім'я</td>
 <td>Прізвище</td>
 <td>По-батькові</td>
 <td>Стаж</td>
 <td>Рейтинг</td>
-<td>Зарплата</td>
+<td class = "noprint"><div class = "noprint">Зарплата</div></td>
 <td>Місце проживання</td>
-<td>Працює з</td>
-<td>Працює до</td>
-<td>Кількість фільмів, у яких брав участь</td>
-<td>Дата народження</td>
-<td>Місце народження</td>
-<td>Професія</td>
-<td>Ел.пошта</td>
-<td>Id керуючого</td>
-
+<td class = "noprint"><div class = "noprint">Працює з</div></td>
+<td class = "noprint"><div class = "noprint">Працює до</div></td>
+<td class = "noprint"><div class = "noprint">Кількість фільмів, у яких брав участь</div></td>
+<td class = "noprint"><div class = "noprint">Дата народження</div></td>
+<td class = "noprint"><div class = "noprint">Місце народження</div></td>
+<td class = "noprint"><div class = "noprint">Професія</div></td>
+<td >Ел.пошта</td>
 <td>Телефон</td>
 <td>Контакти близьких</td>
-<td>Рейтинги фільмів, в яких брали участь </td>
+<td class = "noprint"><div class = "noprint">Рейтинги фільмів, в яких брали участь</div></td>
 </tr></thead>
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
@@ -130,19 +149,19 @@ while ($stroka = mysqli_fetch_array($result_others)){
     echo"<td>" . $stroka['others_middle_name'] . "</td>";
     echo"<td>" . $stroka['others_experience'] . "</td>";
     echo"<td>" . $stroka['rating_of_employee'] . "</td>";
-    echo"<td>" . $stroka['others_salary'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['others_salary'] . "</td>";
     echo"<td>" . $stroka['others_home_address'] . "</td>";
-    echo"<td>" . $stroka['others_work_since'] . "</td>";
-    echo"<td>" . $stroka['others_work_until'] . "</td>";
-    echo"<td>" . $stroka['amount_of_films_others_took_part_in'] . "</td>";
-    echo"<td>" . $stroka['others_date_of_birth'] . "</td>";
-    echo"<td>" . $stroka['others_place_of_birth'] . "</td>";
-    echo"<td>" . $stroka['name_of_position'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['others_work_since'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['others_work_until'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['amount_of_films_others_took_part_in'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['others_date_of_birth'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['others_place_of_birth'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['name_of_position'] . "</td>";
     echo"<td>" . $stroka['others_e-mail'] . "</td>";
-    echo"<td>" . $stroka['others_head_id'] . "</td>";
+
     echo"<td>" .  res($result_phones) . "</td>";
     echo"<td>" .  res($result_contacts_rel) . "</td>";
-    echo"<td>" .  res($result_ratings) . "</td>";
+    echo"<td class = \" noprint\">" .  res($result_ratings) . "</td>";
     echo"</tr>";
    }
   break;
@@ -164,19 +183,19 @@ while ($stroka = mysqli_fetch_array($result_others)){
     echo"<td>" . $stroka['others_middle_name'] . "</td>";
     echo"<td>" . $stroka['others_experience'] . "</td>";
     echo"<td>" . $stroka['rating_of_employee'] . "</td>";
-    echo"<td>" . $stroka['others_salary'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['others_salary'] . "</td>";
     echo"<td>" . $stroka['others_home_address'] . "</td>";
-    echo"<td>" . $stroka['others_work_since'] . "</td>";
-    echo"<td>" . $stroka['others_work_until'] . "</td>";
-    echo"<td>" . $stroka['amount_of_films_others_took_part_in'] . "</td>";
-    echo"<td>" . $stroka['others_date_of_birth'] . "</td>";
-    echo"<td>" . $stroka['others_place_of_birth'] . "</td>";
-    echo"<td>" . $stroka['name_of_position'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['others_work_since'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['others_work_until'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['amount_of_films_others_took_part_in'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['others_date_of_birth'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['others_place_of_birth'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['name_of_position'] . "</td>";
     echo"<td>" . $stroka['others_e-mail'] . "</td>";
-    echo"<td>" . $stroka['others_head_id'] . "</td>";
+
     echo"<td>" .  res($result_phones) . "</td>";
     echo"<td>" .  res($result_contacts_rel) . "</td>";
-    echo"<td>" .  res($result_ratings) . "</td>";
+    echo"<td class = \" noprint\">" .  res($result_ratings) . "</td>";
     echo"</tr>";
    }
   break;
@@ -199,19 +218,19 @@ while ($stroka = mysqli_fetch_array($result_others)){
     echo"<td>" . $stroka['others_middle_name'] . "</td>";
     echo"<td>" . $stroka['others_experience'] . "</td>";
     echo"<td>" . $stroka['rating_of_employee'] . "</td>";
-    echo"<td>" . $stroka['others_salary'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['others_salary'] . "</td>";
     echo"<td>" . $stroka['others_home_address'] . "</td>";
-    echo"<td>" . $stroka['others_work_since'] . "</td>";
-    echo"<td>" . $stroka['others_work_until'] . "</td>";
-    echo"<td>" . $stroka['amount_of_films_others_took_part_in'] . "</td>";
-    echo"<td>" . $stroka['others_date_of_birth'] . "</td>";
-    echo"<td>" . $stroka['others_place_of_birth'] . "</td>";
-    echo"<td>" . $stroka['name_of_position'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['others_work_since'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['others_work_until'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['amount_of_films_others_took_part_in'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['others_date_of_birth'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['others_place_of_birth'] . "</td>";
+    echo"<td class = \" noprint\">" . $stroka['name_of_position'] . "</td>";
     echo"<td>" . $stroka['others_e-mail'] . "</td>";
-    echo"<td>" . $stroka['others_head_id'] . "</td>";
+
     echo"<td>" .  res($result_phones) . "</td>";
     echo"<td>" .  res($result_contacts_rel) . "</td>";
-    echo"<td>" .  res($result_ratings) . "</td>";
+    echo"<td class = \" noprint\">" .  res($result_ratings) . "</td>";
     echo"</tr>";
    }
   break;
@@ -220,7 +239,16 @@ while ($stroka = mysqli_fetch_array($result_others)){
 ?>
 
 </table>
-</div>
+</div><div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку: 
+  <?php 
+    $currentDateTime = date('Y-m-d'); 
+    echo $currentDateTime;
+  ?></p></div>
+  
+  <div id="printOnly" class="row ">
+<div class="col-12 container fixed-bottom">
+  <div id="content">
+  <div id="pageFooter"></div></div></div></div>
 <div class="btn noprint">
 <button class ="button btn btn-danger" onclick="window.print()">Друкувати</button></br></br></br>
 </div>

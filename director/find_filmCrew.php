@@ -16,9 +16,32 @@
 <link rel="stylesheet" href="..\style.css">
 </head>
 <style type="text/css">
+@media screen
+{
+    #printOnly{display:none;}
+}
+
 @media print {
+  
   .noprint { display: none; }
-  @page { margin: 0; }
+
+#printOnly{}
+@page { margin: 0; }
+
+  }
+  #content {
+    display: table;
+}
+
+#pageFooter {
+    display: table-footer-group;
+}
+
+#pageFooter:after {
+    counter-increment: page;
+    content: counter(page) ;
+    
+    font-size: 20pt;
 }
 </style>
 <body class="text-center body3">
@@ -128,7 +151,16 @@ while ($stroka = mysqli_fetch_array($result_film_crews)){
 ?>
 
 </table>
-</div>
+</div><div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку: 
+  <?php 
+    $currentDateTime = date('Y-m-d'); 
+    echo $currentDateTime;
+  ?></p></div>
+  
+  <div id="printOnly" class="row ">
+<div class="col-12 container fixed-bottom">
+  <div id="content">
+  <div id="pageFooter"></div></div></div></div>
 <div class="btn noprint">
 <button class ="button btn btn-danger" onclick="window.print()">Друкувати</button></br></br></br>
 </div>
