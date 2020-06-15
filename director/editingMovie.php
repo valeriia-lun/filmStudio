@@ -800,6 +800,118 @@ else {
       else {
           echo "Error! $mysql->error <br>";
         }
+        $number_film_crew = filter_var(trim($_POST['number_of_film_crew']),FILTER_SANITIZE_STRING);
+
+        $rating = filter_var(trim($_POST['rating']),FILTER_SANITIZE_STRING);
+
+        $actors_ids = $mysql->query("SELECT `actor_id` FROM `actor_filmcrew` WHERE `number_of_film_crew` = '$number_film_crew'");
+
+        while ($stroka = mysqli_fetch_array($actors_ids)){
+          $temp = $stroka['actor_id'];
+          $actors_amount = $mysql->query("SELECT `amount_of_films_actor_took_part_in` FROM `actors` WHERE `actor_id` = '$temp'");
+          $s = mysqli_fetch_array($actors_amount);
+          $amount = $s[0];
+
+          $actors_rating = $mysql->query("SELECT `rating_of_employee` FROM `actors` WHERE `actor_id` = '$temp'");
+          $s = mysqli_fetch_array($actors_rating);
+          $old_rating = $s[0];
+
+          $new_rating = ((($old_rating * $amount) + $rating) / ($amount + 1));
+          $amount++;
+
+            $rating *= 10;
+            $result = $mysql->query("INSERT INTO `actors_previous_movies_rating` (`id_previous_movie_rating`, `actor_id`) VALUES('$rating', '$temp')");
+            if ($result) {
+               echo "Success!";
+               $result = $mysql->query("UPDATE actors SET rating_of_employee = '$new_rating', amount_of_films_actor_took_part_in = '$amount' WHERE actor_id = '$temp'");
+               if ($result) {
+                  echo "Success!";
+                }
+              else {
+                   echo "Error! $mysql->error <br>";
+                 }
+             }
+           else {
+                echo "Error! $mysql->error <br>";
+              }
+
+        }
+
+
+
+        $understudies_ids = $mysql->query("SELECT `understudy_id` FROM `understudies_filmcrew` WHERE `number_of_film_crew` = '$number_film_crew'");
+        while ($stroka = mysqli_fetch_array($understudies_ids)){
+          $temp = $stroka['understudy_id'];
+          $rating = filter_var(trim($_POST['rating']),FILTER_SANITIZE_STRING);
+
+          $understudies_amount = $mysql->query("SELECT `amount_of_films_understudy_took_part_in` FROM `understudies` WHERE `understudy_id` = '$temp'");
+          $s = mysqli_fetch_array($understudies_amount);
+          $amount = $s[0];
+
+          $understudies_rating = $mysql->query("SELECT `rating_of_employee` FROM `understudies` WHERE `understudy_id` = '$temp'");
+          $s = mysqli_fetch_array($understudies_rating);
+          $old_rating = $s[0];
+
+          $new_rating = ((($old_rating * $amount) + $rating) / ($amount + 1));
+          $amount++;
+
+            $rating *= 10;
+            $result = $mysql->query("INSERT INTO `understudy_previous_movies_ratings` (`id_previous_movie_rating`, `understudy_id`) VALUES('$rating', '$temp')");
+            if ($result) {
+               echo "Success!";
+               $result = $mysql->query("UPDATE understudies SET rating_of_employee = '$new_rating', amount_of_films_understudy_took_part_in = '$amount' WHERE understudy_id = '$temp'");
+               if ($result) {
+                  echo "Success!";
+                }
+              else {
+                   echo "Error! $mysql->error <br>";
+                 }
+             }
+           else {
+                echo "Error! $mysql->error <br>";
+              }
+        }
+
+
+        $others_ids = $mysql->query("SELECT `others_id` FROM `others_filmcrew` WHERE `number_of_film_crew` = '$number_film_crew'");
+         while ($stroka = mysqli_fetch_array($others_ids)){
+        $rating = filter_var(trim($_POST['rating']),FILTER_SANITIZE_STRING);
+
+          $temp = $stroka['others_id'];
+          $others_amount = $mysql->query("SELECT `amount_of_films_others_took_part_in` FROM `others` WHERE `others_id` = '$temp'");
+          $s = mysqli_fetch_array($others_amount);
+          $amount = $s[0];
+
+          $others_rating = $mysql->query("SELECT `rating_of_employee` FROM `others` WHERE `others_id` = '$temp'");
+          $s = mysqli_fetch_array($others_rating);
+          $old_rating = $s[0];
+
+          $new_rating = ((($old_rating * $amount) + $rating) / ($amount + 1));
+          $amount++;
+
+            $rating *= 10;
+            $result = $mysql->query("INSERT INTO `others_previous_movies_ratings` (`id_previous_movie_rating`, `others_id`) VALUES('$rating', '$temp')");
+            if ($result) {
+               echo "Success!";
+               $result = $mysql->query("UPDATE others SET rating_of_employee = '$new_rating', amount_of_films_others_took_part_in = '$amount' WHERE others_id = '$temp'");
+               if ($result) {
+                  echo "Success!";
+                }
+              else {
+                   echo "Error! $mysql->error <br>";
+                 }
+             }
+           else {
+                echo "Error! $mysql->error <br>";
+              }
+        }
+
+
+
+
+
+
+
   }
 
 
