@@ -68,7 +68,7 @@
 </tr></thead>
 
 <?php
-$mysqli = new mysqli("localhost","root","root","filmstudio");
+$mysqli = new mysqli("localhost","root","root","mydbase");
 $mysqli->query("SET NAMES 'utf8'");
 $result_logins = $mysqli->query("SELECT * FROM `loginpassword`");
 while ($stroka = mysqli_fetch_array($result_logins)){

@@ -41,13 +41,16 @@
 if (isset($_POST['edit_logins_button'])){
   $mysqli = new mysqli("localhost","root","root","filmstudio");
   $mysqli->query("SET NAMES 'utf8'");
-
+  $mysqli2 = new mysqli("localhost","root","root","mydbase");
+  $mysqli2->query("SET NAMES 'utf8'");
 
   $position =  $_POST['pos'];
   $login =  $_POST['log'];
   $password =  $_POST['pass'];
 
-$ans = $mysqli->query("UPDATE `loginpassword` SET `login` = '$login', `password`= '$password' WHERE `position` = '$position' ");
+  $coded =  md5($password);
+$ans = $mysqli->query("UPDATE `loginpassword` SET `login` = '$login', `password`= '$coded' WHERE `position` = '$position' ");
+$ans2 = $mysqli2->query("UPDATE `loginpassword` SET `login` = '$login', `password`= '$password' WHERE `position` = '$position' ");
 if ($ans) {
    echo "</br></br></br><h1 class=\"colorForAllText\">Логін/пароль було успішно змінено!</H1>";
  }

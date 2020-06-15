@@ -42,7 +42,7 @@
 <?php
 
 
-  $mysqli = new mysqli("localhost","root","root","filmstudio");
+  $mysqli = new mysqli("localhost","root","root","mydbase");
   $mysqli->query("SET NAMES 'utf8'");
 
 

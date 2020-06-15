@@ -586,9 +586,8 @@ if($stroka['name_of_position'] == "лінійний продюсер" || $stroka
 
       echo "<select name=\"head\" class=\"select selectpicker  required form-control\">";
       while($stroka = mysqli_fetch_array($result_editor)){
-        echo "string";
-        print_r($stroka);
-        echo "<option>" . $stroka['editor_surname'] .  $stroka['editor_name'] .  $stroka['editor_middle_name'] . "id:" . $stroka['editor_id'] . "</option>";
+      
+        echo "<option>" . $stroka['editor_surname'] ." ".  $stroka['editor_name'] . " ". $stroka['editor_middle_name'] .", ". "id: " . $stroka['editor_id'] . "</option>";
       }
       echo "</select>";
 
