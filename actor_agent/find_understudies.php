@@ -148,7 +148,18 @@ $(document).ready(function(){
 <label class="colorText" >По-батькові<input class="form-control" name="middleName" ></input></label>
 </div>
 <div class="col-md-3 container">
-<label class="colorText" >Рейтинг<input class="form-control" name="rating" ></input></label>
+<label class="colorText" >Рейтинг&nbsp;&nbsp;</label><input type="radio" id="choise>"
+     name="choise>" >
+    <label >></label>
+
+    <input type="radio" id="choise<"
+     name="choise<">
+    <label ><</label>
+
+    <input type="radio" id="choise="
+     name="choise=" >
+    <label >=</label><input class="form-control" name="rating" ></input>
+
 </div></div></br>
 
 
@@ -156,10 +167,30 @@ $(document).ready(function(){
 
 <div class="row">
 <div class="col-md-3 container">
-<label class="colorText" >Кількість фільмів у яких брали участь<input class="form-control" onkeyup="lal(this)" name="amountOfFilms" ></input></label>
+<label class="colorText" >Кількість фільмів у яких брали участь&nbsp;&nbsp;</label><input type="radio" id="choise>"
+     name="choise>" >
+    <label >></label>
+
+    <input type="radio" id="choise<"
+     name="choise<">
+    <label ><</label>
+
+    <input type="radio" id="choise="
+     name="choise=" >
+    <label >=</label><input class="form-control" onkeyup="lal(this)" name="amountOfFilms" ></input>
 </div>
 <div class="col-md-3 container">
-<label class="colorText" >Вік<input class="form-control" onkeyup="lal(this)" name="age" ></input></label>
+<label class="colorText" >Вік&nbsp;&nbsp;</label><input type="radio" id="choise>"
+     name="choise>" >
+    <label >></label>
+
+    <input type="radio" id="choise<"
+     name="choise<">
+    <label ><</label>
+
+    <input type="radio" id="choise="
+     name="choise=" >
+    <label >=</label><input class="form-control" onkeyup="lal(this)" name="age" ></input>
 </div>
 <div class="col-md-3 container">
 <label class="colorText" >Стать</label><select name="selectingSex"   class="select selectpicker  form-control">
@@ -169,7 +200,17 @@ $(document).ready(function(){
 </select>
 </div>
 <div class="col-md-3 container">
-<label class="colorText" >Ріст<input class="form-control" onkeyup="lal(this)" name="height" ></input></label></div></div></br>
+<label class="colorText" >Ріст&nbsp;&nbsp;</label><input type="radio" id="choise>"
+     name="choise>" >
+    <label >></label>
+
+    <input type="radio" id="choise<"
+     name="choise<">
+    <label ><</label>
+
+    <input type="radio" id="choise="
+     name="choise=" >
+    <label >=</label><input class="form-control" onkeyup="lal(this)" name="height" ></input></div></div></br>
 
 <div class="row">
 <div class="col-md-3 container">
@@ -185,7 +226,17 @@ $(document).ready(function(){
 
 </br>
 <div class="col-md-3 container">
-<label class="colorText" >Довжина волосся</label><input onkeyup="lal(this)" class="form-control" name="hairLength"></input>
+<label class="colorText" >Довжина волосся&nbsp;&nbsp;</label><input type="radio" id="choise>"
+     name="choise>" >
+    <label >></label>
+
+    <input type="radio" id="choise<"
+     name="choise<">
+    <label ><</label>
+
+    <input type="radio" id="choise="
+     name="choise=" >
+    <label >=</label><input onkeyup="lal(this)" class="form-control" name="hairLength"></input>
 </div>
 <div class="col-md-3 container">
 <label class="colorText" >Колір очей:</label>
@@ -209,10 +260,31 @@ $(document).ready(function(){
 </br>
 <div class="row">
 <div class="col-md-3 container">
-<label class="colorText" >Розмір взуття</label><input onkeyup="lal(this)" class="form-control" name="shoeSize" ></input>
+<label class="colorText" >Розмір взуття&nbsp;&nbsp;</label>
+<input type="radio" id="choise>"
+     name="choise>" >
+    <label >></label>
+
+    <input type="radio" id="choise<"
+     name="choise<">
+    <label ><</label>
+
+    <input type="radio" id="choise="
+     name="choise=" >
+    <label >=</label><input onkeyup="lal(this)" class="form-control" name="shoeSize" ></input>
 </div>
 <div class="col-md-3 container">
-<label class="colorText" >Розмір одягу</label><input onkeyup="lal(this)" class="form-control" name="clothingSize" ></input></div>
+<label class="colorText" >Розмір одягу&nbsp;&nbsp;</label><input type="radio" id="choise>"
+     name="choise>" >
+    <label >></label>
+
+    <input type="radio" id="choise<"
+     name="choise<">
+    <label ><</label>
+
+    <input type="radio" id="choise="
+     name="choise=" >
+    <label >=</label><input onkeyup="lal(this)" class="form-control" name="clothingSize" ></input></div>
 <div class="col-md-3 container">
 <label class="colorText" >Національність:</label>
 <select name="selectingNationality"  class="select selectpicker  form-control">
