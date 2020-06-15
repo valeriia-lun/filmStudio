@@ -22,7 +22,7 @@
 }
 
 @media print {
-  
+
   .noprint { display: none; }
 
 #printOnly{}
@@ -40,7 +40,7 @@
 #pageFooter:after {
     counter-increment: page;
     content: counter(page) ;
-    
+
     font-size: 20pt;
 }
 </style>
@@ -73,6 +73,22 @@
 
 <div class=" container col-3" >
     <label class="colorText">Дата початку роботи: </label><input type="date" class="form-control" name="date_start" maxlength="50" tabindex="2" ><br>
+  </div>
+  <div class=" container col-3" >
+    <label class="colorText">Назва фільму: </label>
+    <?php
+    $mysqli = new mysqli("localhost","root","root","filmstudio");
+    $mysqli->query("SET NAMES 'utf8'");
+    $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie`");
+    echo "<select name=\"selectingFilms\"  class=\"select selectpicker  form-control\"><option></option>";
+    while($stroka = mysqli_fetch_array($result_films)){
+    for ($i=0; $i<count($stroka); $i+=2){
+      echo "<option>$stroka[$i]</option>";
+    }
+    }
+    echo "</select>";
+    ?>
+    <br>
   </div>
   <div class=" container col-3" >
     <label class="colorText">Дата кінця роботи: </label><input type="date" class="form-control" name="date_finish" maxlength="50" tabindex="2" ><br>
@@ -151,12 +167,12 @@ while ($stroka = mysqli_fetch_array($result_film_crews)){
 ?>
 
 </table>
-</div><div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку: 
-  <?php 
-    $currentDateTime = date('Y-m-d'); 
+</div><div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку:
+  <?php
+    $currentDateTime = date('Y-m-d');
     echo $currentDateTime;
   ?></p></div>
-  
+
   <div id="printOnly" class="row ">
 <div class="col-12 container fixed-bottom">
   <div id="content">
