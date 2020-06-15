@@ -85,7 +85,7 @@
 <td class = "noprint"><div class = "noprint">Дата народження</div></td>
 <td>Ел.пошта</td>
 <td>Телефон</td>
-<td>Контакти близьких</td>
+<td>Контакти близьких</td><td style="width:1px;white-space:nowrap;">Фільми, в яких брали участь</td>
 </tr></thead>
 
 <?php
@@ -122,7 +122,7 @@ while ($stroka = mysqli_fetch_array($result_editors)){
 
   $result_phones = $mysqli->query("SELECT `editor_phone_number` FROM `editor_phones` WHERE `editor_id` IN (SELECT `editor_id` FROM  `editor` WHERE `editor_id` = $temp)");
   $result_contacts_rel = $mysqli->query("SELECT `editor_relatives_phone_numbers` FROM `editor_contacts_of_relatives` WHERE `editor_id` IN (SELECT `editor_id` FROM  `editor` WHERE `editor_id` = $temp)");
-
+$result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_edit_crew` IN (SELECT `number_of_edit_crew` FROM  `editor_crewedit` WHERE `editor_id` = $temp)");
      echo"<tr>";
     echo"<td>" . $stroka['editor_id'] . "</td>";
     echo"<td>" . $stroka['editor_name'] . "</td>";
@@ -137,7 +137,7 @@ while ($stroka = mysqli_fetch_array($result_editors)){
     echo"<td>" . $stroka['editor_e-mail'] . "</td>";
 
     echo"<td>" .  res($result_phones) . "</td>";
-    echo"<td>" .  res($result_contacts_rel) . "</td>";
+    echo"<td>" .  res($result_contacts_rel) . "</td>";	 	   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
     echo"</tr>";
    }
   break;

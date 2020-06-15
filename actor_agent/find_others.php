@@ -103,7 +103,8 @@ table{zoom: 40%;}
 <div class="noprint">
 
 
-
+<div class="row">
+<div class="container col-md-3">
 
 <form action="find_actors_zapyty.php" method="post">
 <select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
@@ -131,7 +132,11 @@ table{zoom: 40%;}
 </div>
 <div class="col-md-3 container">
 <label class="colorText" >По-батькові<input class="form-control" name="middleName" ></input></label>
-</div>
+</div></div></br>
+
+
+</br>
+<div class="row">
 <div class="col-md-3 container">
 <label class="colorText" >Рейтинг&nbsp;&nbsp;</label>
 <input type="radio" id="choice>"
@@ -146,11 +151,11 @@ table{zoom: 40%;}
      name="choice1" value="=">
     <label >=</label><input class="form-control" name="rating" ></input>
 
-</div></div></br>
+</div></br>
 
 
 
-<div class="row">
+
 <div class="col-md-3 container">
 <label class="colorText" >Кількість фільмів у яких брали участь&nbsp;&nbsp;</label>
 <input type="radio" id="choice>"
@@ -165,12 +170,6 @@ table{zoom: 40%;}
      name="choice2" value="=">
     <label >=</label><input class="form-control" onkeyup="lal(this)" name="amountOfFilms" ></input>
 </div>
-
-</div></br>
-
-
-</br>
-<div class="row">
 
 
 

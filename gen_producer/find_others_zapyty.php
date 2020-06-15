@@ -104,6 +104,7 @@ table{zoom: 40%;}
 <td>Телефон</td>
 <td>Контакти близьких</td>
 <td class = "noprint"><div class = "noprint">Рейтинги фільмів, в яких брали участь</div></td>
+<td style="width:1px;white-space:nowrap;">Фільми, в яких брали участь</td>
 </tr></thead>
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
@@ -141,7 +142,7 @@ while ($stroka = mysqli_fetch_array($result_others)){
   $result_phones = $mysqli->query("SELECT `others_phone_number` FROM `others_phones` WHERE `others_id` IN (SELECT `others_id` FROM  `others` WHERE `others_id` = $temp)");
   $result_contacts_rel = $mysqli->query("SELECT `others_relatives_phone_numbers` FROM `others_contacts_of_relatives` WHERE `others_id` IN (SELECT `others_id` FROM  `others` WHERE `others_id` = $temp)");
   $result_ratings = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `others_previous_movies_ratings` WHERE `others_id` = $temp)");
-
+$result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM  `others_filmcrew` WHERE `others_id` = $temp)");
       echo"<tr>";
     echo"<td>" . $stroka['others_id'] . "</td>";
     echo"<td>" . $stroka['others_name'] . "</td>";
@@ -161,7 +162,7 @@ while ($stroka = mysqli_fetch_array($result_others)){
 
     echo"<td>" .  res($result_phones) . "</td>";
     echo"<td>" .  res($result_contacts_rel) . "</td>";
-    echo"<td class = \" noprint\">" .  res($result_ratings) . "</td>";
+    echo"<td class = \" noprint\">" .  res($result_ratings) . "</td>"; 	   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
     echo"</tr>";
    }
   break;
@@ -175,7 +176,7 @@ while ($stroka = mysqli_fetch_array($result_others)){
   $result_phones = $mysqli->query("SELECT `others_phone_number` FROM `others_phones` WHERE `others_id` IN (SELECT `others_id` FROM  `others` WHERE `others_id` = $temp)");
   $result_contacts_rel = $mysqli->query("SELECT `others_relatives_phone_numbers` FROM `others_contacts_of_relatives` WHERE `others_id` IN (SELECT `others_id` FROM  `others` WHERE `others_id` = $temp)");
   $result_ratings = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `others_previous_movies_ratings` WHERE `others_id` = $temp)");
-
+$result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM  `others_filmcrew` WHERE `others_id` = $temp)");
     echo"<tr>";
     echo"<td>" . $stroka['others_id'] . "</td>";
     echo"<td>" . $stroka['others_name'] . "</td>";
@@ -195,7 +196,7 @@ while ($stroka = mysqli_fetch_array($result_others)){
 
     echo"<td>" .  res($result_phones) . "</td>";
     echo"<td>" .  res($result_contacts_rel) . "</td>";
-    echo"<td class = \" noprint\">" .  res($result_ratings) . "</td>";
+    echo"<td class = \" noprint\">" .  res($result_ratings) . "</td>"; 	   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
     echo"</tr>";
    }
   break;
@@ -210,7 +211,7 @@ while ($stroka = mysqli_fetch_array($result_others)){
   $result_phones = $mysqli->query("SELECT `others_phone_number` FROM `others_phones` WHERE `others_id` IN (SELECT `others_id` FROM  `others` WHERE `others_id` = $temp)");
   $result_contacts_rel = $mysqli->query("SELECT `others_relatives_phone_numbers` FROM `others_contacts_of_relatives` WHERE `others_id` IN (SELECT `others_id` FROM  `others` WHERE `others_id` = $temp)");
   $result_ratings = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `others_previous_movies_ratings` WHERE `others_id` = $temp)");
-
+$result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM  `others_filmcrew` WHERE `others_id` = $temp)");
      echo"<tr>";
     echo"<td>" . $stroka['others_id'] . "</td>";
     echo"<td>" . $stroka['others_name'] . "</td>";
@@ -230,7 +231,7 @@ while ($stroka = mysqli_fetch_array($result_others)){
 
     echo"<td>" .  res($result_phones) . "</td>";
     echo"<td>" .  res($result_contacts_rel) . "</td>";
-    echo"<td class = \" noprint\">" .  res($result_ratings) . "</td>";
+    echo"<td class = \" noprint\">" .  res($result_ratings) . "</td>"; 	   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
     echo"</tr>";
    }
   break;

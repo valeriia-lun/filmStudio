@@ -982,7 +982,7 @@ $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `numbe
             echo"<td>" . $stroka4['actor_other_appearance'] . "</td>";
             echo"<td>" . $stroka4['actor_e-mail'] . "</td>";
 
-            echo"<td>" .  res($result_photos4) . "</td>";
+
             echo"<td>" .  res($result_phones4) . "</td>";
             echo"<td>" .  res($result_contacts_rel4) . "</td>";
             echo"<td>" .  res($result_ratings4) . "</td>";

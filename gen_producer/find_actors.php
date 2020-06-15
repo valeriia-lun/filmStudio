@@ -266,6 +266,7 @@ function yesnoCheck(that) {
 <td>Телефон</td>
 <td>Контакти близьких</td>
 <td class = "noprint"><div class = "noprint">Рейтинги фільмів, в яких брали участь</div></td>
+<td style="width:1px;white-space:nowrap;">Фільми, в яких брали участь</td>
 
 </tr></thead>
 <?php
@@ -298,6 +299,7 @@ while ($stroka = mysqli_fetch_array($result_actors)){
   $result_contacts_rel = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp");
 
   $result_ratings = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `actors_previous_movies_rating` WHERE `actor_id` = $temp)");
+$result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM  `actor_filmcrew` WHERE `actor_id` = $temp)");
 
     echo"<tr >";
     echo"<td>" . $stroka['actor_id'] . "</td>";
@@ -328,7 +330,7 @@ while ($stroka = mysqli_fetch_array($result_actors)){
     echo"<td>" . $stroka['actor_e-mail'] . "</td>";
     echo"<td>" .  res($result_phones) . "</td>";
     echo"<td>" .  res($result_contacts_rel) . "</td>";
-    echo"<td class = \" noprint\">" .  res($result_ratings) . "</td>";
+    echo"<td class = \" noprint\">" .  res($result_ratings) . "</td>"; 	   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
     echo"</tr>";
  
    }
