@@ -93,7 +93,7 @@ $(document).ready(function(){
     //Once add button is clicked
     $(addButtonSkills).click(function(){
         //Check maximum number of input fields
-        if(xSkills < maxSkills){
+        if(xSkills < maxFieldSkills){
             xSkills++; //Increment field counter
             $(wrapperSkills).append(fieldHTMLSkills); //Add field html
         }
