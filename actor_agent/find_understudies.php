@@ -83,35 +83,33 @@ $(document).ready(function(){
     });
 
 
-    var maxFieldSkills = 10; //Input fields increment limitation
-    var addButtonSkills = $('.add_button_Skills'); //Add button selector
-    var wrapperSkills = $('.field_wrapper_Skills'); //Input field wrapper
+//     var maxFieldSkills = 10; //Input fields increment limitation
+//     var addButtonSkills = $('.add_button_Skills'); //Add button selector
+//     var wrapperSkills = $('.field_wrapper_Skills'); //Input field wrapper
+//
+//     var fieldHTMLSkills = '<div><select class="form-control" name="field_name_Skills[]"><option selected></option><option>швидко бігає</option><option>стрибає</option><option>акробат</option><option>плаває</option><option>катається на ковзанах</option><option>професійний плавець</option><option>каскадер</option><option>пригає на скакалці</option><option>жонглює</option><option>знає іспанську</option></select>'; //New input field html
+//
+//     fieldHTMLSkills += '<a href="javascript:void(0);" class="remove_button_Skills"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>';
+//     var xSkills = 1;
+//
+// //    var fieldHTMLSkills = "<div>" + $('.field_wrapper_Skills select')[0].outerHTML + "<a href=\"javascript:void(0);\" class=\"remove_button_Skills\"><img src=\"../img/delete_icon.png\" width=\'20\' height=\'20\'/></a></div>";
+//     //Once add button is clicked
+//     $(addButtonSkills).click(function(){
+//         //Check maximum number of input fields
+//         if(xSkills < maxFieldSkills){
+//             xSkills++; //Increment field counter
+//             $(wrapperSkills).append(fieldHTMLSkills); //Add field html
+//         }
+//     });
+//
+//     //Once remove button is clicked
+//     $(wrapperSkills).on('click', '.remove_button_Skills', function(e){
+//         e.preventDefault();
+//         $(this).parent('div').remove(); //Remove field html
+//         xSkills--; //Decrement field counter
+//     });
 
-    var fieldHTMLSkills = '<div><select class="form-control" name="field_name_Skills[]"><option selected></option><option>швидко бігає</option><option>стрибає</option><option>акробат</option><option>плаває</option><option>катається на ковзанах</option><option>професійний плавець</option><option>каскадер</option><option>пригає на скакалці</option><option>жонглює</option><option>знає іспанську</option></select>'; //New input field html
 
-    fieldHTMLSkills += '<a href="javascript:void(0);" class="remove_button_Skills"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>';
-    var xSkills = 1;
-
-//    var fieldHTMLSkills = "<div>" + $('.field_wrapper_Skills select')[0].outerHTML + "<a href=\"javascript:void(0);\" class=\"remove_button_Skills\"><img src=\"../img/delete_icon.png\" width=\'20\' height=\'20\'/></a></div>";
-    //Once add button is clicked
-    $(addButtonSkills).click(function(){
-        //Check maximum number of input fields
-        if(xSkills < maxSkills){
-            xSkills++; //Increment field counter
-            $(wrapperSkills).append(fieldHTMLSkills); //Add field html
-        }
-    });
-
-    //Once remove button is clicked
-    $(wrapperSkills).on('click', '.remove_button_Skills', function(e){
-        e.preventDefault();
-        $(this).parent('div').remove(); //Remove field html
-        xSkills--; //Decrement field counter
-    });
-
-    $(function() {
-    $().datepicker();
-    });
 });
 
 </script>
