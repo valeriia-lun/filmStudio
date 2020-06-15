@@ -22,7 +22,7 @@
 }
 
 @media print {
-  
+
   .noprint { display: none; }
 table{zoom: 40%;}
 #printOnly{}
@@ -40,7 +40,7 @@ table{zoom: 40%;}
 #pageFooter:after {
     counter-increment: page;
     content: counter(page) ;
-    
+
     font-size: 20pt;
 }
 </style>
@@ -313,7 +313,7 @@ $name =  $_POST['name'];
                       $quer = $quer . " AND ";
                     }
                     echo $value;
-                    $quer = $quer . "`understudy_id` IN (SELECT `understudy_id` FROM `understudies_filmcrew` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = \"'$value'\"))";
+                    $quer = $quer . "`understudy_id` IN (SELECT `understudy_id` FROM `understudies_filmcrew` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = '$value'))";
                     $isFirst = false;
                     $notFirst = true;
                   }
@@ -400,7 +400,7 @@ while ($stroka = mysqli_fetch_array($result_filter)){
     echo"<td>" .  res($result_phones) . "</td>";
     echo"<td >" .  res($result_contacts_rel) . "</td>";
     echo"<td class = \" noprint\">" .  res($result_ratings) . "</td>";
- 
+
     echo"<form action=\"editingUnderstudy.php\" method=\"post\">";
 
   echo "<input type=\"hidden\" value = \"" .$stroka['understudy_id'] . "\" name=\"understudy_id\" >";
@@ -415,12 +415,12 @@ while ($stroka = mysqli_fetch_array($result_filter)){
 ?>
 
 </table>
-</div><div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку: 
-  <?php 
-    $currentDateTime = date('Y-m-d'); 
+</div><div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку:
+  <?php
+    $currentDateTime = date('Y-m-d');
     echo $currentDateTime;
   ?></p></div>
-  
+
   <div id="printOnly" class="row ">
 <div class="col-12 container fixed-bottom">
   <div id="content">
