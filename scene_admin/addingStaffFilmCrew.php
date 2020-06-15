@@ -105,10 +105,15 @@
 function lal(el) {
   if (el.value.match( /[^0-9]/ ) ) {
         alert( "Неправильний формат числа! \nМожна використовувати тільки цифри" );
-        el.value = el.value.replace( /[^0-9]/ , "" )
+        el.value = el.value= "" ;
     }
 }
-
+function lal2(el) {
+if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
+        alert( "Неправильний формат запису! \nМожна використовувати тільки літери!" );
+        el.value = el.value= "" ;
+    }
+}
 </script>
 </head>
 <body class="text-center body3">
@@ -149,13 +154,13 @@ function lal(el) {
 
    <div class="row text-center" style="margin:10px;">
     <div class=" container col-3" >
-    <label class="colorText">Ім'я: </label><label style="color:red;">*</label><input type="text" class="form-control" name="first_name" maxlength="50" tabindex="2" required><br>
+    <label class="colorText">Ім'я: </label><label style="color:red;">*</label><input onkeyup="lal2(this)" type="text" class="form-control" name="first_name" maxlength="50" tabindex="2" required><br>
   </div>
   <div class="container col-3">
-  <label class="colorText">Прізвище:</label><label style="color:red;">*</label> <input type="text" class="form-control" name="last_name" maxlength="50" tabindex="2" required><br>
+  <label class="colorText">Прізвище:</label><label style="color:red;">*</label> <input onkeyup="lal2(this)" type="text" class="form-control" name="last_name" maxlength="50" tabindex="2" required><br>
   </div>
   <div class="container col-3">
-  <label class="colorText">По-батькові: </label><label style="color:red;">*</label><input type="text" class="form-control" name="middle_name" maxlength="50" tabindex="2" required><br>
+  <label class="colorText">По-батькові: </label><label style="color:red;">*</label><input onkeyup="lal2(this)" type="text" class="form-control" name="middle_name" maxlength="50" tabindex="2" required><br>
   </div>  </div></br>
 
   <div class="row">

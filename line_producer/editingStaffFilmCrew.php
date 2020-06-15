@@ -118,10 +118,15 @@
 function lal(el) {
   if (el.value.match( /[^0-9]/ ) ) {
         alert( "Неправильний формат числа! \nМожна використовувати тільки цифри" );
-        el.value = el.value.replace( /[^0-9]/ , "" )
+        el.value = el.value= "" ;
     }
 }
-
+function lal2(el) {
+if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
+        alert( "Неправильний формат запису! \nМожна використовувати тільки літери!" );
+        el.value = el.value= "" ;
+    }
+}
 </script>
 </head>
 <body class="text-center body3">
@@ -177,7 +182,7 @@ $result = $mysql->query("SELECT `others_name` FROM `Others` WHERE `others_id` = 
 
 $res = mysqli_fetch_array($result);
 
-echo "<input type= \"text\" maxlength=\"50\" tabindex=\"2\" class=\"form-control\" name=\"first_name\" value=\"$res[0]\" required>";
+echo "<input type= \"text\" maxlength=\"50\" onkeyup=\"lal2(this)\" tabindex=\"2\" class=\"form-control\" name=\"first_name\" value=\"$res[0]\" required>";
     ?><br>
   </div>
   <div class="container col-3">
@@ -189,7 +194,7 @@ $result = $mysql->query("SELECT `others_surname` FROM `Others` WHERE `others_id`
 
 $res = mysqli_fetch_array($result);
 
-echo "<input type= \"text\" maxlength=\"50\" tabindex=\"2\" class=\"form-control\" name=\"last_name\" value=\"$res[0]\" required>";
+echo "<input type= \"text\" maxlength=\"50\" onkeyup=\"lal2(this)\" tabindex=\"2\" class=\"form-control\" name=\"last_name\" value=\"$res[0]\" required>";
     ?><br>
    </div>
   <div class="container col-3">
@@ -200,7 +205,7 @@ $result = $mysql->query("SELECT `others_middle_name` FROM `Others` WHERE `others
 
 $res = mysqli_fetch_array($result);
 
-echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"middle_name\" value=\"$res[0]\" required>";
+echo "<input type= \"text\" maxlength=\"50\" onkeyup=\"lal2(this)\" class=\"form-control\" tabindex=\"2\" name=\"middle_name\" value=\"$res[0]\" required>";
     ?><br>
    </div>  </div></br>
 

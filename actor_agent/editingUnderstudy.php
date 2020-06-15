@@ -143,7 +143,13 @@
 function lal(el) {
   if (el.value.match( /[^0-9]/ ) ) {
         alert( "Неправильний формат числа! \nМожна використовувати тільки цифри" );
-        el.value = el.value.replace( /[^0-9]/ , "" )
+        el.value = el.value= "" ;
+    }
+}
+function lal2(el) {
+if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
+        alert( "Неправильний формат запису! \nМожна використовувати тільки літери!" );
+        el.value = el.value= "" ;
     }
 }</script>
 </head>
@@ -188,7 +194,7 @@ function lal(el) {
   $res = mysqli_fetch_array($result);
   echo "<input type=\"hidden\" value = \"" .$id . "\" name=\"understudy_id_\" >";
 
-  echo "<input type= \"text\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"first_name\" value=\"$res[0]\" required>";
+  echo "<input type= \"text\"  onkeyup=\"lal2(this)\"  maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"first_name\" value=\"$res[0]\" required>";
      ?><br>
    </div>
   <div class="container col-3">
@@ -200,7 +206,7 @@ function lal(el) {
 
   $res = mysqli_fetch_array($result);
 
-  echo "<input type= \"text\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"last_name\" value=\"$res[0]\" required>";
+  echo "<input type= \"text\"  onkeyup=\"lal2(this)\"  maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"last_name\" value=\"$res[0]\" required>";
      ?><br>
      </div>
   <div class="container col-3">
@@ -211,7 +217,7 @@ function lal(el) {
 
   $res = mysqli_fetch_array($result);
 
-  echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"middle_name\" value=\"$res[0]\" required>";
+  echo "<input type= \"text\"  onkeyup=\"lal2(this)\"  maxlength=\"50\" class=\"form-control\" tabindex=\"2\" name=\"middle_name\" value=\"$res[0]\" required>";
      ?><br>
     </div>
 </div></br>
@@ -625,7 +631,7 @@ function lal(el) {
 
      $res = mysqli_fetch_array($result);
 
-     echo "<input type= \"text\" maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"nationality\" value=\"$res[0]\" required>";
+     echo "<input type= \"text\"  onkeyup=\"lal2(this)\"  maxlength=\"50\"  class=\"form-control\" tabindex=\"2\" name=\"nationality\" value=\"$res[0]\" required>";
       ?><br>
     </div>    </div>
 
