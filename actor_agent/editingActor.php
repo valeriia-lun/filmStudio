@@ -162,16 +162,82 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
 <form action="" method="post">
 
 <div class="row text-center" style="margin:10px;">
-    <div class=" container col-3" >
-    <label class="colorText">Ім'я: </label><label style="color:red;">*</label>
-  <?php
-  if (isset($_POST['editBtn'])){
-    $id = filter_var(trim($_POST['actor_id']),FILTER_SANITIZE_STRING);
 
-  }
+  <div class=" container col-3" >
+  <label class="colorText">Фото: </label><label style="color:red;">*</label>
+
+<?php
+function res($result){
+ $print = "";
+   if($result)
+   {
+       $rows = mysqli_num_rows($result); // количество полученных строк
+       for ($i = 0 ; $i < $rows ; ++$i)
+       {
+           $row = mysqli_fetch_row($result);
+               for ($j = 0 ; $j < 1 ; ++$j)   $print .= "$row[$j]"."<br/>";
+       }
+   }
+   return $print;
+ }
+
+  $id = filter_var(trim($_POST['actor_id']),FILTER_SANITIZE_STRING);
 
 $mysql = new mysqli("localhost","root","root","filmstudio");
 $mysql->query("SET NAMES 'utf8'");
+
+$result = $mysql->query("SELECT `actor_photo` FROM `actors_photo` WHERE `actor_id` = '$id'");
+
+while($stroka = mysqli_fetch_array($result)){
+  //echo res($result);
+  $value = res($stroka);
+  echo "<img src=\"" . $value . "\" width=\"280\" height=\"125\"  alt=\"фото\" />";
+
+}
+
+if ($result) {
+    echo "Success!";
+  }
+else {
+     echo "Error! $mysql->error <br>";
+   }
+
+// $res = mysqli_fetch_array($result);
+//
+// print_r($res);
+
+// for($i = 0; $i < count($res); $i++){
+//   echo $i;
+//   echo $res[$i];
+//   echo "<img src=\"$res[$i]\" width=\"280\" height=\"125\"  alt=\"фото\" />";
+// }
+//
+// echo $res[0];
+// echo $res[1];
+// echo $res[2];
+
+// foreach ($res as $value) {
+//   echo "<img src=\"$value\" width=\"280\" height=\"125\"  alt=\"фото\" />";
+//   echo $value;
+// }
+
+
+
+ ?>
+
+
+</div>
+
+
+    <div class=" container col-3" >
+    <label class="colorText">Ім'я: </label><label style="color:red;">*</label>
+  <?php
+  // if (isset($_POST['editBtn'])){
+  //   $id = filter_var(trim($_POST['actor_id']),FILTER_SANITIZE_STRING);
+  //
+  // }
+
+
 $result = $mysql->query("SELECT `actor_name` FROM `actors` WHERE `actor_id` = $id");
 
 $res = mysqli_fetch_array($result);
@@ -320,7 +386,7 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" onk
  ?><br>
 
 </div>
-  
+
 
  <div class=" container col-3">
 <label class="colorText">Стаж: </label><label style="color:red;">*</label>
@@ -396,7 +462,7 @@ $res = mysqli_fetch_array($result);
 echo "<input type= \"date\" maxlength=\"50\" class=\"form-control\" tabindex=\"2\" id=\"work_until\" name=\"work_until\" value=\"$res[0]\">";
   ?><br>
 </div>
- 
+
 
  <div class=" container col-4">
  <label class="colorText">E-mail: </label><label style="color:red;">*</label>
@@ -626,7 +692,7 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
 
    </select><br>
 </div>
-  
+
    <div class=" container col-3">
    <label class="colorText">   Національність: </label><label style="color:red;">*</label>
 <?php

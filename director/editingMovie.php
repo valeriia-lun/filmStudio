@@ -105,6 +105,8 @@ function lal(el) {
   <div class="row text-center" style="margin:10px;">
     <div class=" container col-4" >  <label class="colorText">Назва:  </label><label style="color:red;">*</label>
   <?php
+
+
   //if (isset($_POST['editBtn'])){
     $name = filter_var(trim($_POST['name_of_movie']),FILTER_SANITIZE_STRING);
     // echo $name;
@@ -910,6 +912,8 @@ sleep(2);
 
 //Redirect using the Location header.
 header('Location: editingMovie.php');
+
+
 
 //exit to prevent the rest of the script from executing
 }

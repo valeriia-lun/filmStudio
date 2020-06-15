@@ -95,8 +95,11 @@
 </html>
 
 <?php
+
+
 if (isset($_POST['add'])){
   header("Location: /filmStudio/director/addingMovie.php");
+
 }
 
 if (isset($_POST['find'])){
@@ -221,6 +224,6 @@ if (isset($_POST['find'])){
   }
 }
 
-
+exit;
 
  ?>
