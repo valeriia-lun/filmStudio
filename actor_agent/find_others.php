@@ -14,6 +14,37 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
 </script>
 <link rel="stylesheet" href="..\style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var maxFieldFilms = 10; //Input fields increment limitation
+  var addButtonFilms = $('.add_button_Films'); //Add button selector
+  var wrapperFilms = $('.field_wrapper_Films'); //Input field wrapper
+  /*var fieldHTMLFilms = ('.field_wrapper_Films select')[0].outerHTML;
+  alert(fieldHTMLFilms);// '<div><input type="text" class="form-control" name="field_name_Films[]" value=""/><a href="javascript:void(0);" class="remove_button_Films"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
+  */var xFilms = 1; //Initial field counter is 1
+  var fieldHTMLFilms = "<div><select name=\"field_name_Films[]\"  class=\"select selectpicker  form-control\">" + $('.field_wrapper_Films select')[0].innerHTML + "</select><a href=\"javascript:void(0);\" class=\"remove_button_Films\"><img src=\"../img/delete_icon.png\" width=\'20\' height=\'20\'/></a></div>";
+
+  //Once add button is clicked
+  $(addButtonFilms).click(function(){
+      //Check maximum number of input fields
+      if(xFilms < maxFieldFilms){
+          xFilms++; //Increment field counter
+          $(wrapperFilms).append(fieldHTMLFilms); //Add field html
+      }
+  });
+
+  //Once remove button is clicked
+  $(wrapperFilms).on('click', '.remove_button_Films', function(e){
+      e.preventDefault();
+      $(this).parent('div').remove(); //Remove field html
+      xFilms--; //Decrement field counter
+
+    });
+});
+
+</script>
 </head>
 
 <style type="text/css">
@@ -23,7 +54,7 @@
 }
 
 @media print {
-  
+
   .noprint { display: none; }
 table{zoom: 40%;}
 #printOnly{}
@@ -41,7 +72,7 @@ table{zoom: 40%;}
 #pageFooter:after {
     counter-increment: page;
     content: counter(page) ;
-    
+
     font-size: 20pt;
 }
 </style>
@@ -57,9 +88,9 @@ table{zoom: 40%;}
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only">(current)</span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Агент по акторах</label>
     </form>
@@ -70,20 +101,124 @@ table{zoom: 40%;}
 
 </div>
 <div class="noprint">
-<form action="find_others_zapyty.php" method="post">
-<div class="container col-md-3">
-<select  class="select selectpicker  form-control" name="selecting">
-  <option value="adminy_maidan">Адміністратори майданчика</option>
-  <option value="amount_films_10_more">Інші співробітники, які брали участь у більше, ніж 10 фільмах</option>
-  <option value="find_email">Інший співробітник, e-mail якого o.glushenko@gmail.com</option>
+
+
+
+
+<form action="find_actors_zapyty.php" method="post">
+<select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
+
+  <option value="max_experience" >Актори з найбільшим стажем</option>
+  <option value="female">Актори жіночого роду</option>
+  <option value="salary_20000_more">Актори із зарплатнею < 20 000 грн</option>
+  <option value="blond">Актори блондини</option>
+  <option value="movie_zoloto">Актори, що знялися в фільмі 'Золото'</option>
+  <option value="most_expensive_actor" >Найдорожчі актори</option>
+  <option value="makeByHand">Фільтрувати самостійно</option>
 </select>
+</div></div></br>
 
+
+
+
+<div id = "appearFilters" style="display: none;">
+<div class="row">
+<div class="col-md-3 container">
+<label class="colorText" >Ім'я<input class="form-control" name ="name"></input></label>
 </div>
-<div class="btn">
-  <button class ="button btn btn-danger" name="done">Знайти</button>
+<div class="col-md-3 container">
+<label class="colorText" >Прізвище<input class="form-control" name="surname"></input></label>
+</div>
+<div class="col-md-3 container">
+<label class="colorText" >По-батькові<input class="form-control" name="middleName" ></input></label>
+</div>
+<div class="col-md-3 container">
+<label class="colorText" >Рейтинг&nbsp;&nbsp;</label>
+<input type="radio" id="choice>"
+     name="choice1" value=">">
+    <label >></label>
+
+    <input type="radio" id="choice<"
+     name="choice1" value="<">
+    <label ><</label>
+
+    <input type="radio" id="choice="
+     name="choice1" value="=">
+    <label >=</label><input class="form-control" name="rating" ></input>
+
+</div></div></br>
+
+
+
+<div class="row">
+<div class="col-md-3 container">
+<label class="colorText" >Кількість фільмів у яких брали участь&nbsp;&nbsp;</label>
+<input type="radio" id="choice>"
+     name="choice2" value=">">
+    <label >></label>
+
+    <input type="radio" id="choice<"
+     name="choice2" value="<">
+    <label ><</label>
+
+    <input type="radio" id="choice="
+     name="choice2" value="=">
+    <label >=</label><input class="form-control" onkeyup="lal(this)" name="amountOfFilms" ></input>
 </div>
 
+</div></br>
+
+
+</br>
+<div class="row">
+
+
+
+<div class="col-md-3 container">
+<label class="colorText" >Фільми, в яких брали участь:</label>
+<?php
+$mysqli = new mysqli("localhost","root","root","filmstudio");
+$mysqli->query("SET NAMES 'utf8'");
+
+$result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie`");
+echo "<div class=\"field_wrapper_Films\"><div>";
+echo "<select name=\"field_name_Films[]\"  class=\"select selectpicker  form-control\"><option></option>";
+while($stroka = mysqli_fetch_array($result_films)){
+for ($i=0; $i<count($stroka); $i+=2){
+  echo "<option>$stroka[$i]</option>";
+}
+}
+echo "</select>";
+echo "<a href=\"javascript:void(0);\" class=\"add_button_Films\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a>";
+echo "</div></div>";
+?>
+</div></div>
+</div>
+</div>
+<script>
+function lal(el) {
+  if (el.value.match( /[^0-9]/ ) ) {
+        alert( "Неправильний формат числа! \nМожна використовувати тільки цифри" );
+        el.value = el.value.replace( /[^0-9]/ , "" )
+    }
+}
+
+function yesnoCheck(that) {
+    if(that.value == "makeByHand"){
+      document.getElementById("appearFilters").style.display = "block";
+    }else{
+      document.getElementById("appearFilters").style.display = "none";
+    }
+}
+</script>
+
+<div class="btn noprint">
+  <button class ="button btn btn-primary" name="done">Знайти</button>
+</div>
 </form>
+
+
+
 </div>
 <div  style="margin:10px;">
 <table border="1" class=" table table-dark table-hover" >
@@ -132,7 +267,7 @@ $mysqli->query("SET NAMES 'utf8'");
 //$mysqli->close();
 
 while ($stroka = mysqli_fetch_array($result_others)){
- 
+
   $temp = $stroka['others_id'];
 
   $result_phones = $mysqli->query("SELECT `others_phone_number` FROM `others_phones` WHERE `others_id` IN (SELECT `others_id` FROM  `others` WHERE `others_id` = $temp)");
@@ -162,16 +297,16 @@ $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `numbe
 	 	   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
     echo"</tr>";
    }
-  
+
 ?>
 
 </table>
-</div><div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку: 
-  <?php 
-    $currentDateTime = date('Y-m-d'); 
+</div><div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку:
+  <?php
+    $currentDateTime = date('Y-m-d');
     echo $currentDateTime;
   ?></p></div>
-  
+
   <div id="printOnly" class="row ">
 <div class="col-12 container fixed-bottom">
   <div id="content">

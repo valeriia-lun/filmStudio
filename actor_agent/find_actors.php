@@ -57,7 +57,7 @@ $(document).ready(function(){
 }
 
 @media print {
-  
+
   .noprint { display: none; }
 table{zoom: 40%;}
 #printOnly{}
@@ -75,7 +75,7 @@ table{zoom: 40%;}
 #pageFooter:after {
     counter-increment: page;
     content: counter(page) ;
-    
+
     font-size: 20pt;
 }
 </style>
@@ -138,18 +138,51 @@ table{zoom: 40%;}
 <label class="colorText" >По-батькові<input class="form-control" name="middleName" ></input></label>
 </div>
 <div class="col-md-3 container">
-<label class="colorText" >Рейтинг<input class="form-control" name="rating" ></input></label>
-</div></div></br>
+<label class="colorText" >Рейтинг&nbsp;&nbsp;</label>
+<input type="radio" id="choice>"
+     name="choice1" value=">">
+    <label >></label>
 
+    <input type="radio" id="choice<"
+     name="choice1" value="<">
+    <label ><</label>
+
+    <input type="radio" id="choice="
+     name="choice1" value="=">
+    <label >=</label><input class="form-control" name="rating" ></input>
+
+</div></div></br>
 
 
 
 <div class="row">
 <div class="col-md-3 container">
-<label class="colorText" >Кількість фільмів у яких брали участь<input class="form-control" onkeyup="lal(this)" name="amountOfFilms" ></input></label>
+<label class="colorText" >Кількість фільмів у яких брали участь&nbsp;&nbsp;</label>
+<input type="radio" id="choice>"
+     name="choice2" value=">">
+    <label >></label>
+
+    <input type="radio" id="choice<"
+     name="choice2" value="<">
+    <label ><</label>
+
+    <input type="radio" id="choice="
+     name="choice2" value="=">
+    <label >=</label><input class="form-control" onkeyup="lal(this)" name="amountOfFilms" ></input>
 </div>
 <div class="col-md-3 container">
-<label class="colorText" >Вік<input class="form-control" onkeyup="lal(this)" name="age" ></input></label>
+<label class="colorText" >Вік&nbsp;&nbsp;</label>
+<input type="radio" id="choice>"
+     name="choice3" value=">">
+    <label >></label>
+
+    <input type="radio" id="choice<"
+     name="choice3" value="<">
+    <label ><</label>
+
+    <input type="radio" id="choice="
+     name="choice3" value="=">
+    <label >=</label><input class="form-control" onkeyup="lal(this)" name="age" ></input>
 </div>
 <div class="col-md-3 container">
 <label class="colorText" >Стать</label><select name="selectingSex"   class="select selectpicker  form-control">
@@ -159,7 +192,18 @@ table{zoom: 40%;}
 </select>
 </div>
 <div class="col-md-3 container">
-<label class="colorText" >Ріст<input class="form-control" onkeyup="lal(this)" name="height" ></input></label></div></div></br>
+<label class="colorText" >Ріст&nbsp;&nbsp;</label>
+<input type="radio" id="choise>"
+     name="choice4" value=">">
+    <label >></label>
+
+    <input type="radio" id="choise<"
+     name="choice4" value="<">
+    <label ><</label>
+
+    <input type="radio" id="choise="
+     name="choice4" value="=">
+    <label >=</label><input class="form-control" onkeyup="lal(this)" name="height" ></input></div></div></br>
 
 <div class="row">
 <div class="col-md-3 container">
@@ -170,12 +214,33 @@ table{zoom: 40%;}
   <option>Блонд</option>
   <option>Брюнет</option>
   <option>Шатен</option>
+  <option>Русявий</option>
+  <option>Рожевий</option>
+  <option>Синий</option>
+  <option>Сивий</option>
+  <option>Червоний</option>
+  <option>Помаранчевий</option>
+  <option>Жовтий</option>
+  <option>Зелений</option>
+  <option>Блакитний</option>
+  <option>Фіолетовий</option>
 </select>
 </div>
 
 </br>
 <div class="col-md-3 container">
-<label class="colorText" >Довжина волосся</label><input onkeyup="lal(this)" class="form-control" name="hairLength"></input>
+<label class="colorText" >Довжина волосся&nbsp;&nbsp;</label>
+<input type="radio" id="choise>"
+     name="choice5" value=">">
+    <label >></label>
+
+    <input type="radio" id="choise<"
+     name="choice5" value="<">
+    <label ><</label>
+
+    <input type="radio" id="choise="
+     name="choice5" value="=">
+    <label >=</label><input onkeyup="lal(this)" class="form-control" name="hairLength"></input>
 </div>
 <div class="col-md-3 container">
 <label class="colorText" >Колір очей:</label>
@@ -199,10 +264,32 @@ table{zoom: 40%;}
 </br>
 <div class="row">
 <div class="col-md-3 container">
-<label class="colorText" >Розмір взуття</label><input onkeyup="lal(this)" class="form-control" name="shoeSize" ></input>
+<label class="colorText" >Розмір взуття&nbsp;&nbsp;</label>
+<input type="radio" id="choise>"
+     name="choice6" value=">">
+    <label >></label>
+
+    <input type="radio" id="choise<"
+     name="choice6" value="<">
+    <label ><</label>
+
+    <input type="radio" id="choise="
+     name="choice6" value="=">
+    <label >=</label><input onkeyup="lal(this)" class="form-control" name="shoeSize" ></input>
 </div>
 <div class="col-md-3 container">
-<label class="colorText" >Розмір одягу</label><input onkeyup="lal(this)" class="form-control" name="clothingSize" ></input></div>
+<label class="colorText" >Розмір одягу&nbsp;&nbsp;</label><input type="radio" id="choise>"
+     name="choice7" value=">">
+    <label >></label>
+
+    <input type="radio" id="choise<"
+     name="choice7" value="<">
+    <label ><</label>
+
+    <input type="radio" id="choise="
+     name="choice7" value="=">
+    <label >=</label><input onkeyup="lal(this)" class="form-control" name="clothingSize" ></input></div>
+
 <div class="col-md-3 container">
 <label class="colorText" >Національність:</label>
 <select name="selectingNationality"  class="select selectpicker  form-control">
@@ -259,6 +346,10 @@ function yesnoCheck(that) {
   <button class ="button btn btn-primary" name="done">Знайти</button>
 </div>
 </form>
+
+
+
+
 </div>
 <div  style="margin:10px;">
 <table border="1" class=" table table-dark table-hover" >
@@ -321,7 +412,7 @@ while ($stroka = mysqli_fetch_array($result_actors)){
   $temp = $stroka['actor_id'];
 
 
-  
+
   $result_phones = $mysqli->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id` IN (SELECT `actor_id` FROM  `actors` WHERE `actor_id` = $temp)");
   $result_contacts_rel = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id` IN (SELECT `actor_id` FROM  `actors` WHERE `actor_id` = $temp)");
   $result_ratings = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `actors_previous_movies_rating` WHERE `actor_id` = $temp)");
@@ -372,12 +463,12 @@ echo "<input type=\"hidden\" value = \"" .$stroka['actor_id'] . "\" name=\"actor
 </div>
 
 
-  <div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку: 
-  <?php 
-    $currentDateTime = date('Y-m-d'); 
+  <div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку:
+  <?php
+    $currentDateTime = date('Y-m-d');
     echo $currentDateTime;
   ?></p></div>
-  
+
   <div id="printOnly" class="row ">
 <div class="col-12 container fixed-bottom">
   <div id="content">

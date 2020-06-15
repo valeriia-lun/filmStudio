@@ -262,11 +262,21 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
    <div class=" container col-3">
    <label class="colorText">Колір волосся:</label><label style="color:red;">*</label>
    <select class="form-control" name="hair_color">
-   <option selected>Чорний</option>
-   <option>Блонд</option>
-   <option>Рудий</option>
-   <option>Коричневий</option>
-   <option>Білий</option>
+     <option selected>Рудий</option>
+     <option>Блонд</option>
+     <option>Брюнет</option>
+     <option>Шатен</option>
+     <option>Русявий</option>
+     <option>Рожевий</option>
+     <option>Синий</option>
+     <option>Сивий</option>
+     <option>Червоний</option>
+     <option>Помаранчевий</option>
+     <option>Жовтий</option>
+     <option>Зелений</option>
+     <option>Блакитний</option>
+     <option>Фіолетовий</option>
+
    </select>
    </div></div><br>
 
@@ -295,21 +305,22 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
 <div class=" container col-3">
    <label class="colorText"> Колір очей:</label><label style="color:red;">*</label>
    <select class="form-control" name="eyes">
-   <option selected>Блакитний</option>
-   <option>Сірий</option>
-   <option>Зелений</option>
-   <option>Карі</option>
+     <option selected>Блакитний</option>
+     <option >Зелений</option>
+     <option >Карий</option>
+     <option >Сірий</option>
    </select><br>
    </div>
    <div class=" container col-3">
    <label class="colorText"> Статура:</label><label style="color:red;">*</label>
    <select class="form-control" name="stature">
-   <option selected>Худий</option>
-   <option>Спортивний</option>
-   <option>Товстий</option>
+     <option selected>Худий</option>
+     <option >Спортивний</option>
+     <option >Повний</option>
+     <option >Стрункий</option>
    </select>
    </div>
-  
+
 <div class=" container col-3">
 <label class="colorText"> Національність: </label><label style="color:red;">*</label><input onkeyup="lal2(this)" type="text" class="form-control" name="nationality" maxlength="50" tabindex="2" required><br>
 </div> </div>
