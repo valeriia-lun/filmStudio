@@ -71,12 +71,12 @@
 <div class="noprint">
 <form action="find_editor_zapyty.php" method="post">
 <div class="container col-md-3">
-<select  class="select selectpicker  form-control"name="selecting">
+<select  onchange="yesnoCheck(this);" class="select selectpicker  form-control"name="selecting">
   <option value="khanenko">Монтажер Ханенко</option>
   <option value="makeByHand">Фільтрувати самостійно</option>
 
 </select>
-</div>
+</div></div>
 
 
 
