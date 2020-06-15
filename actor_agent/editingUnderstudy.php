@@ -139,6 +139,46 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
 </script>
 <link rel="stylesheet" href="..\style.css">
+<style type="text/css">
+@media screen
+{
+    #printOnly{display:none;}
+}
+
+@media print {
+  
+  .noprint { display: none; }
+table{zoom: 40%;}
+#printOnly{}
+@page { margin: 0; size: landscape; }
+
+  }
+  #content {
+    display: table;
+}
+
+#pageFooter {
+    display: table-footer-group;
+}
+
+#pageFooter:after {
+    counter-increment: page;
+    content: counter(page) ;
+    
+    font-size: 20pt;
+}
+
+
+   figure {
+    width: 75%; /* Ширина */
+    float: left; /* Выстраиваем элементы по горизонтали */
+    margin: 0 0 0 13%; /* Отступ слева */
+    padding: 2%; /* Поля */
+   }
+   figure:first-child {
+    margin-left: 0; /* Убираем отступ для первого элемента */
+   }
+  </style>
 <script>
 function lal(el) {
   if (el.value.match( /[^0-9]/ ) ) {
@@ -175,12 +215,42 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
 </nav>
 
 <br><br><h1 class="colorForAllText">Змінити інформацію про дублера</h1>
-<small>Поля, позначені </small><small style="color:red;">*</small><small> - обов'язкові.</small></br></br>
+<h1 id="printOnly" class=" colorForAllText">Дублер</h1>
+<div class="noprint"><small >Поля, позначені </small><small style="color:red;">*</small><small> - обов'язкові.</small></br></br></div>
+
 
 <form action="" method="post">
 <div class="row text-center" style="margin:10px;">
+
+<div class=" container col-4" >
+<label class="colorText">Фото: </label><label  class="noprint" class="noprint" style="color:red;">*</label>
+</div></div>
+<div class="row text-center" style="margin:10px;">
+<div class=" container col-6" >
+<?php
+
+$id = filter_var(trim($_POST['understudy_id']),FILTER_SANITIZE_STRING);
+//echo $id;
+$mysql = new mysqli("localhost","root","root","filmstudio");
+$mysql->query("SET NAMES 'utf8'");
+
+$result = $mysql->query("SELECT `understudy_photo` FROM `understudies_photo` WHERE `understudy_id` = $id");
+
+while($stroka = mysqli_fetch_array($result)){
+
+$link = $stroka[0];
+
+echo "<p></p><figure><img src='$link' width=\"100%\"  alt=\"фото\" /></figure>";
+
+}
+
+?>
+
+
+</div></div>
+<div class="row text-center" style="margin:10px;">
     <div class=" container col-3" >
-    <label class="colorText">Ім'я: </label><label style="color:red;">*</label>
+    <label class="colorText">Ім'я: </label><label class="noprint" style="color:red;">*</label>
     <?php
     if (isset($_POST['editBtn'])){
       $id = filter_var(trim($_POST['understudy_id']),FILTER_SANITIZE_STRING);
@@ -198,7 +268,7 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
      ?><br>
    </div>
   <div class="container col-3">
-  <label class="colorText">Прізвище:</label><label style="color:red;">*</label>
+  <label class="colorText">Прізвище:</label><label class="noprint" style="color:red;">*</label>
     <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
@@ -210,7 +280,7 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
      ?><br>
      </div>
   <div class="container col-3">
-  <label class="colorText">По-батькові: </label><label style="color:red;">*</label> <?php
+  <label class="colorText">По-батькові: </label><label class="noprint" style="color:red;">*</label> <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
   $result = $mysql->query("SELECT `understudy_middle_name` FROM `Understudies` WHERE `understudy_id` = $id");
@@ -226,7 +296,7 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
 
 <div class="row text-center" style="margin:10px;">
   <div class=" container col-3">
-  <label class="colorText">Телефон:</label> <label style="color:red;">*</label><div class="field_wrapper_Phones">
+  <label class="colorText">Телефон:</label> <label class="noprint" style="color:red;">*</label><div class="field_wrapper_Phones">
   <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
@@ -239,15 +309,15 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
       for ($j = 0 ; $j < 1 ; ++$j){
         echo "<div><input type= \"text\" maxlength=\"50\" onkeyup=\"lal(this)\" class=\"form-control\" name=\"field_name_Phones[]\" tabindex=\"2\" value=\"$row[$j]\" required>";
         if($i == 0){
-            echo "<a href=\"javascript:void(0);\" class=\" add_button_Phones\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a></div>";
+            echo "<a href=\"javascript:void(0);\" class=\"noprint  add_button_Phones\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a></div>";
         } else{
-              echo "<a href=\"javascript:void(0);\" class=\" remove_button_Phones\"><img src=\"../img/delete_icon.png\" height='20' width='20'/></a></div>";
+              echo "<a href=\"javascript:void(0);\" class=\" noprint remove_button_Phones\"><img src=\"../img/delete_icon.png\" height='20' width='20'/></a></div>";
         }
       }
   }
   ?></div><br></div>
 <div class=" container col-3">
-<label class="colorText">Контакти близьких:</label> <label style="color:red;">*</label><div class="field_wrapper_Contacts">
+<label class="colorText">Контакти близьких:</label> <label class="noprint" style="color:red;">*</label><div class="field_wrapper_Contacts">
          <?php
        $mysql = new mysqli("localhost","root","root","filmstudio");
        $mysql->query("SET NAMES 'utf8'");
@@ -261,9 +331,9 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
               for ($j = 0 ; $j < 1 ; ++$j){
                 echo "<div><input type= \"text\" onkeyup=\"lal(this)\" maxlength=\"50\" class=\"form-control\" name=\"field_name_Contacts[]\" tabindex=\"2\" value=\"$row[$j]\" required>";
                 if($i == 0){
-                    echo "<a href=\"javascript:void(0);\" class=\" add_button_Contacts\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a></div>";
+                    echo "<a href=\"javascript:void(0);\" class=\" noprint add_button_Contacts\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a></div>";
                 } else{
-                      echo "<a href=\"javascript:void(0);\" class=\"remove_button_Contacts\"><img src=\"../img/delete_icon.png\" height='20' width='20'/></a></div>";
+                      echo "<a href=\"javascript:void(0);\" class=\"noprint remove_button_Contacts\"><img src=\"../img/delete_icon.png\" height='20' width='20'/></a></div>";
                 }
               }
       }
@@ -289,9 +359,9 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
         for ($j = 0 ; $j < 1 ; ++$j){
           echo "<div><div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" class=\"form-control\" name=\"field_name_Ratings[]\" tabindex=\"2\" value=\"$row[$j]\" required></div>";
           if($i == 0){
-              echo "<a href=\"javascript:void(0);\" class=\"add_button_Ratings\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a></div>";
+              echo "<a href=\"javascript:void(0);\" class=\"noprint add_button_Ratings\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a></div>";
           } else{
-                echo "<a href=\"javascript:void(0);\" class=\" remove_button_Ratings\"><img src=\"../img/delete_icon.png\" height='20' width='20'/></a></div>";
+                echo "<a href=\"javascript:void(0);\" class=\" noprint remove_button_Ratings\"><img src=\"../img/delete_icon.png\" height='20' width='20'/></a></div>";
           }
         }
   }
@@ -306,7 +376,7 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
 <div class="row text-center" style="margin:10px;">
 
 <div class=" container col-2">
-    <label class="colorText">Дата народження: </label> <label style="color:red;">*</label><?php
+    <label class="colorText">Дата народження: </label> <label class="noprint" style="color:red;">*</label><?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
   $result = $mysql->query("SELECT `understudy_date_of_birth` FROM `Understudies` WHERE `understudy_id` = $id");
@@ -318,7 +388,7 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
     </div>
 
     <div class=" container col-3">
-    <label class="colorText">Заробітня плата:</label><label style="color:red;">*</label><?php
+    <label class="colorText">Заробітня плата:</label><label class="noprint" style="color:red;">*</label><?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
   $result = $mysql->query("SELECT `understudy_salary` FROM `Understudies` WHERE `understudy_id` = $id");
@@ -330,7 +400,7 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
 
 
  <div class=" container col-3">
-<label class="colorText">Стаж: </label><label style="color:red;">*</label>
+<label class="colorText">Стаж: </label><label class="noprint" style="color:red;">*</label>
   <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
@@ -342,7 +412,7 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
    ?><br>
   </div>
 <div class=" container col-2">
-<label class="colorText">Працює з: </label><label style="color:red;">*</label><?php
+<label class="colorText">Працює з: </label><label class="noprint" style="color:red;">*</label><?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
   $result = $mysql->query("SELECT `understudy_works_since` FROM `Understudies` WHERE `understudy_id` = $id");
@@ -359,7 +429,7 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
 
  <div class="row text-center" style="margin:10px;">
  <div class=" container col-5">
-  <label class="colorText">Місце народження:</label> <label style="color:red;">*</label> <?php
+  <label class="colorText">Місце народження:</label> <label class="noprint" style="color:red;">*</label> <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
   $result = $mysql->query("SELECT `understudy_place_of_birth` FROM `Understudies` WHERE `understudy_id` = $id");
@@ -370,7 +440,7 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
    ?><br></div>
   
     <div class=" container col-5">
-  <label class="colorText"> Домашня адреса:</label><label style="color:red;">*</label>
+  <label class="colorText"> Домашня адреса:</label><label class="noprint" style="color:red;">*</label>
      <?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
@@ -405,7 +475,7 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
     </div>
    
    <div class=" container col-4">
-   <label class="colorText">E-mail: </label> <label style="color:red;">*</label><?php
+   <label class="colorText">E-mail: </label> <label class="noprint" style="color:red;">*</label><?php
   $mysql = new mysqli("localhost","root","root","filmstudio");
   $mysql->query("SET NAMES 'utf8'");
   $result = $mysql->query("SELECT `understudy_e-mail` FROM `Understudies` WHERE `understudy_id` = $id");
@@ -453,7 +523,7 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
 
       </div>
    <div class=" container col-3">
-   <label class="colorText">Зріст: </label> <label style="color:red;">*</label> <?php
+   <label class="colorText">Зріст: </label> <label class="noprint" style="color:red;">*</label> <?php
      $mysql = new mysqli("localhost","root","root","filmstudio");
      $mysql->query("SET NAMES 'utf8'");
      $result = $mysql->query("SELECT `understudy_height` FROM `Understudies` WHERE `understudy_id` = $id");
@@ -464,7 +534,7 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
       ?><br>
   </div>
     <div class=" container col-3">
-    <label class="colorText">  Колір волосся: </label><label style="color:red;">*</label>
+    <label class="colorText">  Колір волосся: </label><label class="noprint" style="color:red;">*</label>
      <select class="form-control" name="hairColor">
        <?php
         $mysql = new mysqli("localhost","root","root","filmstudio");
@@ -516,7 +586,7 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
 
 <div class="row">
 <div class=" container col-3">
-<label class="colorText">   Довжина волосся: </label><label style="color:red;">*</label><?php
+<label class="colorText">   Довжина волосся: </label><label class="noprint" style="color:red;">*</label><?php
      $mysql = new mysqli("localhost","root","root","filmstudio");
      $mysql->query("SET NAMES 'utf8'");
      $result = $mysql->query("SELECT `understudy_length_of_hair` FROM `Understudies` WHERE `understudy_id` = $id");
@@ -528,7 +598,7 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
 </div>
    
 <div class=" container col-3">
-<label class="colorText">  Розмір взуття: </label><label style="color:red;">*</label><?php
+<label class="colorText">  Розмір взуття: </label><label class="noprint" style="color:red;">*</label><?php
      $mysql = new mysqli("localhost","root","root","filmstudio");
      $mysql->query("SET NAMES 'utf8'");
      $result = $mysql->query("SELECT `understudy_shoe_size` FROM `Understudies` WHERE `understudy_id` = $id");
@@ -539,7 +609,7 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
       ?><br>
 </div>
    <div class=" container col-3">
-   <label class="colorText">   Розмір одягу:</label><label style="color:red;">*</label> <?php
+   <label class="colorText">   Розмір одягу:</label><label class="noprint" style="color:red;">*</label> <?php
      $mysql = new mysqli("localhost","root","root","filmstudio");
      $mysql->query("SET NAMES 'utf8'");
      $result = $mysql->query("SELECT `understudy_clothing_size` FROM `Understudies` WHERE `understudy_id` = $id");
@@ -557,7 +627,7 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
 
 <div class="row">
 <div class=" container col-3">
-   <label class="colorText">Колір очей: </label><label style="color:red;">*</label>
+   <label class="colorText">Колір очей: </label><label class="noprint" style="color:red;">*</label>
      <select class="form-control" name="eyes">
        <?php
         $mysql = new mysqli("localhost","root","root","filmstudio");
@@ -594,7 +664,7 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
 
      </div>
    <div class=" container col-3">
-   <label class="colorText">  Статура: </label><label style="color:red;">*</label>
+   <label class="colorText">  Статура: </label><label class="noprint" style="color:red;">*</label>
      <select class="form-control" name="stature">
      <?php
      $mysql = new mysqli("localhost","root","root","filmstudio");
@@ -624,7 +694,7 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
   </div>
  
    <div class=" container col-3">
-   <label class="colorText">   Національність: </label><label style="color:red;">*</label> <?php
+   <label class="colorText">   Національність: </label><label class="noprint" style="color:red;">*</label> <?php
      $mysql = new mysqli("localhost","root","root","filmstudio");
      $mysql->query("SET NAMES 'utf8'");
      $result = $mysql->query("SELECT `understudy_nationality` FROM `Understudies` WHERE `understudy_id` = $id");
@@ -774,9 +844,9 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
           echo "<option value=\"10\">знає іспанську</option>";
         }
         if($i == 0){
-            echo "<a href=\"javascript:void(0);\"  class=\"add_button_Skills\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a></div>";
+            echo "<a href=\"javascript:void(0);\"  class=\"noprint add_button_Skills\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a></div>";
         } else{
-              echo "<a href=\"javascript:void(0);\" class=\"remove_button_Skills\"><img src=\"../img/delete_icon.png\" height='20' width='20'/></a></div>";
+              echo "<a href=\"javascript:void(0);\"  class=\"noprint remove_button_Skills\"><img src=\"../img/delete_icon.png\" height='20' width='20'/></a></div>";
         }
       }
     }
@@ -787,12 +857,27 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
 </div>
 
 
-<div class="btn">
+<div class="btn noprint">
 <input type="submit" class ="button btn btn-primary" value="Змінити" name="edit">
 </div><br><br><br>
 
 </form>
+<div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку: 
+  <?php 
+    $currentDateTime = date('Y-m-d'); 
+    echo $currentDateTime;
+  ?></p></div>
+  
+  <div id="printOnly" class="row ">
+<div class="col-12 container fixed-bottom">
+  <div id="content">
+  <div id="pageFooter"></div></div></div></div>
 
+
+
+<div class="btn noprint">
+<button  class ="button btn btn-danger" onclick="window.print()">Друкувати</button></br></br></br>
+</div>
 
 </body>
 
