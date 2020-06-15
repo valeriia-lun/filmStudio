@@ -22,7 +22,7 @@
 }
 
 @media print {
-  
+
   .noprint { display: none; }
 
 #printOnly{}
@@ -40,7 +40,7 @@
 #pageFooter:after {
     counter-increment: page;
     content: counter(page) ;
-    
+
     font-size: 20pt;
 }
 </style>
@@ -56,9 +56,9 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only">(current)</span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Режисер</label>
     </form>
@@ -84,8 +84,7 @@
 <td>Жанр</td>
 <td>Тривалість</td>
 <td><div class = "noprint">Змінити інформацію про фільм</div></td>
-<td><div class = "noprint">Обрати знімальну групу</div></td>
-<td><div class = "noprint">Обрати групу монтажерів</div></td>
+
 </tr></thead>
 
 <?php
@@ -130,13 +129,12 @@ switch($selecting){
         echo"<td>" .  res($result_movies_duration) . "</td>";
         echo"<td>" . $stroka['number_of_film_crew'] . "</td>";
         echo"<td>" . $stroka['number_of_edit_crew'] . "</td>";
-        echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити інформацію</button>"."</div></td></form>";
-          echo "<td>"."<div class = \"btn noprint\">"."<form  action = \"choose_filmCrew_to_film.php\" method=\"post\"><button class =\" btn btn-danger\">Обрати</button></form>"."</div></td>";
-    echo "<td>"."<div class = \"btn noprint\">"."<form  action = \"choose_editCrew_to_film.php\" method=\"post\"><button class =\" btn btn-danger\">Обрати</button></form>"."</div></td>";
 
 
-        echo"<form action=\"editingMovie.php\" method=\"post\></form>";
+        echo"<form action=\"editingMovie.php\" method=\"post\">";
         echo "<input type=\"hidden\" value = \"" .$stroka['name_of_movie'] . "\" name=\"name_of_movie\" >";
+
+        echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\" >Змінити інформацію</button>"."</div></td></form>";
 
         echo"</tr>";
        }
@@ -283,14 +281,14 @@ FROM Help))");
               $selectingGenre =  $_POST['selectingGenre'];
               $selectingNFCrew =  $_POST['selectingNFCrew'];
               $selectingNECrew =  $_POST['selectingNECrew'];
-              
+
               $quer = "SELECT * FROM `movie` WHERE ";
               //        echo $quer;
               //        $quer .= "fff";
               //        echo $quer;
-              
+
                 $isFirst = true;
-              
+
                 if($name != NULL){
                   if(!$isFirst){
                     $quer = $quer . " AND ";
@@ -320,7 +318,7 @@ FROM Help))");
                   $quer = $quer . "rating_of_movie = $rating";
                   $isFirst = false;
                 }
-               
+
                 if($selectingNFCrew != NULL){
                   if(!$isFirst){
                     $quer = $quer . " AND ";
@@ -343,7 +341,7 @@ FROM Help))");
                   $isFirst = false;
                 }*/
                 $result_filter = $mysqli->query($quer);
-              
+
                 if ($result_filter) {
                 //   echo "Success!";
                  }
@@ -351,7 +349,7 @@ FROM Help))");
                     echo "Error! $mysqli->error <br>";
                   }
 
-                  
+
 
 
 while ($stroka = mysqli_fetch_array($result_filter)){
@@ -372,18 +370,18 @@ $result_movies_duration = $mysqli->query("SELECT `duration_of_movie` FROM `movie
   echo"</tr>";
 
 }
-break; 
+break;
   }
 }
 ?>
 </table>
 </div>
-<div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку: 
-  <?php 
-    $currentDateTime = date('Y-m-d'); 
+<div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку:
+  <?php
+    $currentDateTime = date('Y-m-d');
     echo $currentDateTime;
   ?></p></div>
-  
+
   <div id="printOnly" class="row ">
 <div class="col-12 container fixed-bottom">
   <div id="content">

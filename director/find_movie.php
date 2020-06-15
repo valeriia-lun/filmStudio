@@ -27,7 +27,7 @@ $().datepicker();
 }
 
 @media print {
-  
+
   .noprint { display: none; }
 
 #printOnly{}
@@ -45,7 +45,7 @@ $().datepicker();
 #pageFooter:after {
     counter-increment: page;
     content: counter(page) ;
-    
+
     font-size: 20pt;
 }
 </style>
@@ -133,7 +133,7 @@ function yesnoCheck(that) {
   <option >Драма</option>
   <option >Бойовик</option>
   <option >Триллер</option>
-  <option >Жахи</option>  
+  <option >Жахи</option>
   <option >Детектив</option>
   <option >Комедія</option>
   <option >Вестерн</option>
@@ -150,7 +150,7 @@ $result_headId = $mysqli->query("SELECT `number_of_film_crew` FROM `film_crew`")
 echo "<select name=\"selectingNFCrew\"  class=\"select selectpicker  form-control\"><option></option>";
 while($stroka = mysqli_fetch_array($result_headId)){
 for ($i=0; $i<count($stroka); $i+=2){
-  echo "<option>$stroka[$i]</option>"; 
+  echo "<option>$stroka[$i]</option>";
 }
 }
 echo "</select>";
@@ -167,7 +167,7 @@ $result_headId = $mysqli->query("SELECT `number_of_edit_crew` FROM `edit_crew`")
 echo "<select name=\"selectingNECrew\"  class=\"select selectpicker  form-control\"><option></option>";
 while($stroka = mysqli_fetch_array($result_headId)){
 for ($i=0; $i<count($stroka); $i+=2){
-  echo "<option>$stroka[$i]</option>"; 
+  echo "<option>$stroka[$i]</option>";
 }
 }
 echo "</select>";
@@ -198,8 +198,7 @@ echo "</select>";
 <td>Номер знімальної групи</td>
 <td>Номер групи монтажерів</td>
 
-<td><div class = "noprint">Обрати знімальну групу</div></td>
-<td><div class = "noprint">Обрати групу монтажерів</div></td>
+
 <td><div class = "noprint">Змінити інформацію про фільм</div></td>
 </tr></thead>
 
@@ -239,8 +238,7 @@ while ($stroka = mysqli_fetch_array($result_movies)){
     echo"<td>" .  res($result_movies_genres) . "</td>";
     echo"<td>" .  res($result_movies_duration) . "</td>";
     echo"<td>" . $stroka['number_of_film_crew'] . "</td>";
-    echo"<td>" . $stroka['number_of_edit_crew'] . "</td>"; echo "<td>"."<div class = \"btn noprint\">"."<form  action = \"choose_filmCrew_to_film.php\" method=\"post\"><button class =\" btn btn-danger\" value = \"" .$stroka['name_of_movie'] . "\" name=\"name_of_movie\">Обрати</button></form>"."</div></td>";
-     echo "<td>"."<div class = \"btn noprint\">"."<form  action = \"choose_editCrew_to_film.php\" method=\"get\"><button class =\" btn btn-danger\" >Обрати</button></form>"."</div></td>";
+    echo"<td>" . $stroka['number_of_edit_crew'] . "</td>";
 
 
     echo"<form action=\"editingMovie.php\" method=\"post\">";
@@ -255,12 +253,12 @@ while ($stroka = mysqli_fetch_array($result_movies)){
 
 
 </table>
-</div><div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку: 
-  <?php 
-    $currentDateTime = date('Y-m-d'); 
+</div><div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку:
+  <?php
+    $currentDateTime = date('Y-m-d');
     echo $currentDateTime;
   ?></p></div>
-  
+
   <div id="printOnly" class="row ">
 <div class="col-12 container fixed-bottom">
   <div id="content">
