@@ -22,7 +22,7 @@
 }
 
 @media print {
-  
+
   .noprint { display: none; }
 
 #printOnly{}
@@ -40,7 +40,7 @@
 #pageFooter:after {
     counter-increment: page;
     content: counter(page) ;
-    
+
     font-size: 20pt;
 }
 </style>
@@ -72,9 +72,9 @@ function yesnoCheck(that) {
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only">(current)</span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Агент по акторах</label>
     </form>
@@ -113,6 +113,17 @@ function yesnoCheck(that) {
 </div>
 <div class="col-md-3 container">
 <label class="colorText" >Бюджет:</label>
+<input type="radio" id="choice>"
+     name="choice1" value=">">
+    <label >></label>
+
+    <input type="radio" id="choice<"
+     name="choice1" value="<">
+    <label ><</label>
+
+    <input type="radio" id="choice="
+     name="choice1" value="=">
+    <label >=</label>
 <input class="form-control" onkeyup="lal(this)" name="budget"></input>
 </div></div>
 
@@ -120,6 +131,17 @@ function yesnoCheck(that) {
 <div class="row">
 <div class="col-md-3 container">
 <label class="colorText" >Рейтинг:</label>
+<input type="radio" id="choice>"
+     name="choice2" value=">">
+    <label >></label>
+
+    <input type="radio" id="choice<"
+     name="choice2" value="<">
+    <label ><</label>
+
+    <input type="radio" id="choice="
+     name="choice2" value="=">
+    <label >=</label>
 <input class="form-control" onkeyup="lal(this)" name="rating"></input></br>
 </div>
 <div class="col-md-3 container">
@@ -129,7 +151,7 @@ function yesnoCheck(that) {
   <option >Драма</option>
   <option >Бойовик</option>
   <option >Триллер</option>
-  <option >Жахи</option>  
+  <option >Жахи</option>
   <option >Детектив</option>
   <option >Комедія</option>
   <option >Вестерн</option>
@@ -146,7 +168,7 @@ $result_headId = $mysqli->query("SELECT `number_of_film_crew` FROM `film_crew`")
 echo "<select name=\"selectingNFCrew\"  class=\"select selectpicker  form-control\"><option></option>";
 while($stroka = mysqli_fetch_array($result_headId)){
 for ($i=0; $i<count($stroka); $i+=2){
-  echo "<option>$stroka[$i]</option>"; 
+  echo "<option>$stroka[$i]</option>";
 }
 }
 echo "</select>";
@@ -163,7 +185,7 @@ $result_headId = $mysqli->query("SELECT `number_of_edit_crew` FROM `edit_crew`")
 echo "<select name=\"selectingNECrew\"  class=\"select selectpicker  form-control\"><option></option>";
 while($stroka = mysqli_fetch_array($result_headId)){
 for ($i=0; $i<count($stroka); $i+=2){
-  echo "<option>$stroka[$i]</option>"; 
+  echo "<option>$stroka[$i]</option>";
 }
 }
 echo "</select>";
@@ -214,9 +236,9 @@ function res($result){
     }
     return $print;
   };
-  
-  
-  
+
+
+
 while ($stroka = mysqli_fetch_array($result_movies)){
   $temp = $stroka['name_of_movie'];
 
@@ -235,17 +257,17 @@ while ($stroka = mysqli_fetch_array($result_movies)){
     echo"<td>" .  res($result_movies_duration) . "</td>";
     echo"</tr>";
    }
-  
+
 ?>
 
 
 </table>
-</div><div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку: 
-  <?php 
-    $currentDateTime = date('Y-m-d'); 
+</div><div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку:
+  <?php
+    $currentDateTime = date('Y-m-d');
     echo $currentDateTime;
   ?></p></div>
-  
+
   <div id="printOnly" class="row ">
 <div class="col-12 container fixed-bottom">
   <div id="content">

@@ -23,7 +23,7 @@
 }
 
 @media print {
-  
+
   .noprint { display: none; }
 
 #printOnly{}
@@ -41,7 +41,7 @@
 #pageFooter:after {
     counter-increment: page;
     content: counter(page) ;
-    
+
     font-size: 20pt;
 }
 </style>
@@ -57,9 +57,9 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only">(current)</span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Агент по акторах</label>
     </form>
@@ -84,15 +84,38 @@
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
-$result_headId = $mysqli->query("SELECT `editor_crew_head_id` FROM `edit_crew`");
-echo "<select name=\"selectingHeadId\"  class=\"select selectpicker  form-control\"><option></option>";
+$result_headId = $mysqli->query("SELECT * FROM `editor` WHERE `editor_id` IN(SELECT `editor_crew_head_id` FROM `edit_crew`)");
+
+echo "<select name=\"selectingHeadId\"  class=\"select selectpicker  form-control\"><option selected></option>";
 while($stroka = mysqli_fetch_array($result_headId)){
-for ($i=0; $i<count($stroka); $i+=2){
-  echo "<option>$stroka[$i]</option>"; 
-}
+  if($stroka != 0){
+    echo "<option value=\"\">" . $stroka['editor_surname'] ." ".  $stroka['editor_name'] . " ". $stroka['editor_middle_name'] .", ". "id: " . $stroka['editor_id'] . "</option>";
+  } else{
+    echo "<option selected>" . "</option>";
+  }
+
+// for ($i=0; $i<count($stroka); $i+=2){
+//   echo "<option>$stroka[$i]</option>";
+// }
 }
 echo "</select>";
 ?>
+</div>
+<div class=" container col-3" >
+  <label class="colorText">Назва фільму: </label>
+  <?php
+  $mysqli = new mysqli("localhost","root","root","filmstudio");
+  $mysqli->query("SET NAMES 'utf8'");
+  $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie`");
+  echo "<select name=\"selectingFilms\"  class=\"select selectpicker  form-control\"><option></option>";
+  while($stroka = mysqli_fetch_array($result_films)){
+  for ($i=0; $i<count($stroka); $i+=2){
+    echo "<option>$stroka[$i]</option>";
+  }
+  }
+  echo "</select>";
+  ?>
+  <br>
 </div>
 </div>
 
@@ -106,35 +129,73 @@ echo "</select>";
 <thead class="thead-dark " style="background-color: #252527;">
 <tr>
 <td>Номер групи монтажерів</td>
+<td>Назва фільму</td>
 <td>Дата початку роботи групи монтажерів</td>
 <td>Дата закінчення роботи групи монтажерів</td>
-<td>Id голови групи монтажерів</td>
+<td>Голова монтажної групи</td>
+<td><div class = "noprint">Змінити інформацію</div></td>
+
 
 </tr></thead>
-
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
+function res($result){
+$print = "";
+ if($result)
+ {
+     $rows = mysqli_num_rows($result); // количество полученных строк
+     for ($i = 0 ; $i < $rows ; ++$i)
+     {
+         $row = mysqli_fetch_row($result);
+             for ($j = 0 ; $j < 1 ; ++$j)   $print .= "$row[$j]"."<br/>";
+     }
+ }
+ return $print;
+}
+
 $result_edit_crews = $mysqli->query("SELECT * FROM `edit_crew`");
 //$mysqli->close();
 while ($stroka = mysqli_fetch_array($result_edit_crews)){
+  $temp = $stroka['number_of_edit_crew'];
+  $result_movie = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_edit_crew` = $temp");
+
     echo"<tr>";
+
     echo"<td>" . $stroka['number_of_edit_crew'] . "</td>";
+
+    $value = res($result_movie);
+
+    echo"<td>" . $value . "</td>";
+
     echo"<td>" . $stroka['date_start_edit_crew'] . "</td>";
     echo"<td>" . $stroka['date_finish_edit_crew'] . "</td>";
-    echo"<td>" . $stroka['editor_crew_head_id'] . "</td>";
+    $value = $stroka['editor_crew_head_id'];
+    $result_head_editor = $mysqli->query("SELECT * FROM `editor` WHERE `editor_id` = '$value'");
+    $strokaa = mysqli_fetch_array($result_head_editor);
+
+    echo"<td>Id: " . $stroka['editor_crew_head_id'] . " " . $strokaa['editor_surname'] . " " . $strokaa['editor_name'] . " " . $strokaa['editor_middle_name'] . "</td>";
+
+
+    echo"<form action=\"editingMovie.php\" method=\"post\">";
+
+echo "<input type=\"hidden\" value = \"" .$value . "\" name=\"name_of_movie\" >";
+echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";
+
+
+
     echo"</tr>";
    }
-  
+
 ?>
 
 </table>
-</div><div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку: 
-  <?php 
-    $currentDateTime = date('Y-m-d'); 
+</div><div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку:
+  <?php
+    $currentDateTime = date('Y-m-d');
     echo $currentDateTime;
   ?></p></div>
-  
+
   <div id="printOnly" class="row ">
 <div class="col-12 container fixed-bottom">
   <div id="content">

@@ -69,6 +69,62 @@
 <h1 align="center" class="colorForAllText">Групи монтажерів</h1></br>
 </div>
 
+<div class="noprint">
+<form action="find_editCrew_zapyty.php" method="post">
+
+<div class="row">
+<div class=" container col-3" >
+    <label class="colorText">Дата початку роботи: </label><input type="date" class="form-control" name="date_start" maxlength="50" tabindex="2" ><br>
+  </div>
+  <div class=" container col-3" >
+    <label class="colorText">Дата кінця роботи: </label><input type="date" class="form-control" name="date_finish" maxlength="50" tabindex="2" ><br>
+  </div>
+  <div class="col-3 container">
+<label class="colorText" >Табельний номер голови:</label>
+<?php
+$mysqli = new mysqli("localhost","root","root","filmstudio");
+$mysqli->query("SET NAMES 'utf8'");
+$result_headId = $mysqli->query("SELECT * FROM `editor` WHERE `editor_id` IN(SELECT `editor_crew_head_id` FROM `edit_crew`)");
+
+echo "<select name=\"selectingHeadId\"  class=\"select selectpicker  form-control\"><option selected></option>";
+while($stroka = mysqli_fetch_array($result_headId)){
+  if($stroka != 0){
+    echo "<option value=\"\">" . $stroka['editor_surname'] ." ".  $stroka['editor_name'] . " ". $stroka['editor_middle_name'] .", ". "id: " . $stroka['editor_id'] . "</option>";
+  } else{
+    echo "<option selected>" . "</option>";
+  }
+
+// for ($i=0; $i<count($stroka); $i+=2){
+//   echo "<option>$stroka[$i]</option>";
+// }
+}
+echo "</select>";
+?>
+</div>
+<div class=" container col-3" >
+  <label class="colorText">Назва фільму: </label>
+  <?php
+  $mysqli = new mysqli("localhost","root","root","filmstudio");
+  $mysqli->query("SET NAMES 'utf8'");
+  $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie`");
+  echo "<select name=\"selectingFilms\"  class=\"select selectpicker  form-control\"><option></option>";
+  while($stroka = mysqli_fetch_array($result_films)){
+  for ($i=0; $i<count($stroka); $i+=2){
+    echo "<option>$stroka[$i]</option>";
+  }
+  }
+  echo "</select>";
+  ?>
+  <br>
+</div>
+</div>
+
+<div class="btn">
+  <button class ="button btn btn-danger" name="done">Знайти</button>
+</div>
+</form>
+</div>
+
 <div  style="margin:10px;">
 <table border="1" class=" table table-dark table-hover" >
 <thead class="thead-dark " style="background-color: #252527;">
@@ -89,6 +145,9 @@ $mysqli->query("SET NAMES 'utf8'");
         $date_start =  $_POST['date_start'];
         $date_finish =  $_POST['date_finish'];
         $selectingHeadId =  $_POST['selectingHeadId'];
+        $movieName =  $_POST['selectingFilms'];
+
+
 
         $quer = "SELECT * FROM `edit_crew` WHERE ";
 
@@ -115,6 +174,16 @@ $mysqli->query("SET NAMES 'utf8'");
                   }
                   $quer = $quer . "editor_crew_head_id = \"$selectingHeadId\"";
                   $isFirst = false;
+                }
+
+                if($movieName != NULL){
+                //  $isLast = false;
+                  if(!$isFirst){
+                    $quer = $quer . " AND ";
+                  }
+                  $quer = $quer . "number_of_edit_crew IN(SELECT `number_of_edit_crew` FROM `movie` WHERE `name_of_movie` = '$movieName') ";
+                  $isFirst = false;
+                  echo $quer;
                 }
 
 
