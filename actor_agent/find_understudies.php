@@ -432,7 +432,7 @@ function yesnoCheck(that) {
 <td>Телефон</td>
 <td>Контакти близьких</td>
 <td class = "noprint"><div class = "noprint">Рейтинги фільмів, в яких брали участь</div></td>
-<td>Фільми, в яких брали участь</td>
+<td style="width:1px;white-space:nowrap;">Фільми, в яких брали участь</td>
 <td class = "noprint"><div class = "noprint">Зміна інформації про дублера</div></td>
 </tr></thead>
 <?php
@@ -462,7 +462,7 @@ while ($stroka = mysqli_fetch_array($result_understudies)){
     $result_phones = $mysqli->query("SELECT `understudy_phone_number` FROM `understudy_phones` WHERE `understudy_id` IN (SELECT `understudy_id` FROM  `understudies` WHERE `understudy_id` = $temp)");
     $result_contacts_rel = $mysqli->query("SELECT `understudy_relatives_phone_numbers` FROM `understudies_contacts_of_relatives` WHERE `understudy_id` IN (SELECT `understudy_id` FROM  `understudies` WHERE `understudy_id` = $temp)");
     $result_ratings = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `understudy_previous_movies_ratings` WHERE `understudy_id` = $temp)");
-
+    $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM  `understudies_filmcrew` WHERE `understudy_id` = $temp)");
 
  echo"<tr>";
     echo"<td>" . $stroka['understudy_id'] . "</td>";
@@ -495,8 +495,8 @@ while ($stroka = mysqli_fetch_array($result_understudies)){
     echo"<td>" .  res($result_skills) . "</td>";
     echo"<td>" .  res($result_phones) . "</td>";
     echo"<td >" .  res($result_contacts_rel) . "</td>";
-    echo"<td class = \" noprint\">" .  res($result_ratings) . "</td>";
-
+    echo"<td>" .  res($result_ratings) . "</td>";
+   	   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
     echo"<form action=\"editingUnderstudy.php\" method=\"post\">";
 
   echo "<input type=\"hidden\" value = \"" .$stroka['understudy_id'] . "\" name=\"understudy_id\" >";
