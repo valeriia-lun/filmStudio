@@ -22,7 +22,7 @@
 }
 
 @media print {
-  
+
   .noprint { display: none; }
 
 #printOnly{}
@@ -40,7 +40,7 @@
 #pageFooter:after {
     counter-increment: page;
     content: counter(page) ;
-    
+
     font-size: 20pt;
 }
 </style>
@@ -56,9 +56,9 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only">(current)</span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Режисер</label>
     </form>
@@ -73,6 +73,8 @@
 <div class="container col-md-3">
 <select  class="select selectpicker  form-control"name="selecting">
   <option value="khanenko">Монтажер Ханенко</option>
+  <option value="makeByHand">Фільтрувати самостійно</option>
+
 </select>
 </div>
 <div class="btn">
@@ -97,7 +99,6 @@
 <td>Ел.пошта</td>
 <td>Телефон</td>
 <td>Контакти близьких</td>
-<td style="width:1px;white-space:nowrap;">Фільми, в яких брали участь</td>
 </tr></thead>
 
 <?php
@@ -125,7 +126,7 @@ while ($stroka = mysqli_fetch_array($result_editors)){
 
   $result_phones = $mysqli->query("SELECT `editor_phone_number` FROM `editor_phones` WHERE `editor_id` IN (SELECT `editor_id` FROM  `editor` WHERE `editor_id` = $temp)");
   $result_contacts_rel = $mysqli->query("SELECT `editor_relatives_phone_numbers` FROM `editor_contacts_of_relatives` WHERE `editor_id` IN (SELECT `editor_id` FROM  `editor` WHERE `editor_id` = $temp)");
-$result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_edit_crew` IN (SELECT `number_of_edit_crew` FROM  `editor_crewedit` WHERE `editor_id` = $temp)");
+
     echo"<tr>";
     echo"<td>" . $stroka['editor_id'] . "</td>";
     echo"<td>" . $stroka['editor_name'] . "</td>";
@@ -140,19 +141,19 @@ $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `numbe
     echo"<td>" . $stroka['editor_e-mail'] . "</td>";
 
     echo"<td>" .  res($result_phones) . "</td>";
-    echo"<td>" .  res($result_contacts_rel) . "</td>";	 	   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
+    echo"<td>" .  res($result_contacts_rel) . "</td>";
     echo"</tr>";
    }
-  
+
 ?>
 
 </table>
-</div><div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку: 
-  <?php 
-    $currentDateTime = date('Y-m-d'); 
+</div><div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку:
+  <?php
+    $currentDateTime = date('Y-m-d');
     echo $currentDateTime;
   ?></p></div>
-  
+
   <div id="printOnly" class="row ">
 <div class="col-12 container fixed-bottom">
   <div id="content">
