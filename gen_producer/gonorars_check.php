@@ -54,13 +54,7 @@ $gonorar = $_POST['gonorar'];
 //print_r($gonorar);
 //$counter = 0;
 
-$bud= $mysqli->query("SELECT `budget_of_movie` FROM `movie`  WHERE `number_of_film_crew` = '$number_of_film_crew'");
-$budget = mysqli_fetch_array($bud);
-$sum_of_fee = $gonorar + $gonorar2 + $gonorar3 + $gonorar4;
-if( $sum_of_fee > $budget){
-echo "</br></br></br><h1 class=\"colorForAllText\">Здається, щось пішло не так, сума гонорарів не може бути більшою за бюджет фільму..</h1>";
-echo "<a href=\"#\" class=\"btn btn-danger\" onclick=\"history.back();return false;\">Назад</a>";
-}else{
+
 
 $result = $mysqli->query("UPDATE `actor_filmcrew` SET  `actor_fee` = '$gonorar' WHERE `number_of_film_crew` = '$number_of_film_crew' AND `actor_id` = '$actor_id'");
 if ($result) {
@@ -69,7 +63,7 @@ if ($result) {
 else {
     echo "</br></br></br><h1 class=\"colorForAllText\">Здається, щось пішло не так, гонорар для акторів не було додано..</h1>";
     echo "<a href=\"#\" class=\"btn btn-danger\" onclick=\"history.back();return false;\">Назад</a>";
-}}
+}
 
 }
 
@@ -86,10 +80,7 @@ if (isset($_POST['done2'])){
    // echo ($gonorar2);
     //print_r($gonorar);
     //$counter = 0;
-    if( $sum_of_fee > $budget){
-      echo "</br></br></br><h1 class=\"colorForAllText\">Здається, щось пішло не так, сума гонорарів не може бути більшою за бюджет фільму..</h1>";
-      echo "<a href=\"#\" class=\"btn btn-danger\" onclick=\"history.back();return false;\">Назад</a>";
-      }else{
+
     $result = $mysqli->query("UPDATE `understudies_filmcrew` SET  `understudy_fee` = '$gonorar2' WHERE `number_of_film_crew` = '$number_of_film_crew' AND `understudy_id` = '$understudy_id'");
     if ($result) {
         echo "</br></br></br><h1 class=\"colorForAllText\">Гонорар успішно додано!</h1>";
@@ -97,7 +88,7 @@ if (isset($_POST['done2'])){
     else {
         echo "</br></br></br><h1 class=\"colorForAllText\">Здається, щось пішло не так, гонорар для дублерів не було додано..</h1>";
         echo "<a href=\"#\" class=\"btn btn-danger\" onclick=\"history.back();return false;\">Назад</a>";
-    }}
+    }
 
     }
 
@@ -115,12 +106,7 @@ if (isset($_POST['done2'])){
        // echo ($gonorar3);
         //print_r($gonorar);
         //$counter = 0;
-   
 
-        if( $sum_of_fee > $budget){
-          echo "</br></br></br><h1 class=\"colorForAllText\">Здається, щось пішло не так, сума гонорарів не може бути більшою за бюджет фільму..</h1>";
-          echo "<a href=\"#\" class=\"btn btn-danger\" onclick=\"history.back();return false;\">Назад</a>";
-          }else{
         $result = $mysqli->query("UPDATE `others_filmcrew` SET  `others_fee` = '$gonorar3' WHERE `number_of_film_crew` = '$number_of_film_crew' AND `others_id` = '$others_id'");
         if ($result) {
             echo "</br></br></br><h1 class=\"colorForAllText\">Гонорар успішно додано!</h1>";
@@ -129,7 +115,7 @@ if (isset($_POST['done2'])){
             echo "</br></br></br><h1 class=\"colorForAllText\">Здається, щось пішло не так, гонорар для інших співробітників не було додано..</h1>";
             echo "<a href=\"#\" class=\"btn btn-danger\" onclick=\"history.back();return false;\">Назад</a>";
         }
-      }
+
         }
 
 
@@ -146,10 +132,7 @@ if (isset($_POST['done2'])){
        // echo ($gonorar4);
         //print_r($gonorar);
         //$counter = 0;
-        if( $sum_of_fee > $budget){
-          echo "</br></br></br><h1 class=\"colorForAllText\">Здається, щось пішло не так, сума гонорарів не може бути більшою за бюджет фільму..</h1>";
-          echo "<a href=\"#\" class=\"btn btn-danger\" onclick=\"history.back();return false;\">Назад</a>";
-          }else{
+
         $result = $mysqli->query("UPDATE `editor_crewedit` SET  `editor_fee` = '$gonorar4' WHERE `number_of_edit_crew` = '$number_of_editCrew' AND `editor_id` = '$editor_id'");
         if ($result) {
             echo "</br></br></br><h1 class=\"colorForAllText\">Гонорар успішно додано!</h1>";
@@ -157,11 +140,9 @@ if (isset($_POST['done2'])){
         else {
             echo "</br></br></br><h1 class=\"colorForAllText\">Здається, щось пішло не так, гонорар для монтажерів не було додано..</h1>";
             echo "<a href=\"#\" class=\"btn btn-danger\" onclick=\"history.back();return false;\">Назад</a>";
-        }}
-  
         }
 
-
+        }
 
 
 $mysqli->close();
