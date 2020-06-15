@@ -444,7 +444,7 @@ $result = $mysql->query("SELECT * FROM actors WHERE actor_id IN(SELECT actor_id 
 
    }
 
-   $result_understudies = $mysql->query("SELECT * FROM understudies WHERE understudy_id IN(SELECT understudy_id FROM understudies_filmcrew  WHERE  number_of_film_crew = '$numb[0]')");
+   $result_understudies = $mysql->query("SELECT * FROM understudies WHERE understudy_id IN(SELECT understudy_id FROM understudies_filmcrew  WHERE  number_of_film_crew = '$numb[0]') ");
 
 
    while ($stroka = mysqli_fetch_array($result_understudies)){
@@ -545,9 +545,9 @@ $result = $mysql->query("SELECT * FROM actors WHERE actor_id IN(SELECT actor_id 
     $used_finish = $date_finish_this_film_crew[0];
 
 
-    $result_others=$mysqli->query("SELECT * FROM others WHERE (`name_of_position` = 'лінійний продюсер' OR  `name_of_position` = 'сценарист' OR  `name_of_position` = 'режисер') AND (others_id NOT IN (SELECT DISTINCT others_id FROM others_filmcrew WHERE number_of_film_crew
+    $result_others=$mysqli->query("SELECT * FROM others WHERE (`name_of_position` = 'лінійний продюсер' OR  `name_of_position` = 'сценарист' OR  `name_of_position` = 'режисер') AND (`others_work_until` IS NULL) AND (others_id NOT IN (SELECT DISTINCT others_id FROM others_filmcrew WHERE number_of_film_crew
      IN(SELECT number_of_film_crew FROM film_crew WHERE ((date_finish_film_crew BETWEEN '$used_start' AND '$used_finish') OR
-    (date_start_crew BETWEEN  '$used_start' AND  '$used_finish')))) )");
+    (date_start_crew BETWEEN  '$used_start' AND  '$used_finish')) ) ) )");
 
 
     while ($stroka = mysqli_fetch_array($result_others)){
