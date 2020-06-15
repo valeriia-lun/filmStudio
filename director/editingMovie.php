@@ -870,16 +870,21 @@ foreach ($genres as $value) {
 
 
 
+  $number_film_crew = filter_var(trim($_POST['number_of_film_crew']),FILTER_SANITIZE_STRING);
 
-  $ans = $mysql->query("DELETE FROM `others_filmCrew` WHERE `number_of_film_crew` = $number_film_crew AND `others_id` IN(SELECT `others_id` FROM `Others` WHERE `name_of_position` = 'сценарист' OR `name_of_position` = 'лінійний продюсер')");
+  $others_id =  $_POST['others_id'];
+
+
+
+  $ans = $mysql->query("DELETE FROM `others_filmCrew` WHERE `number_of_film_crew` = '$number_film_crew' AND `others_id` IN(SELECT `others_id` FROM `Others` WHERE `name_of_position` = 'сценарист' OR `name_of_position` = 'лінійний продюсер')");
 
   foreach($others_id as $value){
     $result = $mysql->query("INSERT INTO `others_filmcrew`(`number_of_film_crew`, `others_id`, `others_fee`) VALUES ('$number_film_crew', '$value','0')");
   if ($result) {
-    echo "</br></br></br><h1 class=\"colorForAllText\">Сценаристів успішно додано до знімальної групи!</h1>";
+    // echo "</br></br></br><h1 class=\"colorForAllText\">Сценаристів успішно додано до знімальної групи!</h1>";
    }
 else {
-  echo "</br></br></br><h1 class=\"colorForAllText\">Здається, щось пішло не так, сценаристів не було додано..</h1>";
+  // echo "</br></br></br><h1 class=\"colorForAllText\">Здається, щось пішло не так, сценаристів не було додано..</h1>";
   echo "<a href=\"#\"  class=\"btn btn-danger\" onclick=\"history.back();return false;\">Назад</a>";
     }
 
@@ -896,10 +901,17 @@ else {
 
 
 
-
 $mysql->close();
 
 header('Location: successfullyEditedMovie.php');
+
+
+sleep(2);
+
+//Redirect using the Location header.
+header('Location: editingMovie.php');
+
+//exit to prevent the rest of the script from executing
 }
 
 
