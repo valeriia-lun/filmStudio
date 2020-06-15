@@ -149,15 +149,15 @@ $(document).ready(function(){
 </div>
 <div class="col-md-3 container">
 <label class="colorText" >Рейтинг&nbsp;&nbsp;</label><input type="radio" id="choise>"
-     name="choise" >
+     name="choise1" >
     <label >></label>
 
     <input type="radio" id="choise<"
-     name="choise">
+     name="choise1">
     <label ><</label>
 
     <input type="radio" id="choise="
-     name="choise" >
+     name="choise1" >
     <label >=</label><input class="form-control" name="rating" ></input>
 
 </div></div></br>
@@ -168,28 +168,28 @@ $(document).ready(function(){
 <div class="row">
 <div class="col-md-3 container">
 <label class="colorText" >Кількість фільмів у яких брали участь&nbsp;&nbsp;</label><input type="radio" id="choise>"
-     name="choise" >
+     name="choise2" >
     <label >></label>
 
     <input type="radio" id="choise<"
-     name="choise">
+     name="choise2">
     <label ><</label>
 
     <input type="radio" id="choise="
-     name="choise" >
+     name="choise2" >
     <label >=</label><input class="form-control" onkeyup="lal(this)" name="amountOfFilms" ></input>
 </div>
 <div class="col-md-3 container">
 <label class="colorText" >Вік&nbsp;&nbsp;</label><input type="radio" id="choise>"
-     name="choise" >
+     name="choise3" >
     <label >></label>
 
     <input type="radio" id="choise<"
-     name="choise">
+     name="choise3">
     <label ><</label>
 
     <input type="radio" id="choise="
-     name="choise" >
+     name="choise3" >
     <label >=</label><input class="form-control" onkeyup="lal(this)" name="age" ></input>
 </div>
 <div class="col-md-3 container">
@@ -201,15 +201,15 @@ $(document).ready(function(){
 </div>
 <div class="col-md-3 container">
 <label class="colorText" >Ріст&nbsp;&nbsp;</label><input type="radio" id="choise>"
-     name="choise" >
+     name="choise4" >
     <label >></label>
 
     <input type="radio" id="choise<"
-     name="choise">
+     name="choise4">
     <label ><</label>
 
     <input type="radio" id="choise="
-     name="choise" >
+     name="choise4" >
     <label >=</label><input class="form-control" onkeyup="lal(this)" name="height" ></input></div></div></br>
 
 <div class="row">
@@ -227,15 +227,15 @@ $(document).ready(function(){
 </br>
 <div class="col-md-3 container">
 <label class="colorText" >Довжина волосся&nbsp;&nbsp;</label><input type="radio" id="choise>"
-     name="choise" >
+     name="choise5" >
     <label >></label>
 
     <input type="radio" id="choise<"
-     name="choise">
+     name="choise5">
     <label ><</label>
 
     <input type="radio" id="choise="
-     name="choise" >
+     name="choise5" >
     <label >=</label><input onkeyup="lal(this)" class="form-control" name="hairLength"></input>
 </div>
 <div class="col-md-3 container">
@@ -262,28 +262,28 @@ $(document).ready(function(){
 <div class="col-md-3 container">
 <label class="colorText" >Розмір взуття&nbsp;&nbsp;</label>
 <input type="radio" id="choise>"
-     name="choise" >
+     name="choise6" >
     <label >></label>
 
     <input type="radio" id="choise<"
-     name="choise">
+     name="choise6">
     <label ><</label>
 
     <input type="radio" id="choise="
-     name="choise" >
+     name="choise6" >
     <label >=</label><input onkeyup="lal(this)" class="form-control" name="shoeSize" ></input>
 </div>
 <div class="col-md-3 container">
 <label class="colorText" >Розмір одягу&nbsp;&nbsp;</label><input type="radio" id="choise>"
-     name="choise" >
+     name="choise7" >
     <label >></label>
 
     <input type="radio" id="choise<"
-     name="choise">
+     name="choise7">
     <label ><</label>
 
     <input type="radio" id="choise="
-     name="choise" >
+     name="choise7" >
     <label >=</label><input onkeyup="lal(this)" class="form-control" name="clothingSize" ></input></div>
 <div class="col-md-3 container">
 <label class="colorText" >Національність:</label>
@@ -416,6 +416,7 @@ function yesnoCheck(that) {
 <td>Телефон</td>
 <td>Контакти близьких</td>
 <td class = "noprint"><div class = "noprint">Рейтинги фільмів, в яких брали участь</div></td>
+<td>Фільми, в яких брали участь</td>
 <td class = "noprint"><div class = "noprint">Зміна інформації про дублера</div></td>
 </tr></thead>
 <?php
