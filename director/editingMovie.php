@@ -588,12 +588,61 @@ if($stroka['name_of_position'] == "лінійний продюсер" || $stroka
       while($stroka = mysqli_fetch_array($result_editor)){
         echo "string";
         print_r($stroka);
-        echo "<option>" . $stroka['editor_surname'] .  $stroka['editor_name'] .  $stroka['editor_middle_name'] . "id:" . $stroka['editor_id'] . "</option>";
+        echo "<option>" . $stroka['editor_surname'] . " " . $stroka['editor_name'] . " " . $stroka['editor_middle_name'] . " id: " . $stroka['editor_id'] . "</option>";
       }
       echo "</select>";
 
 
+
+
+
          ?><br>
+   </div></div><br>
+
+
+   <div class="row text-center" style="margin:10px;">
+       <div class=" container col-4" >
+       <label class="colorText">Склад: </label>
+       <table border="1" class=" table table-dark table-hover" >
+       <thead class="thead-dark " style="background-color: #252527;">
+       <tr>
+       <td>Id</td>
+       <td>ПІБ</td>
+       <td>Стаж</td>
+       <td>Кількість фільмів, у яких брав участь</td>
+       <td>Ел.пошта</td>
+       <td>Телефон</td>
+       <td>Контакти близьких</td>
+       </tr></thead>
+
+       <?php
+       $mysql = new mysqli("localhost","root","root","filmstudio");
+       $mysql->query("SET NAMES 'utf8'");
+    $result_editors = $mysql->query("SELECT * FROM editor WHERE edit_id IN(SELECT editor_id FROM editor_editcrew  WHERE  number_of_edit_crew = '$num')");
+
+
+    while ($stroka = mysqli_fetch_array($result_editors)){
+      $temp = $stroka['editor_id'];
+
+      $result_phones = $mysql->query("SELECT `editor_phone_number` FROM `editor_phones` WHERE `editor_id` IN (SELECT `editor_id` FROM  `editor` WHERE `editor_id` = $temp)");
+      $result_contacts_rel = $mysql->query("SELECT `editor_relatives_phone_numbers` FROM `editor_contacts_of_relatives` WHERE `editor_id` IN (SELECT `editor_id` FROM  `editor` WHERE `editor_id` = $temp)");
+
+
+      echo"<tr>";
+      echo"<td>" . $stroka['editor_id'] . "</td>";
+      echo"<td>" . $stroka['editor_surname'] . " " . $stroka['editor_name']. " " . $stroka['editor_middle_name'] .  "</td>";
+      echo"<td>" . $stroka['editor_experience'] . "</td>";
+      echo"<td>" . $stroka['amount_of_films_editor_took_part_in'] . "</td>";
+      echo"<td>" . $stroka['editor_e-mail'] . "</td>";
+      echo"<td>" .  res($result_phones) . "</td>";
+      echo"<td>" .  res($result_contacts_rel) . "</td>";
+      echo"<tr>";
+
+
+}
+
+         ?>
+       </table><br>
    </div></div><br>
 
 
@@ -695,7 +744,7 @@ foreach ($genres as $value) {
 $mysql->close();
 
 header('Location: successfullyEditedMovie.php');
-
 }
+
 
  ?>
