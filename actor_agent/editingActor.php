@@ -130,7 +130,8 @@
   
   .noprint { display: none; }
 table{zoom: 40%;}
-form{zoom: 90%;}
+form{zoom: 90%;  font-size:14pt;}
+input{width:50%;  size:500;}
 #printOnly{}
 @page { margin: 0; size: landscape; }
 

@@ -249,7 +249,23 @@ echo "</div></div>";
 <div class="row">
 <div class="col-md-3 container">
 <label class="colorText" >Особливі навички:</label>
-<div class="field_wrapper_Skills">
+<?php
+$mysqli = new mysqli("localhost","root","root","filmstudio");
+$mysqli->query("SET NAMES 'utf8'");
+$result_skills = $mysqli->query("SELECT `skill` FROM `skills`");
+echo "<div class=\"field_wrapper_Skills\"><div>";
+echo "<select name=\"field_name_Skills[]\" class=\"select selectpicker form-control\"><option></option>";
+while($stroka = mysqli_fetch_array($result_skills)){
+for ($i=0; $i<count($stroka); $i+=2){
+  echo "<option >$stroka[$i]</option>";
+}
+}
+echo "</select>";
+echo "<a href=\"javascript:void(0);\" class=\"add_button_Skills\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a>";
+echo "</div></div>";
+?>
+
+<!-- <div class="field_wrapper_Skills">
        <div>
            <select class="form-control" name="field_name_Skills[]">
              <option selected></option>
@@ -266,7 +282,7 @@ echo "</div></div>";
             </select>
            <a href="javascript:void(1);" class="add_button_Skills" title="Add field"><img src="../img/add_icon.png" height='35' width='35'/></a>
        </div>
-   </div>
+   </div> -->
 </div></div>
 
 

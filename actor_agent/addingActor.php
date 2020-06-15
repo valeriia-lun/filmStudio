@@ -299,9 +299,19 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
   <div class=" container col-6">
   <label class="colorText"> Інше: </label><input type="text" name="other" class="form-control" maxlength="50" tabindex="2" ><br>
 </div></div><br>
+<div class="row">
+  <div class=" container col-3"></div></div>
+  <label class="colorText"> Фото: </label>
 
+
+ 
+  <div class="row">
+  <div class=" container col-3">
+ 
+<input type="file" name="filePhotos">
+</div></div></br></br></br>
 <div class="btn">
-<input type="submit" class ="button btn btn-primary"  id='validate' value="Додати" name="add">
+<input type="submit" class ="button btn btn-primary"  id='validate' value="Додати актора" name="add">
 
 </div></br></br>
 
@@ -316,15 +326,25 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
 
 <?php
 if (isset($_POST['add'])){
+  $mysql = new mysqli('localhost','root','root','filmStudio');
+  $mysql->query("SET NAMES 'utf8'");
+
+  $file_name = $_FILES['filePhotos']['name'];
+  $max_Phid = $mysql->query("SELECT MAX(`id_actor_photo`) FROM `actors_photo`");
+  $max_photo_id = mysqli_fetch_array($max_Phid);
+  $max_photo_id_use =  $max_photo_id[0]+1;
+  $result_photos_add = $mysql->query("INSERT INTO `actors_photo` (`id_actor_photo`, `actor_photo`,`actor_id`) VALUES ('45', 'hhjjk', '130')");
+  if ($result_photos_add) {
+    echo "Success!";
+  }
+ else {
+     echo "Error! $mysql->error <br>";
+   }
+
 
   $phones = $_POST['field_name_Phones'];
-
-
   $contacts = $_POST['field_name_Contacts'];
   $ratings = $_POST['field_name_Ratings'];
-
-  $mysql = new mysqli('localhost','root','root','filmStudio');
-
   $name = filter_var(trim($_POST['first_name']),FILTER_SANITIZE_STRING);
   $last_name = filter_var(trim($_POST['last_name']),FILTER_SANITIZE_STRING);
   $middle_name = filter_var(trim($_POST['middle_name']),FILTER_SANITIZE_STRING);
@@ -366,7 +386,6 @@ $id = $stroka[0] + 1;
 
 
 
-  $mysql->query("SET NAMES 'utf8'");
 
   $result = $mysql->query("INSERT INTO `actors` (`actor_id`, `actor_middle_name`,`actor_home_address`,`actor_works_since`,`actor_experience`,
     `rating_of_employee`, `amount_of_films_actor_took_part_in`,

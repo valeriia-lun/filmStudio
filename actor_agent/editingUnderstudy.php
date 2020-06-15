@@ -844,7 +844,7 @@ echo "<p></p><figure><img src='$link' width=\"100%\"  alt=\"фото\" /></figur
           echo "<option value=\"10\">знає іспанську</option>";
         }
         if($i == 0){
-            echo "<a href=\"javascript:void(0);\"  class=\"noprint add_button_Skills\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a></div>";
+            echo "<a href=\"javascript:void(0);\"  class=\"noprint add_button_Skills\" title=\"A                              dd field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a></div>";
         } else{
               echo "<a href=\"javascript:void(0);\"  class=\"noprint remove_button_Skills\"><img src=\"../img/delete_icon.png\" height='20' width='20'/></a></div>";
         }

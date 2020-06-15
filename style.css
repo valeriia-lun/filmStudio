@@ -5,6 +5,9 @@
  font-weight: 580;
  background-color: #bbb8b5;
 }
+#file-input {
+    display: none;
+}
 .colorText{
     color: #410a14;
     font-family: "Courier New", Courier, monospace;
