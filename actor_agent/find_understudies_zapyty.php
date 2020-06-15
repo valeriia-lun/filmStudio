@@ -312,7 +312,7 @@ $name =  $_POST['name'];
                     if($i != 0 || !$isFirst){
                       $quer = $quer . " AND ";
                     }
-                    echo $value;
+                  //  echo $value;
                     $quer = $quer . "`understudy_id` IN (SELECT `understudy_id` FROM `understudies_filmcrew` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = \"$value\"))";
                     $isFirst = false;
                     $notFirst = true;
@@ -336,7 +336,7 @@ $name =  $_POST['name'];
                     $isFirst = false;
                   }
                 }
-                echo $quer;
+               // echo $quer;
 
               }
 
@@ -349,7 +349,7 @@ $name =  $_POST['name'];
                   }
 
 
-                echo $quer;
+               // echo $quer;
 
               //  $result_filter = $mysqli->query($quer);
 
