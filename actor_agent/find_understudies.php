@@ -109,18 +109,15 @@ $(document).ready(function(){
 //         xSkills--; //Decrement field counter
 //     });
 
-<<<<<<< HEAD
-=======
     var fieldHTMLSkills = "<div>" + $('.field_wrapper_Skills select')[0].outerHTML + "<a href=\"javascript:void(0);\" class=\"remove_button_Skills\"><img src=\"../img/delete_icon.png\" width=\'20\' height=\'20\'/></a></div>";
     //Once add button is clicked
     $(addButtonSkills).click(function(){
         //Check maximum number of input fields
-        if(xSkills < maxFieldSkills){
+        if(xSkills < maxSkills){
             xSkills++; //Increment field counter
             $(wrapperSkills).append(fieldHTMLSkills); //Add field html
         }
     });
->>>>>>> parent of cd21bbd... rabotayet!!!!!!!!!!!!!!!!!!
 
 });
 
