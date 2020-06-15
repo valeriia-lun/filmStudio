@@ -77,38 +77,37 @@ table{zoom: 40%;}
 <table border="1" class=" table table-dark table-hover" >
 <thead class="thead-dark " style="background-color: #252527;">
 <tr>
-<td>Id</td>
+<tr>
+<td >Id</td>
 <td>Ім'я</td>
 <td>Прізвище</td>
 <td>По-батькові</td>
 <td>Стаж</td>
 <td>Рейтинг</td>
-<td>Зарплата</td>
-<td>Працює з</td>
-<td>Працює до</td>
-<td>Кількість фільмів, у яких брав участь</td>
-<td>Дата народження</td>
-<td>Місце народження</td>
+<td class = "noprint"><div class = "noprint">Зарплата</div></td>
+<td class = "noprint"><div class = "noprint">Працює з</div></td>
+<td class = "noprint"><div class = "noprint">Працює до</div></td>
+<td class = "noprint"><div class = "noprint">Кількість фільмів, у яких брав участь</div></td>
+<td class = "noprint"><div class = "noprint">Дата народження</div></td>
+<td class = "noprint"><div class = "noprint">Місце народження</div></td>
 <td>Місце проживання</td>
-<td>Професія</td>
+<td class = "noprint"><div class = "noprint">Професія</div></td>
 <td>Вік</td>
 <td>Стать</td>
-<td>Ріст</td>
-<td>Колір волосся</td>
-<td>Довжина волосся</td>
-<td>Колір очей</td>
-<td>Статура</td>
+<td >Ріст</td>
+<td class = "noprint"><div class = "noprint">Колір волосся</div></td>
+<td class = "noprint"><div class = "noprint">Довжина волосся</div></td>
+<td class = "noprint"><div class = "noprint">Колір очей</div></td>
+<td class = "noprint"><div class = "noprint">Статура</div></td>
 <td>Розмір взуття</td>
 <td>Розмір одягу</td>
-<td>Національність</td>
-<td>Інші елементи зовнішності</td>
-<td>Ел.пошта</td>
-
-
-<td>Фото</td>
+<td class = "noprint"><div class = "noprint">Національність</div></td>
+<td class = "noprint"><div class = "noprint">Інші елементи зовнішності</div></td>
+<td >Ел.пошта</td>
 <td>Телефон</td>
 <td>Контакти близьких</td>
-<td>Рейтинги фільмів, в яких брали участь </td>
+<td class = "noprint"><div class = "noprint">Рейтинги фільмів, в яких брали участь</div></td>
+<td style="width:1px;white-space:nowrap;">Фільми, в яких брали участь</td>
 <td><div class = "noprint">Зміна інформації про актора</div></td></tr></thead>
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
@@ -236,7 +235,7 @@ while ($stroka = mysqli_fetch_array($result_actors)){
   $result_phones = $mysqli->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id`  = $temp");
   $result_contacts_rel = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp");
   $result_ratings = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `actors_previous_movies_rating` WHERE `actor_id` = $temp)");
-
+$result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM  `actor_filmcrew` WHERE `actor_id` = $temp)");
         echo"<tr >";
     echo"<td>" . $stroka['actor_id'] . "</td>";
     echo"<td>" . $stroka['actor_name'] . "</td>";
@@ -267,7 +266,7 @@ while ($stroka = mysqli_fetch_array($result_actors)){
     echo"<td>" .  res($result_phones) . "</td>";
     echo"<td>" .  res($result_contacts_rel) . "</td>";
     echo"<td class = \" noprint\">" .  res($result_ratings) . "</td>";
-
+	   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
     echo"<form action=\"editingActor.php\" method=\"post\">";
 
   echo "<input type=\"hidden\" value = \"" .$stroka['actor_id'] . "\" name=\"actor_id\" >";
@@ -286,7 +285,7 @@ while ($stroka = mysqli_fetch_array($result_actors)){
       $result_phones = $mysqli->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id`  = $temp");
       $result_contacts_rel = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp");
       $result_ratings = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `actors_previous_movies_rating` WHERE `actor_id` = $temp)");
-
+$result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM  `actor_filmcrew` WHERE `actor_id` = $temp)");
          echo"<tr >";
     echo"<td>" . $stroka['actor_id'] . "</td>";
     echo"<td>" . $stroka['actor_name'] . "</td>";
@@ -317,6 +316,7 @@ while ($stroka = mysqli_fetch_array($result_actors)){
     echo"<td>" .  res($result_phones) . "</td>";
     echo"<td>" .  res($result_contacts_rel) . "</td>";
     echo"<td class = \" noprint\">" .  res($result_ratings) . "</td>";
+	  	   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
         echo"<form action=\"editingActor.php\" method=\"post\">";
 
     echo "<input type=\"hidden\" value = \"" .$stroka['actor_id'] . "\" name=\"actor_id\" >";
@@ -335,7 +335,7 @@ while ($stroka = mysqli_fetch_array($result_actors)){
       $result_phones3 = $mysqli->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id`  = $temp3");
       $result_contacts_rel3 = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp3");
       $result_ratings3 = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `actors_previous_movies_rating` WHERE `actor_id` = $temp3)");
-
+$result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM  `actor_filmcrew` WHERE `actor_id` = $temp)");
         echo"<tr >";
     echo"<td>" . $stroka3['actor_id'] . "</td>";
     echo"<td>" . $stroka3['actor_name'] . "</td>";
@@ -366,6 +366,7 @@ while ($stroka = mysqli_fetch_array($result_actors)){
     echo"<td>" .  res($result_phones3) . "</td>";
     echo"<td>" .  res($result_contacts_rel3) . "</td>";
     echo"<td class = \" noprint\">" .  res($result_ratings3) . "</td>";
+		   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
         echo"<form action=\"editingActor.php\" method=\"post\">";
 
     echo "<input type=\"hidden\" value = \"" .$stroka['actor_id'] . "\" name=\"actor_id\" >";
@@ -382,7 +383,7 @@ while ($stroka = mysqli_fetch_array($result_actors)){
           $result_phones3 = $mysqli->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id`  = $temp3");
           $result_contacts_rel3 = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp3");
           $result_ratings3 = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `actors_previous_movies_rating` WHERE `actor_id` = $temp3)");
-
+$result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM  `actor_filmcrew` WHERE `actor_id` = $temp)");
             echo"<tr >";
     echo"<td>" . $stroka3['actor_id'] . "</td>";
     echo"<td>" . $stroka3['actor_name'] . "</td>";
@@ -413,6 +414,7 @@ while ($stroka = mysqli_fetch_array($result_actors)){
     echo"<td>" .  res($result_phones3) . "</td>";
     echo"<td>" .  res($result_contacts_rel3) . "</td>";
     echo"<td class = \" noprint\">" .  res($result_ratings3) . "</td>";
+	  	   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
             echo"<form action=\"editingActor.php\" method=\"post\">";
 
         echo "<input type=\"hidden\" value = \"" .$stroka['actor_id'] . "\" name=\"actor_id\" >";
@@ -428,7 +430,7 @@ while ($stroka = mysqli_fetch_array($result_actors)){
               $result_phones3 = $mysqli->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id`  = $temp3");
               $result_contacts_rel3 = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp3");
               $result_ratings3 = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `actors_previous_movies_rating` WHERE `actor_id` = $temp3)");
-
+$result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM  `actor_filmcrew` WHERE `actor_id` = $temp)");
                 echo"<tr >";
     echo"<td>" . $stroka3['actor_id'] . "</td>";
     echo"<td>" . $stroka3['actor_name'] . "</td>";
@@ -459,6 +461,7 @@ while ($stroka = mysqli_fetch_array($result_actors)){
     echo"<td>" .  res($result_phones3) . "</td>";
     echo"<td>" .  res($result_contacts_rel3) . "</td>";
     echo"<td class = \" noprint\">" .  res($result_ratings3) . "</td>";
+		   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
                 echo"<form action=\"editingActor.php\" method=\"post\">";
 
             echo "<input type=\"hidden\" value = \"" .$stroka['actor_id'] . "\" name=\"actor_id\" >";
@@ -476,7 +479,7 @@ case  'most_expensive_actor':
     $result_phones3 = $mysqli->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id`  = $temp3");
     $result_contacts_rel3 = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp3");
     $result_ratings3 = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `actors_previous_movies_rating` WHERE `actor_id` = $temp3)");
-
+$result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM  `actor_filmcrew` WHERE `actor_id` = $temp)");
      echo"<tr >";
     echo"<td>" . $stroka3['actor_id'] . "</td>";
     echo"<td>" . $stroka3['actor_name'] . "</td>";
@@ -507,6 +510,7 @@ case  'most_expensive_actor':
     echo"<td>" .  res($result_phones3) . "</td>";
     echo"<td>" .  res($result_contacts_rel3) . "</td>";
     echo"<td class = \" noprint\">" .  res($result_ratings3) . "</td>";
+	  	   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
       echo"<form action=\"editingActor.php\" method=\"post\">";
 
   echo "<input type=\"hidden\" value = \"" .$stroka['actor_id'] . "\" name=\"actor_id\" >";
@@ -698,7 +702,7 @@ case  'most_expensive_actor':
           $result_phones4 = $mysqli->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id`  = $temp4");
           $result_contacts_rel4 = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp4");
           $result_ratings4 = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `actors_previous_movies_rating` WHERE `actor_id` = $temp4)");
-
+$result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM  `actor_filmcrew` WHERE `actor_id` = $temp)");
             echo"<tr>";
             echo"<td>" . $stroka4['actor_id'] . "</td>";
             echo"<td>" . $stroka4['actor_name'] . "</td>";
@@ -731,6 +735,7 @@ case  'most_expensive_actor':
             echo"<td>" .  res($result_phones4) . "</td>";
             echo"<td>" .  res($result_contacts_rel4) . "</td>";
             echo"<td>" .  res($result_ratings4) . "</td>";
+			  	   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
            echo"<form action=\"editingActor.php\" method=\"post\">";
 
   echo "<input type=\"hidden\" value = \"" .$stroka['actor_id'] . "\" name=\"actor_id\" >";
