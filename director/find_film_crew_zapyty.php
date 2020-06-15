@@ -165,7 +165,6 @@ function res($result){
 
     echo"<td>" . $value . "</td>";
 
-    echo"<td>" . $stroka['number_of_film_crew'] . "</td>";
     echo"<td>" . $stroka['date_start_crew'] . "</td>";
     echo"<td>" . $stroka['date_finish_film_crew'] . "</td>";
 
