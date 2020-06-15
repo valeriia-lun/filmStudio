@@ -57,7 +57,7 @@ $(document).ready(function(){
 }
 
 @media print {
-  
+
   .noprint { display: none; }
 table{zoom: 40%;}
 #printOnly{}
@@ -75,7 +75,7 @@ table{zoom: 40%;}
 #pageFooter:after {
     counter-increment: page;
     content: counter(page) ;
-    
+
     font-size: 20pt;
 }
 </style>
@@ -165,11 +165,21 @@ table{zoom: 40%;}
 <div class="col-md-3 container">
 <label class="colorText" >Колір волосся:</label>
 <select name="selectingColorOfHair"  class="select selectpicker  form-control">
-<option ></option>
-  <option>Рудий</option>
-  <option>Блонд</option>
-  <option>Брюнет</option>
-  <option>Шатен</option>
+  <option ></option>
+    <option>Рудий</option>
+    <option>Блонд</option>
+    <option>Брюнет</option>
+    <option>Шатен</option>
+    <option>Русявий</option>
+    <option>Рожевий</option>
+    <option>Синий</option>
+    <option>Сивий</option>
+    <option>Червоний</option>
+    <option>Помаранчевий</option>
+    <option>Жовтий</option>
+    <option>Зелений</option>
+    <option>Блакитний</option>
+    <option>Фіолетовий</option>
 </select>
 </div>
 
@@ -180,20 +190,20 @@ table{zoom: 40%;}
 <div class="col-md-3 container">
 <label class="colorText" >Колір очей:</label>
 <select name="selectingColorOfEyes"  class="select selectpicker  form-control">
-<option ></option>
-  <option>Блакитний</option>
-  <option >Зелений</option>
-  <option >Карий</option>
-  <option >Сірий</option>
+  <option ></option>
+    <option>Блакитний</option>
+    <option >Зелений</option>
+    <option >Карий</option>
+    <option >Сірий</option>
 
 </select></div><div class="col-md-3 container">
 <label class="colorText" >Статура:</label>
 <select name="selectingStature"  class="select selectpicker  form-control">
-<option ></option>
-  <option >Спортивний</option>
-  <option >Худий</option>
-  <option >Повний</option>
-  <option >Стрункий</option>
+  <option ></option>
+    <option >Спортивний</option>
+    <option >Худий</option>
+    <option >Повний</option>
+    <option >Стрункий</option>
 </select></div>
 </div>
 </br>
@@ -321,7 +331,7 @@ while ($stroka = mysqli_fetch_array($result_actors)){
   $temp = $stroka['actor_id'];
 
 
-  
+
   $result_phones = $mysqli->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id` IN (SELECT `actor_id` FROM  `actors` WHERE `actor_id` = $temp)");
   $result_contacts_rel = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id` IN (SELECT `actor_id` FROM  `actors` WHERE `actor_id` = $temp)");
   $result_ratings = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `actors_previous_movies_rating` WHERE `actor_id` = $temp)");
@@ -371,12 +381,12 @@ echo "<input type=\"hidden\" value = \"" .$stroka['actor_id'] . "\" name=\"actor
 </div>
 
 
-  <div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку: 
-  <?php 
-    $currentDateTime = date('Y-m-d'); 
+  <div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку:
+  <?php
+    $currentDateTime = date('Y-m-d');
     echo $currentDateTime;
   ?></p></div>
-  
+
   <div id="printOnly" class="row ">
 <div class="col-12 container fixed-bottom">
   <div id="content">

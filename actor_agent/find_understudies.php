@@ -180,6 +180,16 @@ $(document).ready(function(){
   <option>Блонд</option>
   <option>Брюнет</option>
   <option>Шатен</option>
+  <option>Русявий</option>
+  <option>Рожевий</option>
+  <option>Синий</option>
+  <option>Сивий</option>
+  <option>Червоний</option>
+  <option>Помаранчевий</option>
+  <option>Жовтий</option>
+  <option>Зелений</option>
+  <option>Блакитний</option>
+  <option>Фіолетовий</option>
 </select>
 </div>
 
