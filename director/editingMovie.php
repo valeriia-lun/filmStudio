@@ -381,7 +381,7 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
 </br>
 </br>
 
-   <div class="container col-9" >
+   <div class="container col-11" >
    <label class="colorText">Склад:</label>
    <table border="1" class=" table table-dark table-hover" >
    <thead class="thead-dark " style="background-color: #252527;">
@@ -600,7 +600,7 @@ if($stroka['name_of_position'] == "лінійний продюсер" || $stroka
 
 
    <div class="row text-center" style="margin:10px;">
-       <div class=" container col-4" >
+   <div class="container col-11" >
        <label class="colorText">Склад: </label>
        <table border="1" class=" table table-dark table-hover" >
        <thead class="thead-dark " style="background-color: #252527;">
@@ -608,7 +608,6 @@ if($stroka['name_of_position'] == "лінійний продюсер" || $stroka
        <td>Id</td>
        <td>ПІБ</td>
        <td>Стаж</td>
-       <td>Кількість фільмів, у яких брав участь</td>
        <td>Ел.пошта</td>
        <td>Телефон</td>
        <td>Контакти близьких</td>
@@ -617,7 +616,7 @@ if($stroka['name_of_position'] == "лінійний продюсер" || $stroka
        <?php
        $mysql = new mysqli("localhost","root","root","filmstudio");
        $mysql->query("SET NAMES 'utf8'");
-    $result_editors = $mysql->query("SELECT * FROM editor WHERE edit_id IN(SELECT editor_id FROM editor_editcrew  WHERE  number_of_edit_crew = '$num')");
+    $result_editors = $mysql->query("SELECT * FROM editor WHERE editor_id IN(SELECT editor_id FROM editor_crewedit  WHERE  number_of_edit_crew = '$num')");
 
 
     while ($stroka = mysqli_fetch_array($result_editors)){
@@ -631,7 +630,6 @@ if($stroka['name_of_position'] == "лінійний продюсер" || $stroka
       echo"<td>" . $stroka['editor_id'] . "</td>";
       echo"<td>" . $stroka['editor_surname'] . " " . $stroka['editor_name']. " " . $stroka['editor_middle_name'] .  "</td>";
       echo"<td>" . $stroka['editor_experience'] . "</td>";
-      echo"<td>" . $stroka['amount_of_films_editor_took_part_in'] . "</td>";
       echo"<td>" . $stroka['editor_e-mail'] . "</td>";
       echo"<td>" .  res($result_phones) . "</td>";
       echo"<td>" .  res($result_contacts_rel) . "</td>";
