@@ -146,7 +146,7 @@ $name =  $_POST['name'];
         $shoeSize =  $_POST['shoeSize'];
         $size =  $_POST['clothingSize'];
         $nationality =  $_POST['selectingNationality'];
-        $films =  $_POST['field_name_Films[]'];
+        $films =  $_POST['field_name_Films'];
         $skills =  $_POST['field_name_Skills'];
 
         $quer = "SELECT * FROM `understudies` WHERE ";
@@ -314,7 +314,6 @@ $name =  $_POST['name'];
                     }
                     echo $value;
                     $quer = $quer . "`understudy_id` IN (SELECT `understudy_id` FROM `understudies_filmcrew` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = \"$value\"))";
-                    $i++;
                     $isFirst = false;
                     $notFirst = true;
                   }
