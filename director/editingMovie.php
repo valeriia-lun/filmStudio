@@ -561,14 +561,14 @@ if($stroka['name_of_position'] == "лінійний продюсер" || $stroka
 
    <div class="row text-center" style="margin:10px;">
        <div class=" container col-4" >
-       <label class="colorText">Голова: </label><?php
+       <label class="colorText">Голова: </label>
+       <?php
        $mysql = new mysqli("localhost","root","root","filmstudio");
        $mysql->query("SET NAMES 'utf8'");
-    //   $name_of_movie = $_POST['name_of_movie'];
 
        $number_of_editCreww = $mysql->query("SELECT number_of_edit_crew FROM movie WHERE name_of_movie =  \"$name\"");
        $number_of_editCrew = mysqli_fetch_array($number_of_editCreww);
-     $num = $number_of_editCrew[0];
+       $num = $number_of_editCrew[0];
 
 
        $start = $mysql->query("SELECT date_start_edit_crew FROM edit_crew WHERE number_of_edit_crew = $num");
@@ -579,20 +579,30 @@ if($stroka['name_of_position'] == "лінійний продюсер" || $stroka
        $used_start = $date_start_this_edit_crew[0];
        $used_finish = $date_finish_this_edit_crew[0];
 
+      // echo $num;
+       $result_editor_head =$mysql->query("SELECT *  FROM editor WHERE editor_id IN (SELECT editor_crew_head_id FROM edit_crew WHERE number_of_edit_crew = $num)");
+       echo "<select name=\"head\" class=\"select selectpicker  required form-control\">";
+       $stroka = mysqli_fetch_array($result_editor_head);
+       if($stroka != 0){
+         echo "<option selected>" . $stroka['editor_surname'] ." ".  $stroka['editor_name'] . " ". $stroka['editor_middle_name'] .", ". "id: " . $stroka['editor_id'] . "</option>";
+         $head_editor_id = $stroka['editor_id'];
+       } else{
+         echo "<option selected>" . "</option>";
+       }
+
 
        $result_editor =$mysql->query("SELECT *  FROM editor WHERE editor_id NOT IN (SELECT DISTINCT editor_id FROM editor_crewedit WHERE number_of_edit_crew
         IN(SELECT number_of_edit_crew FROM edit_crew WHERE ((date_finish_edit_crew BETWEEN '$used_start' AND '$used_finish') OR
-       (date_start_edit_crew BETWEEN  '$used_start' AND  '$used_finish'))))");
+       (date_start_edit_crew BETWEEN  '$used_start' AND  '$used_finish'))))  OR editor_id IN (SELECT editor_id FROM editor_crewedit WHERE number_of_edit_crew = '$num')");
 
-      echo "<select name=\"head\" class=\"select selectpicker  required form-control\">";
       while($stroka = mysqli_fetch_array($result_editor)){
-      
-        echo "<option>" . $stroka['editor_surname'] ." ".  $stroka['editor_name'] . " ". $stroka['editor_middle_name'] .", ". "id: " . $stroka['editor_id'] . "</option>";
+        if($stroka != 0){
+          if($stroka['editor_id'] != $head_editor_id){
+            echo "<option>" . $stroka['editor_surname'] ." ".  $stroka['editor_name'] . " ". $stroka['editor_middle_name'] .", ". "id: " . $stroka['editor_id'] . "</option>";
+          }
+        }
       }
       echo "</select>";
-
-
-
 
 
          ?><br>
