@@ -74,36 +74,13 @@
 <h3 class="colorText">Пошук </h3></br>
   <form action="" method="post">
 <select name="choice" class="select selectpicker  form-control">
-<option value="actor" selected>Актори</option>
-<option value="understudy">Дублери</option>
-<option value="screenwriter">Сценаристи</option>
-<option value="director">Режисери</option>
-<option value="line_producer">Лінійні продюсери</option>
-<option value="requisite">Реквізитори</option>
-<option value="make-up_artist">Гримери</option>
-<option value="operator">Оператори</option>
-<option value="light_director">Гафери</option>
-<option value="sound_director">Звукорежисери</option>
-<option value="costume_designer">Художник по костюмах</option>
-<option value="production_designer">Художник-постановщик</option>
-<option value="actor_agent">Агенти по акторах</option>
-<option value="helper_operator">Помічники оператора</option>
-<option value="helper_sound_director">Помічники звукорежисера</option>
-<option value="helper_light_director">Помічники гафера</option>
-<option value="dresser">Костюмери</option>
-<option value="helper_custume_designer">Помічники художника по костюмах</option>
-<option value="helper_production_designer">Помічники художника-постановщика</option>
-<option value="scene_admin">Адміністратори майданчика</option>
-<option value="cook">Кухарі</option>
-<option value="driver">Водії</option>
-<option value="loader">Вантажники</option>
-<option value="cleaner">Прибиральники</option>
-<option value="security">Охоронники</option>
-<option value="editor">Монтажери</option>
-<option value="movie">Фільми</option>
-<option value="filmCrew">Знімальні групи</option>
-<option value="editCrew">Монтажні групи</option>
-</select>
+  <option value="actor" selected>Актори</option>
+  <option value="understudy">Дублери</option>
+  <option value="others">Інші співробітники</option>
+  <option value="editor">Монтажери</option>
+  <option value="movie">Фільми</option>
+  <option value="filmCrew">Знімальні групи</option>
+  <option value="editCrew">Монтажні групи</option></select>
 
 <div class="btn">
 <input type="submit" class =" btn btn-danger" value="Знайти" name="find">
@@ -219,8 +196,8 @@ if (isset($_POST['find'])){
       header("location: /filmStudio/gen_producer/find_understudies.php");
       break;
 
-    case 'screenwriter':
-      header("location: /filmStudio/gen_producer/find_scenarist.php");
+    case 'others':
+      header("location: /filmStudio/gen_producer/find_others.php");
       break;
 
       case 'director':
