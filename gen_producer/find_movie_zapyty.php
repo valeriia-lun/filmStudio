@@ -281,7 +281,7 @@ FROM Help))");
                   $selectingGenre =  $_POST['selectingGenre'];
                   $selectingNFCrew =  $_POST['selectingNFCrew'];
                   $selectingNECrew =  $_POST['selectingNECrew'];
-                  
+                  $genres =  $_POST['field_name_Genres'];
                   $quer = "SELECT * FROM `movie` WHERE ";
                   //        echo $quer;
                   //        $quer .= "fff";
@@ -339,7 +339,21 @@ FROM Help))");
                       }
                       $quer = $quer . "number_of_film_crew = \"$selectingGenre\"";
                       $isFirst = false;
-                    }*/
+                    }*/ $b = mysqli_fetch_array($genres);
+
+                    if($genres != NULL ){
+                      $i = 0;
+                      foreach ($genres as $value) {
+                        if($value != ""){
+                          if($i != 0 || $notFirst == true || !$isFirst){
+                            $quer = $quer . " AND ";
+                          }
+                          $quer = $quer . "`name_of_movie` IN(SELECT `name_of_movie` FROM `movie_genres` WHERE `id_movie_genre` IN(SELECT `id_movie_genre` FROM `genres` WHERE `genre` = \"$value\"))";
+                          $i++;
+                          $notFirst = false;
+                          $isFirst = false;
+                        }
+                      }}
                     $result_filter = $mysqli->query($quer);
                   
                     if ($result_filter) {

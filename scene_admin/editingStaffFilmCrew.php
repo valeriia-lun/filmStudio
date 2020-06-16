@@ -393,7 +393,20 @@ echo "<input type= \"text\" maxlength=\"50\" tabindex=\"2\"  class=\"form-contro
     ?><br>
 
 </div>
- </div>
+ </div>   
+    <div class="row " style="margin:10px;">
+<div class=" container col-12">
+<label class="colorText" >Фільми, в яких брали участь:</label>
+<?php 
+$mysqli = new mysqli("localhost","root","root","filmstudio");
+$mysqli->query("SET NAMES 'utf8'");
+
+$result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM  `others_filmcrew` WHERE `others_id` = $id)");
+while($stroka = mysqli_fetch_array($result_films)){
+echo " &nbsp; &nbsp;&nbsp;\"$stroka[0]\"";
+}
+?>
+</div></div></br>
   <div class="btn">
 <input type="submit" class ="button btn btn-primary" value="Змінити" name="edit">
 </div><br><br><br>

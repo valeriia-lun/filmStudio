@@ -495,8 +495,19 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
  ?><br>
 </div></div></br>
 
+<div class="row " style="margin:10px;">
+<div class=" container col-12">
+<label class="colorText" >Фільми, в яких брали участь:</label>
+<?php 
+$mysqli = new mysqli("localhost","root","root","filmstudio");
+$mysqli->query("SET NAMES 'utf8'");
 
-
+$result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM  `actor_filmcrew` WHERE `actor_id` = $id)");
+while($stroka = mysqli_fetch_array($result_films)){
+echo " &nbsp; &nbsp;&nbsp;\"$stroka[0]\"";
+}
+?>
+</div></div></br>
 
 
 

@@ -13,7 +13,34 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
 </script>
-<link rel="stylesheet" href="..\style.css">
+<link rel="stylesheet" href="..\style.css"><script type="text/javascript">
+$(document).ready(function(){
+    var maxFieldGenres = 10; //Input fields increment limitation
+    var addButtonGenres = $('.add_button_Genres'); //Add button selector
+    var wrapperGenres = $('.field_wrapper_Genres'); //Input field wrapper
+    /*var fieldHTMLFilms = ('.field_wrapper_Films select')[0].outerHTML;
+    alert(fieldHTMLFilms);// '<div><input type="text" class="form-control" name="field_name_Films[]" value=""/><a href="javascript:void(0);" class="remove_button_Films"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
+    */var xGenres = 1; //Initial field counter is 1
+    var fieldHTMLGenres = "<div>" + $('.field_wrapper_Genres select')[0].outerHTML + "<a href=\"javascript:void(0);\" class=\"remove_button_Genres\"><img src=\"../img/delete_icon.png\" width=\'20\' height=\'20\'/></a></div>";
+
+    //Once add button is clicked
+    $(addButtonGenres).click(function(){
+        //Check maximum number of input fields
+        if(xGenres < maxFieldGenres){
+          xGenres++; //Increment field counter
+            $(wrapperGenres).append(fieldHTMLGenres); //Add field html
+        }
+    });
+
+    //Once remove button is clicked
+    $(wrapperGenres).on('click', '.remove_button_Genres', function(e){
+        e.preventDefault();
+        $(this).parent('div').remove(); //Remove field html
+        xGenres--; //Decrement field counter
+    });
+});
+
+</script>
 </head>
 <style type="text/css">
 @media screen
@@ -122,20 +149,23 @@ function yesnoCheck(that) {
 <input class="form-control" onkeyup="lal(this)" name="rating"></input></br>
 </div>
 <div class="col-md-3 container">
-<label class="colorText" >Жанр:</label>
-<select   class="select selectpicker  form-control" name="selectingGenre">
-<option></option>
-  <option >Драма</option>
-  <option >Бойовик</option>
-  <option >Триллер</option>
-  <option >Жахи</option>  
-  <option >Детектив</option>
-  <option >Комедія</option>
-  <option >Вестерн</option>
-  <option >Трагедія</option>
-  <option >Документальний</option>
-  <option >Історичний</option>
-</select></div>
+<label class="colorText" >Жанри:</label>
+<?php
+$mysqli = new mysqli("localhost","root","root","filmstudio");
+$mysqli->query("SET NAMES 'utf8'");
+$result_films = $mysqli->query("SELECT `genre` FROM `genres`");
+echo "<div class=\"field_wrapper_Genres\"><div>";
+echo "<select name=\"field_name_Genres[]\" class=\"select selectpicker form-control\"><option></option>";
+while($stroka = mysqli_fetch_array($result_films)){
+for ($i=0; $i<count($stroka); $i+=2){
+  echo "<option >$stroka[$i]</option>";
+}
+}
+echo "</select>";
+echo "<a href=\"javascript:void(0);\" class=\"add_button_Genres\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a>";
+echo "</div></div>";
+?>
+</div>
 <div class="col-md-3 container">
 <label class="colorText" >Номер знімальної групи:</label>
 <?php

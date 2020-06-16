@@ -103,26 +103,10 @@ table{zoom: 40%;}
 <div class="noprint">
 
 
-<div class="row">
-<div class="container col-md-3">
 
-<form action="find_actors_zapyty.php" method="post">
-<select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
-
-  <option value="max_experience" >Актори з найбільшим стажем</option>
-  <option value="female">Актори жіночого роду</option>
-  <option value="salary_20000_more">Актори із зарплатнею < 20 000 грн</option>
-  <option value="blond">Актори блондини</option>
-  <option value="movie_zoloto">Актори, що знялися в фільмі 'Золото'</option>
-  <option value="most_expensive_actor" >Найдорожчі актори</option>
-  <option value="makeByHand">Фільтрувати самостійно</option>
-</select>
-</div></div></br>
+<form action="find_others_zapyty.php" method="post">
 
 
-
-
-<div id = "appearFilters" style="display: none;">
 <div class="row">
 <div class="col-md-3 container">
 <label class="colorText" >Ім'я<input class="form-control" name ="name"></input></label>
@@ -133,6 +117,7 @@ table{zoom: 40%;}
 <div class="col-md-3 container">
 <label class="colorText" >По-батькові<input class="form-control" name="middleName" ></input></label>
 </div></div></br>
+
 
 
 </br>

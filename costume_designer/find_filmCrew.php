@@ -73,6 +73,21 @@
 
 <div class=" container col-3" >
     <label class="colorText">Дата початку роботи: </label><input type="date" class="form-control" name="date_start" maxlength="50" tabindex="2" ><br>
+  </div><div class=" container col-3" >
+    <label class="colorText">Назва фільму: </label>
+    <?php
+    $mysqli = new mysqli("localhost","root","root","filmstudio");
+    $mysqli->query("SET NAMES 'utf8'");
+    $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie`");
+    echo "<select name=\"selectingFilms\"  class=\"select selectpicker  form-control\"><option></option>";
+    while($stroka = mysqli_fetch_array($result_films)){
+    for ($i=0; $i<count($stroka); $i+=2){
+      echo "<option>$stroka[$i]</option>";
+    }
+    }
+    echo "</select>";
+    ?>
+    <br>
   </div>
   <div class=" container col-3" >
     <label class="colorText">Дата кінця роботи: </label><input type="date" class="form-control" name="date_finish" maxlength="50" tabindex="2" ><br>
@@ -89,6 +104,7 @@
 <thead class="thead-dark " style="background-color: #252527;">
 <tr>
 <td>Номер знімальної групи</td>
+<td>Назва фільму</td>
 <td>Дата початку роботи знімальної групи</td>
 <td>Дата закінчення роботи знімальної групи</td>
 <td><div class = "noprint">Додати помічників художника-постановщика</div></td>
@@ -96,6 +112,21 @@
 
 <form action = "add_helpers_to_film_crew.php" method="post">
 <?php
+
+function res($result){
+$print = "";
+ if($result)
+ {
+     $rows = mysqli_num_rows($result); // количество полученных строк
+     for ($i = 0 ; $i < $rows ; ++$i)
+     {
+         $row = mysqli_fetch_row($result);
+             for ($j = 0 ; $j < 1 ; ++$j)   $print .= "$row[$j]"."<br/>";
+     }
+ }
+ return $print;
+}
+
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
  $result_film_crews = $mysqli->query("SELECT * FROM `film_crew`");
@@ -104,8 +135,13 @@ $mysqli->query("SET NAMES 'utf8'");
 
 while ($stroka = mysqli_fetch_array($result_film_crews)){
   $temp = $stroka['number_of_film_crew'];
+  $result_movie = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` = $temp");
     echo"<tr>";
     echo"<td name=\"number_of_film_crew\">" . $stroka['number_of_film_crew'] . "</td>";
+	
+	    $value = res($result_movie);
+ echo "<input type=\"hidden\" value = \"" .$value . "\" name=\"name_of_movie\" >";
+    echo"<td>" . $value . "</td>";
     echo"<td>" . $stroka['date_start_crew'] . "</td>";
     echo"<td>" . $stroka['date_finish_film_crew'] . "</td>";
 
