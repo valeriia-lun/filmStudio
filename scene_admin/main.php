@@ -26,9 +26,9 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="#">Головна<span class="sr-only">(current)</span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Адміністратор майданчика</label>
     </form>
@@ -58,29 +58,7 @@
 <select name="choice" class="select selectpicker  form-control">
   <option value="actor" selected>Актори</option>
   <option value="understudy">Дублери</option>
-  <option value="screenwriter">Сценаристи</option>
-  <option value="director">Режисери</option>
-  <option value="line_producer">Лінійні продюсери</option>
-  <option value="requisite">Реквізитори</option>
-  <option value="make-up_artist">Гримери</option>
-  <option value="operator">Оператори</option>
-  <option value="light_director">Гафери</option>
-  <option value="sound_director">Звукорежисери</option>
-  <option value="costume_designer">Художник по костюмах</option>
-  <option value="production_designer">Художник-постановщик</option>
-  <option value="actor_agent">Агенти по акторах</option>
-  <option value="helper_operator">Помічники оператора</option>
-  <option value="helper_sound_director">Помічники звукорежисера</option>
-  <option value="helper_light_director">Помічники гафера</option>
-  <option value="dresser">Костюмери</option>
-  <option value="helper_custume_designer">Помічники художника по костюмах</option>
-  <option value="helper_production_designer">Помічники художника-постановщика</option>
-  <option value="scene_admin">Адміністратори майданчика</option>
-  <option value="cook">Кухарі</option>
-  <option value="driver">Водії</option>
-  <option value="loader">Вантажники</option>
-  <option value="cleaner">Прибиральники</option>
-  <option value="security">Охоронники</option>
+  <option value="others">Інші співробітники</option>
   <option value="editor">Монтажери</option>
   <option value="movie">Фільми</option>
   <option value="filmCrew">Знімальні групи</option>
@@ -143,7 +121,7 @@ if (isset($_POST['find'])){
       header("location: /filmStudio/scene_admin/find_understudies.php");
       break;
 
-    case 'screenwriter':
+    case 'others':
       header("location: /filmStudio/scene_admin/find_others.php");
       break;
 
