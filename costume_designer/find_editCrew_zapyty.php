@@ -95,19 +95,12 @@
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
-$result_headId = $mysqli->query("SELECT * FROM `editor` WHERE `editor_id` IN(SELECT `editor_crew_head_id` FROM `edit_crew`)");
-
-echo "<select name=\"selectingHeadId\"  class=\"select selectpicker  form-control\"><option selected></option>";
+$result_headId = $mysqli->query("SELECT `editor_crew_head_id` FROM `edit_crew`");
+echo "<select name=\"selectingHeadId\"  class=\"select selectpicker  form-control\"><option></option>";
 while($stroka = mysqli_fetch_array($result_headId)){
-  if($stroka != 0){
-    echo "<option value=\"\">" . $stroka['editor_surname'] ." ".  $stroka['editor_name'] . " ". $stroka['editor_middle_name'] .", ". "id: " . $stroka['editor_id'] . "</option>";
-  } else{
-    echo "<option selected>" . "</option>";
-  }
-
-// for ($i=0; $i<count($stroka); $i+=2){
-//   echo "<option>$stroka[$i]</option>";
-// }
+for ($i=0; $i<count($stroka); $i+=2){
+  echo "<option>$stroka[$i]</option>"; 
+}
 }
 echo "</select>";
 ?>

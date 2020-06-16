@@ -44,10 +44,16 @@
     font-size: 20pt;
 }
 </style><script>
-  function lal(el) {
+function lal(el) {
   if (el.value.match( /[^0-9]/ ) ) {
         alert( "Неправильний формат числа! \nМожна використовувати тільки цифри" );
-        el.value = el.value.replace( /[^0-9]/ , "" )
+        el.value = el.value= "" ;
+    }
+}
+function lal2(el) {
+if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
+        alert( "Неправильний формат запису! \nМожна використовувати тільки літери!" );
+        el.value = el.value= "" ;
     }
 }
 
@@ -426,7 +432,8 @@ FROM Help))");
                       if(!$isFirst){
                         $quer = $quer . " AND ";
                       }
-                      $quer = $quer . "name_of_movie = \"$name\"";
+                      $quer = $quer . "name_of_movie LIKE  '%$name%'";
+					 // echo $quer;
                       $isFirst = false;
                     }
                     if($date_release != NULL){

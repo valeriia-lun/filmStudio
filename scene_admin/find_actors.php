@@ -397,7 +397,7 @@ function yesnoCheck(that) {
 <td>Контакти близьких</td>
 <td class = "noprint"><div class = "noprint">Рейтинги фільмів, в яких брали участь</div></td>
 <td style="width:1px;white-space:nowrap;">Фільми, в яких брали участь</td>
-<td class = "noprint"><div class = "noprint">Зміна інформації про актора</div></td>
+
 </tr></thead>
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
@@ -459,10 +459,7 @@ $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `numbe
     echo"<td>" .  res($result_contacts_rel) . "</td>";
     echo"<td class = \" noprint\">" .  res($result_ratings) . "</td>";
 	  	   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
-    echo"<form action=\"editingActor.php\" method=\"post\">";
-
-echo "<input type=\"hidden\" value = \"" .$stroka['actor_id'] . "\" name=\"actor_id\" >";
-    echo "<td class = \" noprint\">"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";    echo"</tr>";
+   
     echo"</tr>";
 
    }

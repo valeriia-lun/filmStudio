@@ -423,7 +423,7 @@ table{zoom: 40%;}
 <td>Контакти близьких</td>
 <td class = "noprint"><div class = "noprint">Рейтинги фільмів, в яких брали участь</div></td>
 <td style="width:1px;white-space:nowrap;">Фільми, в яких брали участь</td>
-<td class = "noprint"><div class = "noprint">Зміна інформації про дублера</div></td>
+
 </tr></thead>
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
@@ -729,10 +729,9 @@ while ($stroka = mysqli_fetch_array($result_filter)){
     echo"<td >" .  res($result_contacts_rel) . "</td>";
     echo"<td class = \" noprint\">" .  res($result_ratings) . "</td>";
     echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
-    echo"<form action=\"editingUnderstudy.php\" method=\"post\">";
 
-  echo "<input type=\"hidden\" value = \"" .$stroka['understudy_id'] . "\" name=\"understudy_id\" >";
-    echo "<td  class = \" noprint\">"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";
+
+ 
       echo"</tr>";
 
 

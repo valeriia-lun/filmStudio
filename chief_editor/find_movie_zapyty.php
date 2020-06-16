@@ -294,7 +294,7 @@ FROM Help))");
                       if(!$isFirst){
                         $quer = $quer . " AND ";
                       }
-                      $quer = $quer . "name_of_movie = \"$name\"";
+                      $quer = $quer . "name_of_movie LIKE  '%$name%'";
                       $isFirst = false;
                     }
                     if($date_release != NULL){
@@ -302,11 +302,11 @@ FROM Help))");
                       if(!$isFirst){
                         $quer = $quer . " AND ";
                       }
-                      $quer = $quer . "date_of_release = '$date_release'";
+                      $quer = $quer . "date_of_release =date_release'";
                       $isFirst = false;
                     }
                     if($budget != NULL){
-                      if(!$isFirst){
+                      if(!$isFirst){ '$
                         $quer = $quer . " AND ";
                       }
                       $quer = $quer . "budget_of_movie = $budget";

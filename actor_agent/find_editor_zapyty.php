@@ -114,13 +114,13 @@ $(document).ready(function(){
 <div id = "appearFilters" style="display: none;">
 <div class="row">
 <div class="col-md-3 container">
-<label class="colorText" >Ім'я<input class="form-control" name ="name"></input></label>
+<label class="colorText" >Ім'я<input onkeyup="lal2(this)"  class="form-control" name ="name"></input></label>
 </div>
 <div class="col-md-3 container">
-<label class="colorText" >Прізвище<input class="form-control" name="surname"></input></label>
+<label class="colorText" >Прізвище<input onkeyup="lal2(this)" class="form-control" name="surname"></input></label>
 </div>
 <div class="col-md-3 container">
-<label class="colorText" >По-батькові<input class="form-control" name="middleName" ></input></label>
+<label class="colorText" >По-батькові<input onkeyup="lal2(this)"  class="form-control" name="middleName" ></input></label>
 </div>
 </div></br>
 
@@ -155,10 +155,10 @@ echo "</div></div>";
 </div>
 </div>
 <script>
-function lal(el) {
-  if (el.value.match( /[^0-9]/ ) ) {
-        alert( "Неправильний формат числа! \nМожна використовувати тільки цифри" );
-        el.value = el.value.replace( /[^0-9]/ , "" )
+function lal2(el) {
+if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
+        alert( "Неправильний формат запису! \nМожна використовувати тільки літери!" );
+        el.value = el.value= "" ;
     }
 }
 
@@ -275,7 +275,7 @@ $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `numbe
         if(!$isFirst){
           $quer = $quer . " AND ";
         }
-        $quer = $quer . "editor_name = \"$name\"";
+        $quer = $quer . "editor_name LIKE  '%$name%'";
         $isFirst = false;
       }
       if($surname != NULL){
@@ -283,14 +283,14 @@ $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `numbe
         if(!$isFirst){
           $quer = $quer . " AND ";
         }
-        $quer = $quer . "editor_surname = \"$surname\"";
+        $quer = $quer . "editor_surname LIKE  '%$surname%'";
         $isFirst = false;
       }
       if($middleName != NULL){
         if(!$isFirst){
           $quer = $quer . " AND ";
         }
-        $quer = $quer . "editor_middle_name = \"$middleName\"";
+        $quer = $quer . "editor_middle_name LIKE  '%$middleName%'";
         $isFirst = false;
       }
 
@@ -309,7 +309,7 @@ $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `numbe
             if($i != 0 || !$isFirst){
               $quer = $quer . " AND ";
             }
-            echo $value;
+           // echo $value;
             $quer = $quer . "`editor_id` IN (SELECT `editor_id` FROM `editor_crewedit` WHERE `number_of_edit_crew` IN (SELECT `number_of_edit_crew` FROM `movie` WHERE `name_of_movie` = \"$value\"))";
             $isFirst = false;
             $i++;
@@ -321,7 +321,7 @@ $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `numbe
       }
 
 
-      echo $quer;
+      //echo $quer;
       $result_filter = $mysqli->query($quer);
 
       if ($result_filter) {
@@ -331,7 +331,7 @@ $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `numbe
           echo "Error! $mysqli->error <br>";
         }
 
-      echo $quer;
+      //echo $quer;
 
 
     //  $result_filter = $mysqli->query($quer);
