@@ -111,13 +111,13 @@ table{zoom: 40%;}
 
 <div class="row">
 <div class="col-md-3 container">
-<label class="colorText" >Ім'я<input class="form-control" name ="name"></input></label>
+<label class="colorText" >Ім'я<input onkeyup="lal2(this)" class="form-control" name ="name"></input></label>
 </div>
 <div class="col-md-3 container">
-<label class="colorText" >Прізвище<input class="form-control" name="surname"></input></label>
+<label class="colorText" >Прізвище<input onkeyup="lal2(this)" class="form-control" name="surname"></input></label>
 </div>
 <div class="col-md-3 container">
-<label class="colorText" >По-батькові<input class="form-control" name="middleName" ></input></label>
+<label class="colorText" >По-батькові<input onkeyup="lal2(this)" class="form-control" name="middleName" ></input></label>
 </div>
 
 </div></br></br>
@@ -134,7 +134,7 @@ table{zoom: 40%;}
 
     <input type="radio" id="choice="
      name="choice1" value="=">
-    <label >=</label><input class="form-control" name="rating" ></input>
+    <label >=</label><input onkeyup="lal(this)" class="form-control" name="rating" ></input>
 
 </div></br>
 
@@ -189,7 +189,13 @@ echo "</div></div>";
 function lal(el) {
   if (el.value.match( /[^0-9]/ ) ) {
         alert( "Неправильний формат числа! \nМожна використовувати тільки цифри" );
-        el.value = el.value.replace( /[^0-9]/ , "" )
+        el.value = el.value= "" ;
+    }
+}
+function lal2(el) {
+if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
+        alert( "Неправильний формат запису! \nМожна використовувати тільки літери!" );
+        el.value = el.value= "" ;
     }
 }
 
@@ -314,7 +320,7 @@ $mysqli->query("SET NAMES 'utf8'");
             if(!$isFirst){
               $quer = $quer . " AND ";
             }
-            $quer = $quer . "others_name = \"$name\"";
+            $quer = $quer . "others_name LIKE  '%$name%'";
             $isFirst = false;
           }
           if($surname != NULL){
@@ -322,14 +328,14 @@ $mysqli->query("SET NAMES 'utf8'");
             if(!$isFirst){
               $quer = $quer . " AND ";
             }
-            $quer = $quer . "others_surname = \"$surname\"";
+            $quer = $quer . "others_surname LIKE '%$surname%'";
             $isFirst = false;
           }
           if($middleName != NULL){
             if(!$isFirst){
               $quer = $quer . " AND ";
             }
-            $quer = $quer . "others_middle_name = \"$middleName\"";
+            $quer = $quer . "others_middle_name LIKE '%$middleName%'";
             $isFirst = false;
           }
           if($position != NULL){

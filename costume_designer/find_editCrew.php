@@ -160,7 +160,12 @@ while ($stroka = mysqli_fetch_array($result_edit_crews)){
     echo"<td>" . $value . "</td>";
     echo"<td>" . $stroka['date_start_edit_crew'] . "</td>";
     echo"<td>" . $stroka['date_finish_edit_crew'] . "</td>";
-    echo"<td>" . $stroka['editor_crew_head_id'] . "</td>";
+     $value = $stroka['editor_crew_head_id'];
+    $result_head_editor = $mysqli->query("SELECT * FROM `editor` WHERE `editor_id` = '$value'");
+    $strokaa = mysqli_fetch_array($result_head_editor);
+
+    echo"<td>Id: " . $stroka['editor_crew_head_id'] . " " . $strokaa['editor_surname'] . " " . $strokaa['editor_name'] . " " . $strokaa['editor_middle_name'] . "</td>";
+
     echo"</tr>";
    }
   

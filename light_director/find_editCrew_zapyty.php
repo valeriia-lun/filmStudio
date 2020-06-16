@@ -95,19 +95,12 @@
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
-$result_headId = $mysqli->query("SELECT * FROM `editor` WHERE `editor_id` IN(SELECT `editor_crew_head_id` FROM `edit_crew`)");
-
-echo "<select name=\"selectingHeadId\"  class=\"select selectpicker  form-control\"><option selected></option>";
+$result_headId = $mysqli->query("SELECT `editor_crew_head_id` FROM `edit_crew`");
+echo "<select name=\"selectingHeadId\"  class=\"select selectpicker  form-control\"><option></option>";
 while($stroka = mysqli_fetch_array($result_headId)){
-  if($stroka != 0){
-    echo "<option value=\"\">" . $stroka['editor_surname'] ." ".  $stroka['editor_name'] . " ". $stroka['editor_middle_name'] .", ". "id: " . $stroka['editor_id'] . "</option>";
-  } else{
-    echo "<option selected>" . "</option>";
-  }
-
-// for ($i=0; $i<count($stroka); $i+=2){
-//   echo "<option>$stroka[$i]</option>";
-// }
+for ($i=0; $i<count($stroka); $i+=2){
+  echo "<option>$stroka[$i]</option>"; 
+}
 }
 echo "</select>";
 ?>
@@ -225,7 +218,11 @@ while ($stroka = mysqli_fetch_array($result_filter)){
 
     echo"<td>" . $stroka['date_start_edit_crew'] . "</td>";
     echo"<td>" . $stroka['date_finish_edit_crew'] . "</td>";
-    echo"<td>" . $stroka['editor_crew_head_id'] . "</td>";
+$value = $stroka['editor_crew_head_id'];
+    $result_head_editor = $mysqli->query("SELECT * FROM `editor` WHERE `editor_id` = '$value'");
+    $strokaa = mysqli_fetch_array($result_head_editor);
+
+    echo"<td>Id: " . $stroka['editor_crew_head_id'] . " " . $strokaa['editor_surname'] . " " . $strokaa['editor_name'] . " " . $strokaa['editor_middle_name'] . "</td>";
     echo"</tr>";
    }
 }
