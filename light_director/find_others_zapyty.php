@@ -313,7 +313,7 @@ $mysqli->query("SET NAMES 'utf8'");
             if(!$isFirst){
               $quer = $quer . " AND ";
             }
-            $quer = $quer . "others_name = \"$name\"";
+            $quer = $quer . "others_name LIKE  '%$name%'";
             $isFirst = false;
           }
           if($surname != NULL){
@@ -321,14 +321,14 @@ $mysqli->query("SET NAMES 'utf8'");
             if(!$isFirst){
               $quer = $quer . " AND ";
             }
-            $quer = $quer . "others_surname = \"$surname\"";
+            $quer = $quer . "others_surname LIKE  '%$surname%'";
             $isFirst = false;
           }
           if($middleName != NULL){
             if(!$isFirst){
               $quer = $quer . " AND ";
             }
-            $quer = $quer . "others_middle_name = \"$middleName\"";
+            $quer = $quer . "others_middle_name LIKE  '%$middleName%'";
             $isFirst = false;
           }
           if($position != NULL){
