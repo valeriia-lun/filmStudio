@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Кіностудія "Victoria Studio"</title>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <script>
@@ -78,28 +77,24 @@ function lal(el) {
 </script>
 </head>
 <body class="text-center body3">
-<nav class="navbar navbar-expand-md navbar-light bg-light">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="..\loginFirm.php">Вихід</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-        </div>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="nav navbar-nav mr-auto">
-                <li class="nav-item nav-link active"><a href="main.php" style="color:red;">На головну<span
-                            class="sr-only">(current)</span></a></li>
-            </ul>
-            <form class=" my-2 my-lg-0">
-                <label class=" mr-sm-2">Посада:&nbsp;&nbsp;Режисер</label>
-            </form>
-        </div>
-    </div>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="..\index.php">Вибір посади</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="main.php">Головна<span class="sr-only"></span></a>
+      </li>
+    </ul>
+
+    <form class=" my-2 my-lg-0">
+      <label class=" mr-sm-2" >Режисер</label>
+    </form>
+  </div>
 </nav>
-
-
 
 <br><br><h1 class="colorForAllText">Змінити фільм</h1>
 <small>Поля, позначені </small><small style="color:red;">*</small><small> - обов'язкові.</small></br></br>
@@ -126,8 +121,7 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" name=\"name_
 ?><br>
   </div>
     <div class=" container col-3" >
-    <label class="colorText">Жанр:</label><label style="color:red;">*</label>
-    <div class="field_wrapper_Genre">
+    <label class="colorText">Жанр:</label><label style="color:red;">*</label><div class="field_wrapper_Genre">
     <select class="form-control">
     <?php
 
@@ -388,34 +382,9 @@ echo "<div class=\" container col-5\"><input type= \"text\" maxlength=\"50\" cla
 </br>
 </br>
 </br>
-<script>
-function yesnoCheck(that) {
-    if(that.value == "show_crew"){
- //     document.getElementById("appearFilters").style.display = "block";
-      document.getElementById("show_free").style.display = "none";
 
-    }else if(that.value == "show_free"){
- //     document.getElementById("appearFilters").style.display = "block";
-
-      document.getElementById("show_free").style.display = "block";
-    }else{
-     // document.getElementById("appearFilters").style.display = "none";
-    }
-}
-</script>
    <div class="container col-11" >
    <label class="colorText">Склад:</label>
-<!--   <select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
-
-     <option value="show_crew">Показати склад</option>
-     <option value="show_free">Показати склад та всіх вільних</option>
-     <option value="show_all">Показати всіх</option>
-   </select>
-   <div class="btn noprint">
-  <button class ="button btn btn-primary" name="done">Знайти</button> -->
-</div>
-
-
    <table border="1" class=" table table-dark table-hover" >
    <thead class="thead-dark " style="background-color: #252527;">
    <tr>
@@ -475,7 +444,7 @@ $result = $mysql->query("SELECT * FROM actors WHERE actor_id IN(SELECT actor_id 
 
    }
 
-   $result_understudies = $mysql->query("SELECT * FROM understudies WHERE understudy_id IN(SELECT understudy_id FROM understudies_filmcrew  WHERE  number_of_film_crew = '$numb[0]') ");
+   $result_understudies = $mysql->query("SELECT * FROM understudies WHERE understudy_id IN(SELECT understudy_id FROM understudies_filmcrew  WHERE  number_of_film_crew = '$numb[0]')");
 
 
    while ($stroka = mysqli_fetch_array($result_understudies)){
@@ -556,18 +525,68 @@ $result = $mysql->query("SELECT * FROM actors WHERE actor_id IN(SELECT actor_id 
 
 
 
-?>
+
+
+   if (isset($_POST['addToFilmCrew'])){
+     $mysqli = new mysqli("localhost","root","root","filmstudio");
+     $mysqli->query("SET NAMES 'utf8'");
+     $result = $mysqli->query("SELECT number_of_film_crew FROM movie WHERE name_of_movie = '$name'");
+
+
+     $numb = mysqli_fetch_array($result);
+
+     $number_of_filmCrew = $numb[0];
+
+    $start = $mysqli->query("SELECT `date_start_crew` FROM `film_crew` WHERE `number_of_film_crew` = $number_of_filmCrew");
+    $finish = $mysqli->query("SELECT `date_finish_film_crew` FROM `film_crew` WHERE `number_of_film_crew` = $number_of_filmCrew");
+    $date_start_this_film_crew = mysqli_fetch_array($start); //arrays with 1 element
+    $date_finish_this_film_crew = mysqli_fetch_array($finish);
+    $used_start = $date_start_this_film_crew[0];
+    $used_finish = $date_finish_this_film_crew[0];
+
+
+    $result_others=$mysqli->query("SELECT * FROM others WHERE (`name_of_position` = 'лінійний продюсер' OR  `name_of_position` = 'сценарист' OR  `name_of_position` = 'режисер') AND (others_id NOT IN (SELECT DISTINCT others_id FROM others_filmcrew WHERE number_of_film_crew
+     IN(SELECT number_of_film_crew FROM film_crew WHERE ((date_finish_film_crew BETWEEN '$used_start' AND '$used_finish') OR
+    (date_start_crew BETWEEN  '$used_start' AND  '$used_finish')))) )");
+
+
+    while ($stroka = mysqli_fetch_array($result_others)){
+      $temp = $stroka['others_id'];
+
+      $result_others_phones = $mysqli->query("SELECT `others_phone_number` FROM `others_phones` WHERE `others_id` IN (SELECT `others_id` FROM  `others` WHERE `others_id` = $temp)");
+      $result_others_contacts_rel = $mysqli->query("SELECT `others_relatives_phone_numbers` FROM `others_contacts_of_relatives` WHERE `others_id` IN (SELECT `others_id` FROM  `others` WHERE `others_id` = $temp)");
+
+      echo"<tr>";
+      echo"<td>" . $stroka['others_id'] . "</td>";
+      echo"<td>" . $stroka['others_surname'] . " " . $stroka['others_name']. " " . $stroka['others_middle_name'] .  "</td>";
+      echo"<td>" . $stroka['others_experience'] . "</td>";
+      echo"<td>" . $stroka['rating_of_employee'] . "</td>";
+      echo"<td>" . $stroka['amount_of_films_others_took_part_in'] . "</td>";
+      echo"<td>" . $stroka['name_of_position'] . "</td>";
+      echo"<td>" . $stroka['others_age'] . "</td>";
+      echo"<td>" . $stroka['others_e-mail'] . "</td>";
+      echo"<td>" .  res($result_others_phones) . "</td>";
+      echo"<td>" .  res($result_others_contacts_rel) . "</td>";
+
+
+        $res = $mysqli->query("SELECT * FROM `others_filmCrew` WHERE `number_of_film_crew` = $number_of_filmCrew AND `others_id` = $temp");
+
+        $re = mysqli_fetch_array($res);
+
+        if($re[0] != ""){
+          echo"<td>" ."<input type=\"checkbox\" checked class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"others_id[]\" >";
+
+        }else{
+          echo"<td>" ."<input type=\"checkbox\" class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"others_id[]\" >";
+        }
+
+        echo"</tr>";
+        }
+   }
+   ?>
 
    <br>
- </table>
-
-
-
-
-
-
-
-
+   </table>
 
  </div>
 
@@ -738,144 +757,7 @@ $result = $mysql->query("SELECT * FROM actors WHERE actor_id IN(SELECT actor_id 
 
 <?php
 
-if (isset($_POST['done'])){
 
-
-switch($selecting){
-  case 'show_free':
-
-     $mysqli = new mysqli("localhost","root","root","filmstudio");
-     $mysqli->query("SET NAMES 'utf8'");
-     $result = $mysqli->query("SELECT number_of_film_crew FROM movie WHERE name_of_movie = '$name'");
-
-
-     $numb = mysqli_fetch_array($result);
-
-     $number_of_filmCrew = $numb[0];
-
-    $start = $mysqli->query("SELECT `date_start_crew` FROM `film_crew` WHERE `number_of_film_crew` = $number_of_filmCrew");
-    $finish = $mysqli->query("SELECT `date_finish_film_crew` FROM `film_crew` WHERE `number_of_film_crew` = $number_of_filmCrew");
-    $date_start_this_film_crew = mysqli_fetch_array($start); //arrays with 1 element
-    $date_finish_this_film_crew = mysqli_fetch_array($finish);
-    $used_start = $date_start_this_film_crew[0];
-    $used_finish = $date_finish_this_film_crew[0];
-
-
-    $result_others=$mysqli->query("SELECT * FROM others WHERE (`name_of_position` = 'лінійний продюсер' OR  `name_of_position` = 'сценарист' OR  `name_of_position` = 'режисер') AND (`others_work_until` IS NULL) AND (others_id NOT IN (SELECT DISTINCT others_id FROM others_filmcrew WHERE number_of_film_crew
-     IN(SELECT number_of_film_crew FROM film_crew WHERE ((date_finish_film_crew BETWEEN '$used_start' AND '$used_finish') OR
-    (date_start_crew BETWEEN  '$used_start' AND  '$used_finish')) ) ) )");
-
-
-    while ($stroka = mysqli_fetch_array($result_others)){
-      $temp = $stroka['others_id'];
-
-      $result_others_phones = $mysqli->query("SELECT `others_phone_number` FROM `others_phones` WHERE `others_id` IN (SELECT `others_id` FROM  `others` WHERE `others_id` = $temp)");
-      $result_others_contacts_rel = $mysqli->query("SELECT `others_relatives_phone_numbers` FROM `others_contacts_of_relatives` WHERE `others_id` IN (SELECT `others_id` FROM  `others` WHERE `others_id` = $temp)");
-
-      echo"<tr>";
-      echo"<td>" . $stroka['others_id'] . "</td>";
-      echo"<td>" . $stroka['others_surname'] . " " . $stroka['others_name']. " " . $stroka['others_middle_name'] .  "</td>";
-      echo"<td>" . $stroka['others_experience'] . "</td>";
-      echo"<td>" . $stroka['rating_of_employee'] . "</td>";
-      echo"<td>" . $stroka['amount_of_films_others_took_part_in'] . "</td>";
-      echo"<td>" . $stroka['name_of_position'] . "</td>";
-      echo"<td>" . $stroka['others_age'] . "</td>";
-      echo"<td>" . $stroka['others_e-mail'] . "</td>";
-      echo"<td>" .  res($result_others_phones) . "</td>";
-      echo"<td>" .  res($result_others_contacts_rel) . "</td>";
-
-
-        $res = $mysqli->query("SELECT * FROM `others_filmCrew` WHERE `number_of_film_crew` = $number_of_filmCrew AND `others_id` = $temp");
-
-        $re = mysqli_fetch_array($res);
-
-        if($re[0] != ""){
-          echo"<td>" ."<input type=\"checkbox\" checked class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"others_id[]\" >";
-
-        }else{
-          echo"<td>" ."<input type=\"checkbox\" class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"others_id[]\" >";
-        }
-
-        echo"</tr>";
-        }
-  break;
-
-
-  case 'show_all':
-      $mysqli = new mysqli("localhost","root","root","filmstudio");
-      $mysqli->query("SET NAMES 'utf8'");
-      $result = $mysqli->query("SELECT number_of_film_crew FROM movie WHERE name_of_movie = '$name'");
-
-
-      $numb = mysqli_fetch_array($result);
-
-      $number_of_filmCrew = $numb[0];
-
-     $start = $mysqli->query("SELECT `date_start_crew` FROM `film_crew` WHERE `number_of_film_crew` = $number_of_filmCrew");
-     $finish = $mysqli->query("SELECT `date_finish_film_crew` FROM `film_crew` WHERE `number_of_film_crew` = $number_of_filmCrew");
-     $date_start_this_film_crew = mysqli_fetch_array($start); //arrays with 1 element
-     $date_finish_this_film_crew = mysqli_fetch_array($finish);
-     $used_start = $date_start_this_film_crew[0];
-     $used_finish = $date_finish_this_film_crew[0];
-
-
-     $result_others=$mysqli->query("SELECT * FROM others WHERE (`name_of_position` = 'лінійний продюсер' OR  `name_of_position` = 'сценарист' OR  `name_of_position` = 'режисер') AND (`others_work_until` IS NULL) AND (others_id IN (SELECT DISTINCT others_id FROM others_filmcrew WHERE number_of_film_crew
-      IN(SELECT number_of_film_crew FROM film_crew WHERE ((date_finish_film_crew BETWEEN '$used_start' AND '$used_finish') OR
-     (date_start_crew BETWEEN  '$used_start' AND  '$used_finish')) ) ) )");
-
-
-     while ($stroka = mysqli_fetch_array($result_others)){
-       $temp = $stroka['others_id'];
-
-       $result_others_phones = $mysqli->query("SELECT `others_phone_number` FROM `others_phones` WHERE `others_id` IN (SELECT `others_id` FROM  `others` WHERE `others_id` = $temp)");
-       $result_others_contacts_rel = $mysqli->query("SELECT `others_relatives_phone_numbers` FROM `others_contacts_of_relatives` WHERE `others_id` IN (SELECT `others_id` FROM  `others` WHERE `others_id` = $temp)");
-
-       $result_since = $mysqli->query("SELECT `date_start_crew` FROM `film_crew` WHERE ((date_finish_film_crew BETWEEN '$used_start' AND '$used_finish') OR
-      (date_start_crew BETWEEN  '$used_start' AND  '$used_finish')) AND other_id = $temp ");
-
-
-      $result_until = $mysqli->query("SELECT `date_finish_film_crew` FROM `film_crew` WHERE ((date_finish_film_crew BETWEEN '$used_start' AND '$used_finish') OR
-     (date_start_crew BETWEEN  '$used_start' AND  '$used_finish')) AND other_id = $temp ");
-
-       echo"<tr>";
-       echo"<td>" . $stroka['others_id'] . "</td>";
-       echo"<td>" . $stroka['others_surname'] . " " . $stroka['others_name']. " " . $stroka['others_middle_name'] .  "</td>";
-
-       echo"<td>" . res($result_since) . "</td>";
-       echo"<td>" . res($result_until) . "</td>";
-
-       echo"<td>" . $stroka['others_experience'] . "</td>";
-
-       echo"<td>" . $stroka['others_experience'] . "</td>";
-       echo"<td>" . $stroka['rating_of_employee'] . "</td>";
-       echo"<td>" . $stroka['amount_of_films_others_took_part_in'] . "</td>";
-       echo"<td>" . $stroka['name_of_position'] . "</td>";
-       echo"<td>" . $stroka['others_age'] . "</td>";
-       echo"<td>" . $stroka['others_e-mail'] . "</td>";
-       echo"<td>" .  res($result_others_phones) . "</td>";
-       echo"<td>" .  res($result_others_contacts_rel) . "</td>";
-
-
-         $res = $mysqli->query("SELECT * FROM `others_filmCrew` WHERE `number_of_film_crew` = $number_of_filmCrew AND `others_id` = $temp");
-
-         $re = mysqli_fetch_array($res);
-
-         if($re[0] != ""){
-           echo"<td>" ."<input type=\"checkbox\" checked class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"others_id[]\" >";
-
-         }else{
-           echo"<td>" ."<input type=\"checkbox\" class=\"form-control\" value = \"" . $stroka['others_id'] . "\" name=\"others_id[]\" >";
-         }
-
-         echo"</tr>  </table>";
-         }
-
-
-
-
-  break;
-  }
-}
 
 
 if (isset($_POST['edit'])){
