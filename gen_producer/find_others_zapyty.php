@@ -78,14 +78,29 @@ table{zoom: 40%;}
 </style>
 <body class="text-center body3">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light style=width=100%;">
-  <a class="navbar-brand" href="..\index.php">Вибір посади</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light style=width=100%;">
+    <a class="navbar-brand" href="..\index.php">Вибір посади</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="main.php">Головна<span class="sr-only">(current)</span></a>
+        </li>
+      </ul>
+
+      <form class=" my-2 my-lg-0">
+        <label class=" mr-sm-2" >Генеральний продюсер</label>
+      </form>
+    </div>
+  </nav>
+  <div>
+  <h1 align="center" class="colorForAllText">Інші співробітники</h1></br>
+
+  </div>
   <div class="noprint">
-
 
 
 
@@ -101,9 +116,11 @@ table{zoom: 40%;}
   </div>
   <div class="col-md-3 container">
   <label class="colorText" >По-батькові<input class="form-control" name="middleName" ></input></label>
-  </div>
+  </div></div></br>
 
-  </div></br></br>
+
+
+  </br>
   <div class="row">
   <div class="col-md-3 container">
   <label class="colorText" >Рейтинг&nbsp;&nbsp;</label>
@@ -138,12 +155,6 @@ table{zoom: 40%;}
        name="choice2" value="=">
       <label >=</label><input class="form-control" onkeyup="lal(this)" name="amountOfFilms" ></input>
   </div>
-
-  </br>
-
-
-  </br>
-
 
 
 
@@ -185,6 +196,7 @@ table{zoom: 40%;}
   }
   </script>
 
+
   <div class="row"><div class="col-md-3 container">
   <label class="colorText" >Посада:</label>
   <select   class="select selectpicker  form-control" name="selectingPosition">
@@ -220,9 +232,6 @@ table{zoom: 40%;}
   </form>
 
 
-
-
-  </div>
 
   </div>
   <div  style="margin:10px;">
@@ -416,10 +425,10 @@ table{zoom: 40%;}
       //
       // echo "<input type=\"hidden\" value = \"" .$stroka['actor_id'] . "\" name=\"actor_id\" >";
       //     echo "<td  class = \" noprint\">"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";    echo"</tr>";
-      if($stroka['name_of_position'] == "лінійний продюсер" || $stroka['name_of_position'] == "режисер" || $stroka['name_of_position'] == "сценарист"){
+      if($stroka4['name_of_position'] == "лінійний продюсер" || $stroka4['name_of_position'] == "режисер" || $stroka4['name_of_position'] == "сценарист"){
         echo"<form action=\"editingStaffFilmCrew.php\" method=\"post\">";
 
-    echo "<input type=\"hidden\" value = \"" .$stroka['others_id'] . "\" name=\"id_others\" >";
+    echo "<input type=\"hidden\" value = \"" .$stroka4['others_id'] . "\" name=\"id_others\" >";
         echo "<td class = \" noprint\">"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";    echo"</tr>";
 
       }
