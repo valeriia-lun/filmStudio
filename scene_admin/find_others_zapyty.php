@@ -433,17 +433,18 @@ $mysqli->query("SET NAMES 'utf8'");
 
 
               echo"<td>" .  res($result_contacts_rel4) . "</td>";
-              echo"<td>" .  res($result_ratings4) . "</td>";echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
+              echo"<td>" .  res($result_ratings4) . "</td>";
+              echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
     //          echo"<form action=\"editingOthers.php\" method=\"post\">";
     //
     // echo "<input type=\"hidden\" value = \"" .$stroka['actor_id'] . "\" name=\"actor_id\" >";
     //     echo "<td  class = \" noprint\">"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";    echo"</tr>";
-    if($stroka['name_of_position'] == "кухар" || $stroka['name_of_position'] == "водій" || $stroka['name_of_position'] == "вантажник"
-  || $stroka['name_of_position'] == "прибиральник" || $stroka['name_of_position'] == "охоронник"){
+    if($stroka4['name_of_position'] == "кухар" || $stroka4['name_of_position'] == "водій" || $stroka4['name_of_position'] == "вантажник"
+  || $stroka4['name_of_position'] == "прибиральник" || $strok4['name_of_position'] == "охоронник"){
       echo"<form action=\"editingStaffFilmCrew.php\" method=\"post\">";
 
-  echo "<input type=\"hidden\" value = \"" .$stroka['others_id'] . "\" name=\"id_others\" >";
-      echo "<td class = \" noprint\">"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";
+  echo "<input type=\"hidden\" value = \"" .$stroka4['others_id'] . "\" name=\"id_others\" >";
+      echo "<td class = \" noprint\"><div class = \"btn noprint\"><button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button></div></td></form>";
 
     }
     echo"</tr>";

@@ -437,14 +437,14 @@ $mysqli->query("SET NAMES 'utf8'");
     //
     // echo "<input type=\"hidden\" value = \"" .$stroka['actor_id'] . "\" name=\"actor_id\" >";
     //     echo "<td  class = \" noprint\">"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";    echo"</tr>";
-    if($stroka['name_of_position'] == "реквізитор" || $stroka['name_of_position'] == "гример<" || $stroka['name_of_position'] == "оператор"
-  || $stroka['name_of_position'] == "гафер" || $stroka['name_of_position'] == "звукорежисер" || $stroka['name_of_position'] == "художник по костюмах"
-|| $stroka['name_of_position'] == "художник-постановщик" || $stroka['name_of_position'] == "агент по акторах" || $stroka['name_of_position'] == "помічник оператор"
-|| $stroka['name_of_position'] == "помічник звукорежисера" || $stroka['name_of_position'] == "помічник гафера" || $stroka['name_of_position'] == "костюмер"
-|| $stroka['name_of_position'] == "помічник художника по костюмах" || $stroka['name_of_position'] == "помічник художника-постановщика" || $stroka['name_of_position'] == "адміністратор майданчика"){
+    if($stroka4['name_of_position'] == "реквізитор" || $stroka4['name_of_position'] == "гример" || $stroka4['name_of_position'] == "оператор"
+  || $stroka4['name_of_position'] == "гафер" || $stroka4['name_of_position'] == "звукорежисер" || $stroka4['name_of_position'] == "художник по костюмах"
+|| $stroka4['name_of_position'] == "художник-постановщик" || $stroka4['name_of_position'] == "агент по акторах" || $stroka4['name_of_position'] == "помічник оператор"
+|| $stroka4['name_of_position'] == "помічник звукорежисера" || $stroka4['name_of_position'] == "помічник гафера" || $stroka4['name_of_position'] == "костюмер"
+|| $stroka4['name_of_position'] == "помічник художника по костюмах" || $stroka4['name_of_position'] == "помічник художника-постановщика" || $stroka4['name_of_position'] == "адміністратор майданчика"){
       echo"<form action=\"editingStaffFilmCrew.php\" method=\"post\">";
 
-  echo "<input type=\"hidden\" value = \"" .$stroka['others_id'] . "\" name=\"id_others\" >";
+  echo "<input type=\"hidden\" value = \"" .$stroka4['others_id'] . "\" name=\"id_others\" >";
       echo "<td class = \" noprint\">"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";
 
     }
