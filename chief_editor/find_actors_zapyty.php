@@ -54,7 +54,13 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
         el.value = el.value= "" ;
     }
 }
-
+function yesnoCheck(that) {
+    if(that.value == "makeByHand"){
+      document.getElementById("appearFilters").style.display = "block";
+    }else{
+      document.getElementById("appearFilters").style.display = "none";
+    }
+}
 </script>
 
 <link rel="stylesheet" href="..\style.css">
