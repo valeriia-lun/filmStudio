@@ -1219,7 +1219,7 @@ $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `numbe
           $result_phones4 = $mysqli->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id`  = $temp4");
           $result_contacts_rel4 = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp4");
           $result_ratings4 = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `actors_previous_movies_rating` WHERE `actor_id` = $temp4)");
-$result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM  `actor_filmcrew` WHERE `actor_id` = $temp4)");
+          $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM  `actor_filmcrew` WHERE `actor_id` = $temp4)");
             echo"<tr>";
             echo"<td>" . $stroka4['actor_id'] . "</td>";
             echo"<td>" . $stroka4['actor_name'] . "</td>";

@@ -401,14 +401,14 @@ function yesnoCheck(that) {
 </script>
    <div class="container col-11" >
    <label class="colorText">Склад:</label>
-   <select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
+<!--   <select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
 
      <option value="show_crew">Показати склад</option>
      <option value="show_free">Показати склад та всіх вільних</option>
      <option value="show_all">Показати всіх</option>
    </select>
    <div class="btn noprint">
-  <button class ="button btn btn-primary" name="done">Знайти</button>
+  <button class ="button btn btn-primary" name="done">Знайти</button> -->
 </div>
 
 
@@ -559,7 +559,7 @@ $result = $mysql->query("SELECT * FROM actors WHERE actor_id IN(SELECT actor_id 
 
 
 
- 
+
 
 
 
@@ -735,7 +735,7 @@ $result = $mysql->query("SELECT * FROM actors WHERE actor_id IN(SELECT actor_id 
 <?php
 
 if (isset($_POST['done'])){
- 
+
 
 switch($selecting){
   case 'show_free':
@@ -866,7 +866,7 @@ switch($selecting){
          echo"</tr>  </table>";
          }
 
-    
+
 
 
   break;

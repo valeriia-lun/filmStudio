@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿
+<!DOCTYPE html>
 <html>
 <head>
 <meta  charset=utf-8>
@@ -42,25 +43,7 @@ $(document).ready(function(){
 
     });
 });
-function lal(el) {
-  if (el.value.match( /[^0-9]/ ) ) {
-        alert( "Неправильний формат числа! \nМожна використовувати тільки цифри" );
-        el.value = el.value= "" ;
-    }
-}
-function lal2(el) {
-if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
-        alert( "Неправильний формат запису! \nМожна використовувати тільки літери!" );
-        el.value = el.value= "" ;
-    }
-}
-function yesnoCheck(that) {
-    if(that.value == "makeByHand"){
-      document.getElementById("appearFilters").style.display = "block";
-    }else{
-      document.getElementById("appearFilters").style.display = "none";
-    }
-}
+
 </script>
 
 <link rel="stylesheet" href="..\style.css">
@@ -102,7 +85,7 @@ table{zoom: 40%;}
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only">(current)</span></a>
@@ -142,13 +125,13 @@ table{zoom: 40%;}
 <div id = "appearFilters" style="display: none;">
 <div class="row">
 <div class="col-md-3 container">
-<label class="colorText" >Ім'я<input onkeyup="lal2(this)" class="form-control" name ="name"></input></label>
+<label class="colorText" >Ім'я<input class="form-control" name ="name"></input></label>
 </div>
 <div class="col-md-3 container">
-<label class="colorText" >Прізвище<input onkeyup="lal2(this)" class="form-control" name="surname"></input></label>
+<label class="colorText" >Прізвище<input class="form-control" name="surname"></input></label>
 </div>
 <div class="col-md-3 container">
-<label class="colorText" >По-батькові<input onkeyup="lal2(this)" class="form-control" name="middleName" ></input></label>
+<label class="colorText" >По-батькові<input class="form-control" name="middleName" ></input></label>
 </div>
 <div class="col-md-3 container">
 <label class="colorText" >Рейтинг&nbsp;&nbsp;</label>
@@ -338,6 +321,7 @@ table{zoom: 40%;}
 <td class = "noprint"><div class = "noprint">Інші елементи зовнішності</div></td>
 <td >Ел.пошта</td>
 
+
 <td>Телефон</td>
 <td>Контакти близьких</td>
 <td class = "noprint"><div class = "noprint">Рейтинги фільмів, в яких брали участь</div></td>
@@ -349,15 +333,15 @@ $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
 
 //прості
-$zapyt1 =  $mysqli->query("SELECT * FROM `actors` WHERE `actor_experience` = (SELECT MAX(`actor_experience`) FROM  `actors`)"); // 1
-$zapyt2 = $mysqli->query("SELECT * FROM `actors` WHERE `actor_sex` = 'Ж' AND `actor_age` > 25");//2
-$zapyt3 = $mysqli->query("SELECT * FROM `actors` WHERE `actor_salary` < 20000");//3
-$zapyt4 = $mysqli->query("SELECT * FROM `actors` WHERE `actor_color_of_hair` = 'Блонд'");//4
-$zapyt5 = $mysqli->query("SELECT * FROM `movie` WHERE `rating_of_movie` = (SELECT MAX(`rating_of_movie`) FROM  `movie`)");//5
+$zapyt1 =  $mysqli->query("SELECT * FROM actors WHERE actor_experience = (SELECT MAX(actor_experience) FROM  actors)"); // 1
+$zapyt2 = $mysqli->query("SELECT * FROM actors WHERE actor_sex = 'Ж' AND actor_age > 25");//2
+$zapyt3 = $mysqli->query("SELECT * FROM actors WHERE actor_salary < 20000");//3
+$zapyt4 = $mysqli->query("SELECT * FROM actors WHERE actor_color_of_hair = 'Блонд'");//4
+$zapyt5 = $mysqli->query("SELECT * FROM movie WHERE rating_of_movie = (SELECT MAX(rating_of_movie) FROM  movie)");//5
 
 
 //складні
-$zapyt6 = $mysqli->query("SELECT * FROM `actors` WHERE actor_id IN (SELECT actor_id FROM `actor_filmcrew` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = 'Золото'))");
+$zapyt6 = $mysqli->query("SELECT * FROM actors WHERE actor_id IN (SELECT actor_id FROM actor_filmcrew WHERE number_of_film_crew IN (SELECT number_of_film_crew FROM movie WHERE name_of_movie = 'Золото'))");
 
     //Допоміжний запит Help:
 $zapyt7_1 =  $mysqli->query("CREATE VIEW Help AS SELECT Actor_filmCrew.number_of_film_crew, SUM(Actor_filmCrew.actor_fee) AS SUM_FEE FROM Actor_filmCrew
@@ -384,23 +368,23 @@ WHERE number_of_film_crew = M1.number_of_film_crew));");
 
 
 //параметричні
-$zapyt9 =   $mysqli->query("SELECT * FROM `actors` WHERE `actor_shoe_size` = [Введіть розмір взуття:]");
+$zapyt9 =   $mysqli->query("SELECT * FROM actors WHERE actor_shoe_size = [Введіть розмір взуття:]");
 
 
 //------------------------------------------LERA------------------------------------------------------------
 
 //прості
-$result_movies =  $mysqli->query("SELECT * FROM `movie` WHERE `rating_of_movie` = '4'");
-$zapyt22 = $mysqli->query("SELECT * FROM `editor` WHERE `editor_surname` = 'Ханенко'");
-$zapyt33 = $mysqli->query("SELECT * FROM `others` WHERE `name_of_position` = 'адміністратор майданчика'");
-$zapyt44 = $mysqli->query("SELECT *  FROM `others` WHERE `amount_of_films_others_took_part_in` > '10'");
-$zapyt55 = $mysqli->query("SELECT * FROM `others` WHERE `others_e-mail` = 'o.glushenko@gmail.com'");
+$result_movies =  $mysqli->query("SELECT * FROM movie WHERE rating_of_movie = '4'");
+$zapyt22 = $mysqli->query("SELECT * FROM editor WHERE editor_surname = 'Ханенко'");
+$zapyt33 = $mysqli->query("SELECT * FROM others WHERE name_of_position = 'адміністратор майданчика'");
+$zapyt44 = $mysqli->query("SELECT *  FROM others WHERE amount_of_films_others_took_part_in > '10'");
+$zapyt55 = $mysqli->query("SELECT * FROM others WHERE others_e-mail = 'o.glushenko@gmail.com'");
 
 
 //складні
-$zapyt66 = $mysqli->query("SELECT * FROM `movie` WHERE `name_of_movie` IN (
-  SELECT  `name_of_movie` FROM `movie_genres` WHERE `id_movie_genre` IN(
-    SELECT `id_movie_genre` FROM `genres` WHERE `genre` = 'детектив'))");
+$zapyt66 = $mysqli->query("SELECT * FROM movie WHERE name_of_movie IN (
+  SELECT  name_of_movie FROM movie_genres WHERE id_movie_genre IN(
+    SELECT id_movie_genre FROM genres WHERE genre = 'детектив'))");
 
 
 $zapyt77_1 = $mysqli->query("CREATE VIEW Help1 AS SELECT DISTINCT actor_filmcrew.actor_id, actor_filmcrew.number_of_film_crew
@@ -411,9 +395,9 @@ FROM movie
 WHERE movie.budget_of_movie >700000)");
 
 $zapyt77_2 =  $mysqli->query("SELECT Help1.actor_id, actors.actor_name, actors.actor_surname, actors.actor_middle_name, actors.actor_home_address,
-actors.actor_works_since,	actors.actor_works_until, actors.actor_experience, actors.rating_of_employee, actors.amount_of_films_actor_took_part_in,
+actors.actor_works_since,  actors.actor_works_until, actors.actor_experience, actors.rating_of_employee, actors.amount_of_films_actor_took_part_in,
  actors.actor_date_of_birth, actors.actor_place_of_birth, actors.name_of_position,actors.actor_age, actors.actor_sex,actors.actor_height,
- actors.actor_color_of_hair, 	actors.actor_length_of_hair,actors.actor_color_of_eyes,  actors.actor_stature,actors.actor_shoe_size,
+ actors.actor_color_of_hair,   actors.actor_length_of_hair,actors.actor_color_of_eyes,  actors.actor_stature,actors.actor_shoe_size,
  actors.actor_clothing_size, actors.actor_nationality,actors.actor_other_appearance,actors.actor_e-mail,actors.actors_head_id,actors.actor_salary,
    COUNT(number_of_film_crew) AS amount_of_movies
 FROM Help1 INNER JOIN actors ON Help1.actor_id = actors.actor_id
@@ -435,7 +419,7 @@ WHERE understudies_filmcrew.number_of_film_crew = film_crew.number_of_film_crew 
 
 
 //параметричні
-$zapyt99 =   $mysqli->query("SELECT * FROM `understudies` WHERE `understudy_color_of_hair` = [Введіть колір волосся:]");
+$zapyt99 =   $mysqli->query("SELECT * FROM understudies WHERE understudy_color_of_hair = [Введіть колір волосся:]");
 //echo res($zapyt99);
 
 
@@ -463,16 +447,17 @@ switch($selecting){
   case 'max_experience':
 
 
-$result_actors =  $mysqli->query("SELECT * FROM `actors` WHERE `actor_experience` = (SELECT MAX(`actor_experience`) FROM  `actors`)"); // 1
+$result_actors =  $mysqli->query("SELECT * FROM actors WHERE actor_experience = (SELECT MAX(actor_experience) FROM  actors)"); // 1
 while ($stroka = mysqli_fetch_array($result_actors)){
   $temp = $stroka['actor_id'];
-  $result_photos = $mysqli->query("SELECT `actor_photo` FROM `actors_photo` WHERE `actor_id`  = $temp");
-  $result_phones = $mysqli->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id`  = $temp");
-  $result_contacts_rel = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp");
-  $result_ratings = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `actors_previous_movies_rating` WHERE `actor_id` = $temp)");
-$result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM  `actor_filmcrew` WHERE `actor_id` = $temp)");
+  $result_photos = $mysqli->query("SELECT actor_photo FROM actors_photo WHERE actor_id  = $temp");
+  $result_phones = $mysqli->query("SELECT actor_phone_number FROM actors_phones WHERE actor_id  = $temp");
+  $result_contacts_rel = $mysqli->query("SELECT actor_relatives_phone_numbers FROM actor_contacts_of_relatives WHERE actor_id  = $temp");
+  $result_ratings = $mysqli->query("SELECT rating FROM previous_movies_rating WHERE id_previous_movie_rating IN (SELECT id_previous_movie_rating FROM  actors_previous_movies_rating WHERE actor_id = $temp)");
+$result_films = $mysqli->query("SELECT name_of_movie FROM movie WHERE number_of_film_crew IN (SELECT number_of_film_crew FROM  actor_filmcrew WHERE actor_id = $temp)");
 
- echo"<tr >";
+
+echo"<tr >";
     echo"<td>" . $stroka['actor_id'] . "</td>";
     echo"<td>" . $stroka['actor_name'] . "</td>";
     echo"<td>" . $stroka['actor_surname'] . "</td>";
@@ -501,7 +486,7 @@ $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `numbe
     echo"<td>" . $stroka['actor_e-mail'] . "</td>";
     echo"<td>" .  res($result_phones) . "</td>";
     echo"<td>" .  res($result_contacts_rel) . "</td>";
-    echo"<td class = \" noprint\">" .  res($result_ratings) . "</td>"; 	   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
+    echo"<td class = \" noprint\">" .  res($result_ratings) . "</td>";      echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
     echo"</tr>";
    }
   break;
@@ -509,17 +494,18 @@ $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `numbe
 
 
   case 'female':
-    $result_actors2 = $mysqli->query("SELECT * FROM `actors` WHERE `actor_sex` = 'Жіноча'");//2
+    $result_actors2 = $mysqli->query("SELECT * FROM actors WHERE actor_sex = 'Жіноча'");//2
 
     while ($stroka = mysqli_fetch_array($result_actors2)){
       $temp = $stroka['actor_id'];
-      $result_photos = $mysqli->query("SELECT `actor_photo` FROM `actors_photo` WHERE `actor_id`  = $temp");
-      $result_phones = $mysqli->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id`  = $temp");
-      $result_contacts_rel = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp");
-      $result_ratings = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `actors_previous_movies_rating` WHERE `actor_id` = $temp)");
-    $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM  `actor_filmcrew` WHERE `actor_id` = $temp)");
+      $result_photos = $mysqli->query("SELECT actor_photo FROM actors_photo WHERE actor_id  = $temp");
+      $result_phones = $mysqli->query("SELECT actor_phone_number FROM actors_phones WHERE actor_id  = $temp");
+      $result_contacts_rel = $mysqli->query("SELECT actor_relatives_phone_numbers FROM actor_contacts_of_relatives WHERE actor_id  = $temp");
+      $result_ratings = $mysqli->query("SELECT rating FROM previous_movies_rating WHERE id_previous_movie_rating IN (SELECT id_previous_movie_rating FROM  actors_previous_movies_rating WHERE actor_id = $temp)");
+    $result_films = $mysqli->query("SELECT name_of_movie FROM movie WHERE number_of_film_crew IN (SELECT number_of_film_crew FROM  actor_filmcrew WHERE actor_id = $temp)");
 
-       echo"<tr >";
+
+echo"<tr >";
     echo"<td>" . $stroka['actor_id'] . "</td>";
     echo"<td>" . $stroka['actor_name'] . "</td>";
     echo"<td>" . $stroka['actor_surname'] . "</td>";
@@ -548,7 +534,7 @@ $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `numbe
     echo"<td>" . $stroka['actor_e-mail'] . "</td>";
     echo"<td>" .  res($result_phones) . "</td>";
     echo"<td>" .  res($result_contacts_rel) . "</td>";
-    echo"<td class = \" noprint\">" .  res($result_ratings) . "</td>"; 	   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
+    echo"<td class = \" noprint\">" .  res($result_ratings) . "</td>";      echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
     echo"</tr>";
        }
       break;
@@ -556,17 +542,17 @@ $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `numbe
 
 
   case  'salary_20000_more':
-    $result_actors3 = $mysqli->query("SELECT * FROM `actors` WHERE `actor_salary` < 20000");//3
+    $result_actors3 = $mysqli->query("SELECT * FROM actors WHERE actor_salary < 20000");//3
     while ($stroka3 = mysqli_fetch_array($result_actors3)){
       $temp3 = $stroka3['actor_id'];
-      $result_photos3 = $mysqli->query("SELECT `actor_photo` FROM `actors_photo` WHERE `actor_id`  = $temp3");
-      $result_phones3 = $mysqli->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id`  = $temp3");
-      $result_contacts_rel3 = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp3");
-      $result_ratings3 = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `actors_previous_movies_rating` WHERE `actor_id` = $temp3)");
-    $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM  `actor_filmcrew` WHERE `actor_id` = $temp)");
+      $result_photos3 = $mysqli->query("SELECT actor_photo FROM actors_photo WHERE actor_id  = $temp3");
+      $result_phones3 = $mysqli->query("SELECT actor_phone_number FROM actors_phones WHERE actor_id  = $temp3");
+      $result_contacts_rel3 = $mysqli->query("SELECT actor_relatives_phone_numbers FROM actor_contacts_of_relatives WHERE actor_id  = $temp3");
+      $result_ratings3 = $mysqli->query("SELECT rating FROM previous_movies_rating WHERE id_previous_movie_rating IN (SELECT id_previous_movie_rating FROM  actors_previous_movies_rating WHERE actor_id = $temp3)");
+    $result_films = $mysqli->query("SELECT name_of_movie FROM movie WHERE number_of_film_crew IN (SELECT number_of_film_crew FROM  actor_filmcrew WHERE actor_id = $temp3)");
 
 
-        echo"<tr >";
+echo"<tr >";
     echo"<td>" . $stroka3['actor_id'] . "</td>";
     echo"<td>" . $stroka3['actor_name'] . "</td>";
     echo"<td>" . $stroka3['actor_surname'] . "</td>";
@@ -595,24 +581,24 @@ $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `numbe
     echo"<td>" . $stroka3['actor_e-mail'] . "</td>";
     echo"<td>" .  res($result_phones3) . "</td>";
     echo"<td>" .  res($result_contacts_rel3) . "</td>";
-    echo"<td class = \" noprint\">" .  res($result_ratings3) . "</td>"; 	   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
+    echo"<td class = \" noprint\">" .  res($result_ratings3) . "</td>";      echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
         echo"</tr>";
        }
       break;
 
 
       case  'blond':
-        $result_actors3 = $mysqli->query("SELECT * FROM `actors` WHERE `actor_color_of_hair` = 'Блонд'");//4
+        $result_actors3 = $mysqli->query("SELECT * FROM actors WHERE actor_color_of_hair = 'Блонд'");//4
         while ($stroka3 = mysqli_fetch_array($result_actors3)){
           $temp3 = $stroka3['actor_id'];
-          $result_photos3 = $mysqli->query("SELECT `actor_photo` FROM `actors_photo` WHERE `actor_id`  = $temp3");
-          $result_phones3 = $mysqli->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id`  = $temp3");
-          $result_contacts_rel3 = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp3");
-          $result_ratings3 = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `actors_previous_movies_rating` WHERE `actor_id` = $temp3)");
-        $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM  `actor_filmcrew` WHERE `actor_id` = $temp3)");
+          $result_photos3 = $mysqli->query("SELECT actor_photo FROM actors_photo WHERE actor_id  = $temp3");
+          $result_phones3 = $mysqli->query("SELECT actor_phone_number FROM actors_phones WHERE actor_id  = $temp3");
+          $result_contacts_rel3 = $mysqli->query("SELECT actor_relatives_phone_numbers FROM actor_contacts_of_relatives WHERE actor_id  = $temp3");
+          $result_ratings3 = $mysqli->query("SELECT rating FROM previous_movies_rating WHERE id_previous_movie_rating IN (SELECT id_previous_movie_rating FROM  actors_previous_movies_rating WHERE actor_id = $temp3)");
+        $result_films = $mysqli->query("SELECT name_of_movie FROM movie WHERE number_of_film_crew IN (SELECT number_of_film_crew FROM  actor_filmcrew WHERE actor_id = $temp3)");
 
 
-        echo"<tr >";
+echo"<tr >";
     echo"<td>" . $stroka3['actor_id'] . "</td>";
     echo"<td>" . $stroka3['actor_name'] . "</td>";
     echo"<td>" . $stroka3['actor_surname'] . "</td>";
@@ -641,23 +627,23 @@ $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `numbe
     echo"<td>" . $stroka3['actor_e-mail'] . "</td>";
     echo"<td>" .  res($result_phones3) . "</td>";
     echo"<td>" .  res($result_contacts_rel3) . "</td>";
-    echo"<td class = \" noprint\">" .  res($result_ratings3) . "</td>"; 	   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
+    echo"<td class = \" noprint\">" .  res($result_ratings3) . "</td>";      echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
         echo"</tr>";
            }
           break;
 
           case  'movie_zoloto':
-            $result_actors3 = $mysqli->query("SELECT * FROM `actors` WHERE actor_id IN (SELECT actor_id FROM `actor_filmcrew` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = 'Золото'))");
+            $result_actors3 = $mysqli->query("SELECT * FROM actors WHERE actor_id IN (SELECT actor_id FROM actor_filmcrew WHERE number_of_film_crew IN (SELECT number_of_film_crew FROM movie WHERE name_of_movie = 'Золото'))");
             while ($stroka3 = mysqli_fetch_array($result_actors3)){
               $temp3 = $stroka3['actor_id'];
-              $result_photos3 = $mysqli->query("SELECT `actor_photo` FROM `actors_photo` WHERE `actor_id`  = $temp3");
-              $result_phones3 = $mysqli->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id`  = $temp3");
-              $result_contacts_rel3 = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp3");
-              $result_ratings3 = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `actors_previous_movies_rating` WHERE `actor_id` = $temp3)");
-            $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM  `actor_filmcrew` WHERE `actor_id` = $temp3)");
+              $result_photos3 = $mysqli->query("SELECT actor_photo FROM actors_photo WHERE actor_id  = $temp3");
+              $result_phones3 = $mysqli->query("SELECT actor_phone_number FROM actors_phones WHERE actor_id  = $temp3");
+              $result_contacts_rel3 = $mysqli->query("SELECT actor_relatives_phone_numbers FROM actor_contacts_of_relatives WHERE actor_id  = $temp3");
+              $result_ratings3 = $mysqli->query("SELECT rating FROM previous_movies_rating WHERE id_previous_movie_rating IN (SELECT id_previous_movie_rating FROM  actors_previous_movies_rating WHERE actor_id = $temp3)");
+            $result_films = $mysqli->query("SELECT name_of_movie FROM movie WHERE number_of_film_crew IN (SELECT number_of_film_crew FROM  actor_filmcrew WHERE actor_id = $temp3)");
 
 
-        echo"<tr >";
+echo"<tr >";
     echo"<td>" . $stroka3['actor_id'] . "</td>";
     echo"<td>" . $stroka3['actor_name'] . "</td>";
     echo"<td>" . $stroka3['actor_surname'] . "</td>";
@@ -686,24 +672,23 @@ $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `numbe
     echo"<td>" . $stroka3['actor_e-mail'] . "</td>";
     echo"<td>" .  res($result_phones3) . "</td>";
     echo"<td>" .  res($result_contacts_rel3) . "</td>";
-    echo"<td class = \" noprint\">" .  res($result_ratings3) . "</td>"; 	   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
+    echo"<td class = \" noprint\">" .  res($result_ratings3) . "</td>";      echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
         echo"</tr>";
                }
               break;
 
 
               case  'entered_shoe_size':
-                $result_actors3 =   $mysqli->query("SELECT * FROM `actors` WHERE `actor_shoe_size` = $entering_values");
+                $result_actors3 =   $mysqli->query("SELECT * FROM actors WHERE actor_shoe_size = $entering_values");
                 while ($stroka3 = mysqli_fetch_array($result_actors3)){
                   $temp3 = $stroka3['actor_id'];
-                  $result_photos3 = $mysqli->query("SELECT `actor_photo` FROM `actors_photo` WHERE `actor_id`  = $temp3");
-                  $result_phones3 = $mysqli->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id`  = $temp3");
-                  $result_contacts_rel3 = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp3");
-                  $result_ratings3 = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `actors_previous_movies_rating` WHERE `actor_id` = $temp3)");
-                $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM  `actor_filmcrew` WHERE `actor_id` = $temp3)");
+                  $result_photos3 = $mysqli->query("SELECT actor_photo FROM actors_photo WHERE actor_id  = $temp3");
+                  $result_phones3 = $mysqli->query("SELECT actor_phone_number FROM actors_phones WHERE actor_id  = $temp3");
+                  $result_contacts_rel3 = $mysqli->query("SELECT actor_relatives_phone_numbers FROM actor_contacts_of_relatives WHERE actor_id  = $temp3");
+                  $result_ratings3 = $mysqli->query("SELECT rating FROM previous_movies_rating WHERE id_previous_movie_rating IN (SELECT id_previous_movie_rating FROM  actors_previous_movies_rating WHERE actor_id = $temp3)");
+                $result_films = $mysqli->query("SELECT name_of_movie FROM movie WHERE number_of_film_crew IN (SELECT number_of_film_crew FROM  actor_filmcrew WHERE actor_id = $temp3)");
 
-
-        echo"<tr >";
+echo"<tr >";
     echo"<td>" . $stroka3['actor_id'] . "</td>";
     echo"<td>" . $stroka3['actor_name'] . "</td>";
     echo"<td>" . $stroka3['actor_surname'] . "</td>";
@@ -732,7 +717,7 @@ $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `numbe
     echo"<td>" . $stroka3['actor_e-mail'] . "</td>";
     echo"<td>" .  res($result_phones3) . "</td>";
     echo"<td>" .  res($result_contacts_rel3) . "</td>";
-    echo"<td class = \" noprint\">" .  res($result_ratings3) . "</td>"; 	   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
+    echo"<td class = \" noprint\">" .  res($result_ratings3) . "</td>";      echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
         echo"</tr>";
                    }
                   break;
@@ -741,23 +726,23 @@ $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `numbe
 //?????????????????????????????
 case  'expensive':
   $result_actors3 =  $mysqli->query("SELECT actors.actor_id, actors.actor_name, actors.actor_surname,actors.actor_middle_name, actors.actor_experience, actors.rating_of_employee,actors.actor_salary,
-  actors.actor_works_since,	actors.actor_works_until,  actors.amount_of_films_actor_took_part_in, actors.actor_home_address,
+  actors.actor_works_since,  actors.actor_works_until,  actors.amount_of_films_actor_took_part_in, actors.actor_home_address,
   actors.actor_date_of_birth, actors.actor_place_of_birth, actors.name_of_position,actors.actor_age, actors.actor_sex,actors.actor_height,
-  actors.actor_color_of_hair, 	actors.actor_length_of_hair,actors.actor_color_of_eyes,  actors.actor_stature,actors.actor_shoe_size,
-  actors.actor_clothing_size, actors.actor_nationality,actors.actor_other_appearance, actors.`actor_e-mail`,actors.actors_head_id, SUM(actor_filmcrew.actor_fee) FROM (actors INNER JOIN actor_filmcrew ON actors.actor_id = actor_filmcrew.actor_id) GROUP BY actor_filmcrew.actor_id;");
+  actors.actor_color_of_hair,   actors.actor_length_of_hair,actors.actor_color_of_eyes,  actors.actor_stature,actors.actor_shoe_size,
+  actors.actor_clothing_size, actors.actor_nationality,actors.actor_other_appearance, actors.actor_e-mail,actors.actors_head_id, SUM(actor_filmcrew.actor_fee) FROM (actors INNER JOIN actor_filmcrew ON actors.actor_id = actor_filmcrew.actor_id) GROUP BY actor_filmcrew.actor_id;");
 
 
 
                     while ($stroka3 = mysqli_fetch_array($result_actors3)){
                       $temp3 = $stroka3['actors.actor_id'];
-                      $result_photos3 = $mysqli->query("SELECT `actor_photo` FROM `actors_photo` WHERE `actor_id`  = $temp3");
-                      $result_phones3 = $mysqli->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id`  = $temp3");
-                      $result_contacts_rel3 = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp3");
-                      $result_ratings3 = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `actors_previous_movies_rating` WHERE `actor_id` = $temp3)");
-                    $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM  `actor_filmcrew` WHERE `actor_id` = $temp3)");
+                      $result_photos3 = $mysqli->query("SELECT actor_photo FROM actors_photo WHERE actor_id  = $temp3");
+                      $result_phones3 = $mysqli->query("SELECT actor_phone_number FROM actors_phones WHERE actor_id  = $temp3");
+                      $result_contacts_rel3 = $mysqli->query("SELECT actor_relatives_phone_numbers FROM actor_contacts_of_relatives WHERE actor_id  = $temp3");
+                      $result_ratings3 = $mysqli->query("SELECT rating FROM previous_movies_rating WHERE id_previous_movie_rating IN (SELECT id_previous_movie_rating FROM  actors_previous_movies_rating WHERE actor_id = $temp3)");
+                    $result_films = $mysqli->query("SELECT name_of_movie FROM movie WHERE number_of_film_crew IN (SELECT number_of_film_crew FROM  actor_filmcrew WHERE actor_id = $temp3)");
 
 
-        echo"<tr >";
+echo"<tr >";
     echo"<td>" . $stroka3['actor_id'] . "</td>";
     echo"<td>" . $stroka3['actor_name'] . "</td>";
     echo"<td>" . $stroka3['actor_surname'] . "</td>";
@@ -786,7 +771,7 @@ case  'expensive':
     echo"<td>" . $stroka3['actor_e-mail'] . "</td>";
     echo"<td>" .  res($result_phones3) . "</td>";
     echo"<td>" .  res($result_contacts_rel3) . "</td>";
-    echo"<td class = \" noprint\">" .  res($result_ratings3) . "</td>"; 	   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
+    echo"<td class = \" noprint\">" .  res($result_ratings3) . "</td>";      echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
         echo"</tr>";
                        }
                       break;
@@ -809,18 +794,19 @@ case 'makeByHand':
   $nationality =  $_POST['selectingNationality'];
 //  $skills =  $_POST['selectingFilms'];
 
-  $quer = "SELECT * FROM `actors` WHERE ";
+  $quer = "SELECT * FROM actors WHERE ";
 //        echo $quer;
 //        $quer .= "fff";
 //        echo $quer;
 
   $isFirst = true;
 
-  if($name != NULL){
+
+if($name != NULL){
     if(!$isFirst){
       $quer = $quer . " AND ";
     }
-    $quer = $quer . "actor_name LIKE  '%$name\"";
+    $quer = $quer . "actor_name = \"$name\"";
     $isFirst = false;
   }
   if($surname != NULL){
@@ -828,14 +814,14 @@ case 'makeByHand':
     if(!$isFirst){
       $quer = $quer . " AND ";
     }
-    $quer = $quer . "actor_surname LIKE  '%$surname\"";
+    $quer = $quer . "actor_surname = \"$surname\"";
     $isFirst = false;
   }
   if($middleName != NULL){
     if(!$isFirst){
       $quer = $quer . " AND ";
     }
-    $quer = $quer . "actor_middle_name LIKE  '%$middleName\"";
+    $quer = $quer . "actor_middle_name = \"$middleName\"";
     $isFirst = false;
   }
   if($rating != NULL){
@@ -939,13 +925,14 @@ case 'makeByHand':
 
   while ($stroka4 = mysqli_fetch_array($result_filter)){
     $temp4 = $stroka4['actor_id'];
-    $result_photos4 = $mysqli->query("SELECT `actor_photo` FROM `actors_photo` WHERE `actor_id`  = $temp4");
-    $result_phones4 = $mysqli->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id`  = $temp4");
-    $result_contacts_rel4 = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp4");
-    $result_ratings4 = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `actors_previous_movies_rating` WHERE `actor_id` = $temp4)");
-$result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM  `actor_filmcrew` WHERE `actor_id` = $temp4)");
+    $result_photos4 = $mysqli->query("SELECT actor_photo FROM actors_photo WHERE actor_id  = $temp4");
+    $result_phones4 = $mysqli->query("SELECT actor_phone_number FROM actors_phones WHERE actor_id  = $temp4");
+    $result_contacts_rel4 = $mysqli->query("SELECT actor_relatives_phone_numbers FROM actor_contacts_of_relatives WHERE actor_id  = $temp4");
+    $result_ratings4 = $mysqli->query("SELECT rating FROM previous_movies_rating WHERE id_previous_movie_rating IN (SELECT id_previous_movie_rating FROM  actors_previous_movies_rating WHERE actor_id = $temp4)");
+$result_films4 = $mysqli->query("SELECT name_of_movie FROM movie WHERE number_of_film_crew IN (SELECT number_of_film_crew FROM  actor_filmcrew WHERE actor_id = $temp4)");
 
-echo"<tr >";
+
+echo"<tr>";
     echo"<td>" . $stroka4['actor_id'] . "</td>";
     echo"<td>" . $stroka4['actor_name'] . "</td>";
     echo"<td>" . $stroka4['actor_surname'] . "</td>";
@@ -974,7 +961,7 @@ echo"<tr >";
     echo"<td>" . $stroka4['actor_e-mail'] . "</td>";
     echo"<td>" .  res($result_phones4) . "</td>";
     echo"<td>" .  res($result_contacts_rel4) . "</td>";
-    echo"<td class = \" noprint\">" .  res($result_ratings4) . "</td> 	   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";</tr>";
+    echo"<td class = \" noprint\">" .  res($result_ratings4) . "</td> ";     echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films4) . "</td>";echo"</tr>";
      }
 
 break;

@@ -109,14 +109,15 @@ table{zoom: 40%;}
 
   <div class="row">
   <div class="col-md-3 container">
-  <label class="colorText" >Ім'я<input onkeyup="lal2(this)" class="form-control" name ="name"></input></label>
+  <label class="colorText" >Ім'я<input class="form-control" name ="name"></input></label>
   </div>
   <div class="col-md-3 container">
-  <label class="colorText" >Прізвище<input onkeyup="lal2(this)" class="form-control" name="surname"></input></label>
+  <label class="colorText" >Прізвище<input class="form-control" name="surname"></input></label>
   </div>
   <div class="col-md-3 container">
-  <label class="colorText" >По-батькові<input onkeyup="lal2(this)" class="form-control" name="middleName" ></input></label>
-  </div>
+  <label class="colorText" >По-батькові<input class="form-control" name="middleName" ></input></label>
+  </div></div></br>
+
 
 
   </br>
@@ -179,18 +180,13 @@ table{zoom: 40%;}
   </div>
   </div>
   <script>
-function lal(el) {
-  if (el.value.match( /[^0-9]/ ) ) {
-        alert( "Неправильний формат числа! \nМожна використовувати тільки цифри" );
-        el.value = el.value= "" ;
-    }
-}
-function lal2(el) {
-if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
-        alert( "Неправильний формат запису! \nМожна використовувати тільки літери!" );
-        el.value = el.value= "" ;
-    }
-}
+  function lal(el) {
+    if (el.value.match( /[^0-9]/ ) ) {
+          alert( "Неправильний формат числа! \nМожна використовувати тільки цифри" );
+          el.value = el.value.replace( /[^0-9]/ , "" )
+      }
+  }
+
   function yesnoCheck(that) {
       if(that.value == "makeByHand"){
         document.getElementById("appearFilters").style.display = "block";
@@ -313,7 +309,7 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
               if(!$isFirst){
                 $quer = $quer . " AND ";
               }
-              $quer = $quer . "others_name LIKE  '%$name%'";
+              $quer = $quer . "others_name = \"$name\"";
               $isFirst = false;
             }
             if($surname != NULL){
@@ -321,14 +317,14 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
               if(!$isFirst){
                 $quer = $quer . " AND ";
               }
-              $quer = $quer . "others_surname LIKE  '%$surname%'";;
+              $quer = $quer . "others_surname = \"$surname\"";
               $isFirst = false;
             }
             if($middleName != NULL){
               if(!$isFirst){
                 $quer = $quer . " AND ";
               }
-              $quer = $quer . "others_middle_name LIKE  '%$middleName%'";
+              $quer = $quer . "others_middle_name = \"$middleName\"";
               $isFirst = false;
             }
             if($position != NULL){
