@@ -344,232 +344,10 @@ function yesnoCheck(that) {
 }
 </script>
 
-<div class="btn noprint">
-  <button class ="button btn btn-primary" name="done">Знайти</button>
-</div>
-</form></div>
+
 
 </br>
 
-
-
-
-
-  <div id = "appearFilters" style="display: none;">
-  <div class="row">
-  <div class="col-md-3 container">
-  <label class="colorText" >Ім'я<input class="form-control" name ="name"></input></label>
-  </div>
-  <div class="col-md-3 container">
-  <label class="colorText" >Прізвище<input class="form-control" name="surname"></input></label>
-  </div>
-  <div class="col-md-3 container">
-  <label class="colorText" >По-батькові<input class="form-control" name="middleName" ></input></label>
-  </div>
-  <div class="col-md-3 container">
-  <label class="colorText" >Рейтинг&nbsp;&nbsp;</label>
-  <input type="radio" id="choice>"
-       name="choice1" value=">">
-      <label >></label>
-
-      <input type="radio" id="choice<"
-       name="choice1" value="<">
-      <label ><</label>
-
-      <input type="radio" id="choice="
-       name="choice1" value="=">
-      <label >=</label><input class="form-control" name="rating" ></input>
-
-  </div></div></br>
-
-
-
-  <div class="row">
-  <div class="col-md-3 container">
-  <label class="colorText" >Кількість фільмів у яких брали участь&nbsp;&nbsp;</label>
-  <input type="radio" id="choice>"
-       name="choice2" value=">">
-      <label >></label>
-
-      <input type="radio" id="choice<"
-       name="choice2" value="<">
-      <label ><</label>
-
-      <input type="radio" id="choice="
-       name="choice2" value="=">
-      <label >=</label><input class="form-control" onkeyup="lal(this)" name="amountOfFilms" ></input>
-  </div>
-  <div class="col-md-3 container">
-  <label class="colorText" >Вік&nbsp;&nbsp;</label>
-  <input type="radio" id="choice>"
-       name="choice3" value=">">
-      <label >></label>
-
-      <input type="radio" id="choice<"
-       name="choice3" value="<">
-      <label ><</label>
-
-      <input type="radio" id="choice="
-       name="choice3" value="=">
-      <label >=</label><input class="form-control" onkeyup="lal(this)" name="age" ></input>
-  </div>
-  <div class="col-md-3 container">
-  <label class="colorText" >Стать</label><select name="selectingSex"   class="select selectpicker  form-control">
-  <option ></option>
-    <option >Чоловік</option>
-    <option >Жінка</option>
-  </select>
-  </div>
-  <div class="col-md-3 container">
-  <label class="colorText" >Ріст&nbsp;&nbsp;</label>
-  <input type="radio" id="choise>"
-       name="choice4" value=">">
-      <label >></label>
-
-      <input type="radio" id="choise<"
-       name="choice4" value="<">
-      <label ><</label>
-
-      <input type="radio" id="choise="
-       name="choice4" value="=">
-      <label >=</label><input class="form-control" onkeyup="lal(this)" name="height" ></input></div></div></br>
-
-  <div class="row">
-  <div class="col-md-3 container">
-  <label class="colorText" >Колір волосся:</label>
-  <select name="selectingColorOfHair"  class="select selectpicker  form-control">
-  <option ></option>
-    <option>Рудий</option>
-    <option>Блонд</option>
-    <option>Брюнет</option>
-    <option>Шатен</option>
-    <option>Русявий</option>
-    <option>Рожевий</option>
-    <option>Синий</option>
-    <option>Сивий</option>
-    <option>Червоний</option>
-    <option>Помаранчевий</option>
-    <option>Жовтий</option>
-    <option>Зелений</option>
-    <option>Блакитний</option>
-    <option>Фіолетовий</option>
-  </select>
-  </div>
-
-  </br>
-  <div class="col-md-3 container">
-  <label class="colorText" >Довжина волосся&nbsp;&nbsp;</label>
-  <input type="radio" id="choise>"
-       name="choice5" value=">">
-      <label >></label>
-
-      <input type="radio" id="choise<"
-       name="choice5" value="<">
-      <label ><</label>
-
-      <input type="radio" id="choise="
-       name="choice5" value="=">
-      <label >=</label><input onkeyup="lal(this)" class="form-control" name="hairLength"></input>
-  </div>
-  <div class="col-md-3 container">
-  <label class="colorText" >Колір очей:</label>
-  <select name="selectingColorOfEyes"  class="select selectpicker  form-control">
-  <option ></option>
-    <option>Блакитний</option>
-    <option >Зелений</option>
-    <option >Карий</option>
-    <option >Сірий</option>
-
-  </select></div><div class="col-md-3 container">
-  <label class="colorText" >Статура:</label>
-  <select name="selectingStature"  class="select selectpicker  form-control">
-  <option ></option>
-    <option >Спортивний</option>
-    <option >Худий</option>
-    <option >Повний</option>
-    <option >Стрункий</option>
-  </select></div>
-  </div>
-  </br>
-  <div class="row">
-  <div class="col-md-3 container">
-  <label class="colorText" >Розмір взуття&nbsp;&nbsp;</label>
-  <input type="radio" id="choise>"
-       name="choice6" value=">">
-      <label >></label>
-
-      <input type="radio" id="choise<"
-       name="choice6" value="<">
-      <label ><</label>
-
-      <input type="radio" id="choise="
-       name="choice6" value="=">
-      <label >=</label><input onkeyup="lal(this)" class="form-control" name="shoeSize" ></input>
-  </div>
-  <div class="col-md-3 container">
-  <label class="colorText" >Розмір одягу&nbsp;&nbsp;</label><input type="radio" id="choise>"
-       name="choice7" value=">">
-      <label >></label>
-
-      <input type="radio" id="choise<"
-       name="choice7" value="<">
-      <label ><</label>
-
-      <input type="radio" id="choise="
-       name="choice7" value="=">
-      <label >=</label><input onkeyup="lal(this)" class="form-control" name="clothingSize" ></input></div>
-
-  <div class="col-md-3 container">
-  <label class="colorText" >Національність:</label>
-  <select name="selectingNationality"  class="select selectpicker  form-control">
-  <option></option>
-    <option>Українська</option>
-    <option>Армянська</option>
-    <option>Російська</option>
-    <option>Грузинська</option>
-    <option>Італійська</option>
-    <option>Китайська</option>
-    <option>Арабська</option>
-    <option>Скандинавська</option>
-
-  </select></div>
-  <div class="col-md-3 container">
-  <label class="colorText" >Фільми, в яких брали участь:</label>
-  <?php
-  $mysqli = new mysqli("localhost","root","root","filmstudio");
-  $mysqli->query("SET NAMES 'utf8'");
-
-  $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie`");
-  echo "<div class=\"field_wrapper_Films\"><div>";
-  echo "<select name=\"field_name_Films[]\"  class=\"select selectpicker  form-control\"><option></option>";
-  while($stroka = mysqli_fetch_array($result_films)){
-  for ($i=0; $i<count($stroka); $i+=2){
-    echo "<option>$stroka[$i]</option>";
-  }
-  }
-  echo "</select>";
-  echo "<a href=\"javascript:void(0);\" class=\"add_button_Films\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a>";
-  echo "</div></div>";
-  ?>
-  </div></div>
-  </div>
-  </div>
-  <script>
-  function lal(el) {
-    if (el.value.match( /[^0-9]/ ) ) {
-          alert( "Неправильний формат числа! \nМожна використовувати тільки цифри" );
-          el.value = el.value.replace( /[^0-9]/ , "" )
-      }
-  }
-
-  function yesnoCheck(that) {
-      if(that.value == "makeByHand"){
-        document.getElementById("appearFilters").style.display = "block";
-      }else{
-        document.getElementById("appearFilters").style.display = "none";
-      }
-  }
-  </script>
 
   <div class="btn noprint">
     <button class ="button btn btn-primary" name="done">Знайти</button>
@@ -1193,7 +971,7 @@ $stroka03 = mysqli_fetch_array($result_actors_mid_name);
         }
 
 
-        echo $quer;
+      //  echo $quer;
         $result_filter = $mysqli->query($quer);
 
         if ($result_filter) {
@@ -1203,7 +981,7 @@ $stroka03 = mysqli_fetch_array($result_actors_mid_name);
             echo "Error! $mysqli->error <br>";
           }
 
-        echo $quer;
+        //echo $quer;
 
 
       //  $result_filter = $mysqli->query($quer);

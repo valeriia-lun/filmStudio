@@ -114,6 +114,7 @@ table{zoom: 40%;}
   <option value="blond">Актори блондини</option>
   <option value="movie_zoloto">Актори, що знялися в фільмі 'Золото'</option>
   <option value="most_expensive_actor" >Найдорожчі актори</option>
+    <option value="variable" >Сумарні гонорари акторів</option>
   <option value="makeByHand">Фільтрувати самостійно</option>
 </select>
 </div></div></br>
