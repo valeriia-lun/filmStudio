@@ -133,8 +133,11 @@ $mysqli->query("SET NAMES 'utf8'");
 
 while ($stroka = mysqli_fetch_array($result_film_crews)){
   $temp = $stroka['number_of_film_crew'];
+   $result_movie = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` = $temp");
+    $value = res($result_movie);
     echo"<tr>";
     echo"<td name=\"number_of_film_crew\">" . $stroka['number_of_film_crew'] . "</td>";
+	  echo"<td>" . $value . "</td>";
     echo"<td>" . $stroka['date_start_crew'] . "</td>";
     echo"<td>" . $stroka['date_finish_film_crew'] . "</td>";
 

@@ -67,12 +67,43 @@
 <div>
 <h1 align="center" class="colorForAllText">Знімальні групи</h1></br>
 </div>
+<div class="noprint">
+<form action="find_film_crew_zapyty.php" method="post">
+<div class="row">
 
+<div class=" container col-3" >
+    <label class="colorText">Дата початку роботи: </label><input type="date" class="form-control" name="date_start" maxlength="50" tabindex="2" ><br>
+  </div>
+  <div class=" container col-3" >
+    <label class="colorText">Назва фільму: </label>
+    <?php
+    $mysqli = new mysqli("localhost","root","root","filmstudio");
+    $mysqli->query("SET NAMES 'utf8'");
+    $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie`");
+    echo "<select name=\"selectingFilms\"  class=\"select selectpicker  form-control\"><option></option>";
+    while($stroka = mysqli_fetch_array($result_films)){
+    for ($i=0; $i<count($stroka); $i+=2){
+      echo "<option>$stroka[$i]</option>";
+    }
+    }
+    echo "</select>";
+    ?>
+    <br>
+  </div>
+  <div class=" container col-3" >
+    <label class="colorText">Дата кінця роботи: </label><input type="date" class="form-control" name="date_finish" maxlength="50" tabindex="2" ><br>
+  </div>
+</div>
+<div class="btn">
+  <button class ="button btn btn-primary" name="done">Знайти</button>
+</div>
+</form>
+</div>
 <div  style="margin:10px;">
 <table border="1" class=" table table-dark table-hover" >
 <thead class="thead-dark " style="background-color: #252527;">
 <tr>
-<td>Номер знімальної групи</td>
+<td>Номер знімальної групи</td><td>Назва фільму</td>
 <td>Дата початку роботи знімальної групи</td>
 <td>Дата закінчення роботи знімальної групи</td>
 <td><div class = "noprint">Додати помічників гафера</div></td>
@@ -98,15 +129,18 @@ function res($result){
   if (isset($_POST['done'])){
     $mysqli = new mysqli("localhost","root","root","filmstudio");
   $mysqli->query("SET NAMES 'utf8'");
-  
+
           $date_start =  $_POST['date_start'];
           $date_finish =  $_POST['date_finish'];
-  
-        
+          $movieName =  $_POST['selectingFilms'];
+
+
+
+
           $quer = "SELECT * FROM `film_crew` WHERE ";
-     
+
                   $isFirst = true;
-          
+
                   if($date_start != NULL){
                     if(!$isFirst){
                       $quer = $quer . " AND ";
@@ -122,9 +156,19 @@ function res($result){
                     $quer = $quer . "date_finish_film_crew = '$date_finish'";
                     $isFirst = false;
                   }
-            
-                  
-          
+
+                  if($movieName != NULL){
+                  //  $isLast = false;
+                    if(!$isFirst){
+                      $quer = $quer . " AND ";
+                    }
+                    $quer = $quer . "number_of_film_crew IN(SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = '$movieName') ";
+                    $isFirst = false;
+                 //   echo $quer;
+                  }
+
+
+
                   $result_filter = $mysqli->query($quer);
                   if ($result_filter) {
                   //   echo "Success!";
@@ -132,18 +176,20 @@ function res($result){
                   else {
                       echo "Error! $mysqli->error <br>";
                     }
-          
+
                   $result_filter = $mysqli->query($quer);
-     
   //$mysqli->close();
   while ($stroka = mysqli_fetch_array($result_filter)){
-    $temp = $stroka['number_of_film_crew'];
+    $temp = $stroka['number_of_film_crew']; $result_movie = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` = $temp");
     echo"<tr>";
-    echo"<td name=\"number_of_film_crew\">" . $stroka['number_of_film_crew'] . "</td>";
+    echo"<td name=\"number_of_film_crew\">" . $stroka['number_of_film_crew'] . "</td>"; 
+	$value = res($result_movie);
+
+    echo"<td>" . $value . "</td>";
     echo"<td>" . $stroka['date_start_crew'] . "</td>";
     echo"<td>" . $stroka['date_finish_film_crew'] . "</td>";
 
-     $res = $mysqli->query("SELECT * FROM `film_crew` WHERE `date_finish_film_crew` > CURDATE() AND `number_of_film_crew` = $temp");
+     $res = $mysqli->query("SELECT * FROM `film_crew` WHERE `date_finish_film_crew` > CURDATE() AND `number_of_film_crew` = '$temp'");
      $re = mysqli_fetch_array($res);
      if($re){
       echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" value = \"" . $stroka['number_of_film_crew'] . "\" name=\"number_of_film_crew\">Додати</button>"."</div></td>";

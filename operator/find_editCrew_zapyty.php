@@ -74,14 +74,81 @@
 <table border="1" class=" table table-dark table-hover" >
 <thead class="thead-dark " style="background-color: #252527;">
 <tr>
-<td>Номер групи монтажерів</td>
+<td>Номер групи монтажерів</td><td>Назва фільму</td>
 <td>Дата початку роботи групи монтажерів</td>
 <td>Дата закінчення роботи групи монтажерів</td>
 <td>Id голови групи монтажерів</td>
 
 </tr></thead>
+<div class="noprint">
+<form action="find_editCrew_zapyty.php" method="post">
 
+<div class="row">
+<div class=" container col-3" >
+    <label class="colorText">Дата початку роботи: </label><input type="date" class="form-control" name="date_start" maxlength="50" tabindex="2" ><br>
+  </div>
+  <div class=" container col-3" >
+    <label class="colorText">Дата кінця роботи: </label><input type="date" class="form-control" name="date_finish" maxlength="50" tabindex="2" ><br>
+  </div>
+  <div class="col-3 container">
+<label class="colorText" >Табельний номер голови:</label>
 <?php
+$mysqli = new mysqli("localhost","root","root","filmstudio");
+$mysqli->query("SET NAMES 'utf8'");
+$result_headId = $mysqli->query("SELECT * FROM `editor` WHERE `editor_id` IN(SELECT `editor_crew_head_id` FROM `edit_crew`)");
+
+echo "<select name=\"selectingHeadId\"  class=\"select selectpicker  form-control\"><option selected></option>";
+while($stroka = mysqli_fetch_array($result_headId)){
+  if($stroka != 0){
+    echo "<option value=\"\">" . $stroka['editor_surname'] ." ".  $stroka['editor_name'] . " ". $stroka['editor_middle_name'] .", ". "id: " . $stroka['editor_id'] . "</option>";
+  } else{
+    echo "<option selected>" . "</option>";
+  }
+
+// for ($i=0; $i<count($stroka); $i+=2){
+//   echo "<option>$stroka[$i]</option>";
+// }
+}
+echo "</select>";
+?>
+</div>
+<div class=" container col-3" >
+  <label class="colorText">Назва фільму: </label>
+  <?php
+  $mysqli = new mysqli("localhost","root","root","filmstudio");
+  $mysqli->query("SET NAMES 'utf8'");
+  $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie`");
+  echo "<select name=\"selectingFilms\"  class=\"select selectpicker  form-control\"><option></option>";
+  while($stroka = mysqli_fetch_array($result_films)){
+  for ($i=0; $i<count($stroka); $i+=2){
+    echo "<option>$stroka[$i]</option>";
+  }
+  }
+  echo "</select>";
+  ?>
+  <br>
+</div>
+</div>
+
+<div class="btn">
+  <button class ="button btn btn-danger" name="done">Знайти</button>
+</div>
+</form>
+</div>
+<?php function res($result){
+$print = "";
+ if($result)
+ {
+     $rows = mysqli_num_rows($result); // количество полученных строк
+     for ($i = 0 ; $i < $rows ; ++$i)
+     {
+         $row = mysqli_fetch_row($result);
+             for ($j = 0 ; $j < 1 ; ++$j)   $print .= "$row[$j]"."<br/>";
+     }
+ }
+ return $print;
+}
+
 if (isset($_POST['done'])){
   $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
@@ -89,18 +156,23 @@ $mysqli->query("SET NAMES 'utf8'");
         $date_start =  $_POST['date_start'];
         $date_finish =  $_POST['date_finish'];
         $selectingHeadId =  $_POST['selectingHeadId'];
-   
-        $quer = "SELECT * FROM `edit_crew` WHERE ";
-   
-                $isFirst = true;
+        $movieName =  $_POST['selectingFilms'];
         
+
+        $quer = "SELECT * FROM `edit_crew` WHERE ";
+
+                $isFirst = true;
+
                 if($date_start != NULL){
                   if(!$isFirst){
                     $quer = $quer . " AND ";
                   }
                   $quer = $quer . "date_start_edit_crew = '$date_start'";
                   $isFirst = false;
-                }
+                }    
+                
+               
+
                 if($date_finish != NULL){
                 //  $isLast = false;
                   if(!$isFirst){
@@ -117,7 +189,17 @@ $mysqli->query("SET NAMES 'utf8'");
                   $isFirst = false;
                 }
                 
-        
+                if($movieName != NULL){
+                //  $isLast = false;
+                  if(!$isFirst){
+                    $quer = $quer . " AND ";
+                  }
+                  $quer = $quer . "number_of_edit_crew IN(SELECT `number_of_edit_crew` FROM `movie` WHERE `name_of_movie` = '$movieName') ";
+                  $isFirst = false;
+                 // echo $quer;
+                }
+
+
                 $result_filter = $mysqli->query($quer);
                 if ($result_filter) {
                 //   echo "Success!";
@@ -125,13 +207,22 @@ $mysqli->query("SET NAMES 'utf8'");
                 else {
                     echo "Error! $mysqli->error <br>";
                   }
-        
+
                 $result_filter = $mysqli->query($quer);
    
 //$mysqli->close();
 while ($stroka = mysqli_fetch_array($result_filter)){
+     $temp = $stroka['number_of_edit_crew'];
+  $result_movie = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_edit_crew` = $temp");
+
     echo"<tr>";
+
     echo"<td>" . $stroka['number_of_edit_crew'] . "</td>";
+
+    $valuee = res($result_movie);
+
+    echo"<td>" . $valuee . "</td>";
+
     echo"<td>" . $stroka['date_start_edit_crew'] . "</td>";
     echo"<td>" . $stroka['date_finish_edit_crew'] . "</td>";
     echo"<td>" . $stroka['editor_crew_head_id'] . "</td>";
