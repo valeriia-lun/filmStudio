@@ -22,7 +22,7 @@
 }
 
 @media print {
-  
+
   .noprint { display: none; }
 
 #printOnly{}
@@ -40,10 +40,41 @@
 #pageFooter:after {
     counter-increment: page;
     content: counter(page) ;
-    
+
     font-size: 20pt;
 }
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var maxFieldFilms = 10; //Input fields increment limitation
+  var addButtonFilms = $('.add_button_Films'); //Add button selector
+  var wrapperFilms = $('.field_wrapper_Films'); //Input field wrapper
+  /*var fieldHTMLFilms = ('.field_wrapper_Films select')[0].outerHTML;
+  alert(fieldHTMLFilms);// '<div><input type="text" class="form-control" name="field_name_Films[]" value=""/><a href="javascript:void(0);" class="remove_button_Films"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
+  */var xFilms = 1; //Initial field counter is 1
+  var fieldHTMLFilms = "<div><select name=\"field_name_Films[]\"  class=\"select selectpicker  form-control\">" + $('.field_wrapper_Films select')[0].innerHTML + "</select><a href=\"javascript:void(0);\" class=\"remove_button_Films\"><img src=\"../img/delete_icon.png\" width=\'20\' height=\'20\'/></a></div>";
+
+  //Once add button is clicked
+  $(addButtonFilms).click(function(){
+      //Check maximum number of input fields
+      if(xFilms < maxFieldFilms){
+          xFilms++; //Increment field counter
+          $(wrapperFilms).append(fieldHTMLFilms); //Add field html
+      }
+  });
+
+  //Once remove button is clicked
+  $(wrapperFilms).on('click', '.remove_button_Films', function(e){
+      e.preventDefault();
+      $(this).parent('div').remove(); //Remove field html
+      xFilms--; //Decrement field counter
+
+    });
+});
+
+</script>
 <body class="text-center body3">
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light style=width=100%;">
@@ -56,9 +87,9 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only">(current)</span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Генеральний продюсер</label>
     </form>
@@ -68,7 +99,92 @@
 <h1 align="center" class="colorForAllText">Монтажери</h1></br>
 
 </div>
+<div class="noprint">
+<form action="find_editor_zapyty.php" method="post">
+<div class="container col-md-3">
+<select  onchange="yesnoCheck(this);" class="select selectpicker  form-control"name="selecting">
+  <option value="khanenko">Монтажер Ханенко</option>
+  <option value="makeByHand">Фільтрувати самостійно</option>
 
+</select>
+</div></div>
+
+
+
+<div id = "appearFilters" style="display: none;">
+<div class="row">
+<div class="col-md-3 container">
+<label class="colorText" >Ім'я<input onkeyup="lal2(this)"  class="form-control" name ="name"></input></label>
+</div>
+<div class="col-md-3 container">
+<label class="colorText" >Прізвище<input onkeyup="lal2(this)" class="form-control" name="surname"></input></label>
+</div>
+<div class="col-md-3 container">
+<label class="colorText" >По-батькові<input onkeyup="lal2(this)"  class="form-control" name="middleName" ></input></label>
+</div>
+</div></br>
+
+
+</br>
+
+
+</br>
+<div class="row">
+
+
+
+<div class="col-md-3 container">
+<label class="colorText" >Фільми, в яких брали участь:</label>
+<?php
+$mysqli = new mysqli("localhost","root","root","filmstudio");
+$mysqli->query("SET NAMES 'utf8'");
+
+$result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie`");
+echo "<div class=\"field_wrapper_Films\"><div>";
+echo "<select name=\"field_name_Films[]\"  class=\"select selectpicker  form-control\"><option></option>";
+while($stroka = mysqli_fetch_array($result_films)){
+for ($i=0; $i<count($stroka); $i+=2){
+  echo "<option>$stroka[$i]</option>";
+}
+}
+echo "</select>";
+echo "<a href=\"javascript:void(0);\" class=\"add_button_Films\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a>";
+echo "</div></div>";
+?>
+</div></div>
+</div>
+</div>
+<script>
+function lal(el) {
+  if (el.value.match( /[^0-9]/ ) ) {
+        alert( "Неправильний формат числа! \nМожна використовувати тільки цифри" );
+        el.value = el.value= "" ;
+    }
+}
+function lal2(el) {
+if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
+        alert( "Неправильний формат запису! \nМожна використовувати тільки літери!" );
+        el.value = el.value= "" ;
+    }
+}
+
+function yesnoCheck(that) {
+    if(that.value == "makeByHand"){
+      document.getElementById("appearFilters").style.display = "block";
+    }else{
+      document.getElementById("appearFilters").style.display = "none";
+    }
+}
+</script>
+
+<div class="btn noprint">
+  <button class ="button btn btn-primary" name="done">Знайти</button>
+</div>
+</form>
+
+
+
+</div>
 <div  style="margin:10px;">
 <table border="1" class=" table table-dark table-hover" >
 <thead class="thead-dark " style="background-color: #252527;">
@@ -138,20 +254,130 @@ $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `numbe
     echo"<td>" . $stroka['editor_e-mail'] . "</td>";
 
     echo"<td>" .  res($result_phones) . "</td>";
-    echo"<td>" .  res($result_contacts_rel) . "</td>"; 	   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
+    echo"<td>" .  res($result_contacts_rel) . "</td>";
+	   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
     echo"</tr>";
    }
   break;
+
+
+  case 'makeByHand':
+      $name =  $_POST['name'];
+      $surname =  $_POST['surname'];
+      $middleName =  $_POST['middleName'];
+
+
+      $films = $_POST['field_name_Films'];
+//  $skills =  $_POST['selectingFilms'];
+
+      $quer = "SELECT * FROM `editor` WHERE ";
+//        echo $quer;
+//        $quer .= "fff";
+//        echo $quer;
+
+      $isFirst = true;
+
+      if($name != NULL){
+        if(!$isFirst){
+          $quer = $quer . " AND ";
+        }
+        $quer = $quer . "editor_name LIKE  '%$name%'";
+        $isFirst = false;
+      }
+      if($surname != NULL){
+      //  $isLast = false;
+        if(!$isFirst){
+          $quer = $quer . " AND ";
+        }
+        $quer = $quer . "editor_surname LIKE  '%$surname%'";
+        $isFirst = false;
+      }
+      if($middleName != NULL){
+        if(!$isFirst){
+          $quer = $quer . " AND ";
+        }
+        $quer = $quer . "editor_middle_name LIKE  '%$middleName%'";
+        $isFirst = false;
+      }
+
+
+
+    //  $a = mysqli_fetch_array($films);
+
+      //$notFirst = false;
+      if($films != NULL){
+        // if(!$isFirst){
+        //   $quer = $quer . " AND ";
+        // }
+        $i = 0;
+        foreach ($films as $value) {
+          if($value != ""){
+            if($i != 0 || !$isFirst){
+              $quer = $quer . " AND ";
+            }
+           // echo $value;
+            $quer = $quer . "`editor_id` IN (SELECT `editor_id` FROM `editor_crewedit` WHERE `number_of_edit_crew` IN (SELECT `number_of_edit_crew` FROM `movie` WHERE `name_of_movie` = \"$value\"))";
+            $isFirst = false;
+            $i++;
+        //    $notFirst = true;
+          }
+
+        }
+
+      }
+
+
+      //echo $quer;
+      $result_filter = $mysqli->query($quer);
+
+      if ($result_filter) {
+      //   echo "Success!";
+       }
+      else {
+          echo "Error! $mysqli->error <br>";
+        }
+
+      //echo $quer;
+
+
+    //  $result_filter = $mysqli->query($quer);
+
+    while ($stroka = mysqli_fetch_array($result_filter)){
+      $temp = $stroka['editor_id'];
+
+      $result_phones = $mysqli->query("SELECT `editor_phone_number` FROM `editor_phones` WHERE `editor_id` IN (SELECT `editor_id` FROM  `editor` WHERE `editor_id` = $temp)");
+      $result_contacts_rel = $mysqli->query("SELECT `editor_relatives_phone_numbers` FROM `editor_contacts_of_relatives` WHERE `editor_id` IN (SELECT `editor_id` FROM  `editor` WHERE `editor_id` = $temp)");
+    $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_edit_crew` IN (SELECT `number_of_edit_crew` FROM  `editor_crewedit` WHERE `editor_id` = $temp)");
+        echo"<tr>";
+        echo"<td>" . $stroka['editor_id'] . "</td>";
+        echo"<td>" . $stroka['editor_name'] . "</td>";
+        echo"<td>" . $stroka['editor_surname'] . "</td>";
+        echo"<td>" . $stroka['editor_middle_name'] . "</td>";
+        echo"<td class = \" noprint\">" . $stroka['editor_salary'] . "</td>";
+        echo"<td>" . $stroka['editor_home_address'] . "</td>";
+        echo"<td class = \" noprint\">" . $stroka['editor_works_since'] . "</td>";
+        echo"<td class = \" noprint\">" . $stroka['editor_works_until'] . "</td>";
+        echo"<td>" . $stroka['editor_experience'] . "</td>";
+        echo"<td class = \" noprint\">" . $stroka['editor_date_of_birth'] . "</td>";
+        echo"<td>" . $stroka['editor_e-mail'] . "</td>";
+
+        echo"<td>" .  res($result_phones) . "</td>";
+        echo"<td>" .  res($result_contacts_rel) . "</td>";
+    	   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
+        echo"</tr>";
+
+    break;
 }}
+}
 ?>
 
 </table>
-</div><div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку: 
-  <?php 
-    $currentDateTime = date('Y-m-d'); 
+</div><div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку:
+  <?php
+    $currentDateTime = date('Y-m-d');
     echo $currentDateTime;
   ?></p></div>
-  
+
   <div id="printOnly" class="row ">
 <div class="col-12 container fixed-bottom">
   <div id="content">

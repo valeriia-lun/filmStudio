@@ -139,13 +139,13 @@ function yesnoCheck(that) {
 <div id = "appearFilters" style="display: none;">
 <div class="row">
 <div class="col-md-3 container">
-<label class="colorText" >Ім'я<input class="form-control" name ="name"></input></label>
+<label class="colorText" >Ім'я<input onkeyup="lal2(this)" class="form-control" name ="name"></input></label>
 </div>
 <div class="col-md-3 container">
-<label class="colorText" >Прізвище<input class="form-control" name="surname"></input></label>
+<label class="colorText" >Прізвище<input onkeyup="lal2(this)" class="form-control" name="surname"></input></label>
 </div>
 <div class="col-md-3 container">
-<label class="colorText" >По-батькові<input class="form-control" name="middleName" ></input></label>
+<label class="colorText" >По-батькові<input onkeyup="lal2(this)" class="form-control" name="middleName" ></input></label>
 </div>
 <div class="col-md-3 container">
 <label class="colorText" >Рейтинг&nbsp;&nbsp;</label>
@@ -339,10 +339,15 @@ echo "</div></div>";
 function lal(el) {
   if (el.value.match( /[^0-9]/ ) ) {
         alert( "Неправильний формат числа! \nМожна використовувати тільки цифри" );
-        el.value = el.value.replace( /[^0-9]/ , "" )
+        el.value = el.value= "" ;
     }
 }
-
+function lal2(el) {
+if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
+        alert( "Неправильний формат запису! \nМожна використовувати тільки літери!" );
+        el.value = el.value= "" ;
+    }
+}
 function yesnoCheck(that) {
     if(that.value == "makeByHand"){
       document.getElementById("appearFilters").style.display = "block";
