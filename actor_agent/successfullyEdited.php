@@ -17,23 +17,27 @@
 </head>
 <body class="text-center body3">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="..\index.php">Вибір посади</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="main.php">Головна<span class="sr-only"></span></a>
-      </li>     
-    </ul>
-    <form class=" my-2 my-lg-0">
-      <label class=" mr-sm-2" >Агент по акторах</label>
-    </form>
-  </div>
-</nav></br></br></br></br></br>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="..\loginFirm.php">Вихід</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="nav navbar-nav mr-auto">
+                <li class="nav-item nav-link active"><a href="main.php" style="color:red;">На головну<span
+                            class="sr-only">(current)</span></a></li>
+            </ul>
+            <form class=" my-2 my-lg-0">
+                <label class=" mr-sm-2">Посада:&nbsp;&nbsp;Агент по акторах</label>
+            </form>
+        </div>
+    </div>
+</nav>
+</br></br></br></br></br>
 <div>
 <h1 class="colorForAllText">Інформацію про співробітника успішно змінено!</h1>
 </div>

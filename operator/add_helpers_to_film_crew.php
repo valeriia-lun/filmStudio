@@ -17,24 +17,27 @@
 </head>
 <body class="text-center body3">
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light style=width=100%;">
-  <a class="navbar-brand" href="..\index.php">Вибір посади</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="main.php">Головна<span class="sr-only">(current)</span></a>
-      </li>
-    </ul>
-
-    <form class=" my-2 my-lg-0">
-      <label class=" mr-sm-2" >Оператор</label>
-    </form>
-  </div>
-</nav><h1 align="center" class="colorForAllText">Інформація про знімальну групу</h1></br>
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="..\loginFirm.php">Вихід</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="nav navbar-nav mr-auto">
+                <li class="nav-item nav-link active"><a href="main.php" style="color:red;">На головну<span
+                            class="sr-only">(current)</span></a></li>
+            </ul>
+            <form class=" my-2 my-lg-0">
+                <label class=" mr-sm-2">Посада:&nbsp;&nbsp;Оператор</label>
+            </form>
+        </div>
+    </div>
+</nav>
+<h1 align="center" class="colorForAllText">Інформація про знімальну групу</h1></br>
 <div  style="margin:10px;">
 <table border="1" class=" table table-dark table-hover" >
 <thead class="thead-dark " style="background-color: #252527;">
