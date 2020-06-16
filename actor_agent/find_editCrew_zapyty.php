@@ -130,15 +130,29 @@ echo "</select>";
 <table border="1" class=" table table-dark table-hover" >
 <thead class="thead-dark " style="background-color: #252527;">
 <tr>
-  <td>Номер групи монтажерів</td>
+  <td>Номер групи монтажерів</td><td>Назва фільму</td>
   <td>Дата початку роботи групи монтажерів</td>
   <td>Дата закінчення роботи групи монтажерів</td>
   <td>Голова монтажної групи</td>
-  <td><div class = "noprint">Змінити інформацію</div></td>
+
 
 </tr></thead>
 
 <?php
+function res($result){
+$print = "";
+ if($result)
+ {
+     $rows = mysqli_num_rows($result); // количество полученных строк
+     for ($i = 0 ; $i < $rows ; ++$i)
+     {
+         $row = mysqli_fetch_row($result);
+             for ($j = 0 ; $j < 1 ; ++$j)   $print .= "$row[$j]"."<br/>";
+     }
+ }
+ return $print;
+}
+
 if (isset($_POST['done'])){
   $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
@@ -147,8 +161,7 @@ $mysqli->query("SET NAMES 'utf8'");
         $date_finish =  $_POST['date_finish'];
         $selectingHeadId =  $_POST['selectingHeadId'];
         $movieName =  $_POST['selectingFilms'];
-
-
+        
 
         $quer = "SELECT * FROM `edit_crew` WHERE ";
 
@@ -160,7 +173,10 @@ $mysqli->query("SET NAMES 'utf8'");
                   }
                   $quer = $quer . "date_start_edit_crew = '$date_start'";
                   $isFirst = false;
-                }
+                }    
+                
+               
+
                 if($date_finish != NULL){
                 //  $isLast = false;
                   if(!$isFirst){
@@ -176,7 +192,7 @@ $mysqli->query("SET NAMES 'utf8'");
                   $quer = $quer . "editor_crew_head_id = \"$selectingHeadId\"";
                   $isFirst = false;
                 }
-
+                
                 if($movieName != NULL){
                 //  $isLast = false;
                   if(!$isFirst){
@@ -184,7 +200,7 @@ $mysqli->query("SET NAMES 'utf8'");
                   }
                   $quer = $quer . "number_of_edit_crew IN(SELECT `number_of_edit_crew` FROM `movie` WHERE `name_of_movie` = '$movieName') ";
                   $isFirst = false;
-                  echo $quer;
+                 // echo $quer;
                 }
 
 
@@ -201,10 +217,16 @@ $mysqli->query("SET NAMES 'utf8'");
 //$mysqli->close();
 while ($stroka = mysqli_fetch_array($result_filter)){
   $temp = $stroka['number_of_edit_crew'];
+  $result_movie = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_edit_crew` = $temp");
+
     echo"<tr>";
-    // echo"<form action=\"add_main_editor_to_edit_crew.php\" method=\"post\">";
 
     echo"<td>" . $stroka['number_of_edit_crew'] . "</td>";
+
+    $valuee = res($result_movie);
+
+    echo"<td>" . $valuee . "</td>";
+
     echo"<td>" . $stroka['date_start_edit_crew'] . "</td>";
     echo"<td>" . $stroka['date_finish_edit_crew'] . "</td>";
     $value = $stroka['editor_crew_head_id'];
@@ -222,10 +244,6 @@ while ($stroka = mysqli_fetch_array($result_filter)){
 
 
 
-    echo"<form action=\"editingEditCrew.php\" method=\"post\">";
-
-echo "<input type=\"hidden\" value = \"" .$stroka['number_of_edit_crew'] . "\" name=\"number_of_edit_crew\" >";
-    echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";
     echo"</tr>";
 
 }}

@@ -170,7 +170,7 @@ function res($result){
                     }
                     $quer = $quer . "number_of_film_crew IN(SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = '$movieName') ";
                     $isFirst = false;
-                    echo $quer;
+                 //   echo $quer;
                   }
 
 
@@ -184,7 +184,6 @@ function res($result){
                     }
 
                   $result_filter = $mysqli->query($quer);
-
   //$mysqli->close();
   while ($stroka = mysqli_fetch_array($result_filter)){
     $temp = $stroka['number_of_film_crew'];

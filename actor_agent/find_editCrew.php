@@ -84,19 +84,12 @@
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
-$result_headId = $mysqli->query("SELECT * FROM `editor` WHERE `editor_id` IN(SELECT `editor_crew_head_id` FROM `edit_crew`)");
-
-echo "<select name=\"selectingHeadId\"  class=\"select selectpicker  form-control\"><option selected></option>";
+$result_headId = $mysqli->query("SELECT `editor_crew_head_id` FROM `edit_crew`");
+echo "<select name=\"selectingHeadId\"  class=\"select selectpicker  form-control\"><option></option>";
 while($stroka = mysqli_fetch_array($result_headId)){
-  if($stroka != 0){
-    echo "<option value=\"\">" . $stroka['editor_surname'] ." ".  $stroka['editor_name'] . " ". $stroka['editor_middle_name'] .", ". "id: " . $stroka['editor_id'] . "</option>";
-  } else{
-    echo "<option selected>" . "</option>";
-  }
-
-// for ($i=0; $i<count($stroka); $i+=2){
-//   echo "<option>$stroka[$i]</option>";
-// }
+for ($i=0; $i<count($stroka); $i+=2){
+  echo "<option>$stroka[$i]</option>"; 
+}
 }
 echo "</select>";
 ?>
@@ -133,7 +126,7 @@ echo "</select>";
 <td>Дата початку роботи групи монтажерів</td>
 <td>Дата закінчення роботи групи монтажерів</td>
 <td>Голова монтажної групи</td>
-<td><div class = "noprint">Змінити інформацію</div></td>
+
 
 
 </tr></thead>
@@ -164,9 +157,9 @@ while ($stroka = mysqli_fetch_array($result_edit_crews)){
 
     echo"<td>" . $stroka['number_of_edit_crew'] . "</td>";
 
-    $value = res($result_movie);
+    $valuee = res($result_movie);
 
-    echo"<td>" . $value . "</td>";
+    echo"<td>" . $valuee. "</td>";
 
     echo"<td>" . $stroka['date_start_edit_crew'] . "</td>";
     echo"<td>" . $stroka['date_finish_edit_crew'] . "</td>";
@@ -177,10 +170,6 @@ while ($stroka = mysqli_fetch_array($result_edit_crews)){
     echo"<td>Id: " . $stroka['editor_crew_head_id'] . " " . $strokaa['editor_surname'] . " " . $strokaa['editor_name'] . " " . $strokaa['editor_middle_name'] . "</td>";
 
 
-    echo"<form action=\"editingMovie.php\" method=\"post\">";
-
-echo "<input type=\"hidden\" value = \"" .$value . "\" name=\"name_of_movie\" >";
-echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";
 
 
 
