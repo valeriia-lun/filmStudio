@@ -13,6 +13,38 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var maxFieldFilms = 10; //Input fields increment limitation
+  var addButtonFilms = $('.add_button_Films'); //Add button selector
+  var wrapperFilms = $('.field_wrapper_Films'); //Input field wrapper
+  /*var fieldHTMLFilms = ('.field_wrapper_Films select')[0].outerHTML;
+  alert(fieldHTMLFilms);// '<div><input type="text" class="form-control" name="field_name_Films[]" value=""/><a href="javascript:void(0);" class="remove_button_Films"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
+  */var xFilms = 1; //Initial field counter is 1
+  var fieldHTMLFilms = "<div><select name=\"field_name_Films[]\"  class=\"select selectpicker  form-control\">" + $('.field_wrapper_Films select')[0].innerHTML + "</select><a href=\"javascript:void(0);\" class=\"remove_button_Films\"><img src=\"../img/delete_icon.png\" width=\'20\' height=\'20\'/></a></div>";
+
+  //Once add button is clicked
+  $(addButtonFilms).click(function(){
+      //Check maximum number of input fields
+      if(xFilms < maxFieldFilms){
+          xFilms++; //Increment field counter
+          $(wrapperFilms).append(fieldHTMLFilms); //Add field html
+      }
+  });
+
+  //Once remove button is clicked
+  $(wrapperFilms).on('click', '.remove_button_Films', function(e){
+      e.preventDefault();
+      $(this).parent('div').remove(); //Remove field html
+      xFilms--; //Decrement field counter
+
+    });
+});
+
+</script>
+
 <link rel="stylesheet" href="..\style.css">
 </head>
 <style type="text/css">
@@ -22,7 +54,7 @@
 }
 
 @media print {
-  
+
   .noprint { display: none; }
 table{zoom: 40%;}
 #printOnly{}
@@ -40,7 +72,7 @@ table{zoom: 40%;}
 #pageFooter:after {
     counter-increment: page;
     content: counter(page) ;
-    
+
     font-size: 20pt;
 }
 </style>
@@ -56,9 +88,9 @@ table{zoom: 40%;}
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only">(current)</span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Головний монтажер</label>
     </form>
@@ -70,7 +102,193 @@ table{zoom: 40%;}
 </div>
 <div class="noprint">
 
+
+<div class="row">
+  <div class="col-md-4 container">
+<form action="find_actors_zapyty.php" method="post">
+<select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
+
+  <option value="max_experience" >Актори з найбільшим стажем</option>
+  <option value="female">Актори жіночого роду</option>
+  <option value="salary_20000_more">Актори із зарплатнею < 20 000 грн</option>
+  <option value="blond">Актори блондини</option>
+  <option value="movie_zoloto">Актори, що знялися в фільмі 'Золото'</option>
+  <option value="most_expensive_actor" >Найдорожчі актори</option>
+  <option value="makeByHand">Фільтрувати самостійно</option>
+</select>
+</div></div></br>
+
+
+
+
+<div id = "appearFilters" style="display: none;">
+<div class="row">
+<div class="col-md-3 container">
+<label class="colorText" >Ім'я<input class="form-control" name ="name"></input></label>
 </div>
+<div class="col-md-3 container">
+<label class="colorText" >Прізвище<input class="form-control" name="surname"></input></label>
+</div>
+<div class="col-md-3 container">
+<label class="colorText" >По-батькові<input class="form-control" name="middleName" ></input></label>
+</div>
+<div class="col-md-3 container">
+<label class="colorText" >Рейтинг&nbsp;&nbsp;</label>
+<input type="radio" id="choice>"
+     name="choice1" value=">">
+    <label >></label>
+
+    <input type="radio" id="choice<"
+     name="choice1" value="<">
+    <label ><</label>
+
+    <input type="radio" id="choice="
+     name="choice1" value="=">
+    <label >=</label><input class="form-control" name="rating" ></input>
+
+</div></div></br>
+
+
+
+<div class="row">
+<div class="col-md-3 container">
+<label class="colorText" >Кількість фільмів у яких брали участь&nbsp;&nbsp;</label>
+<input type="radio" id="choice>"
+     name="choice2" value=">">
+    <label >></label>
+
+    <input type="radio" id="choice<"
+     name="choice2" value="<">
+    <label ><</label>
+
+    <input type="radio" id="choice="
+     name="choice2" value="=">
+    <label >=</label><input class="form-control" onkeyup="lal(this)" name="amountOfFilms" ></input>
+</div>
+<div class="col-md-3 container">
+<label class="colorText" >Вік&nbsp;&nbsp;</label>
+<input type="radio" id="choice>"
+     name="choice3" value=">">
+    <label >></label>
+
+    <input type="radio" id="choice<"
+     name="choice3" value="<">
+    <label ><</label>
+
+    <input type="radio" id="choice="
+     name="choice3" value="=">
+    <label >=</label><input class="form-control" onkeyup="lal(this)" name="age" ></input>
+</div>
+<div class="col-md-3 container">
+<label class="colorText" >Стать</label><select name="selectingSex"   class="select selectpicker  form-control">
+<option ></option>
+  <option >Чоловік</option>
+  <option >Жінка</option>
+</select>
+</div>
+<div class="col-md-3 container">
+<label class="colorText" >Ріст&nbsp;&nbsp;</label>
+<input type="radio" id="choise>"
+     name="choice4" value=">">
+    <label >></label>
+
+    <input type="radio" id="choise<"
+     name="choice4" value="<">
+    <label ><</label>
+
+    <input type="radio" id="choise="
+     name="choice4" value="=">
+    <label >=</label><input class="form-control" onkeyup="lal(this)" name="height" ></input></div></div></br>
+
+<div class="row">
+<div class="col-md-3 container">
+<label class="colorText" >Колір волосся:</label>
+<select name="selectingColorOfHair"  class="select selectpicker  form-control">
+<option ></option>
+  <option>Рудий</option>
+  <option>Блонд</option>
+  <option>Брюнет</option>
+  <option>Шатен</option>
+  <option>Русявий</option>
+  <option>Рожевий</option>
+  <option>Синий</option>
+  <option>Сивий</option>
+  <option>Червоний</option>
+  <option>Помаранчевий</option>
+  <option>Жовтий</option>
+  <option>Зелений</option>
+  <option>Блакитний</option>
+  <option>Фіолетовий</option>
+</select>
+</div>
+
+</br>
+<div class="col-md-3 container">
+<label class="colorText" >Довжина волосся&nbsp;&nbsp;</label>
+<input type="radio" id="choise>"
+     name="choice5" value=">">
+    <label >></label>
+
+    <input type="radio" id="choise<"
+     name="choice5" value="<">
+    <label ><</label>
+
+    <input type="radio" id="choise="
+     name="choice5" value="=">
+    <label >=</label><input onkeyup="lal(this)" class="form-control" name="hairLength"></input>
+</div>
+<div class="col-md-3 container">
+<label class="colorText" >Колір очей:</label>
+<select name="selectingColorOfEyes"  class="select selectpicker  form-control">
+<option ></option>
+  <option>Блакитний</option>
+  <option >Зелений</option>
+  <option >Карий</option>
+  <option >Сірий</option>
+
+</select></div><div class="col-md-3 container">
+<label class="colorText" >Статура:</label>
+<select name="selectingStature"  class="select selectpicker  form-control">
+<option ></option>
+  <option >Спортивний</option>
+  <option >Худий</option>
+  <option >Повний</option>
+  <option >Стрункий</option>
+</select></div>
+</div>
+</br>
+<div class="row">
+<div class="col-md-3 container">
+<label class="colorText" >Розмір взуття&nbsp;&nbsp;</label>
+<input type="radio" id="choise>"
+     name="choice6" value=">">
+    <label >></label>
+
+    <input type="radio" id="choise<"
+     name="choice6" value="<">
+    <label ><</label>
+
+    <input type="radio" id="choise="
+     name="choice6" value="=">
+    <label >=</label><input onkeyup="lal(this)" class="form-control" name="shoeSize" ></input>
+</div>
+<div class="col-md-3 container">
+<label class="colorText" >Розмір одягу&nbsp;&nbsp;</label><input type="radio" id="choise>"
+     name="choice7" value=">">
+    <label >></label>
+
+    <input type="radio" id="choise<"
+     name="choice7" value="<">
+    <label ><</label>
+
+    <input type="radio" id="choise="
+     name="choice7" value="=">
+    <label >=</label><input onkeyup="lal(this)" class="form-control" name="clothingSize" ></input></div>
+
+<div class="col-md-3 container">
+<label class="colorText" >Національність:</label>
+<select name="selectingNationality"  class="select selectpicker  form-control">
+<option></option>
 <div  style="margin:10px;">
 <table border="1" class=" table table-dark table-hover" >
 <thead class="thead-dark " style="background-color: #252527;">
@@ -173,11 +391,11 @@ SELECT movie.Number_of_film_crew
 FROM movie
 WHERE movie.budget_of_movie >700000)");
 
-$zapyt77_2 =  $mysqli->query("SELECT Help1.actor_id, actors.actor_name, actors.actor_surname, actors.actor_middle_name, actors.actor_home_address, 
+$zapyt77_2 =  $mysqli->query("SELECT Help1.actor_id, actors.actor_name, actors.actor_surname, actors.actor_middle_name, actors.actor_home_address,
 actors.actor_works_since,	actors.actor_works_until, actors.actor_experience, actors.rating_of_employee, actors.amount_of_films_actor_took_part_in,
  actors.actor_date_of_birth, actors.actor_place_of_birth, actors.name_of_position,actors.actor_age, actors.actor_sex,actors.actor_height,
- actors.actor_color_of_hair, 	actors.actor_length_of_hair,actors.actor_color_of_eyes,  actors.actor_stature,actors.actor_shoe_size, 
- actors.actor_clothing_size, actors.actor_nationality,actors.actor_other_appearance,actors.actor_e-mail,actors.actors_head_id,actors.actor_salary,	  
+ actors.actor_color_of_hair, 	actors.actor_length_of_hair,actors.actor_color_of_eyes,  actors.actor_stature,actors.actor_shoe_size,
+ actors.actor_clothing_size, actors.actor_nationality,actors.actor_other_appearance,actors.actor_e-mail,actors.actors_head_id,actors.actor_salary,
    COUNT(number_of_film_crew) AS amount_of_movies
 FROM Help1 INNER JOIN actors ON Help1.actor_id = actors.actor_id
 GROUP BY Help1.actor_id, actors.actor_name, actors.actor_surname");
@@ -188,11 +406,11 @@ FROM movie
 WHERE  movie.number_of_film_crew IN(
 SELECT film_crew.number_of_film_crew
 FROM film_crew
-WHERE NOT EXISTS ( 
-SELECT * 
-FROM understudies 
 WHERE NOT EXISTS (
-SELECT * 
+SELECT *
+FROM understudies
+WHERE NOT EXISTS (
+SELECT *
 FROM understudies_filmcrew
 WHERE understudies_filmcrew.number_of_film_crew = film_crew.number_of_film_crew AND understudies_filmcrew.understudy_id = understudies.understudy_id  )))");
 
@@ -268,7 +486,7 @@ $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `numbe
     echo"</tr>";
    }
   break;
-  
+
 
 
   case 'female':
@@ -315,7 +533,7 @@ $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `numbe
        }
       break;
 
-  
+
 
   case  'salary_20000_more':
     $result_actors3 = $mysqli->query("SELECT * FROM `actors` WHERE `actor_salary` < 20000");//3
@@ -494,14 +712,14 @@ $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `numbe
 
 //?????????????????????????????
 case  'expensive':
-  $result_actors3 =  $mysqli->query("SELECT actors.actor_id, actors.actor_name, actors.actor_surname,actors.actor_middle_name, actors.actor_experience, actors.rating_of_employee,actors.actor_salary, 
+  $result_actors3 =  $mysqli->query("SELECT actors.actor_id, actors.actor_name, actors.actor_surname,actors.actor_middle_name, actors.actor_experience, actors.rating_of_employee,actors.actor_salary,
   actors.actor_works_since,	actors.actor_works_until,  actors.amount_of_films_actor_took_part_in, actors.actor_home_address,
   actors.actor_date_of_birth, actors.actor_place_of_birth, actors.name_of_position,actors.actor_age, actors.actor_sex,actors.actor_height,
-  actors.actor_color_of_hair, 	actors.actor_length_of_hair,actors.actor_color_of_eyes,  actors.actor_stature,actors.actor_shoe_size, 
+  actors.actor_color_of_hair, 	actors.actor_length_of_hair,actors.actor_color_of_eyes,  actors.actor_stature,actors.actor_shoe_size,
   actors.actor_clothing_size, actors.actor_nationality,actors.actor_other_appearance, actors.`actor_e-mail`,actors.actors_head_id, SUM(actor_filmcrew.actor_fee) FROM (actors INNER JOIN actor_filmcrew ON actors.actor_id = actor_filmcrew.actor_id) GROUP BY actor_filmcrew.actor_id;");
 
 
-                   
+
                     while ($stroka3 = mysqli_fetch_array($result_actors3)){
                       $temp3 = $stroka3['actors.actor_id'];
                       $result_photos3 = $mysqli->query("SELECT `actor_photo` FROM `actors_photo` WHERE `actor_id`  = $temp3");
@@ -729,7 +947,7 @@ echo"<tr >";
     echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
 
   echo "<input type=\"hidden\" value = \"" .$stroka['actor_id'] . "\" name=\"actor_id\" >";
-  
+
      }
 
 break;
@@ -740,19 +958,19 @@ break;
 
 
 
- 
+
 ?>
 
-  
+
 
 
 </table>
-</div><div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку: 
-  <?php 
-    $currentDateTime = date('Y-m-d'); 
+</div><div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку:
+  <?php
+    $currentDateTime = date('Y-m-d');
     echo $currentDateTime;
   ?></p></div>
-  
+
   <div id="printOnly" class="row ">
 <div class="col-12 container fixed-bottom">
   <div id="content">

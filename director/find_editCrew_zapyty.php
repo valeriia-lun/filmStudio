@@ -145,6 +145,7 @@ $mysqli->query("SET NAMES 'utf8'");
         $date_start =  $_POST['date_start'];
         $date_finish =  $_POST['date_finish'];
         $selectingHeadId =  $_POST['selectingHeadId'];
+        echo $selectingHeadIds;
         $movieName =  $_POST['selectingFilms'];
 
 
@@ -172,7 +173,7 @@ $mysqli->query("SET NAMES 'utf8'");
                   if(!$isFirst){
                     $quer = $quer . " AND ";
                   }
-                  $quer = $quer . "editor_crew_head_id = \"$selectingHeadId\"";
+                  $quer = $quer . "editor_crew_head_id = '$selectingHeadId'";
                   $isFirst = false;
                 }
 

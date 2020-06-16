@@ -13,6 +13,61 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    var maxFieldFilms = 10; //Input fields increment limitation
+    var addButtonFilms = $('.add_button_Films'); //Add button selector
+    var wrapperFilms = $('.field_wrapper_Films'); //Input field wrapper
+    /*var fieldHTMLFilms = ('.field_wrapper_Films select')[0].outerHTML;
+    alert(fieldHTMLFilms);// '<div><input type="text" class="form-control" name="field_name_Films[]" value=""/><a href="javascript:void(0);" class="remove_button_Films"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
+    */var xFilms = 1; //Initial field counter is 1
+    var fieldHTMLFilms = "<div>" + $('.field_wrapper_Films select')[0].outerHTML + "<a href=\"javascript:void(0);\" class=\"remove_button_Films\"><img src=\"../img/delete_icon.png\" width=\'20\' height=\'20\'/></a></div>";
+
+    //Once add button is clicked
+    $(addButtonFilms).click(function(){
+        //Check maximum number of input fields
+        if(xFilms < maxFieldFilms){
+            xFilms++; //Increment field counter
+            $(wrapperFilms).append(fieldHTMLFilms); //Add field html
+        }
+    });
+
+    //Once remove button is clicked
+    $(wrapperFilms).on('click', '.remove_button_Films', function(e){
+        e.preventDefault();
+        $(this).parent('div').remove(); //Remove field html
+        xFilms--; //Decrement field counter
+    });
+
+
+    var maxSkills = 10; //Input fields increment limitation
+    var addButtonSkills = $('.add_button_Skills'); //Add button selector
+    var wrapperSkills = $('.field_wrapper_Skills'); //Input field wrapper
+    // var fieldHTMLSkills = '<div><select class="form-control" name="field_name_Skills[]"><option selected></option><option>швидко бігає</option><option>стрибає</option><option>акробат</option><option>плаває</option><option>катається на ковзанах</option><option>професійний плавець</option><option>каскадер</option><option>пригає на скакалці</option><option>жонглює</option><option>знає іспанську</option></select><a href="javascript:void(0);" class="remove_button_Skills"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
+    var xSkills = 1;
+
+    var fieldHTMLSkills = "<div>" + $('.field_wrapper_Skills select')[0].outerHTML + "<a href=\"javascript:void(0);\" class=\"remove_button_Skills\"><img src=\"../img/delete_icon.png\" width=\'20\' height=\'20\'/></a></div>";
+    //Once add button is clicked
+    $(addButtonSkills).click(function(){
+        //Check maximum number of input fields
+        if(xSkills < maxSkills){
+            xSkills++; //Increment field counter
+            $(wrapperSkills).append(fieldHTMLSkills); //Add field html
+        }
+    });
+
+    //Once remove button is clicked
+    $(wrapperSkills).on('click', '.remove_button_Skills', function(e){
+        e.preventDefault();
+        $(this).parent('div').remove(); //Remove field html
+        xSkills--; //Decrement field counter
+    });
+});
+
+</script>
+
 <link rel="stylesheet" href="..\style.css">
 </head>
 <style type="text/css">
@@ -22,7 +77,7 @@
 }
 
 @media print {
-  
+
   .noprint { display: none; }
 table{zoom: 40%;}
 #printOnly{}
@@ -40,7 +95,7 @@ table{zoom: 40%;}
 #pageFooter:after {
     counter-increment: page;
     content: counter(page) ;
-    
+
     font-size: 20pt;
 }
 </style>
@@ -56,9 +111,9 @@ table{zoom: 40%;}
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only">(current)</span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Головний монтажер</label>
     </form>
@@ -67,12 +122,275 @@ table{zoom: 40%;}
 <div>
 <h1 align="center" class="colorForAllText">Дублери</h1></br>
 </div>
+
 <div class="noprint">
 
+
+  <form action="find_understudies_zapyty.php" method="post">
+  <div class="noprint">
+  <div class="row">
+  <div class="col-md-3 container">
+  <label class="colorText" >Ім'я<input class="form-control" name ="name"></input></label>
+  </div>
+  <div class="col-md-3 container">
+  <label class="colorText" >Прізвище<input class="form-control" name="surname"></input></label>
+  </div>
+  <div class="col-md-3 container">
+  <label class="colorText" >По-батькові<input class="form-control" name="middleName" ></input></label>
+  </div>
+  <div class="col-md-3 container">
+  <label class="colorText" >Рейтинг&nbsp;&nbsp;</label>
+  <input type="radio" id="choice>"
+       name="choice1" value=">">
+      <label >></label>
+
+      <input type="radio" id="choice<"
+       name="choice1" value="<">
+      <label ><</label>
+
+      <input type="radio" id="choice="
+       name="choice1" value="=">
+      <label >=</label><input class="form-control" name="rating" ></input>
+
+  </div></div></br>
+
+
+
+  <div class="row">
+  <div class="col-md-3 container">
+  <label class="colorText" >Кількість фільмів у яких брали участь&nbsp;&nbsp;</label>
+  <input type="radio" id="choice>"
+       name="choice2" value=">">
+      <label >></label>
+
+      <input type="radio" id="choice<"
+       name="choice2" value="<">
+      <label ><</label>
+
+      <input type="radio" id="choice="
+       name="choice2" value="=">
+      <label >=</label><input class="form-control" onkeyup="lal(this)" name="amountOfFilms" ></input>
+  </div>
+  <div class="col-md-3 container">
+  <label class="colorText" >Вік&nbsp;&nbsp;</label>
+  <input type="radio" id="choice>"
+       name="choice3" value=">">
+      <label >></label>
+
+      <input type="radio" id="choice<"
+       name="choice3" value="<">
+      <label ><</label>
+
+      <input type="radio" id="choice="
+       name="choice3" value="=">
+      <label >=</label><input class="form-control" onkeyup="lal(this)" name="age" ></input>
+  </div>
+  <div class="col-md-3 container">
+  <label class="colorText" >Стать</label><select name="selectingSex"   class="select selectpicker  form-control">
+  <option ></option>
+    <option >Чоловік</option>
+    <option >Жінка</option>
+  </select>
+  </div>
+  <div class="col-md-3 container">
+  <label class="colorText" >Ріст&nbsp;&nbsp;</label>
+  <input type="radio" id="choise>"
+       name="choice4" value=">">
+      <label >></label>
+
+      <input type="radio" id="choise<"
+       name="choice4" value="<">
+      <label ><</label>
+
+      <input type="radio" id="choise="
+       name="choice4" value="=">
+      <label >=</label><input class="form-control" onkeyup="lal(this)" name="height" ></input></div></div></br>
+
+  <div class="row">
+  <div class="col-md-3 container">
+  <label class="colorText" >Колір волосся:</label>
+  <select name="selectingColorOfHair"  class="select selectpicker  form-control">
+  <option ></option>
+    <option>Рудий</option>
+    <option>Блонд</option>
+    <option>Брюнет</option>
+    <option>Шатен</option>
+    <option>Русявий</option>
+    <option>Рожевий</option>
+    <option>Синий</option>
+    <option>Сивий</option>
+    <option>Червоний</option>
+    <option>Помаранчевий</option>
+    <option>Жовтий</option>
+    <option>Зелений</option>
+    <option>Блакитний</option>
+    <option>Фіолетовий</option>
+  </select>
+  </div>
+
+  </br>
+  <div class="col-md-3 container">
+  <label class="colorText" >Довжина волосся&nbsp;&nbsp;</label>
+  <input type="radio" id="choise>"
+       name="choice5" value=">">
+      <label >></label>
+
+      <input type="radio" id="choise<"
+       name="choice5" value="<">
+      <label ><</label>
+
+      <input type="radio" id="choise="
+       name="choice5" value="=">
+      <label >=</label><input onkeyup="lal(this)" class="form-control" name="hairLength"></input>
+  </div>
+  <div class="col-md-3 container">
+  <label class="colorText" >Колір очей:</label>
+  <select name="selectingColorOfEyes"  class="select selectpicker  form-control">
+  <option ></option>
+    <option>Блакитний</option>
+    <option >Зелений</option>
+    <option >Карий</option>
+    <option >Сірий</option>
+
+  </select></div><div class="col-md-3 container">
+  <label class="colorText" >Статура:</label>
+  <select name="selectingStature"  class="select selectpicker  form-control">
+  <option ></option>
+    <option >Спортивний</option>
+    <option >Худий</option>
+    <option >Повний</option>
+    <option >Стрункий</option>
+  </select></div>
+  </div>
+  </br>
+  <div class="row">
+  <div class="col-md-3 container">
+  <label class="colorText" >Розмір взуття&nbsp;&nbsp;</label>
+  <input type="radio" id="choise>"
+       name="choice6" value=">">
+      <label >></label>
+
+      <input type="radio" id="choise<"
+       name="choice6" value="<">
+      <label ><</label>
+
+      <input type="radio" id="choise="
+       name="choice6" value="=">
+      <label >=</label><input onkeyup="lal(this)" class="form-control" name="shoeSize" ></input>
+  </div>
+  <div class="col-md-3 container">
+  <label class="colorText" >Розмір одягу&nbsp;&nbsp;</label><input type="radio" id="choise>"
+       name="choice7" value=">">
+      <label >></label>
+
+      <input type="radio" id="choise<"
+       name="choice7" value="<">
+      <label ><</label>
+
+      <input type="radio" id="choise="
+       name="choice7" value="=">
+      <label >=</label><input onkeyup="lal(this)" class="form-control" name="clothingSize" ></input></div>
+  <div class="col-md-3 container">
+  <label class="colorText" >Національність:</label>
+  <select name="selectingNationality"  class="select selectpicker  form-control">
+  <option></option>
+    <option>Українська</option>
+    <option>Армянська</option>
+    <option>Російська</option>
+    <option>Грузинська</option>
+    <option>Італійська</option>
+    <option>Китайська</option>
+    <option>Арабська</option>
+    <option>Скандинавська</option>
+
+  </select></div>
+  <div class="col-md-3 container">
+  <label class="colorText" >Фільми, в яких брали участь:</label>
+  <?php
+  $mysqli = new mysqli("localhost","root","root","filmstudio");
+  $mysqli->query("SET NAMES 'utf8'");
+  $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie`");
+  echo "<div class=\"field_wrapper_Films\"><div>";
+  echo "<select name=\"field_name_Films[]\" class=\"select selectpicker form-control\"><option></option>";
+  while($stroka = mysqli_fetch_array($result_films)){
+  for ($i=0; $i<count($stroka); $i+=2){
+    echo "<option >$stroka[$i]</option>";
+  }
+  }
+  echo "</select>";
+  echo "<a href=\"javascript:void(0);\" class=\"add_button_Films\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a>";
+  echo "</div></div>";
+  ?>
+  </div></div>
+
+  <div class="row">
+  <div class="col-md-3 container">
+  <label class="colorText" >Особливі навички:</label>
+  <?php
+  $mysqli = new mysqli("localhost","root","root","filmstudio");
+  $mysqli->query("SET NAMES 'utf8'");
+  $result_skills = $mysqli->query("SELECT `skill` FROM `skills`");
+  echo "<div class=\"field_wrapper_Skills\"><div>";
+  echo "<select name=\"field_name_Skills[]\" class=\"select selectpicker form-control\"><option></option>";
+  while($stroka = mysqli_fetch_array($result_skills)){
+  for ($i=0; $i<count($stroka); $i+=2){
+    echo "<option >$stroka[$i]</option>";
+  }
+  }
+  echo "</select>";
+  echo "<a href=\"javascript:void(0);\" class=\"add_button_Skills\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a>";
+  echo "</div></div>";
+  ?>
+
+  <!-- <div class="field_wrapper_Skills">
+         <div>
+             <select class="form-control" name="field_name_Skills[]">
+               <option selected></option>
+                <option>швидко бігає</option>
+                <option>стрибає</option>
+                <option>акробат</option>
+                <option>плаває</option>
+                <option>катається на ковзанах</option>
+                <option>професійний плавець</option>
+                <option>каскадер</option>
+                <option>пригає на скакалці</option>
+                <option>жонглює</option>
+                <option>знає іспанську</option>
+              </select>
+             <a href="javascript:void(1);" class="add_button_Skills" title="Add field"><img src="../img/add_icon.png" height='35' width='35'/></a>
+         </div>
+     </div> -->
+  </div></div>
+
+
+  </div>
+  </div>
+  <script>
+  function lal(el) {
+    if (el.value.match( /[^0-9]/ ) ) {
+          alert( "Неправильний формат числа! \nМожна використовувати тільки цифри" );
+          el.value = el.value.replace( /[^0-9]/ , "" )
+      }
+  }
+
+  function yesnoCheck(that) {
+      if(that.value == "makeByHand"){
+        document.getElementById("appearFilters").style.display = "block";
+      }else{
+        document.getElementById("appearFilters").style.display = "none";
+      }
+  }
+  </script>
+
+  <div class="btn noprint">
+    <button class ="button btn btn-primary" name="done">Знайти</button>
+  </div>
+  </form>
 </div>
 <div  style="margin:10px;">
 <table border="1" class=" table table-dark table-hover" >
 <thead class="thead-dark " style="background-color: #252527;">
+<tr>
 <tr>
 <td >Id</td>
 <td>Ім'я</td>
@@ -105,6 +423,7 @@ table{zoom: 40%;}
 <td>Контакти близьких</td>
 <td class = "noprint"><div class = "noprint">Рейтинги фільмів, в яких брали участь</div></td>
 <td style="width:1px;white-space:nowrap;">Фільми, в яких брали участь</td>
+<td class = "noprint"><div class = "noprint">Зміна інформації про дублера</div></td>
 </tr></thead>
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
@@ -124,12 +443,10 @@ function res($result){
     }
     return $print;
   }
-  $selecting =  $_POST['selecting'];
-  $entering_values = $_POST['entering_values'];
+
 if (isset($_POST['done'])){
   $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
-
 
 $name =  $_POST['name'];
         $surname =  $_POST['surname'];
@@ -146,16 +463,16 @@ $name =  $_POST['name'];
         $shoeSize =  $_POST['shoeSize'];
         $size =  $_POST['clothingSize'];
         $nationality =  $_POST['selectingNationality'];
-        //$films =  $_POST['selectingFilms'];
-        //$skills =  $_POST['selectingSkills'];
-      
+        $films =  $_POST['field_name_Films'];
+        $skills =  $_POST['field_name_Skills'];
+
         $quer = "SELECT * FROM `understudies` WHERE ";
         //        echo $quer;
         //        $quer .= "fff";
         //        echo $quer;
-        
+
                 $isFirst = true;
-        
+
                 if($name != NULL){
                   if(!$isFirst){
                     $quer = $quer . " AND ";
@@ -182,21 +499,26 @@ $name =  $_POST['name'];
                   if(!$isFirst){
                     $quer = $quer . " AND ";
                   }
-                  $quer = $quer . "rating_of_employee = $rating";
+                  $choice = $_POST['choice1'];
+                  $quer = $quer . "rating_of_employee $choice $rating";
                   $isFirst = false;
                 }
                 if($amountOfMovies != NULL){
                   if(!$isFirst){
                     $quer = $quer . " AND ";
                   }
-                  $quer = $quer . "amount_of_films_understudy_took_part_in = $amountOfMovies";
+                  $choice = $_POST['choice2'];
+
+                  $quer = $quer . "amount_of_films_understudy_took_part_in $choice $amountOfMovies";
                   $isFirst = false;
                 }
                 if($age != NULL){
                   if(!$isFirst){
                     $quer = $quer . " AND ";
                   }
-                  $quer = $quer . "understudy_age = $age";
+                  $choice = $_POST['choice3'];
+
+                  $quer = $quer . "understudy_age $choice $age";
                   $isFirst = false;
                 }
                 if($sex != NULL){
@@ -210,7 +532,8 @@ $name =  $_POST['name'];
                   if(!$isFirst){
                     $quer = $quer . " AND ";
                   }
-                  $quer = $quer . "understudy_height = $height";
+                  $choice = $_POST['choice4'];
+                  $quer = $quer . "understudy_height $choice $height";
                   $isFirst = false;
                 }
                 if($hairColor != NULL){
@@ -224,7 +547,8 @@ $name =  $_POST['name'];
                   if(!$isFirst){
                     $quer = $quer . " AND ";
                   }
-                  $quer = $quer . "understudy_length_of_hair = $hairLen";
+                  $choice = $_POST['choice5'];
+                  $quer = $quer . "understudy_length_of_hair $choice $hairLen";
                   $isFirst = false;
                 }
                 if($eyes != NULL){
@@ -245,14 +569,18 @@ $name =  $_POST['name'];
                   if(!$isFirst){
                     $quer = $quer . " AND ";
                   }
-                  $quer = $quer . "understudy_shoe_size = $shoeSize";
+                  $choice = $_POST['choice6'];
+
+                  $quer = $quer . "understudy_shoe_size $choice $shoeSize";
                   $isFirst = false;
                 }
                 if($size != NULL) {
                   if(!$isFirst){
                     $quer = $quer . " AND ";
                   }
-                    $quer = $quer . "understudy_clothing_size = $size";
+                  $choice = $_POST['choice7'];
+
+                    $quer = $quer . "understudy_clothing_size $choice $size";
                     $isFirst = false;
                 }
                 if($nationality != NULL){
@@ -262,9 +590,84 @@ $name =  $_POST['name'];
                   $quer = $quer . "understudy_nationality = \"$nationality\"";
                   $isFirst = false;
                 }
-        
+              //   $notFirst = false;
+              //
+              //   if($films != NULL){
+              //     if(!$isFirst){
+              //       $quer = $quer . " AND ";
+              //     }
+              //     $i = 0;
+              //
+              //     foreach ($films as $value) {
+              //       if($i != 0){
+              //         $quer = $quer . " AND ";
+              //       }
+              //       $quer = $quer . "`understudy_id` IN(SELECT `understudy_id` FROM `Understudies_filmCrew` WHERE `number_of_film_crew` IN(SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = \"$value\"))";
+              //       $i++;
+              //     }
+              //     $isFirst = false;
+              //     $notFirst = true;
+              //   }
+              //
+              //   if($skills != NULL){
+              //     if(!$isFirst){
+              //       $quer = $quer . " AND ";
+              //     }
+              //   $i = 0;
+              //   foreach ($skills as $value) {
+              //     if($i != 0 || $notFirst == true){
+              //       $quer = $quer . " AND ";
+              //     }
+              //     $quer = $quer . "`understudy_id` IN(SELECT `understudy_id` FROM `Understudies_skills` WHERE `skills_id` IN(SELECT `skills_id` FROM `Skills` WHERE `skill` = \"$value\"))";
+              //     $i++;
+              //   }
+              //   echo $quer;
+              //   $notFirst = false;
+              //   $isFirst = false;
+              // }
               //  echo $quer;
-        
+
+              $a = mysqli_fetch_array($films);
+
+              $notFirst = false;
+              if($films != NULL){
+                // if(!$isFirst){
+                //   $quer = $quer . " AND ";
+                // }
+                $i = 0;
+                foreach ($films as $value) {
+                  if($value != ""){
+                    if($i != 0 || !$isFirst){
+                      $quer = $quer . " AND ";
+                    }
+                  //  echo $value;
+                    $quer = $quer . "`understudy_id` IN (SELECT `understudy_id` FROM `understudies_filmcrew` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM `movie` WHERE `name_of_movie` = \"$value\"))";
+                    $isFirst = false;
+                    $notFirst = true;
+                  }
+                }
+
+              }
+
+              $b = mysqli_fetch_array($skills);
+
+                if($skills != NULL ){
+                $i = 0;
+                foreach ($skills as $value) {
+                  if($value != ""){
+                    if($i != 0 || $notFirst == true || !$isFirst){
+                      $quer = $quer . " AND ";
+                    }
+                    $quer = $quer . "`understudy_id` IN(SELECT `understudy_id` FROM `Understudies_skills` WHERE `skills_id` IN(SELECT `skills_id` FROM `Skills` WHERE `skill` = \"$value\"))";
+                    $i++;
+                    $notFirst = false;
+                    $isFirst = false;
+                  }
+                }
+               // echo $quer;
+
+              }
+
                 $result_filter = $mysqli->query($quer);
                 if ($result_filter) {
                 //   echo "Success!";
@@ -272,11 +675,12 @@ $name =  $_POST['name'];
                 else {
                     echo "Error! $mysqli->error <br>";
                   }
-        
-              //  echo $quer;
-        
-                $result_filter = $mysqli->query($quer);
-    
+
+
+               // echo $quer;
+
+              //  $result_filter = $mysqli->query($quer);
+
 
 while ($stroka = mysqli_fetch_array($result_filter)){
     $temp = $stroka['understudy_id'];
@@ -290,9 +694,9 @@ while ($stroka = mysqli_fetch_array($result_filter)){
     $result_contacts_rel = $mysqli->query("SELECT `understudy_relatives_phone_numbers` FROM `understudies_contacts_of_relatives` WHERE `understudy_id` IN (SELECT `understudy_id` FROM  `understudies` WHERE `understudy_id` = $temp)");
 
     $result_ratings = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `understudy_previous_movies_ratings` WHERE `understudy_id` = $temp)");
-
     $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM  `understudies_filmcrew` WHERE `understudy_id` = $temp)");
-    echo"<tr>";
+
+ echo"<tr>";
     echo"<td>" . $stroka['understudy_id'] . "</td>";
     echo"<td>" . $stroka['understudy_name'] . "</td>";
     echo"<td>" . $stroka['understudy_surname'] . "</td>";
@@ -324,18 +728,27 @@ while ($stroka = mysqli_fetch_array($result_filter)){
     echo"<td>" .  res($result_phones) . "</td>";
     echo"<td >" .  res($result_contacts_rel) . "</td>";
     echo"<td class = \" noprint\">" .  res($result_ratings) . "</td>";
- 	 	   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
-    echo"</tr>";
-}}
+    echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
+    echo"<form action=\"editingUnderstudy.php\" method=\"post\">";
+
+  echo "<input type=\"hidden\" value = \"" .$stroka['understudy_id'] . "\" name=\"understudy_id\" >";
+    echo "<td  class = \" noprint\">"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";
+      echo"</tr>";
+
+
+
+
+}
+}
 ?>
 
 </table>
-</div><div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку: 
-  <?php 
-    $currentDateTime = date('Y-m-d'); 
+</div><div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку:
+  <?php
+    $currentDateTime = date('Y-m-d');
     echo $currentDateTime;
   ?></p></div>
-  
+
   <div id="printOnly" class="row ">
 <div class="col-12 container fixed-bottom">
   <div id="content">
