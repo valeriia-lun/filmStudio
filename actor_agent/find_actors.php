@@ -120,6 +120,8 @@ table{zoom: 40%;}
   <option value="movie_zoloto">Актори, що знялися в фільмі 'Золото'</option>
   <option value="most_expensive_actor" >Найдорожчі актори</option>
   <option value="makeByHand">Фільтрувати самостійно</option>
+  <option value="variable">variable</option>
+
 </select>
 </div></div></br>
 

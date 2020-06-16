@@ -577,7 +577,7 @@ function yesnoCheck(that) {
   </form>
 </div>
 <div  style="margin:10px;">
-<table border="1" class=" table table-dark table-hover" >
+<table border="1" class=" table table-dark table-hover" id="tableee">
 <thead class="thead-dark " style="background-color: #252527;">
 <tr>
 <tr>
@@ -739,6 +739,11 @@ while ($stroka = mysqli_fetch_array($result_actors)){
   $result_contacts_rel = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp");
   $result_ratings = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `actors_previous_movies_rating` WHERE `actor_id` = $temp)");
 $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM  `actor_filmcrew` WHERE `actor_id` = $temp)");
+    echo "<table border=\"1\" class=\" table table-dark table-hover\"><thead class=\"thead-dark \" style=\"background-color: #252527;\">";
+
+
+
+
         echo"<tr >";
     echo"<td>" . $stroka['actor_id'] . "</td>";
     echo"<td>" . $stroka['actor_name'] . "</td>";
@@ -974,50 +979,35 @@ $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `numbe
 
 
 //?????????????????????????????
-case  'most_expensive_actor':
-  $result_actors3 =   $mysqli->query("SELECT * FROM `actors` WHERE `actor_shoe_size` = $entering_values");
-  while ($stroka3 = mysqli_fetch_array($result_actors3)){
-    $temp3 = $stroka3['actor_id'];
-    $result_photos3 = $mysqli->query("SELECT `actor_photo` FROM `actors_photo` WHERE `actor_id`  = $temp3");
-    $result_phones3 = $mysqli->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id`  = $temp3");
-    $result_contacts_rel3 = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp3");
-    $result_ratings3 = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `actors_previous_movies_rating` WHERE `actor_id` = $temp3)");
-$result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM  `actor_filmcrew` WHERE `actor_id` = $temp3)");
-     echo"<tr >";
-    echo"<td>" . $stroka3['actor_id'] . "</td>";
-    echo"<td>" . $stroka3['actor_name'] . "</td>";
-    echo"<td>" . $stroka3['actor_surname'] . "</td>";
-    echo"<td>" . $stroka3['actor_middle_name'] . "</td>";
-    echo"<td>" . $stroka3['actor_experience'] . "</td>";
-    echo"<td>" . $stroka3['rating_of_employee'] . "</td>";
-    echo"<td class = \" noprint\">" . $stroka3['actor_salary'] . "</td>";
-    echo"<td class = \" noprint\">" . $stroka3['actor_works_since'] . "</td>";
-    echo"<td class = \" noprint\">" . $stroka3['actor_works_until'] . "</td>";
-    echo"<td class = \" noprint\">" . $stroka3['amount_of_films_actor_took_part_in'] . "</td>";
-    echo"<td class = \" noprint\">" . $stroka3['actor_date_of_birth'] . "</td>";
-    echo"<td class = \" noprint\">" . $stroka3['actor_place_of_birth'] . "</td>";
-    echo"<td >" . $stroka3['actor_home_address'] . "</td>";
-    echo"<td class = \" noprint\">" . $stroka['name_of_position'] . "</td>";
-    echo"<td>" . $stroka3['actor_age'] . "</td>";
-    echo"<td>" . $stroka3['actor_sex'] . "</td>";
-    echo"<td >" . $stroka3['actor_height'] . "</td>";
-    echo"<td class = \" noprint\">" . $stroka3['actor_color_of_hair'] . "</td>";
-    echo"<td class = \" noprint\">" . $stroka3['actor_length_of_hair'] . "</td>";
-    echo"<td class = \" noprint\">" . $stroka3['actor_color_of_eyes'] . "</td>";
-    echo"<td class = \" noprint\">" . $stroka3['actor_stature'] . "</td>";
-    echo"<td>" . $stroka3['actor_shoe_size'] . "</td>";
-    echo"<td>" . $stroka3['actor_clothing_size'] . "</td>";
-    echo"<td class = \" noprint\">" . $stroka['actor_nationality'] . "</td>";
-    echo"<td class = \" noprint\">" . $stroka['actor_other_appearance'] . "</td>";
-    echo"<td>" . $stroka3['actor_e-mail'] . "</td>";
-    echo"<td>" .  res($result_phones3) . "</td>";
-    echo"<td>" .  res($result_contacts_rel3) . "</td>";
-    echo"<td class = \" noprint\">" .  res($result_ratings3) . "</td>";
-	  	   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
-      echo"<form action=\"editingActor.php\" method=\"post\">";
 
-  echo "<input type=\"hidden\" value = \"" .$stroka['actor_id'] . "\" name=\"actor_id\" >";
-      echo "<td  class = \" noprint\">"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";    echo"</tr>";
+case 'variable':
+$result_actors0 =   $mysqli->query("SELECT `actor_id`, SUM(actor_fee) AS total_fee FROM `actor_filmcrew` GROUP BY `actor_id`");
+echo "<script>document.getElementById(\"tableee\").remove();</script>";
+
+echo "<table border=\"1\" class=\" table table-dark table-hover\" >
+<thead class=\"thead-dark \" style=\"background-color: #252527;\">
+<tr>
+<tr>
+<td >Id</td>
+<td >name</td>
+<td>Сумарний гонорар</td>
+</tr></thead>";
+
+while ($stroka0 = mysqli_fetch_array($result_actors0)){
+  $temp0 = $stroka0['actor_id'];
+  $sum = $stroka0['total_fee'];
+
+  $result_actors_info =   $mysqli->query("SELECT `actor_name` FROM `actors` WHERE `actor_id` = '$temp0'");
+
+
+$stroka01 = mysqli_fetch_array($result_actors_info);
+
+
+
+  echo"<tr >";
+  echo"<td>" . $temp0 . "</td>";
+  echo"<td>" . $stroka01[0] . "</td>";
+  echo"<td>" . $sum . "</td>";
      }
     break;
 //?????????????????????????????
