@@ -31,8 +31,7 @@
       <label class=" mr-sm-2" >Посада:&nbsp;&nbsp;Агент по акторах</label>
     </form>
     </div>
-  </div>
-</nav>
+  </nav>
 
 
 </br><h4 class="colorForAllText">База даних кіностудії</h4>
