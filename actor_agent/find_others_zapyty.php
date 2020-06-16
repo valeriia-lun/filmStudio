@@ -202,6 +202,35 @@ function yesnoCheck(that) {
 }
 </script>
 
+<div class="row"><div class="col-md-3 container">
+<label class="colorText" >Посада:</label>
+<select   class="select selectpicker  form-control" name="selectingPosition">
+<option></option>
+<option >Сценарист</option>
+<option >Режисер</option>
+<option >Лінійний продюсер</option>
+<option >Реквізитор</option>
+<option >Гример</option>
+<option >Оператор</option>
+<option >Гафер</option>
+<option >Звукорежисер</option>
+<option >Художник по костюмах</option>
+<option >Художник-постановщик</option>
+<option >Агент по акторах</option>
+<option >Помічник оператора</option>
+<option >Помічник звукорежисера</option>
+<option >Помічник гафера</option>
+<option >Костюмер</option>
+<option >Помічник художника по костюмах</option>
+<option >Помічник художника-постановщика</option>
+<option >Адміністратор майданчика</option>
+<option >Кухар</option>
+<option >Водій</option>
+<option >Вантажник</option>
+<option >Прибиральник</option>
+<option >Охоронник</option>
+</select></div></div>
+
 <div class="btn noprint">
   <button class ="button btn btn-primary" name="done">Знайти</button>
 </div>
@@ -268,6 +297,8 @@ $mysqli->query("SET NAMES 'utf8'");
           $middleName =  $_POST['middleName'];
           $rating =  $_POST['rating'];
           $amountOfMovies =  $_POST['amountOfFilms'];
+          $position =  $_POST['selectingPosition'];
+
 
           $films = $_POST['field_name_Films'];
     //  $skills =  $_POST['selectingFilms'];
@@ -299,6 +330,13 @@ $mysqli->query("SET NAMES 'utf8'");
               $quer = $quer . " AND ";
             }
             $quer = $quer . "others_middle_name = \"$middleName\"";
+            $isFirst = false;
+          }
+          if($position != NULL){
+            if(!$isFirst){
+              $quer = $quer . " AND ";
+            }
+            $quer = $quer . "name_of_position = \"$position\"";
             $isFirst = false;
           }
           if($rating != NULL){
@@ -392,9 +430,9 @@ $mysqli->query("SET NAMES 'utf8'");
     //
     // echo "<input type=\"hidden\" value = \"" .$stroka['actor_id'] . "\" name=\"actor_id\" >";
     //     echo "<td  class = \" noprint\">"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";    echo"</tr>";
-       
 
-        
+
+
 }}
 
 ?>
