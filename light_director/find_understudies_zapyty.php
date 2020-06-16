@@ -480,7 +480,7 @@ $name =  $_POST['name'];
                   if(!$isFirst){
                     $quer = $quer . " AND ";
                   }
-                  $quer = $quer . "understudy_name = \"$name\"";
+                  $quer = $quer . "understudy_name LIKE  '%$name%'";
                   $isFirst = false;
                 }
                 if($surname != NULL){
@@ -488,14 +488,14 @@ $name =  $_POST['name'];
                   if(!$isFirst){
                     $quer = $quer . " AND ";
                   }
-                  $quer = $quer . "understudy_surname = \"$surname\"";
+                  $quer = $quer . "understudy_surname LIKE  '%$surname%'";
                   $isFirst = false;
                 }
                 if($middleName != NULL){
                   if(!$isFirst){
                     $quer = $quer . " AND ";
                   }
-                  $quer = $quer . "understudy_middle_name = \"$middleName\"";
+                  $quer = $quer . "understudy_middle_name LIKE  '%$middleName%'";
                   $isFirst = false;
                 }
                 if($rating != NULL){

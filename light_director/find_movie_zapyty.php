@@ -296,7 +296,7 @@ FROM Help))");
                       if(!$isFirst){
                         $quer = $quer . " AND ";
                       }
-                      $quer = $quer . "name_of_movie = \"$name\"";
+                      $quer = $quer . "name_of_movie LIKE  '%$name%'";
                       $isFirst = false;
                     }
                     if($date_release != NULL){
