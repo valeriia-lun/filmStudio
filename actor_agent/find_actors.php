@@ -118,9 +118,9 @@ table{zoom: 40%;}
   <option value="salary_20000_more">Актори із зарплатнею < 20 000 грн</option>
   <option value="blond">Актори блондини</option>
   <option value="movie_zoloto">Актори, що знялися в фільмі 'Золото'</option>
-  <option value="most_expensive_actor" >Сумарні гонорари акторів</option>
   <option value="makeByHand">Фільтрувати самостійно</option>
-  <option value="variable">variable</option>
+  <option value="variable" >Сумарні гонорари акторів</option>
+
 
 </select>
 </div></div></br>

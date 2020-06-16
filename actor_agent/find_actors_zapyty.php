@@ -988,8 +988,10 @@ echo "<table border=\"1\" class=\" table table-dark table-hover\" >
 <thead class=\"thead-dark \" style=\"background-color: #252527;\">
 <tr>
 <tr>
-<td >Id</td>
-<td >name</td>
+<td >Табельний номер</td>
+<td >Прізвище</td>
+<td >Ім'я</td>
+<td >По-батькові</td>
 <td>Сумарний гонорар</td>
 </tr></thead>";
 
@@ -997,16 +999,19 @@ while ($stroka0 = mysqli_fetch_array($result_actors0)){
   $temp0 = $stroka0['actor_id'];
   $sum = $stroka0['total_fee'];
 
-  $result_actors_info =   $mysqli->query("SELECT `actor_name` FROM `actors` WHERE `actor_id` = '$temp0'");
-
-
-$stroka01 = mysqli_fetch_array($result_actors_info);
-
+  $result_actors_name =   $mysqli->query("SELECT `actor_name` FROM `actors` WHERE `actor_id` = '$temp0'");
+  $result_actors_surname =   $mysqli->query("SELECT `actor_surname` FROM `actors` WHERE `actor_id` = '$temp0'");
+  $result_actors_mid_name =   $mysqli->query("SELECT `actor_middle_name` FROM `actors` WHERE `actor_id` = '$temp0'");
+$stroka01 = mysqli_fetch_array($result_actors_name);
+$stroka02 = mysqli_fetch_array($result_actors_surname);
+$stroka03 = mysqli_fetch_array($result_actors_mid_name);
 
 
   echo"<tr >";
   echo"<td>" . $temp0 . "</td>";
+  echo"<td>" . $stroka02[0] . "</td>";
   echo"<td>" . $stroka01[0] . "</td>";
+  echo"<td>" . $stroka03[0] . "</td>";
   echo"<td>" . $sum . "</td>";
      }
     break;
