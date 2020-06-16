@@ -121,7 +121,8 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" name=\"name_
 ?><br>
   </div>
     <div class=" container col-3" >
-    <label class="colorText">Жанр:</label><label style="color:red;">*</label><div class="field_wrapper_Genre">
+    <label class="colorText">Жанр:</label><label style="color:red;">*</label>
+    <div class="field_wrapper_Genre">
     <select class="form-control">
     <?php
 

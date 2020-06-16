@@ -89,7 +89,9 @@ $result_headId = $mysqli->query("SELECT * FROM `editor` WHERE `editor_id` IN(SEL
 echo "<select name=\"selectingHeadId\"  class=\"select selectpicker  form-control\"><option selected></option>";
 while($stroka = mysqli_fetch_array($result_headId)){
   if($stroka != 0){
-    echo "<option value=\"\">" . $stroka['editor_surname'] ." ".  $stroka['editor_name'] . " ". $stroka['editor_middle_name'] .", ". "id: " . $stroka['editor_id'] . "</option>";
+    $value = $stroka['editor_id'];
+    echo $value;
+    echo "<option value=\"$value\">" . $stroka['editor_surname'] ." ".  $stroka['editor_name'] . " ". $stroka['editor_middle_name'] .", ". "id: " . $stroka['editor_id'] . "</option>";
   } else{
     echo "<option selected>" . "</option>";
   }

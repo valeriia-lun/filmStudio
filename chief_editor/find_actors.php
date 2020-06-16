@@ -13,6 +13,37 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
 </script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+  var maxFieldFilms = 10; //Input fields increment limitation
+  var addButtonFilms = $('.add_button_Films'); //Add button selector
+  var wrapperFilms = $('.field_wrapper_Films'); //Input field wrapper
+  /*var fieldHTMLFilms = ('.field_wrapper_Films select')[0].outerHTML;
+  alert(fieldHTMLFilms);// '<div><input type="text" class="form-control" name="field_name_Films[]" value=""/><a href="javascript:void(0);" class="remove_button_Films"><img src="../img/delete_icon.png" width=\'20\' height=\'20\'/></a></div>'; //New input field html
+  */var xFilms = 1; //Initial field counter is 1
+  var fieldHTMLFilms = "<div><select name=\"field_name_Films[]\"  class=\"select selectpicker  form-control\">" + $('.field_wrapper_Films select')[0].innerHTML + "</select><a href=\"javascript:void(0);\" class=\"remove_button_Films\"><img src=\"../img/delete_icon.png\" width=\'20\' height=\'20\'/></a></div>";
+
+  //Once add button is clicked
+  $(addButtonFilms).click(function(){
+      //Check maximum number of input fields
+      if(xFilms < maxFieldFilms){
+          xFilms++; //Increment field counter
+          $(wrapperFilms).append(fieldHTMLFilms); //Add field html
+      }
+  });
+
+  //Once remove button is clicked
+  $(wrapperFilms).on('click', '.remove_button_Films', function(e){
+      e.preventDefault();
+      $(this).parent('div').remove(); //Remove field html
+      xFilms--; //Decrement field counter
+
+    });
+});
+
+</script>
 <link rel="stylesheet" href="..\style.css">
 </head>
 <style type="text/css">
@@ -22,7 +53,7 @@
 }
 
 @media print {
-  
+
   .noprint { display: none; }
 table{zoom: 40%;}
 #printOnly{}
@@ -40,7 +71,7 @@ table{zoom: 40%;}
 #pageFooter:after {
     counter-increment: page;
     content: counter(page) ;
-    
+
     font-size: 20pt;
 }
 </style>
@@ -72,9 +103,9 @@ function yesnoCheck(that) {
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="main.php">Головна<span class="sr-only">(current)</span></a>
-      </li>     
+      </li>
     </ul>
-   
+
     <form class=" my-2 my-lg-0">
       <label class=" mr-sm-2" >Головний монтажер</label>
     </form>
@@ -85,12 +116,14 @@ function yesnoCheck(that) {
 
 </div>
 <div class="noprint">
-<form action="find_actors_zapyty.php" method="post">
-<div class="row">
-<div class="container col-md-3">
-<select  onchange="yesnoCheck(this);" class="select selectpicker  form-control" name="selecting">
 
-<option value="max_experience" >Актори з найбільшим стажем</option>
+
+<div class="row">
+  <div class="col-md-4 container">
+<form action="find_actors_zapyty.php" method="post">
+<select name="selecting"  class="select selectpicker  form-control" onchange="yesnoCheck(this);">
+
+  <option value="max_experience" >Актори з найбільшим стажем</option>
   <option value="female">Актори жіночого роду</option>
   <option value="salary_20000_more">Актори із зарплатнею < 20 000 грн</option>
   <option value="blond">Актори блондини</option>
@@ -98,7 +131,11 @@ function yesnoCheck(that) {
   <option value="most_expensive_actor" >Найдорожчі актори</option>
   <option value="makeByHand">Фільтрувати самостійно</option>
 </select>
-</div></div>
+</div></div></br>
+
+
+
+
 <div id = "appearFilters" style="display: none;">
 <div class="row">
 <div class="col-md-3 container">
@@ -111,18 +148,51 @@ function yesnoCheck(that) {
 <label class="colorText" >По-батькові<input class="form-control" name="middleName" ></input></label>
 </div>
 <div class="col-md-3 container">
-<label class="colorText" >Рейтинг<input class="form-control" name="rating" ></input></label>
-</div></div></br>
+<label class="colorText" >Рейтинг&nbsp;&nbsp;</label>
+<input type="radio" id="choice>"
+     name="choice1" value=">">
+    <label >></label>
 
+    <input type="radio" id="choice<"
+     name="choice1" value="<">
+    <label ><</label>
+
+    <input type="radio" id="choice="
+     name="choice1" value="=">
+    <label >=</label><input class="form-control" name="rating" ></input>
+
+</div></div></br>
 
 
 
 <div class="row">
 <div class="col-md-3 container">
-<label class="colorText" >Кількість фільмів у яких брали участь<input onkeyup="lal(this)" class="form-control" name="amountOfFilms" ></input></label>
+<label class="colorText" >Кількість фільмів у яких брали участь&nbsp;&nbsp;</label>
+<input type="radio" id="choice>"
+     name="choice2" value=">">
+    <label >></label>
+
+    <input type="radio" id="choice<"
+     name="choice2" value="<">
+    <label ><</label>
+
+    <input type="radio" id="choice="
+     name="choice2" value="=">
+    <label >=</label><input class="form-control" onkeyup="lal(this)" name="amountOfFilms" ></input>
 </div>
 <div class="col-md-3 container">
-<label class="colorText" >Вік<input class="form-control" onkeyup="lal(this)" name="age" ></input></label>
+<label class="colorText" >Вік&nbsp;&nbsp;</label>
+<input type="radio" id="choice>"
+     name="choice3" value=">">
+    <label >></label>
+
+    <input type="radio" id="choice<"
+     name="choice3" value="<">
+    <label ><</label>
+
+    <input type="radio" id="choice="
+     name="choice3" value="=">
+    <label >=</label><input class="form-control" onkeyup="lal(this)" name="age" ></input>
 </div>
 <div class="col-md-3 container">
 <label class="colorText" >Стать</label><select name="selectingSex"   class="select selectpicker  form-control">
@@ -132,7 +202,18 @@ function yesnoCheck(that) {
 </select>
 </div>
 <div class="col-md-3 container">
-<label class="colorText" >Ріст<input class="form-control" onkeyup="lal(this)" name="height" ></input></label></div></div></br>
+<label class="colorText" >Ріст&nbsp;&nbsp;</label>
+<input type="radio" id="choise>"
+     name="choice4" value=">">
+    <label >></label>
+
+    <input type="radio" id="choise<"
+     name="choice4" value="<">
+    <label ><</label>
+
+    <input type="radio" id="choise="
+     name="choice4" value="=">
+    <label >=</label><input class="form-control" onkeyup="lal(this)" name="height" ></input></div></div></br>
 
 <div class="row">
 <div class="col-md-3 container">
@@ -143,13 +224,33 @@ function yesnoCheck(that) {
   <option>Блонд</option>
   <option>Брюнет</option>
   <option>Шатен</option>
-
+  <option>Русявий</option>
+  <option>Рожевий</option>
+  <option>Синий</option>
+  <option>Сивий</option>
+  <option>Червоний</option>
+  <option>Помаранчевий</option>
+  <option>Жовтий</option>
+  <option>Зелений</option>
+  <option>Блакитний</option>
+  <option>Фіолетовий</option>
 </select>
 </div>
 
 </br>
 <div class="col-md-3 container">
-<label class="colorText" >Довжина волосся</label><input onkeyup="lal(this)" class="form-control" name="hairLength"></input>
+<label class="colorText" >Довжина волосся&nbsp;&nbsp;</label>
+<input type="radio" id="choise>"
+     name="choice5" value=">">
+    <label >></label>
+
+    <input type="radio" id="choise<"
+     name="choice5" value="<">
+    <label ><</label>
+
+    <input type="radio" id="choise="
+     name="choice5" value="=">
+    <label >=</label><input onkeyup="lal(this)" class="form-control" name="hairLength"></input>
 </div>
 <div class="col-md-3 container">
 <label class="colorText" >Колір очей:</label>
@@ -173,10 +274,32 @@ function yesnoCheck(that) {
 </br>
 <div class="row">
 <div class="col-md-3 container">
-<label class="colorText" >Розмір взуття</label><input onkeyup="lal(this)" class="form-control" name="shoeSize" ></input>
+<label class="colorText" >Розмір взуття&nbsp;&nbsp;</label>
+<input type="radio" id="choise>"
+     name="choice6" value=">">
+    <label >></label>
+
+    <input type="radio" id="choise<"
+     name="choice6" value="<">
+    <label ><</label>
+
+    <input type="radio" id="choise="
+     name="choice6" value="=">
+    <label >=</label><input onkeyup="lal(this)" class="form-control" name="shoeSize" ></input>
 </div>
 <div class="col-md-3 container">
-<label class="colorText" >Розмір одягу</label><input onkeyup="lal(this)" class="form-control" name="clothingSize" ></input></div>
+<label class="colorText" >Розмір одягу&nbsp;&nbsp;</label><input type="radio" id="choise>"
+     name="choice7" value=">">
+    <label >></label>
+
+    <input type="radio" id="choise<"
+     name="choice7" value="<">
+    <label ><</label>
+
+    <input type="radio" id="choise="
+     name="choice7" value="=">
+    <label >=</label><input onkeyup="lal(this)" class="form-control" name="clothingSize" ></input></div>
+
 <div class="col-md-3 container">
 <label class="colorText" >Національність:</label>
 <select name="selectingNationality"  class="select selectpicker  form-control">
@@ -196,14 +319,18 @@ function yesnoCheck(that) {
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
+
 $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie`");
-echo "<select name=\"selectingFilms\"  class=\"select selectpicker  form-control\"><option></option>";
+echo "<div class=\"field_wrapper_Films\"><div>";
+echo "<select name=\"field_name_Films[]\"  class=\"select selectpicker  form-control\"><option></option>";
 while($stroka = mysqli_fetch_array($result_films)){
 for ($i=0; $i<count($stroka); $i+=2){
-  echo "<option>$stroka[$i]</option>"; 
+  echo "<option>$stroka[$i]</option>";
 }
 }
 echo "</select>";
+echo "<a href=\"javascript:void(0);\" class=\"add_button_Films\" title=\"Add field\"><img src=\"../img/add_icon.png\" height='35' width='35'/></a>";
+echo "</div></div>";
 ?>
 </div></div>
 </div>
@@ -229,10 +356,15 @@ function yesnoCheck(that) {
   <button class ="button btn btn-primary" name="done">Знайти</button>
 </div>
 </form>
+
+
+
+
 </div>
 <div  style="margin:10px;">
 <table border="1" class=" table table-dark table-hover" >
 <thead class="thead-dark " style="background-color: #252527;">
+
 <tr>
 <td >Id</td>
 <td>Ім'я</td>
@@ -260,44 +392,43 @@ function yesnoCheck(that) {
 <td class = "noprint"><div class = "noprint">Національність</div></td>
 <td class = "noprint"><div class = "noprint">Інші елементи зовнішності</div></td>
 <td >Ел.пошта</td>
+
 <td>Телефон</td>
 <td>Контакти близьких</td>
 <td class = "noprint"><div class = "noprint">Рейтинги фільмів, в яких брали участь</div></td>
 <td style="width:1px;white-space:nowrap;">Фільми, в яких брали участь</td>
-
+<td class = "noprint"><div class = "noprint">Зміна інформації про актора</div></td>
 </tr></thead>
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
-
+ $result_actors = $mysqli->query("SELECT * FROM `actors`");
 
  function res($result){
-$print = "";
-  if($result)
-  {
-      $rows = mysqli_num_rows($result); // количество полученных строк
-      for ($i = 0 ; $i < $rows ; ++$i)
-      {
-          $row = mysqli_fetch_row($result);
-              for ($j = 0 ; $j < 1 ; ++$j)   $print .= "$row[$j]"."<br/>";
-      }
+  $print = "";
+    if($result)
+    {
+        $rows = mysqli_num_rows($result); // количество полученных строк
+        for ($i = 0 ; $i < $rows ; ++$i)
+        {
+            $row = mysqli_fetch_row($result);
+                for ($j = 0 ; $j < 1 ; ++$j)   $print .= "$row[$j]"."<br/>";
+        }
+    }
+    return $print;
   }
-  return $print;
-}
 
-$result_actors = $mysqli->query("SELECT * FROM `actors`");
 while ($stroka = mysqli_fetch_array($result_actors)){
   $temp = $stroka['actor_id'];
 
-  $result_photos = $mysqli->query("SELECT `actor_photo` FROM `actors_photo` WHERE `actor_id`  = $temp");
 
-  $result_phones = $mysqli->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id`  = $temp");
 
-  $result_contacts_rel = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id`  = $temp");
-
+  $result_phones = $mysqli->query("SELECT `actor_phone_number` FROM `actors_phones` WHERE `actor_id` IN (SELECT `actor_id` FROM  `actors` WHERE `actor_id` = $temp)");
+  $result_contacts_rel = $mysqli->query("SELECT `actor_relatives_phone_numbers` FROM `actor_contacts_of_relatives` WHERE `actor_id` IN (SELECT `actor_id` FROM  `actors` WHERE `actor_id` = $temp)");
   $result_ratings = $mysqli->query("SELECT `rating` FROM `previous_movies_rating` WHERE `id_previous_movie_rating` IN (SELECT `id_previous_movie_rating` FROM  `actors_previous_movies_rating` WHERE `actor_id` = $temp)");
 $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM  `actor_filmcrew` WHERE `actor_id` = $temp)");
-        echo"<tr >";
+
+    echo"<tr >";
     echo"<td>" . $stroka['actor_id'] . "</td>";
     echo"<td>" . $stroka['actor_name'] . "</td>";
     echo"<td>" . $stroka['actor_surname'] . "</td>";
@@ -327,24 +458,36 @@ $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `numbe
     echo"<td>" .  res($result_phones) . "</td>";
     echo"<td>" .  res($result_contacts_rel) . "</td>";
     echo"<td class = \" noprint\">" .  res($result_ratings) . "</td>";
-		 	   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
+	  	   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
+    echo"<form action=\"editingActor.php\" method=\"post\">";
+
+echo "<input type=\"hidden\" value = \"" .$stroka['actor_id'] . "\" name=\"actor_id\" >";
+    echo "<td class = \" noprint\">"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";    echo"</tr>";
     echo"</tr>";
- 
+
    }
+
 ?>
+
 </table>
-</div><div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку: 
-  <?php 
-    $currentDateTime = date('Y-m-d'); 
+</div>
+
+
+  <div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку:
+  <?php
+    $currentDateTime = date('Y-m-d');
     echo $currentDateTime;
   ?></p></div>
-  
+
   <div id="printOnly" class="row ">
 <div class="col-12 container fixed-bottom">
   <div id="content">
   <div id="pageFooter"></div></div></div></div>
+
+
+
 <div class="btn noprint">
-<form><button class ="button btn btn-danger" onclick="window.print()">Друкувати</button></form></br></br></br>
+<button  class ="button btn btn-danger" onclick="window.print()">Друкувати</button></br></br></br>
 </div>
 </body>
 </html>

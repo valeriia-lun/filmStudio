@@ -146,6 +146,7 @@ function yesnoCheck(that) {
 </div>
 <div class="col-md-3 container">
 <label class="colorText" >Жанр:</label>
+
 <select   class="select selectpicker  form-control" name="selectingGenre">
 <option></option>
   <option >Драма</option>
