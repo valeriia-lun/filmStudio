@@ -56,9 +56,16 @@ if ( $editor_id != '') {
     if($is_head == 1){
       $result = $mysqli->query("INSERT INTO `editor_crewEdit`(`number_of_edit_crew`, `editor_id`, `editor_fee`, `is_head`) VALUES ('$number_of_editCrew', '$value','0', '1')");
     } else {
-      $result = $mysqli->query("INSERT INTO `editor_crewedit`(`number_of_edit_crew`, `editor_id`, `editor_fee`, `is_head`) VALUES ('$number_of_editCrew', '$value','0', '$0')");
+      $result = $mysqli->query("INSERT INTO `editor_crewedit`(`number_of_edit_crew`, `editor_id`, `editor_fee`, `is_head`) VALUES ('$number_of_editCrew', '$value','0', '0')");
     }
+    if ($result) {
+    echo "Success!";
+  }
+else {
+     echo "Error! $mysqli->error <br>";
+   }
   if ($result) {
+
     echo "</br></br></br><h1 class=\"colorForAllText\">Монтажерів успішно додано до монтажної групи!</h1>";
    }
 else {
