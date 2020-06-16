@@ -424,12 +424,13 @@ $mysqli->query("SET NAMES 'utf8'");
 
 
               echo"<td>" .  res($result_contacts_rel4) . "</td>";
-              echo"<td>" .  res($result_ratings4) . "</td>";echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
+              echo"<td>" .  res($result_ratings4) . "</td>";
+              echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
     //          echo"<form action=\"editingOthers.php\" method=\"post\">";
     //
     // echo "<input type=\"hidden\" value = \"" .$stroka['actor_id'] . "\" name=\"actor_id\" >";
     //     echo "<td  class = \" noprint\">"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";    echo"</tr>";
-
+echo"</tr>";
 
 
 }}

@@ -127,7 +127,7 @@
 }
 
 @media print {
-  
+
   .noprint { display: none; }
 table{zoom: 40%;}
 form{zoom: 90%;  font-size:14pt;}
@@ -147,7 +147,7 @@ input{width:50%;  size:500;}
 #pageFooter:after {
     counter-increment: page;
     content: counter(page) ;
-    
+
     font-size: 20pt;
 }
 
@@ -225,7 +225,7 @@ function res($result){
    }
    return $print;
  }
- 
+
   $id = filter_var(trim($_POST['actor_id']),FILTER_SANITIZE_STRING);
 //echo $id;
 $mysql = new mysqli("localhost","root","root","filmstudio");
@@ -238,7 +238,7 @@ while($stroka = mysqli_fetch_array($result)){
   $link = $stroka[0];
 
   echo "<p></p><figure><img src='$link' width=\"100%\"  alt=\"фото\" /></figure>";
- 
+
 }
 
  ?>
@@ -495,19 +495,8 @@ echo "<input type= \"text\" maxlength=\"50\" class=\"form-control\" tabindex=\"2
  ?><br>
 </div></div></br>
 
-<div class="row " style="margin:10px;">
-<div class=" container col-12">
-<label class="colorText" >Фільми, в яких брали участь:</label>
-<?php 
-$mysqli = new mysqli("localhost","root","root","filmstudio");
-$mysqli->query("SET NAMES 'utf8'");
 
-$result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `number_of_film_crew` IN (SELECT `number_of_film_crew` FROM  `actor_filmcrew` WHERE `actor_id` = $id)");
-while($stroka = mysqli_fetch_array($result_films)){
-echo " &nbsp; &nbsp;&nbsp;\"$stroka[0]\"";
-}
-?>
-</div></div></br>
+
 
 
 
@@ -568,37 +557,239 @@ echo " &nbsp; &nbsp;&nbsp;\"$stroka[0]\"";
 
       echo "<option selected>$res[0]</option> ";
 
-      if($res[0] == 'Чорний'){
-        echo "<option>Блонд</option> ";
-        echo "<option>Рудий</option> ";
-        echo "<option>Коричневий</option> ";
-        echo "<option>Білий</option> ";
-      }
       if($res[0] == 'Рудий'){
-        echo "<option>Блонд</option> ";
-        echo "<option>Чорний</option> ";
-        echo "<option>Коричневий</option> ";
-        echo "<option>Білий</option> ";
+        echo "<option>Блонд</option>";
+        echo "<option>Брюнет</option>";
+        echo "<option>Шатен</option>";
+        echo "<option>Русявий</option>";
+        echo "<option>Рожевий</option>";
+        echo "<option>Синий</option>";
+        echo "<option>Сивий</option>";
+        echo "<option>Червоний</option>";
+        echo "<option>Помаранчевий</option>";
+        echo "<option>Жовтий</option>";
+        echo "<option>Зелений</option>";
+        echo "<option>Блакитний</option>";
+        echo "<option>Фіолетовий</option>";
       }
 
-      if($res[0] == 'Коричневий'){
-        echo "<option>Блонд</option> ";
-        echo "<option>Рудий</option> ";
-        echo "<option>Чорний</option> ";
-        echo "<option>Білий</option> ";
-      }
-      if($res[0] == 'Білий'){
-        echo "<option>Блонд</option> ";
-        echo "<option>Рудий</option> ";
-        echo "<option>Коричневий</option> ";
-        echo "<option>Чорний</option> ";
-      }
       if($res[0] == 'Блонд'){
-        echo "<option>Чорний</option> ";
-        echo "<option>Рудий</option> ";
-        echo "<option>Коричневий</option> ";
-        echo "<option>Білий</option> ";
+        echo "<option>Рудий</option>";
+        echo "<option>Брюнет</option>";
+        echo "<option>Шатен</option>";
+        echo "<option>Русявий</option>";
+        echo "<option>Рожевий</option>";
+        echo "<option>Синий</option>";
+        echo "<option>Сивий</option>";
+        echo "<option>Червоний</option>";
+        echo "<option>Помаранчевий</option>";
+        echo "<option>Жовтий</option>";
+        echo "<option>Зелений</option>";
+        echo "<option>Блакитний</option>";
+        echo "<option>Фіолетовий</option>";
       }
+
+      if($res[0] == 'Брюнет'){
+        echo "<option>Блонд</option>";
+        echo "<option>Рудий</option>";
+        echo "<option>Шатен</option>";
+        echo "<option>Русявий</option>";
+        echo "<option>Рожевий</option>";
+        echo "<option>Синий</option>";
+        echo "<option>Сивий</option>";
+        echo "<option>Червоний</option>";
+        echo "<option>Помаранчевий</option>";
+        echo "<option>Жовтий</option>";
+        echo "<option>Зелений</option>";
+        echo "<option>Блакитний</option>";
+        echo "<option>Фіолетовий</option>";
+      }
+
+      if($res[0] == 'Шатен'){
+        echo "<option>Блонд</option>";
+        echo "<option>Брюнет</option>";
+        echo "<option>Рудий</option>";
+        echo "<option>Русявий</option>";
+        echo "<option>Рожевий</option>";
+        echo "<option>Синий</option>";
+        echo "<option>Сивий</option>";
+        echo "<option>Червоний</option>";
+        echo "<option>Помаранчевий</option>";
+        echo "<option>Жовтий</option>";
+        echo "<option>Зелений</option>";
+        echo "<option>Блакитний</option>";
+        echo "<option>Фіолетовий</option>";
+      }
+
+      if($res[0] == 'Русявий'){
+        echo "<option>Блонд</option>";
+        echo "<option>Брюнет</option>";
+        echo "<option>Шатен</option>";
+        echo "<option>Рудий</option>";
+        echo "<option>Рожевий</option>";
+        echo "<option>Синий</option>";
+        echo "<option>Сивий</option>";
+        echo "<option>Червоний</option>";
+        echo "<option>Помаранчевий</option>";
+        echo "<option>Жовтий</option>";
+        echo "<option>Зелений</option>";
+        echo "<option>Блакитний</option>";
+        echo "<option>Фіолетовий</option>";
+      }
+
+
+      if($res[0] == 'Рожевий'){
+        echo "<option>Блонд</option>";
+        echo "<option>Брюнет</option>";
+        echo "<option>Шатен</option>";
+        echo "<option>Русявий</option>";
+        echo "<option>Рудий</option>";
+        echo "<option>Синий</option>";
+        echo "<option>Сивий</option>";
+        echo "<option>Червоний</option>";
+        echo "<option>Помаранчевий</option>";
+        echo "<option>Жовтий</option>";
+        echo "<option>Зелений</option>";
+        echo "<option>Блакитний</option>";
+        echo "<option>Фіолетовий</option>";
+      }
+
+
+      if($res[0] == 'Синий'){
+        echo "<option>Блонд</option>";
+        echo "<option>Брюнет</option>";
+        echo "<option>Шатен</option>";
+        echo "<option>Русявий</option>";
+        echo "<option>Рожевий</option>";
+        echo "<option>Рудий</option>";
+        echo "<option>Сивий</option>";
+        echo "<option>Червоний</option>";
+        echo "<option>Помаранчевий</option>";
+        echo "<option>Жовтий</option>";
+        echo "<option>Зелений</option>";
+        echo "<option>Блакитний</option>";
+        echo "<option>Фіолетовий</option>";
+      }
+
+
+      if($res[0] == 'Сивий'){
+        echo "<option>Блонд</option>";
+        echo "<option>Брюнет</option>";
+        echo "<option>Шатен</option>";
+        echo "<option>Русявий</option>";
+        echo "<option>Рожевий</option>";
+        echo "<option>Синий</option>";
+        echo "<option>Рудий</option>";
+        echo "<option>Червоний</option>";
+        echo "<option>Помаранчевий</option>";
+        echo "<option>Жовтий</option>";
+        echo "<option>Зелений</option>";
+        echo "<option>Блакитний</option>";
+        echo "<option>Фіолетовий</option>";
+      }
+
+
+      if($res[0] == 'Червоний'){
+        echo "<option>Блонд</option>";
+        echo "<option>Брюнет</option>";
+        echo "<option>Шатен</option>";
+        echo "<option>Русявий</option>";
+        echo "<option>Рожевий</option>";
+        echo "<option>Синий</option>";
+        echo "<option>Сивий</option>";
+        echo "<option>Рудий</option>";
+        echo "<option>Помаранчевий</option>";
+        echo "<option>Жовтий</option>";
+        echo "<option>Зелений</option>";
+        echo "<option>Блакитний</option>";
+        echo "<option>Фіолетовий</option>";
+      }
+
+
+      if($res[0] == 'Помаранчевий'){
+        echo "<option>Блонд</option>";
+        echo "<option>Брюнет</option>";
+        echo "<option>Шатен</option>";
+        echo "<option>Русявий</option>";
+        echo "<option>Рожевий</option>";
+        echo "<option>Синий</option>";
+        echo "<option>Сивий</option>";
+        echo "<option>Червоний</option>";
+        echo "<option>Рудий</option>";
+        echo "<option>Жовтий</option>";
+        echo "<option>Зелений</option>";
+        echo "<option>Блакитний</option>";
+        echo "<option>Фіолетовий</option>";
+      }
+
+
+      if($res[0] == 'Жовтий'){
+        echo "<option>Блонд</option>";
+        echo "<option>Брюнет</option>";
+        echo "<option>Шатен</option>";
+        echo "<option>Русявий</option>";
+        echo "<option>Рожевий</option>";
+        echo "<option>Синий</option>";
+        echo "<option>Сивий</option>";
+        echo "<option>Червоний</option>";
+        echo "<option>Помаранчевий</option>";
+        echo "<option>Рудий</option>";
+        echo "<option>Зелений</option>";
+        echo "<option>Блакитний</option>";
+        echo "<option>Фіолетовий</option>";
+      }
+
+
+      if($res[0] == 'Зелений'){
+        echo "<option>Блонд</option>";
+        echo "<option>Брюнет</option>";
+        echo "<option>Шатен</option>";
+        echo "<option>Русявий</option>";
+        echo "<option>Рожевий</option>";
+        echo "<option>Синий</option>";
+        echo "<option>Сивий</option>";
+        echo "<option>Червоний</option>";
+        echo "<option>Помаранчевий</option>";
+        echo "<option>Жовтий</option>";
+        echo "<option>Рудий</option>";
+        echo "<option>Блакитний</option>";
+        echo "<option>Фіолетовий</option>";
+      }
+
+
+
+      if($res[0] == 'Блакитний'){
+        echo "<option>Блонд</option>";
+        echo "<option>Брюнет</option>";
+        echo "<option>Шатен</option>";
+        echo "<option>Русявий</option>";
+        echo "<option>Рожевий</option>";
+        echo "<option>Синий</option>";
+        echo "<option>Сивий</option>";
+        echo "<option>Червоний</option>";
+        echo "<option>Помаранчевий</option>";
+        echo "<option>Жовтий</option>";
+        echo "<option>Зелений</option>";
+        echo "<option>Рудий</option>";
+        echo "<option>Фіолетовий</option>";
+      }
+
+      if($res[0] == 'Фіолетовий'){
+        echo "<option>Блонд</option>";
+        echo "<option>Брюнет</option>";
+        echo "<option>Шатен</option>";
+        echo "<option>Русявий</option>";
+        echo "<option>Рожевий</option>";
+        echo "<option>Синий</option>";
+        echo "<option>Сивий</option>";
+        echo "<option>Червоний</option>";
+        echo "<option>Помаранчевий</option>";
+        echo "<option>Жовтий</option>";
+        echo "<option>Зелений</option>";
+        echo "<option>Блакитний</option>";
+        echo "<option>Рудий</option>";
+      }
+
        ?><br>
 
    </select><br>
@@ -756,12 +947,12 @@ echo " &nbsp; &nbsp;&nbsp;\"$stroka[0]\"";
 </div><br><br><br>
 
 </form>
-<div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку: 
-  <?php 
-    $currentDateTime = date('Y-m-d'); 
+<div id="printOnly"><p>&nbsp;&nbsp;&nbsp;Дата друку:
+  <?php
+    $currentDateTime = date('Y-m-d');
     echo $currentDateTime;
   ?></p></div>
-  
+
   <div id="printOnly" class="row ">
 <div class="col-12 container fixed-bottom">
   <div id="content">

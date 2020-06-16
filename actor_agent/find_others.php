@@ -230,6 +230,7 @@ function yesnoCheck(that) {
 <option >Вантажник</option>
 <option >Прибиральник</option>
 <option >Охоронник</option>
+
 </select></div></div>
 
 <div class="btn noprint">
@@ -263,6 +264,7 @@ function yesnoCheck(that) {
 <td>Контакти близьких</td>
 <td class = "noprint"><div class = "noprint">Рейтинги фільмів, в яких брали участь</div></td>
 <td style="width:1px;white-space:nowrap;">Фільми, в яких брали участь</td>
+
 
 </tr>
 </thead>
@@ -315,6 +317,9 @@ $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `numbe
     echo"<td>" .  res($result_contacts_rel) . "</td>";
     echo"<td class = \" noprint\">" .  res($result_ratings) . "</td>";
 	 	   echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
+
+
+
     echo"</tr>";
    }
 

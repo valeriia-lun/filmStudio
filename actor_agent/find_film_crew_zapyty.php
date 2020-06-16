@@ -206,14 +206,13 @@ function res($result){
     // if($re){
     // echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" value = \"" . $stroka['number_of_film_crew'] . "\" name=\"number_of_film_crew\">Додати</button>"."</div></td></form>";
     // }else{  echo "<td></td>";}
-    echo"<form action=\"editingMovie.php\" method=\"post\">";
+    echo"<form action=\"add_others_to_film_crew.php\" method=\"post\">";
 
-echo "<input type=\"hidden\" value = \"" .$value . "\" name=\"name_of_movie\" >";
+echo "<input type=\"hidden\" value = \"" . $stroka['number_of_film_crew'] . "\" name=\"number_of_film_crew\" >";
 echo "<td>"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";
 
 
-
-    echo"</tr>";
+echo"</tr>";
 
   }
 }

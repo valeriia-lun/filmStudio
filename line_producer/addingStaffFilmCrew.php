@@ -5,7 +5,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function(){
-      
+
       var dateOfBirthh = document.getElementById('date_of_birth');
       dateOfBirthh.addEventListener('change', function() {
         if(dateOfBirthh >= Date()){
@@ -142,21 +142,21 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
 
     <label class="colorText"> Назва посади:</label><label style="color:red;">*</label>
    <select  class="form-control" name="position">
-     <option>Реквізитор</option>
-     <option>Гример</option>
-     <option>Оператор</option>
-     <option>Гафер</option>
-     <option>Звукорежисер</option>
-     <option>Художник по костюмах</option>
-     <option>Художник-постановщик</option>
-     <option>Агент по акторах</option>
-     <option>Помічник оператора</option>
-     <option>Помічник звукорежисера</option>
-     <option>Помічник гафера</option>
-     <option>Костюмер</option>
-     <option>Помічник художника по костюмах</option>
-     <option>Помічник художника-постановщика</option>
-     <option>Адміністратор майданчика</option>
+     <option>реквізитор</option>
+     <option>гример</option>
+     <option>оператор</option>
+     <option>гафер</option>
+     <option>звукорежисер</option>
+     <option>художник по костюмах</option>
+     <option>художник-постановщик</option>
+     <option>агент по акторах</option>
+     <option>помічник оператора</option>
+     <option>помічник звукорежисера</option>
+     <option>помічник гафера</option>
+     <option>костюмер</option>
+     <option>помічник художника по костюмах</option>
+     <option>помічник художника-постановщика</option>
+     <option>адміністратор майданчика</option>
    </select><br>
    </div>  </div>
 

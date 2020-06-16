@@ -270,7 +270,7 @@ $result = $mysql->query("INSERT INTO `Others` (`others_id`, `others_salary`, `ot
    `others_middle_name`, `others_home_address`, `others_work_since` ,`others_experience`, `amount_of_films_others_took_part_in`,
  `rating_of_employee`, `others_date_of_birth`, `others_place_of_birth`, `name_of_position`, `others_e-mail`)
 VALUES ('$id', '$salary', '$name', '$last_name', '$middle_name', '$address', '$work_since', '$years', '$amount_of_films','$rating',
-   '$birthDate', '$place_of_birth', 'Режисер', '$email')");
+   '$birthDate', '$place_of_birth', 'режисер', '$email')");
 
 foreach ($phones as $value) {
   $mysql->query("INSERT INTO `Others_phones`(`others_phone_number`, `others_id`)

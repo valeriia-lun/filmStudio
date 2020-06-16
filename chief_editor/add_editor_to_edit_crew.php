@@ -54,7 +54,7 @@
 <td>Назва фільму</td>
 </tr></thead>
 
-<?php 
+<?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
 $mysqli->query("SET NAMES 'utf8'");
 $number_of_editCrew = $_POST['number_of_edit_crew'];
@@ -63,7 +63,7 @@ $infoFilm = $mysqli->query("SELECT * FROM `movie` WHERE `number_of_edit_crew` = 
 $stroka2 = mysqli_fetch_array($infoFilm);
 
 while ($stroka = mysqli_fetch_array($info)){
- 
+
     echo"<tr>";
     echo"<td>" . $stroka['number_of_edit_crew'] . "</td>";
     echo"<td>" . $stroka['date_start_edit_crew'] . "</td>";
@@ -97,7 +97,6 @@ while ($stroka = mysqli_fetch_array($info)){
 <td>Ел.пошта</td>
 <td>Телефон</td>
 <td>Контакти близьких</td>
-<td>Чи є головою?</td>
 <td>Обрати</td>
 </tr></thead>
 <form action="gen_montazher_check.php" method="POST">
@@ -161,7 +160,6 @@ while ($stroka = mysqli_fetch_array($result_editors)){
 
 
 
-    echo"<td>" ."<input type=\"checkbox\" onclick=\"document.getElementById('chk1').checked = this.checked;\"  class=\"form-control\" onclick=\"onlyOne(this)\" name=\"is_head\" value=\"Yes\">";
 
     $res = $mysqli->query("SELECT * FROM `editor_crewedit` WHERE `number_of_edit_crew` = $number_of_editCrew AND `editor_id` = $temp");
    //  echo "string";
