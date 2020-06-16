@@ -5,7 +5,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript">
     $(document).ready(function(){
-      
+
       var dateOfBirthh = document.getElementById('date_of_birth');
       dateOfBirthh.addEventListener('change', function() {
         if(dateOfBirthh >= Date()){
@@ -198,7 +198,7 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
 
 
   <div class="row">
-  
+
 
   <div class=" container col-5">
     <label class="colorText">Домашня адреса: </label><label style="color:red;">*</label><input type="text" class="form-control" name="address" maxlength="50" tabindex="2" required><br>
@@ -270,7 +270,7 @@ $result = $mysql->query("INSERT INTO `Others` (`others_id`, `others_salary`, `ot
    `others_middle_name`, `others_home_address`, `others_work_since` ,`others_experience`, `amount_of_films_others_took_part_in`,
  `rating_of_employee`, `others_date_of_birth`, `others_place_of_birth`, `name_of_position`, `others_e-mail`)
 VALUES ('$id', '$salary', '$name', '$last_name', '$middle_name', '$address', '$work_since', '$years', '$amount_of_films','$rating',
-   '$birthDate', '$place_of_birth', 'Сценарист', '$email')");
+   '$birthDate', '$place_of_birth', 'сценарист', '$email')");
 
    if ($result) {
       echo "Success!";

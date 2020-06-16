@@ -257,7 +257,10 @@ function yesnoCheck(that) {
 <td >Ел.пошта</td>
 <td>Телефон</td>
 <td>Контакти близьких</td>
-<td class = "noprint"><div class = "noprint">Рейтинги фільмів, в яких брали участь</div></td><td style="width:1px;white-space:nowrap;">Фільми, в яких брали участь</td>
+<td class = "noprint"><div class = "noprint">Рейтинги фільмів, в яких брали участь</div></td>
+<td style="width:1px;white-space:nowrap;">Фільми, в яких брали участь</td>
+<td class = "noprint"><div class = "noprint">Змінити</div></td>
+
 </tr></thead>
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
@@ -307,6 +310,22 @@ $result_films = $mysqli->query("SELECT `name_of_movie` FROM `movie` WHERE `numbe
     echo"<td>" .  res($result_phones) . "</td>";
     echo"<td>" .  res($result_contacts_rel) . "</td>";
     echo"<td class = \" noprint\">" .  res($result_ratings) . "</td>"; echo"<td style=\"width:1px;white-space:nowrap;\">" .  res($result_films) . "</td>";
+
+
+    if($stroka['name_of_position'] == "реквізитор" || $stroka['name_of_position'] == "гример" || $stroka['name_of_position'] == "оператор"
+  || $stroka['name_of_position'] == "гафер" || $stroka['name_of_position'] == "звукорежисер" || $stroka['name_of_position'] == "художник по костюмах"
+|| $stroka['name_of_position'] == "художник-постановщик" || $stroka['name_of_position'] == "агент по акторах" || $stroka['name_of_position'] == "помічник оператор"
+|| $stroka['name_of_position'] == "помічник звукорежисера" || $stroka['name_of_position'] == "помічник гафера" || $stroka['name_of_position'] == "костюмер"
+|| $stroka['name_of_position'] == "помічник художника по костюмах" || $stroka['name_of_position'] == "помічник художника-постановщика" || $stroka['name_of_position'] == "адміністратор майданчика"){
+      echo"<form action=\"editingStaffFilmCrew.php\" method=\"post\">";
+
+  echo "<input type=\"hidden\" value = \"" .$stroka['others_id'] . "\" name=\"id_others\" >";
+      echo "<td class = \" noprint\">"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";
+
+    }
+
+
+
     echo"</tr>";
    }
 

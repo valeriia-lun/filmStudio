@@ -263,6 +263,8 @@ function yesnoCheck(that) {
 <td>Контакти близьких</td>
 <td class = "noprint"><div class = "noprint">Рейтинги фільмів, в яких брали участь</div></td>
 <td style="width:1px;white-space:nowrap;">Фільми, в яких брали участь</td>
+<td class = "noprint"><div class = "noprint">Змінити</div></td>
+
 </tr></thead>
 <?php
 $mysqli = new mysqli("localhost","root","root","filmstudio");
@@ -429,7 +431,15 @@ $mysqli->query("SET NAMES 'utf8'");
     //
     // echo "<input type=\"hidden\" value = \"" .$stroka['actor_id'] . "\" name=\"actor_id\" >";
     //     echo "<td  class = \" noprint\">"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";    echo"</tr>";
+    if($stroka['name_of_position'] == "кухар" || $stroka['name_of_position'] == "водій" || $stroka['name_of_position'] == "вантажник"
+  || $stroka['name_of_position'] == "прибиральник" || $stroka['name_of_position'] == "охоронник"){
+      echo"<form action=\"editingStaffFilmCrew.php\" method=\"post\">";
 
+  echo "<input type=\"hidden\" value = \"" .$stroka['others_id'] . "\" name=\"id_others\" >";
+      echo "<td class = \" noprint\">"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";
+
+    }
+    echo"</tr>";
 
 
 }}

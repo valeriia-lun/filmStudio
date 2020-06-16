@@ -144,11 +144,11 @@ if (el.value.match( /[^a-zA-Zа-щА-ЩЬьЮюЯяЇїІіЄєҐґ]/u )){
 
     <label class="colorText"> Назва посади:</label><label style="color:red;">*</label>
    <select  class="form-control" name="position">
-          <option>Кухар</option>
-          <option>Водій</option>
-          <option>Вантажник</option>
-          <option>Прибиральник</option>
-          <option>Охоронник</option>
+          <option>кухар</option>
+          <option>водій</option>
+          <option>вантажник</option>
+          <option>прибиральник</option>
+          <option>охоронник</option>
    </select><br>
    </div>  </div>
 

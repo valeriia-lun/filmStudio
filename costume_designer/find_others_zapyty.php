@@ -429,7 +429,7 @@ $mysqli->query("SET NAMES 'utf8'");
     // echo "<input type=\"hidden\" value = \"" .$stroka['actor_id'] . "\" name=\"actor_id\" >";
     //     echo "<td  class = \" noprint\">"."<div class = \"btn noprint\">"."<button class =\" btn btn-danger\" name=\"editBtn\">Змінити</button>"."</div></td></form>";    echo"</tr>";
 
-
+echo"</tr>";
 
 }}
 
