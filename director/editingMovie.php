@@ -776,29 +776,29 @@ $budget = filter_var(trim($_POST['budget']),FILTER_SANITIZE_STRING);
 
 $ans = $mysql->query("UPDATE movie SET name_of_movie = '$newName', budget_of_movie = '$budget' WHERE name_of_movie = '$movieName' ");
 if ($ans) {
-   echo "Success!";
+   //echo "Success!";
  }
 else {
-    echo "Error! $mysql->error <br>";
+  //  echo "Error! $mysql->error <br>";
   }
 
   if($dateRelease != NULL){
     $anss = $mysql->query("UPDATE movie SET date_of_release = '$dateRelease' WHERE name_of_movie = '$newName'");
       if ($anss) {
-         echo "Success!";
+      //   echo "Success!";
        }
       else {
-          echo "Error! $mysql->error <br>";
+         // echo "Error! $mysql->error <br>";
         }
   }
 
   if($rating != NULL){
     $anss = $mysql->query("UPDATE movie SET rating_of_movie = '$rating' WHERE name_of_movie = '$newName'");
       if ($anss) {
-         echo "Success!";
+       //  echo "Success!";
        }
       else {
-          echo "Error! $mysql->error <br>";
+       //   echo "Error! $mysql->error <br>";
         }
         $number_film_crew = filter_var(trim($_POST['number_of_film_crew']),FILTER_SANITIZE_STRING);
 
@@ -825,14 +825,14 @@ else {
                echo "Success!";
                $result = $mysql->query("UPDATE actors SET rating_of_employee = '$new_rating', amount_of_films_actor_took_part_in = '$amount' WHERE actor_id = '$temp'");
                if ($result) {
-                  echo "Success!";
+                 // echo "Success!";
                 }
               else {
-                   echo "Error! $mysql->error <br>";
+                  // echo "Error! $mysql->error <br>";
                  }
              }
            else {
-                echo "Error! $mysql->error <br>";
+              //  echo "Error! $mysql->error <br>";
               }
 
         }

@@ -1030,18 +1030,18 @@ $ans = $mysql->query("UPDATE `actors` SET `actor_salary` = '$salary', `actor_nam
   `actor_color_of_hair` = '$hairColor', `actor_length_of_hair` = '$hairLen', `actor_stature` = '$stature', `actor_shoe_size` = '$shoe',
   `actor_clothing_size` = '$size', `actor_nationality` = '$nationality' WHERE `actor_id` = '$id' ");
 if ($ans) {
-   echo "Success!";
+  // echo "Success!";
  }
 else {
-    echo "Error! $mysql->error <br>";
+   // echo "Error! $mysql->error <br>";
   }
 if($work_until != NULL){
   $anss = $mysql->query("UPDATE `actors` SET `actor_works_until` = '$work_until' WHERE `actor_id` = '$id'");if ($ans) {
     if ($anss) {
-       echo "Success!";
+    //   echo "Success!";
      }
     else {
-        echo "Error! $mysql->error <br>";
+     //   echo "Error! $mysql->error <br>";
       }
 }
 }
@@ -1049,10 +1049,10 @@ if($work_until != NULL){
 if($otherApp != NULL){
   $anss = $mysql->query("UPDATE `actors` SET  `actor_other_appearance` = '$otherApp' WHERE `actor_id` = '$id'");if ($ans) {
     if ($anss) {
-       echo "Success!";
+    //   echo "Success!";
      }
     else {
-        echo "Error! $mysql->error <br>";
+      //  echo "Error! $mysql->error <br>";
       }
 }
 }
@@ -1077,10 +1077,10 @@ foreach ($contacts as $value) {
 $result = $mysql->query("INSERT INTO `actors_contacts_of_relatives`(`actor_relatives_phone_numbers`, `actor_id`)
   VALUES ('$value','$id')");
   if ($result) {
-     echo "Success!";
+  //   echo "Success!";
    }
  else {
-      echo "Error! $mysql->error <br>";
+     // echo "Error! $mysql->error <br>";
     }
 }
 

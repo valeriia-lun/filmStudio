@@ -6,13 +6,7 @@
     <script type="text/javascript">
     $(document).ready(function(){
 
-      var dateOfBirthh = document.getElementById('date_of_birth');
-      dateOfBirthh.addEventListener('change', function() {
-        if(dateOfBirthh >= Date()){
-                alert("Дата народження повинна бути меншою за сьогодні!!!");
-                document.getElementById('date_of_birth').value = "";
-              }
-      });
+     
 
         var maxFieldPhones = 10; //Input fields increment limitation
         var addButtonPhones = $('.add_button_Phones'); //Add button selector

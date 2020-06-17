@@ -438,10 +438,10 @@ if (isset($_POST['add'])){
   'Дублер', '$age', '$sex', '$height', '$hairColor', '$hairLen', '$eyes','$otherApp', '$stature', '$shoe', '$size', '$nationality',  '$email')");
 
   if ($result) {
-   echo "Success!";
+   //echo "Success!";
   }
   else {
-    echo "Error! $mysql->error <br>";
+    //echo "Error! $mysql->error <br>";
   }
 
   foreach ($phones as $value) {
@@ -455,10 +455,10 @@ if (isset($_POST['add'])){
   $result = $mysql->query("INSERT INTO `Understudies_contacts_of_relatives`(`understudy_relatives_phone_numbers`, `understudy_id`)
     VALUES ('$value','$id')");
     if ($result) {
-       echo "Success!";
+       //echo "Success!";
      }
    else {
-        echo "Error! $mysql->error <br>";
+       // echo "Error! $mysql->error <br>";
       }
   }
 

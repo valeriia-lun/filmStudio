@@ -355,10 +355,10 @@ if (isset($_POST['add'])){
   $max_photo_id_use =  $max_photo_id[0]+1;
   $result_photos_add = $mysql->query("INSERT INTO `actors_photo` (`id_actor_photo`, `actor_photo`,`actor_id`) VALUES ('45', 'hhjjk', '130')");
   if ($result_photos_add) {
-    echo "Success!";
+  //  echo "Success!";
   }
  else {
-     echo "Error! $mysql->error <br>";
+   //  echo "Error! $mysql->error <br>";
    }
 
 
@@ -418,10 +418,10 @@ $id = $stroka[0] + 1;
 '$salary', '$name', '$last_name')");
 
 if ($result) {
-   echo "Success!";
+  // echo "Success!";
  }
 else {
-    echo "Error! $mysql->error <br>";
+  //  echo "Error! $mysql->error <br>";
   }
 
   foreach ($phones as $value) {
@@ -435,10 +435,10 @@ else {
   $result = $mysql->query("INSERT INTO `actor_contacts_of_relatives`(`actor_relatives_phone_numbers`, `actor_id`)
     VALUES ('$value','$id')");
     if ($result) {
-       echo "Success!";
+     //  echo "Success!";
      }
    else {
-        echo "Error! $mysql->error <br>";
+      //  echo "Error! $mysql->error <br>";
       }
   }
 
